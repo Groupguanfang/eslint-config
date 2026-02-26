@@ -1,0 +1,145 @@
+{
+  "name": "naily-eslint-config",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "Naily's ESLint config.",
+  "author": "Naily Zero <zero@naily.cc> (https://naily.cc)",
+  "license": "MIT",
+  "homepage": "https://github.com/groupguanfang/eslint-config",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/groupguanfang/eslint-config"
+  },
+  "bugs": {
+    "url": "https://github.com/groupguanfang/eslint-config/issues",
+    "email": "zero@naily.cc"
+  },
+  "keywords": [
+    "eslint",
+    "config",
+    "naily"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "types": {
+        "import": "./dist/index.d.mts",
+        "require": "./dist/index.d.cts"
+      },
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json",
+    "./dist/*": "./dist/*"
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.cts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "test": "vitest --coverage --ui",
+    "lint": "eslint .",
+    "typegen": "tsx scripts/typegen.ts"
+  },
+  "peerDependencies": {
+    "@angular-eslint/eslint-plugin": "^21.1.0",
+    "@angular-eslint/eslint-plugin-template": "^21.1.0",
+    "@angular-eslint/template-parser": "^21.1.0",
+    "@eslint-react/eslint-plugin": "^2.11.0",
+    "@next/eslint-plugin-next": ">=15.0.0",
+    "@prettier/plugin-xml": "^3.4.1",
+    "@unocss/eslint-plugin": ">=0.50.0",
+    "astro-eslint-parser": "^1.0.2",
+    "eslint": "^9.10.0 || ^10.0.0",
+    "eslint-plugin-astro": "^1.2.0",
+    "eslint-plugin-format": ">=0.1.0",
+    "eslint-plugin-jsx-a11y": ">=6.10.2",
+    "eslint-plugin-react-hooks": "^7.0.0",
+    "eslint-plugin-react-refresh": "^0.5.0",
+    "eslint-plugin-solid": "^0.14.3",
+    "eslint-plugin-svelte": ">=2.35.1",
+    "eslint-plugin-vuejs-accessibility": "^2.4.1",
+    "prettier-plugin-astro": "^0.14.0",
+    "prettier-plugin-slidev": "^1.0.5",
+    "svelte-eslint-parser": ">=0.37.0"
+  },
+  "peerDependenciesMeta": {
+    "@angular-eslint/eslint-plugin": {
+      "optional": true
+    },
+    "@angular-eslint/eslint-plugin-template": {
+      "optional": true
+    },
+    "@angular-eslint/template-parser": {
+      "optional": true
+    },
+    "@eslint-react/eslint-plugin": {
+      "optional": true
+    },
+    "@next/eslint-plugin-next": {
+      "optional": true
+    },
+    "@prettier/plugin-xml": {
+      "optional": true
+    },
+    "@unocss/eslint-plugin": {
+      "optional": true
+    },
+    "astro-eslint-parser": {
+      "optional": true
+    },
+    "eslint-plugin-astro": {
+      "optional": true
+    },
+    "eslint-plugin-format": {
+      "optional": true
+    },
+    "eslint-plugin-jsx-a11y": {
+      "optional": true
+    },
+    "eslint-plugin-react-hooks": {
+      "optional": true
+    },
+    "eslint-plugin-react-refresh": {
+      "optional": true
+    },
+    "eslint-plugin-solid": {
+      "optional": true
+    },
+    "eslint-plugin-svelte": {
+      "optional": true
+    },
+    "eslint-plugin-vuejs-accessibility": {
+      "optional": true
+    },
+    "prettier-plugin-astro": {
+      "optional": true
+    },
+    "prettier-plugin-slidev": {
+      "optional": true
+    },
+    "svelte-eslint-parser": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@antfu/eslint-config": "^7.6.1",
+    "@typescript-eslint/utils": "^8.56.1",
+    "eslint-flat-config-utils": "^3.0.1"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.29.8",
+    "@types/node": "^25.3.1",
+    "eslint-typegen": "^2.3.1",
+    "jiti": "^2.6.1",
+    "svelte": "^5.53.5",
+    "tsdown": "0.21.0-beta.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
