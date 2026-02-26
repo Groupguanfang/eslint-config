@@ -20,10 +20,8 @@ export default {
   create: (context: RuleContext<string, readonly unknown[]>) => {
     return {
       IfStatement(node: TSESTree.IfStatement) {
-        if (!node.consequent)
-          return
-        if (node.consequent.type === 'BlockStatement')
-          return
+        if (!node.consequent) return
+        if (node.consequent.type === 'BlockStatement') return
         if (node.test.loc.end.line !== node.consequent.loc.start.line) {
           context.report({
             node,
@@ -33,8 +31,7 @@ export default {
             },
             messageId: 'expectIfOneline',
             fix(fixer) {
-              const sourceCode = context.getSourceCode()
-              const text = sourceCode.getText()
+              const text = context.sourceCode.getText()
               const betweenText = text.slice(node.test.range[1], node.consequent.range[0])
               const newText = betweenText.replace(/\s*\n\s*/, ' ')
               return fixer.replaceTextRange([node.test.range[1], node.consequent.range[0]], newText)
