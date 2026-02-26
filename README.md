@@ -25,3 +25,5 @@ I very like the way @antfu/eslint-config is organized, so I keep almost all the 
 
 - Add `naily/typescript/convention` rule when `convention` is `true`.
 - Add `naily/typescript/unsafe` rule when `freedom` is `true`.
+
+- Disable `vue/singleline-html-element-content-newline` rule.

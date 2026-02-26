@@ -30,6 +30,7 @@ export function naily(
         'naily/if-oneline': 'error',
         'ts/method-signature-style': ['error', 'method'],
         'ts/no-namespace': 'off',
+        'vue/singleline-html-element-content-newline': 'off',
       },
     })
 
