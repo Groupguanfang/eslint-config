@@ -1,7 +1,7 @@
 {
   "name": "naily-eslint-config",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Naily's ESLint config.",
   "author": "Naily Zero <zero@naily.cc> (https://naily.cc)",
   "license": "MIT",
