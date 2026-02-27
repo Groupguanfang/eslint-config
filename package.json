@@ -44,7 +44,8 @@
     "build": "tsdown",
     "test": "vitest --coverage --ui",
     "lint": "eslint .",
-    "typegen": "tsx scripts/typegen.ts"
+    "typegen": "tsx scripts/typegen.ts",
+    "prepublishOnly": "pnpm build"
   },
   "peerDependencies": {
     "@angular-eslint/eslint-plugin": "^21.1.0",
