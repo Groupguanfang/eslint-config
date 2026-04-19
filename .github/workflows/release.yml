@@ -41,7 +41,7 @@ jobs:
         run: pnpm i -g eslint && pnpm lint && pnpm run build
 
       - name: Is owner
-        run: npm owner ls naily-eslint-config
+        run: npm owner ls naily-eslint-config && npm whoami
 
       - name: Create Release Pull Request
         id: changesets
@@ -49,6 +49,6 @@ jobs:
         with:
           commit: 'chore(release): release packages'
           title: 'chore(release): release packages'
-          publish: npm x changeset publish --provenance
+          publish: npm whoami
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
