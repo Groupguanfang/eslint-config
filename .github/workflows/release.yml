@@ -49,4 +49,4 @@ jobs:
         with:
           commit: 'chore(release): release packages'
           title: 'chore(release): release packages'
-          publish: npm whoami
+          publish: npm x changeset publish --provenance
