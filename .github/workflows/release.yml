@@ -22,12 +22,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Omit registry-url: setup-node would write a temp .npmrc with _authToken; an empty/invalid
-      # token blocks OIDC trusted publishing (E404 / ENEEDAUTH). Public deps use the default registry.
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
           node-version: 25.x
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Upgrade npm to latest (for OIDC support)
         run: |
@@ -49,6 +48,6 @@ jobs:
         with:
           commit: 'chore(release): release packages'
           title: 'chore(release): release packages'
-          publish: npx changeset publish
+          publish: pnpm changeset publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
