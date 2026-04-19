@@ -8,7 +8,7 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 permissions:
-  contents: write
+  contents: read
   pull-requests: write
   id-token: write
 
@@ -41,7 +41,7 @@ jobs:
         run: pnpm i -g eslint && pnpm lint && pnpm run build
 
       - name: Is owner
-        run: npm owner ls naily-eslint-config && npm whoami
+        run: npm owner ls naily-eslint-config && cat ~/.npmrc && npm whoami
 
       - name: Create Release Pull Request
         id: changesets
