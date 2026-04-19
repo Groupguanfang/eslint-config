@@ -2,6 +2,7 @@
   "name": "naily-eslint-config",
   "type": "module",
   "version": "0.0.3",
+  "packageManager": "pnpm@10.33.0",
   "description": "Naily's ESLint config.",
   "author": "Naily Zero <zero@naily.cc> (https://naily.cc)",
   "license": "MIT",
@@ -60,6 +61,7 @@
     "@types/node": "^25.3.1",
     "eslint-typegen": "^2.3.1",
     "jiti": "^2.6.1",
+    "pnpm": "^10.33.0",
     "tsdown": "0.21.0-beta.2",
     "tsx": "^4.21.0",
     "typescript": "^6.0.3"
