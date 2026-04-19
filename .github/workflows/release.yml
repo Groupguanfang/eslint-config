@@ -51,3 +51,5 @@ jobs:
           publish: pnpm changeset publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # setup-node + registry-url sets NODE_AUTH_TOKEN; it is not a valid npm publish token and prevents OIDC.
+          NODE_AUTH_TOKEN: ''
