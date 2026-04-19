@@ -46,6 +46,6 @@ jobs:
         with:
           commit: 'chore(release): release packages'
           title: 'chore(release): release packages'
-          publish: npx changeset publish
+          publish: npm -v && pnpm -v && pnpm changeset publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
