@@ -19,8 +19,6 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
@@ -34,7 +32,7 @@ jobs:
           npm --version
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v6
+        uses: pnpm/action-setup@v2
         with:
           version: 10
           run_install: true
@@ -48,6 +46,6 @@ jobs:
         with:
           commit: 'chore(release): release packages'
           title: 'chore(release): release packages'
-          publish: pnpm changeset publish
+          publish: npx changeset publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
