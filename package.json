@@ -9,7 +9,7 @@
   "homepage": "https://github.com/groupguanfang/eslint-config",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/groupguanfang/eslint-config.git"
+    "url": "https://github.com/Groupguanfang/eslint-config"
   },
   "bugs": {
     "url": "https://github.com/groupguanfang/eslint-config/issues",
