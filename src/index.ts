@@ -1,13 +1,13 @@
-import type { OptionsConfig as AntfuOptionsConfig, TypedFlatConfigItem as AntfuTypedFlatConfigItem, Awaitable } from '@antfu/eslint-config'
+import type { OptionsConfig as AntfuOptionsConfig, TypedFlatConfigItem as AntfuTypedFlatConfigItem, Awaitable, Rules } from '@antfu/eslint-config'
 import type { Linter } from 'eslint'
 import type { FlatConfigComposer } from 'eslint-flat-config-utils'
-import type { NailyConfigNames, RuleOptions } from './typegen'
+import type { NailyConfigNames } from './typegen'
 import antfu from '@antfu/eslint-config'
 import ifOneline from './if-oneline'
 import interfaceNaming from './interface-naming'
 
 export interface NailyTypedFlatConfigItem extends AntfuTypedFlatConfigItem {
-  rules?: Record<string, Linter.RuleEntry<any> | undefined> & Omit<RuleOptions, 'antfu/if-newline'>
+  rules?: Rules
 }
 
 export interface NailyOptionsConfig extends AntfuOptionsConfig {

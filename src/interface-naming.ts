@@ -47,7 +47,7 @@ export default {
         const matchesNamespace = namespaceNames.has(interfaceName)
 
         // 如果不在命名空间内且不与任何命名空间重名，则必须以 I 开头
-        if (!isInNamespace && !matchesNamespace && !interfaceName.match(/^I[A-Z]/)) {
+        if (!isInNamespace && !matchesNamespace && !/^I[A-Z]/.test(interfaceName)) {
           context.report({
             node: node.id,
             messageId: 'invalidInterfaceName',
