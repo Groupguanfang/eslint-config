@@ -46,3 +46,4 @@ jobs:
           commit: 'chore(release): release packages'
           title: 'chore(release): release packages'
           publish: npm x changeset publish --provenance
+          createGithubReleases: true
