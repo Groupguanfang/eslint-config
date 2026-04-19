@@ -40,6 +40,9 @@ jobs:
       - name: Lint & build
         run: pnpm i -g eslint && pnpm lint && pnpm run build
 
+      - name: Is owner
+        run: npm owner ls naily-eslint-config
+
       - name: Create Release Pull Request
         id: changesets
         uses: changesets/action@v1
