@@ -1,5 +1,11 @@
 # naily-eslint-config
 
+## 0.0.3
+
+### Patch Changes
+
+- 02e6786: chore: update deps
+
 ## 0.0.2
 
 ### Patch Changes
