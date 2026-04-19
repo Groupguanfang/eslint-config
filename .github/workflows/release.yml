@@ -40,7 +40,7 @@ jobs:
         run: pnpm i -g eslint && pnpm lint && pnpm run build
 
       - name: Is owner
-        run: npm owner ls naily-eslint-config && cat ~/.npmrc && npm whoami
+        run: npm owner ls naily-eslint-config && npm whoami
 
       - name: Create Release Pull Request
         id: changesets
