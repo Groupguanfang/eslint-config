@@ -20,21 +20,21 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          run_install: true
+
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
           node-version: 25.x
+          cache: pnpm
 
       - name: Upgrade npm to latest (for OIDC support)
         run: |
           npm install -g npm@latest
           npm --version
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 10
-          run_install: true
 
       - name: Lint & build
         run: pnpm i -g eslint && pnpm lint && pnpm run build
