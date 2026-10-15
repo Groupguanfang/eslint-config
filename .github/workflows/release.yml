@@ -33,7 +33,7 @@ jobs:
 
       - name: Install npm with OIDC support
         run: |
-          npm install -g npm@12.2.0
+          npm install -g npm@11.12.1
           npm --version
 
       - name: Lint & build
