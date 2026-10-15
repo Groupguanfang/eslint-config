@@ -28,4 +28,6 @@ dts += `
 export type NailyConfigNames = ${configNames.map(i => `'${i}'`).join(' | ')}
 `
 
+dts = dts.replace(/[\t ]+$/gm, '')
+
 await fs.writeFile('src/typegen.ts', dts)

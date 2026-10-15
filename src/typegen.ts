@@ -441,12 +441,12 @@ export interface RuleOptions {
    */
   'angular/use-pipe-transform-interface'?: Linter.RuleEntry<[]>
   /**
-   * Having line breaks styles to object, array and named imports
+   * Enforce consistent line breaks for chaining member access
    * @see https://github.com/antfu/eslint-plugin-antfu/blob/main/src/rules/consistent-chaining.md
    */
   'antfu/consistent-chaining'?: Linter.RuleEntry<AntfuConsistentChaining>
   /**
-   * Having line breaks styles to object, array and named imports
+   * Enforce consistent line breaks inside braces and parentheses
    * @see https://github.com/antfu/eslint-plugin-antfu/blob/main/src/rules/consistent-list-newline.md
    */
   'antfu/consistent-list-newline'?: Linter.RuleEntry<AntfuConsistentListNewline>
@@ -472,22 +472,22 @@ export interface RuleOptions {
   'antfu/indent-unindent'?: Linter.RuleEntry<AntfuIndentUnindent>
   /**
    * Prevent importing modules in `dist` folder
-   * @see https://github.com/antfu/eslint-plugin-antfu/blob/main/src/rules/no-import-dist.test.ts
+   * @see https://github.com/antfu/eslint-plugin-antfu/blob/main/src/rules/no-import-dist.md
    */
   'antfu/no-import-dist'?: Linter.RuleEntry<[]>
   /**
    * Prevent importing modules in `node_modules` folder by relative or absolute path
-   * @see https://github.com/antfu/eslint-plugin-antfu/blob/main/src/rules/no-import-node-modules-by-path.test.ts
+   * @see https://github.com/antfu/eslint-plugin-antfu/blob/main/src/rules/no-import-node-modules-by-path.md
    */
   'antfu/no-import-node-modules-by-path'?: Linter.RuleEntry<[]>
   /**
    * Prevent using top-level await
-   * @see https://github.com/antfu/eslint-plugin-antfu/blob/main/src/rules/no-top-level-await.test.ts
+   * @see https://github.com/antfu/eslint-plugin-antfu/blob/main/src/rules/no-top-level-await.md
    */
   'antfu/no-top-level-await'?: Linter.RuleEntry<[]>
   /**
    * Do not use `exports =`
-   * @see https://github.com/antfu/eslint-plugin-antfu/blob/main/src/rules/no-ts-export-equal.test.ts
+   * @see https://github.com/antfu/eslint-plugin-antfu/blob/main/src/rules/no-ts-export-equal.md
    */
   'antfu/no-ts-export-equal'?: Linter.RuleEntry<[]>
   /**
@@ -924,6 +924,126 @@ export interface RuleOptions {
    */
   'dot-notation'?: Linter.RuleEntry<DotNotation>
   /**
+   * Disallow dependencies in favor of more performant or secure alternatives
+   */
+  'e18e/ban-dependencies'?: Linter.RuleEntry<E18EBanDependencies>
+  /**
+   * Disallow `delete` on properties — V8 deoptimizes the object to dictionary mode
+   */
+  'e18e/no-delete-property'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer optimized alternatives to `indexOf()` equality checks
+   */
+  'e18e/no-indexof-equality'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow spreading the accumulator inside a `reduce` callback (O(N²) growth)
+   */
+  'e18e/no-spread-in-reduce'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer Array.prototype.at() over length-based indexing
+   */
+  'e18e/prefer-array-at'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer Array.prototype.fill() over Array.from or map with constant values
+   */
+  'e18e/prefer-array-fill'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer Array.from(iterable, mapper) over [...iterable].map(mapper) to avoid intermediate array allocation
+   */
+  'e18e/prefer-array-from-map'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer Array.some() over Array.find() and Array.filter().length checks when checking for element existence
+   */
+  'e18e/prefer-array-some'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer Array.prototype.toReversed() over copying and reversing arrays
+   */
+  'e18e/prefer-array-to-reversed'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer Array.prototype.toSorted() over copying and sorting arrays
+   */
+  'e18e/prefer-array-to-sorted'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer Array.prototype.toSpliced() over copying and splicing arrays
+   */
+  'e18e/prefer-array-to-spliced'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `charCodeAt()` over indexed string access for single-character comparisons inside loops
+   */
+  'e18e/prefer-charcode-at-in-loop'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer Date.now() over new Date().getTime() and +new Date()
+   */
+  'e18e/prefer-date-now'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer the exponentiation operator ** over Math.pow()
+   */
+  'e18e/prefer-exponentiation-operator'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer Array.prototype.flatMap() over .map(fn).flat() to avoid the intermediate array
+   */
+  'e18e/prefer-flatmap-over-map-flat'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `Map.prototype.getOrInsert()` over reading an entry with a default and writing it back
+   */
+  'e18e/prefer-get-or-insert'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer .includes() over indexOf() comparisons for arrays and strings
+   */
+  'e18e/prefer-includes'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer String.prototype.{includes,startsWith,endsWith} over equivalent regex.test() calls
+   */
+  'e18e/prefer-includes-over-regex-test'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer inline equality checks over temporary object creation for simple comparisons
+   */
+  'e18e/prefer-inline-equality'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer nullish coalescing operator (?? and ??=) over verbose null checks
+   */
+  'e18e/prefer-nullish-coalescing'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer Object.hasOwn() over Object.prototype.hasOwnProperty.call() and obj.hasOwnProperty()
+   */
+  'e18e/prefer-object-has-own'?: Linter.RuleEntry<[]>
+  /**
+   * prefer `RegExp.test()` over `String.match()` and `RegExp.exec()` when only checking for match existence
+   */
+  'e18e/prefer-regex-test'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `indexOf(needle)` and `slice(...)` over `split()[N]` when splitting a string into two pieces.
+   */
+  'e18e/prefer-slice-over-split-index'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer spread syntax over Array.concat(), Array.from(), Object.assign({}, ...), and Function.apply()
+   */
+  'e18e/prefer-spread-syntax'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer hoisting an `Intl.Collator` instance over calling localeCompare in a sort callback
+   */
+  'e18e/prefer-static-collator'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer defining regular expressions at module scope to avoid re-compilation on every function call
+   */
+  'e18e/prefer-static-regex'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer String.fromCharCode() over String.fromCodePoint() for code points below 0x10000
+   */
+  'e18e/prefer-string-fromcharcode'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `{throwIfNoEntry: false}` over relying on a thrown error for missing fs entries from sync stat calls
+   */
+  'e18e/prefer-throw-if-no-entry'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer passing function and arguments directly to setTimeout/setInterval instead of wrapping in an arrow function or using bind
+   */
+  'e18e/prefer-timer-args'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer URL.canParse() over try-catch blocks for URL validation
+   */
+  'e18e/prefer-url-canparse'?: Linter.RuleEntry<[]>
+  /**
    * Require or disallow newline at the end of files
    * @see https://eslint.org/docs/latest/rules/eol-last
    * @deprecated
@@ -939,6 +1059,11 @@ export interface RuleOptions {
    * @see https://github.com/JoshuaKGoldberg/eslint-plugin-erasable-syntax-only/blob/main/docs/rules/enums.md
    */
   'erasable-syntax-only/enums'?: Linter.RuleEntry<[]>
+  /**
+   * Avoid using TypeScript's export aliases.
+   * @see https://github.com/JoshuaKGoldberg/eslint-plugin-erasable-syntax-only/blob/main/docs/rules/export-aliases.md
+   */
+  'erasable-syntax-only/export-aliases'?: Linter.RuleEntry<[]>
   /**
    * Avoid using TypeScript's import aliases.
    * @see https://github.com/JoshuaKGoldberg/eslint-plugin-erasable-syntax-only/blob/main/docs/rules/import-aliases.md
@@ -982,6 +1107,7 @@ export interface RuleOptions {
   /**
    * disallow unused `eslint-disable` comments
    * @see https://eslint-community.github.io/eslint-plugin-eslint-comments/rules/no-unused-disable.html
+   * @deprecated
    */
   'eslint-comments/no-unused-disable'?: Linter.RuleEntry<[]>
   /**
@@ -1327,6 +1453,15 @@ export interface RuleOptions {
    */
   'jsdoc/no-undefined-types'?: Linter.RuleEntry<JsdocNoUndefinedTypes>
   /**
+   * Reports redundant @type tags that match or broaden the naturally inferred TypeScript type.
+   */
+  'jsdoc/no-unnecessary-type-assertion'?: Linter.RuleEntry<JsdocNoUnnecessaryTypeAssertion>
+  /**
+   * Normalizes labeled links in `@see` tags to a canonical `{@link}` form.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/normalize-see-links.md#repos-sticky-header
+   */
+  'jsdoc/normalize-see-links'?: Linter.RuleEntry<JsdocNormalizeSeeLinks>
+  /**
    * Prefer `@import` tags to inline `import()` statements.
    * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/prefer-import-tag.md#repos-sticky-header
    */
@@ -1516,6 +1651,11 @@ export interface RuleOptions {
    * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/text-escaping.md#repos-sticky-header
    */
   'jsdoc/text-escaping'?: Linter.RuleEntry<JsdocTextEscaping>
+  /**
+   * Disallows (or requires descriptions for) `@ts-<directive>` comments, mirroring `@typescript-eslint/ban-ts-comment`.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/ts-ban-ts-comment.md#repos-sticky-header
+   */
+  'jsdoc/ts-ban-ts-comment'?: Linter.RuleEntry<JsdocTsBanTsComment>
   /**
    * Prefers either function properties or method signatures
    * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/ts-method-signature-style.md#repos-sticky-header
@@ -2023,6 +2163,11 @@ export interface RuleOptions {
    */
   'markdown/fenced-code-language'?: Linter.RuleEntry<MarkdownFencedCodeLanguage>
   /**
+   * Require or disallow metadata for fenced code blocks
+   * @see https://github.com/eslint/markdown/blob/main/docs/rules/fenced-code-meta.md
+   */
+  'markdown/fenced-code-meta'?: Linter.RuleEntry<MarkdownFencedCodeMeta>
+  /**
    * Enforce heading levels increment by one
    * @see https://github.com/eslint/markdown/blob/main/docs/rules/heading-increment.md
    */
@@ -2176,6 +2321,14 @@ export interface RuleOptions {
    * @deprecated
    */
   'multiline-ternary'?: Linter.RuleEntry<MultilineTernary>
+  /**
+   * Require default or namespace imports for selected built-in modules.
+   */
+  'naily/builtin-import'?: Linter.RuleEntry<NailyBuiltinImport>
+  /**
+   * Require single line if statements.
+   */
+  'naily/if-oneline'?: Linter.RuleEntry<[]>
   /**
    * Force interface naming conventions, support special cases in namespaces.
    */
@@ -2395,7 +2548,7 @@ export interface RuleOptions {
    * Disallow expressions where the operation doesn't affect the value
    * @see https://eslint.org/docs/latest/rules/no-constant-binary-expression
    */
-  'no-constant-binary-expression'?: Linter.RuleEntry<[]>
+  'no-constant-binary-expression'?: Linter.RuleEntry<NoConstantBinaryExpression>
   /**
    * Disallow constant expressions in conditions
    * @see https://eslint.org/docs/latest/rules/no-constant-condition
@@ -2987,7 +3140,7 @@ export interface RuleOptions {
    * Disallow unmodified loop conditions
    * @see https://eslint.org/docs/latest/rules/no-unmodified-loop-condition
    */
-  'no-unmodified-loop-condition'?: Linter.RuleEntry<[]>
+  'no-unmodified-loop-condition'?: Linter.RuleEntry<NoUnmodifiedLoopCondition>
   /**
    * Disallow ternary operators when simpler alternatives exist
    * @see https://eslint.org/docs/latest/rules/no-unneeded-ternary
@@ -3201,7 +3354,7 @@ export interface RuleOptions {
    */
   'node/no-new-require'?: Linter.RuleEntry<[]>
   /**
-   * disallow string concatenation with `__dirname` and `__filename`
+   * disallow string concatenation with `__dirname`, `__filename`, and `import.meta` paths
    * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-path-concat.md
    */
   'node/no-path-concat'?: Linter.RuleEntry<[]>
@@ -3311,10 +3464,20 @@ export interface RuleOptions {
    */
   'node/prefer-global/url-search-params'?: Linter.RuleEntry<NodePreferGlobalUrlSearchParams>
   /**
+   * enforce using `node:assert/strict` instead of `node:assert`.
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-import/assert-strict.md
+   */
+  'node/prefer-import/assert-strict'?: Linter.RuleEntry<[]>
+  /**
    * enforce using the `node:` protocol when importing Node.js builtin modules.
    * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-node-protocol.md
    */
   'node/prefer-node-protocol'?: Linter.RuleEntry<NodePreferNodeProtocol>
+  /**
+   * enforce using `process.getBuiltinModule()` to load Node.js built-in modules
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-process-get-builtin-module.md
+   */
+  'node/prefer-process-get-builtin-module'?: Linter.RuleEntry<NodePreferProcessGetBuiltinModule>
   /**
    * enforce `require("dns").promises`
    * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-promises/dns.md
@@ -3404,6 +3567,11 @@ export interface RuleOptions {
    * @see https://perfectionist.dev/rules/sort-array-includes
    */
   'perfectionist/sort-array-includes'?: Linter.RuleEntry<PerfectionistSortArrayIncludes>
+  /**
+   * Enforce sorted arrays.
+   * @see https://perfectionist.dev/rules/sort-arrays
+   */
+  'perfectionist/sort-arrays'?: Linter.RuleEntry<PerfectionistSortArrays>
   /**
    * Enforce sorted classes.
    * @see https://perfectionist.dev/rules/sort-classes
@@ -3525,10 +3693,20 @@ export interface RuleOptions {
    */
   'pnpm/json-valid-catalog'?: Linter.RuleEntry<PnpmJsonValidCatalog>
   /**
+   * Require blank lines around multi-line entries in `pnpm-workspace.yaml`, and disallow them between single-line entries
+   * @see https://github.com/antfu/pnpm-workspace-utils/tree/main/packages/eslint-plugin-pnpm/src/rules/yaml/yaml-blank-lines.test.ts
+   */
+  'pnpm/yaml-blank-lines'?: Linter.RuleEntry<[]>
+  /**
    * Enforce settings in `pnpm-workspace.yaml`
    * @see https://github.com/antfu/pnpm-workspace-utils/tree/main/packages/eslint-plugin-pnpm/src/rules/yaml/yaml-enforce-settings.test.ts
    */
   'pnpm/yaml-enforce-settings'?: Linter.RuleEntry<PnpmYamlEnforceSettings>
+  /**
+   * Disallow the anonymous `catalog:` in `pnpm-workspace.yaml` in favor of named catalogs
+   * @see https://github.com/antfu/pnpm-workspace-utils/tree/main/packages/eslint-plugin-pnpm/src/rules/yaml/yaml-no-anonymous-catalog.test.ts
+   */
+  'pnpm/yaml-no-anonymous-catalog'?: Linter.RuleEntry<[]>
   /**
    * Disallow duplicate catalog items in `pnpm-workspace.yaml`
    * @see https://github.com/antfu/pnpm-workspace-utils/tree/main/packages/eslint-plugin-pnpm/src/rules/yaml/yaml-no-duplicate-catalog-item.test.ts
@@ -3637,330 +3815,162 @@ export interface RuleOptions {
    * @see https://eslint.org/docs/latest/rules/radix
    */
   'radix'?: Linter.RuleEntry<Radix>
+  'react-refresh/only-export-components'?: Linter.RuleEntry<ReactRefreshOnlyExportComponents>
   /**
    * Disallows DOM elements from using 'dangerouslySetInnerHTML'.
    * @see https://eslint-react.xyz/docs/rules/dom-no-dangerously-set-innerhtml
    */
-  'react-dom/no-dangerously-set-innerhtml'?: Linter.RuleEntry<[]>
+  'react/dom-no-dangerously-set-innerhtml'?: Linter.RuleEntry<[]>
   /**
    * Disallows DOM elements from using 'dangerouslySetInnerHTML' and 'children' at the same time.
    * @see https://eslint-react.xyz/docs/rules/dom-no-dangerously-set-innerhtml-with-children
    */
-  'react-dom/no-dangerously-set-innerhtml-with-children'?: Linter.RuleEntry<[]>
+  'react/dom-no-dangerously-set-innerhtml-with-children'?: Linter.RuleEntry<[]>
   /**
    * Disallows 'findDOMNode'.
    * @see https://eslint-react.xyz/docs/rules/dom-no-find-dom-node
    */
-  'react-dom/no-find-dom-node'?: Linter.RuleEntry<[]>
+  'react/dom-no-find-dom-node'?: Linter.RuleEntry<[]>
   /**
    * Disallows 'flushSync'.
    * @see https://eslint-react.xyz/docs/rules/dom-no-flush-sync
    */
-  'react-dom/no-flush-sync'?: Linter.RuleEntry<[]>
+  'react/dom-no-flush-sync'?: Linter.RuleEntry<[]>
   /**
    * Replaces usage of 'ReactDOM.hydrate()' with 'hydrateRoot()'.
    * @see https://eslint-react.xyz/docs/rules/dom-no-hydrate
    */
-  'react-dom/no-hydrate'?: Linter.RuleEntry<[]>
+  'react/dom-no-hydrate'?: Linter.RuleEntry<[]>
   /**
    * Enforces an explicit 'type' attribute for 'button' elements.
    * @see https://eslint-react.xyz/docs/rules/dom-no-missing-button-type
    */
-  'react-dom/no-missing-button-type'?: Linter.RuleEntry<[]>
+  'react/dom-no-missing-button-type'?: Linter.RuleEntry<[]>
   /**
    * Enforces an explicit 'sandbox' attribute for 'iframe' elements.
    * @see https://eslint-react.xyz/docs/rules/dom-no-missing-iframe-sandbox
    */
-  'react-dom/no-missing-iframe-sandbox'?: Linter.RuleEntry<[]>
-  /**
-   * Enforces the absence of a 'namespace' in React elements.
-   * @see https://eslint-react.xyz/docs/rules/dom-no-namespace
-   */
-  'react-dom/no-namespace'?: Linter.RuleEntry<[]>
+  'react/dom-no-missing-iframe-sandbox'?: Linter.RuleEntry<[]>
   /**
    * Replaces usage of 'ReactDOM.render()' with 'createRoot(node).render()'.
    * @see https://eslint-react.xyz/docs/rules/dom-no-render
    */
-  'react-dom/no-render'?: Linter.RuleEntry<[]>
+  'react/dom-no-render'?: Linter.RuleEntry<[]>
   /**
    * Disallows the return value of 'ReactDOM.render'.
    * @see https://eslint-react.xyz/docs/rules/dom-no-render-return-value
    */
-  'react-dom/no-render-return-value'?: Linter.RuleEntry<[]>
+  'react/dom-no-render-return-value'?: Linter.RuleEntry<[]>
   /**
    * Disallows 'javascript:' URLs as attribute values.
    * @see https://eslint-react.xyz/docs/rules/dom-no-script-url
    */
-  'react-dom/no-script-url'?: Linter.RuleEntry<[]>
+  'react/dom-no-script-url'?: Linter.RuleEntry<[]>
   /**
    * Disallows the use of string style prop in JSX. Use an object instead.
    * @see https://eslint-react.xyz/docs/rules/dom-no-string-style-prop
    */
-  'react-dom/no-string-style-prop'?: Linter.RuleEntry<[]>
+  'react/dom-no-string-style-prop'?: Linter.RuleEntry<[]>
   /**
    * Disallows unknown 'DOM' properties.
    * @see https://eslint-react.xyz/docs/rules/dom-no-unknown-property
    */
-  'react-dom/no-unknown-property'?: Linter.RuleEntry<ReactDomNoUnknownProperty>
+  'react/dom-no-unknown-property'?: Linter.RuleEntry<ReactDomNoUnknownProperty>
   /**
    * Enforces that the 'sandbox' attribute for 'iframe' elements is not set to unsafe combinations.
    * @see https://eslint-react.xyz/docs/rules/dom-no-unsafe-iframe-sandbox
    */
-  'react-dom/no-unsafe-iframe-sandbox'?: Linter.RuleEntry<[]>
+  'react/dom-no-unsafe-iframe-sandbox'?: Linter.RuleEntry<[]>
   /**
    * Disallows 'target="_blank"' without 'rel="noreferrer noopener"'.
    * @see https://eslint-react.xyz/docs/rules/dom-no-unsafe-target-blank
    */
-  'react-dom/no-unsafe-target-blank'?: Linter.RuleEntry<[]>
+  'react/dom-no-unsafe-target-blank'?: Linter.RuleEntry<ReactDomNoUnsafeTargetBlank>
   /**
    * Replaces usage of 'useFormState' with 'useActionState'.
    * @see https://eslint-react.xyz/docs/rules/dom-no-use-form-state
    */
-  'react-dom/no-use-form-state'?: Linter.RuleEntry<[]>
+  'react/dom-no-use-form-state'?: Linter.RuleEntry<[]>
   /**
    * Disallows 'children' in void DOM elements.
    * @see https://eslint-react.xyz/docs/rules/dom-no-void-elements-with-children
    */
-  'react-dom/no-void-elements-with-children'?: Linter.RuleEntry<[]>
+  'react/dom-no-void-elements-with-children'?: Linter.RuleEntry<[]>
   /**
-   * Enforces importing React DOM via a namespace import.
-   * @see https://eslint-react.xyz/docs/rules/dom-prefer-namespace-import
+   * Validates usage of Error Boundaries instead of try/catch for errors in child components.
+   * @see https://eslint-react.xyz/docs/rules/error-boundaries
    */
-  'react-dom/prefer-namespace-import'?: Linter.RuleEntry<[]>
+  'react/error-boundaries'?: Linter.RuleEntry<[]>
   /**
-   * Disallows direct calls to the ['set' function](https://react.dev/reference/react/useState#setstate) of 'useState' in 'useEffect'.
-   * @see https://eslint-react.xyz/docs/rules/hooks-extra-no-direct-set-state-in-use-effect
-   */
-  'react-hooks-extra/no-direct-set-state-in-use-effect'?: Linter.RuleEntry<[]>
-  /**
-   * Verifies that automatic effect dependencies are compiled if opted-in
-   */
-  'react-hooks/automatic-effect-dependencies'?: Linter.RuleEntry<ReactHooksAutomaticEffectDependencies>
-  /**
-   * Validates against calling capitalized functions/methods instead of using JSX
-   */
-  'react-hooks/capitalized-calls'?: Linter.RuleEntry<ReactHooksCapitalizedCalls>
-  /**
-   * Validates against higher order functions defining nested components or hooks. Components and hooks should be defined at the module level
-   */
-  'react-hooks/component-hook-factories'?: Linter.RuleEntry<ReactHooksComponentHookFactories>
-  /**
-   * Validates the compiler configuration options
-   */
-  'react-hooks/config'?: Linter.RuleEntry<ReactHooksConfig>
-  /**
-   * Validates usage of error boundaries instead of try/catch for errors in child components
-   */
-  'react-hooks/error-boundaries'?: Linter.RuleEntry<ReactHooksErrorBoundaries>
-  /**
-   * verifies the list of dependencies for Hooks like useEffect and similar
+   * Verifies the list of dependencies for Hooks like 'useEffect' and similar.
    * @see https://github.com/facebook/react/issues/14920
    */
-  'react-hooks/exhaustive-deps'?: Linter.RuleEntry<ReactHooksExhaustiveDeps>
+  'react/exhaustive-deps'?: Linter.RuleEntry<ReactExhaustiveDeps>
   /**
-   * Validates usage of fbt
+   * Validates against assignment/mutation of globals during render, part of ensuring that side effects must run outside of render.
+   * @see https://eslint-react.xyz/docs/rules/globals
    */
-  'react-hooks/fbt'?: Linter.RuleEntry<ReactHooksFbt>
+  'react/globals'?: Linter.RuleEntry<[]>
   /**
-   * Validates usage of `fire`
+   * Validates against mutating props, state, and other immutable values, including through functions passed into frozen contexts such as JSX props, hook arguments, and hook return values.
+   * @see https://eslint-react.xyz/docs/rules/immutability
    */
-  'react-hooks/fire'?: Linter.RuleEntry<ReactHooksFire>
+  'react/immutability'?: Linter.RuleEntry<[]>
   /**
-   * Validates configuration of [gating mode](https://react.dev/reference/react-compiler/gating)
+   * Disallows passing 'children' as a prop.
+   * @see https://eslint-react.xyz/docs/rules/jsx-no-children-prop
    */
-  'react-hooks/gating'?: Linter.RuleEntry<ReactHooksGating>
+  'react/jsx-no-children-prop'?: Linter.RuleEntry<[]>
   /**
-   * Validates against assignment/mutation of globals during render, part of ensuring that [side effects must render outside of render](https://react.dev/reference/rules/components-and-hooks-must-be-pure#side-effects-must-run-outside-of-render)
+   * Disallows passing 'children' as a prop when children are also passed as nested content.
+   * @see https://eslint-react.xyz/docs/rules/jsx-no-children-prop-with-children
    */
-  'react-hooks/globals'?: Linter.RuleEntry<ReactHooksGlobals>
+  'react/jsx-no-children-prop-with-children'?: Linter.RuleEntry<[]>
   /**
-   * Validates the rules of hooks
-   */
-  'react-hooks/hooks'?: Linter.RuleEntry<ReactHooksHooks>
-  /**
-   * Validates against mutating props, state, and other values that [are immutable](https://react.dev/reference/rules/components-and-hooks-must-be-pure#props-and-state-are-immutable)
-   */
-  'react-hooks/immutability'?: Linter.RuleEntry<ReactHooksImmutability>
-  /**
-   * Validates against usage of libraries which are incompatible with memoization (manual or automatic)
-   */
-  'react-hooks/incompatible-library'?: Linter.RuleEntry<ReactHooksIncompatibleLibrary>
-  /**
-   * Internal invariants
-   */
-  'react-hooks/invariant'?: Linter.RuleEntry<ReactHooksInvariant>
-  /**
-   * Validates that effect dependencies are memoized
-   */
-  'react-hooks/memoized-effect-dependencies'?: Linter.RuleEntry<ReactHooksMemoizedEffectDependencies>
-  /**
-   * Validates against deriving values from state in an effect
-   */
-  'react-hooks/no-deriving-state-in-effects'?: Linter.RuleEntry<ReactHooksNoDerivingStateInEffects>
-  /**
-   * Validates that existing manual memoized is preserved by the compiler. React Compiler will only compile components and hooks if its inference [matches or exceeds the existing manual memoization](https://react.dev/learn/react-compiler/introduction#what-should-i-do-about-usememo-usecallback-and-reactmemo)
-   */
-  'react-hooks/preserve-manual-memoization'?: Linter.RuleEntry<ReactHooksPreserveManualMemoization>
-  /**
-   * Validates that [components/hooks are pure](https://react.dev/reference/rules/components-and-hooks-must-be-pure) by checking that they do not call known-impure functions
-   */
-  'react-hooks/purity'?: Linter.RuleEntry<ReactHooksPurity>
-  /**
-   * Validates correct usage of refs, not reading/writing during render. See the "pitfalls" section in [`useRef()` usage](https://react.dev/reference/react/useRef#usage)
-   */
-  'react-hooks/refs'?: Linter.RuleEntry<ReactHooksRefs>
-  /**
-   * Validates against suppression of other rules
-   */
-  'react-hooks/rule-suppression'?: Linter.RuleEntry<ReactHooksRuleSuppression>
-  /**
-   * enforces the Rules of Hooks
-   * @see https://react.dev/reference/rules/rules-of-hooks
-   */
-  'react-hooks/rules-of-hooks'?: Linter.RuleEntry<ReactHooksRulesOfHooks>
-  /**
-   * Validates against calling setState synchronously in an effect, which can lead to re-renders that degrade performance
-   */
-  'react-hooks/set-state-in-effect'?: Linter.RuleEntry<ReactHooksSetStateInEffect>
-  /**
-   * Validates against setting state during render, which can trigger additional renders and potential infinite render loops
-   */
-  'react-hooks/set-state-in-render'?: Linter.RuleEntry<ReactHooksSetStateInRender>
-  /**
-   * Validates that components are static, not recreated every render. Components that are recreated dynamically can reset state and trigger excessive re-rendering
-   */
-  'react-hooks/static-components'?: Linter.RuleEntry<ReactHooksStaticComponents>
-  /**
-   * Validates against invalid syntax
-   */
-  'react-hooks/syntax'?: Linter.RuleEntry<ReactHooksSyntax>
-  /**
-   * Unimplemented features
-   */
-  'react-hooks/todo'?: Linter.RuleEntry<ReactHooksTodo>
-  /**
-   * Validates against syntax that we do not plan to support in React Compiler
-   */
-  'react-hooks/unsupported-syntax'?: Linter.RuleEntry<ReactHooksUnsupportedSyntax>
-  /**
-   * Validates usage of the useMemo() hook against common mistakes. See [`useMemo()` docs](https://react.dev/reference/react/useMemo) for more information.
-   */
-  'react-hooks/use-memo'?: Linter.RuleEntry<ReactHooksUseMemo>
-  /**
-   * Validates that useMemos always return a value and that the result of the useMemo is used by the component/hook. See [`useMemo()` docs](https://react.dev/reference/react/useMemo) for more information.
-   */
-  'react-hooks/void-use-memo'?: Linter.RuleEntry<ReactHooksVoidUseMemo>
-  /**
-   * Enforces naming conventions for components.
-   * @see https://eslint-react.xyz/docs/rules/naming-convention-component-name
-   */
-  'react-naming-convention/component-name'?: Linter.RuleEntry<ReactNamingConventionComponentName>
-  /**
-   * Enforces the context name to be a valid component name with the suffix 'Context'.
-   * @see https://eslint-react.xyz/docs/rules/naming-convention-context-name
-   */
-  'react-naming-convention/context-name'?: Linter.RuleEntry<[]>
-  /**
-   * Enforces consistent file-naming conventions.
-   * @see https://eslint-react.xyz/docs/rules/naming-convention-filename
-   */
-  'react-naming-convention/filename'?: Linter.RuleEntry<ReactNamingConventionFilename>
-  /**
-   * Enforces consistent use of the JSX file extension.
-   * @see https://eslint-react.xyz/docs/rules/naming-convention-filename-extension
-   */
-  'react-naming-convention/filename-extension'?: Linter.RuleEntry<ReactNamingConventionFilenameExtension>
-  /**
-   * Enforces identifier names assigned from 'useId' calls to be either 'id' or end with 'Id'.
-   * @see https://eslint-react.xyz/docs/rules/naming-convention-id-name
-   */
-  'react-naming-convention/id-name'?: Linter.RuleEntry<[]>
-  /**
-   * Enforces identifier names assigned from 'useRef' calls to be either 'ref' or end with 'Ref'.
-   * @see https://eslint-react.xyz/docs/rules/naming-convention-ref-name
-   */
-  'react-naming-convention/ref-name'?: Linter.RuleEntry<[]>
-  /**
-   * Enforces destructuring and symmetric naming of the 'useState' hook value and setter.
-   * @see https://eslint-react.xyz/docs/rules/naming-convention-use-state
-   */
-  'react-naming-convention/use-state'?: Linter.RuleEntry<ReactNamingConventionUseState>
-  'react-refresh/only-export-components'?: Linter.RuleEntry<ReactRefreshOnlyExportComponents>
-  /**
-   * Validate and transform React Client/Server Function definitions.
-   * @see https://eslint-react.xyz/docs/rules/function-definition
-   */
-  'react-rsc/function-definition'?: Linter.RuleEntry<[]>
-  /**
-   * Enforces that every 'addEventListener' in a component or custom hook has a corresponding 'removeEventListener'.
-   * @see https://eslint-react.xyz/docs/rules/web-api-no-leaked-event-listener
-   */
-  'react-web-api/no-leaked-event-listener'?: Linter.RuleEntry<[]>
-  /**
-   * Enforces that every 'setInterval' in a component or custom hook has a corresponding 'clearInterval'.
-   * @see https://eslint-react.xyz/docs/rules/web-api-no-leaked-interval
-   */
-  'react-web-api/no-leaked-interval'?: Linter.RuleEntry<[]>
-  /**
-   * Enforces that every 'ResizeObserver' created in a component or custom hook has a corresponding 'ResizeObserver.disconnect()'.
-   * @see https://eslint-react.xyz/docs/rules/web-api-no-leaked-resize-observer
-   */
-  'react-web-api/no-leaked-resize-observer'?: Linter.RuleEntry<[]>
-  /**
-   * Enforces that every 'setTimeout' in a component or custom hook has a corresponding 'clearTimeout'.
-   * @see https://eslint-react.xyz/docs/rules/web-api-no-leaked-timeout
-   */
-  'react-web-api/no-leaked-timeout'?: Linter.RuleEntry<[]>
-  /**
-   * Prevents unintentional '$' sign before expression.
-   * @see https://eslint-react.xyz/docs/rules/jsx-dollar
-   */
-  'react/jsx-dollar'?: Linter.RuleEntry<[]>
-  /**
-   * Enforces 'key' prop placement before spread props.
-   * @see https://eslint-react.xyz/docs/rules/jsx-key-before-spread
-   */
-  'react/jsx-key-before-spread'?: Linter.RuleEntry<[]>
-  /**
-   * Prevents comment strings (e.g., beginning with '//' or '/*') from being accidentally inserted into a JSX element's text nodes.
+   * Prevents comment strings from being accidentally inserted into a JSX element's text nodes.
    * @see https://eslint-react.xyz/docs/rules/jsx-no-comment-textnodes
    */
   'react/jsx-no-comment-textnodes'?: Linter.RuleEntry<[]>
   /**
-   * Disallows duplicate props in JSX elements.
-   * @see https://eslint-react.xyz/docs/rules/jsx-no-duplicate-props
+   * Prevent patterns that cause deoptimization when using the automatic JSX runtime.
+   * @see https://eslint-react.xyz/docs/rules/jsx-no-key-after-spread
    */
-  'react/jsx-no-duplicate-props'?: Linter.RuleEntry<[]>
+  'react/jsx-no-key-after-spread'?: Linter.RuleEntry<[]>
   /**
-   * Disallows immediately-invoked function expressions in JSX.
-   * @see https://eslint-react.xyz/docs/rules/jsx-no-iife
+   * Catches `$` before `{expr}` in JSX — typically from template literal `${expr}` being copy-pasted into JSX without removing the `$`. The `$` "leaks" into the rendered output.
+   * @see https://eslint-react.xyz/docs/rules/jsx-no-leaked-dollar
    */
-  'react/jsx-no-iife'?: Linter.RuleEntry<[]>
+  'react/jsx-no-leaked-dollar'?: Linter.RuleEntry<[]>
   /**
-   * Prevents using variables in JSX that are not defined in the scope.
-   * @see https://eslint-react.xyz/docs/rules/jsx-no-undef
+   * Catches `;` at the start of JSX text nodes — typically from accidentally placing a statement-ending `;` inside JSX. The `;` "leaks" into the rendered output.
+   * @see https://eslint-react.xyz/docs/rules/jsx-no-leaked-semicolon
    */
-  'react/jsx-no-undef'?: Linter.RuleEntry<[]>
+  'react/jsx-no-leaked-semicolon'?: Linter.RuleEntry<[]>
   /**
-   * Enforces shorthand syntax for boolean props.
-   * @see https://eslint-react.xyz/docs/rules/jsx-shorthand-boolean
+   * Disallow JSX namespace syntax, as React does not support them.
+   * @see https://eslint-react.xyz/docs/rules/jsx-no-namespace
    */
-  'react/jsx-shorthand-boolean'?: Linter.RuleEntry<ReactJsxShorthandBoolean>
+  'react/jsx-no-namespace'?: Linter.RuleEntry<[]>
   /**
-   * Enforces shorthand syntax for fragment elements.
-   * @see https://eslint-react.xyz/docs/rules/jsx-shorthand-fragment
+   * Disallows useless fragment elements.
+   * @see https://eslint-react.xyz/docs/rules/jsx-no-useless-fragment
    */
-  'react/jsx-shorthand-fragment'?: Linter.RuleEntry<ReactJsxShorthandFragment>
+  'react/jsx-no-useless-fragment'?: Linter.RuleEntry<ReactJsxNoUselessFragment>
   /**
-   * Marks React variables as used when JSX is present.
-   * @see https://eslint-react.xyz/docs/rules/jsx-uses-react
+   * Enforces identifier names assigned from `createContext` calls to be a valid component name with the suffix `Context`.
+   * @see https://eslint-react.xyz/docs/rules/naming-convention-context-name
    */
-  'react/jsx-uses-react'?: Linter.RuleEntry<[]>
+  'react/naming-convention-context-name'?: Linter.RuleEntry<[]>
   /**
-   * Marks JSX element variables as used.
-   * @see https://eslint-react.xyz/docs/rules/jsx-uses-vars
+   * Enforces identifier names assigned from 'useId' calls to be either 'id' or end with 'Id'.
+   * @see https://eslint-react.xyz/docs/rules/naming-convention-id-name
    */
-  'react/jsx-uses-vars'?: Linter.RuleEntry<[]>
+  'react/naming-convention-id-name'?: Linter.RuleEntry<[]>
+  /**
+   * Enforces identifier names assigned from 'useRef' calls to be either 'ref' or end with 'Ref'.
+   * @see https://eslint-react.xyz/docs/rules/naming-convention-ref-name
+   */
+  'react/naming-convention-ref-name'?: Linter.RuleEntry<[]>
   /**
    * Disallows accessing 'this.state' inside 'setState' calls.
    * @see https://eslint-react.xyz/docs/rules/no-access-state-in-setstate
@@ -3991,11 +4001,6 @@ export interface RuleOptions {
    * @see https://eslint-react.xyz/docs/rules/no-children-only
    */
   'react/no-children-only'?: Linter.RuleEntry<[]>
-  /**
-   * Disallows passing 'children' as a prop.
-   * @see https://eslint-react.xyz/docs/rules/no-children-prop
-   */
-  'react/no-children-prop'?: Linter.RuleEntry<[]>
   /**
    * Disallows the use of 'Children.toArray' from the 'react' package.
    * @see https://eslint-react.xyz/docs/rules/no-children-to-array
@@ -4032,15 +4037,10 @@ export interface RuleOptions {
    */
   'react/no-context-provider'?: Linter.RuleEntry<[]>
   /**
-   * Disallows 'createRef' in function components.
+   * Disallows 'createRef' in function components and Hooks.
    * @see https://eslint-react.xyz/docs/rules/no-create-ref
    */
   'react/no-create-ref'?: Linter.RuleEntry<[]>
-  /**
-   * Disallows the 'defaultProps' property in favor of ES6 default parameters.
-   * @see https://eslint-react.xyz/docs/rules/no-default-props
-   */
-  'react/no-default-props'?: Linter.RuleEntry<[]>
   /**
    * Disallows direct mutation of 'this.state'.
    * @see https://eslint-react.xyz/docs/rules/no-direct-mutation-state
@@ -4052,21 +4052,25 @@ export interface RuleOptions {
    */
   'react/no-duplicate-key'?: Linter.RuleEntry<[]>
   /**
-   * Disallows certain props on components.
-   * @see https://eslint-react.xyz/docs/rules/no-forbidden-props
-   * @deprecated
-   */
-  'react/no-forbidden-props'?: Linter.RuleEntry<ReactNoForbiddenProps>
-  /**
    * Replaces usage of 'forwardRef' with passing 'ref' as a prop.
    * @see https://eslint-react.xyz/docs/rules/no-forward-ref
    */
   'react/no-forward-ref'?: Linter.RuleEntry<[]>
   /**
+   * Prevents implicitly passing the 'children' prop to components.
+   * @see https://eslint-react.xyz/docs/rules/no-implicit-children
+   */
+  'react/no-implicit-children'?: Linter.RuleEntry<[]>
+  /**
    * Prevents implicitly passing the 'key' prop to components.
    * @see https://eslint-react.xyz/docs/rules/no-implicit-key
    */
   'react/no-implicit-key'?: Linter.RuleEntry<[]>
+  /**
+   * Prevents implicitly passing the 'ref' prop to components.
+   * @see https://eslint-react.xyz/docs/rules/no-implicit-ref
+   */
+  'react/no-implicit-ref'?: Linter.RuleEntry<[]>
   /**
    * Prevents problematic leaked values from being rendered.
    * @see https://eslint-react.xyz/docs/rules/no-leaked-conditional-rendering
@@ -4098,20 +4102,10 @@ export interface RuleOptions {
    */
   'react/no-nested-component-definitions'?: Linter.RuleEntry<[]>
   /**
-   * Disallows nesting lazy component declarations inside other components.
+   * Disallows nesting lazy component declarations inside other components or hooks.
    * @see https://eslint-react.xyz/docs/rules/no-nested-lazy-component-declarations
    */
   'react/no-nested-lazy-component-declarations'?: Linter.RuleEntry<[]>
-  /**
-   * Disallows 'propTypes' in favor of TypeScript or another type-checking solution.
-   * @see https://eslint-react.xyz/docs/rules/no-prop-types
-   */
-  'react/no-prop-types'?: Linter.RuleEntry<[]>
-  /**
-   * Disallows 'shouldComponentUpdate' when extending 'React.PureComponent'.
-   * @see https://eslint-react.xyz/docs/rules/no-redundant-should-component-update
-   */
-  'react/no-redundant-should-component-update'?: Linter.RuleEntry<[]>
   /**
    * Disallows calling 'this.setState' in 'componentDidMount' outside functions such as callbacks.
    * @see https://eslint-react.xyz/docs/rules/no-set-state-in-component-did-mount
@@ -4128,35 +4122,10 @@ export interface RuleOptions {
    */
   'react/no-set-state-in-component-will-update'?: Linter.RuleEntry<[]>
   /**
-   * Replaces string refs with callback refs.
-   * @see https://eslint-react.xyz/docs/rules/no-string-refs
-   */
-  'react/no-string-refs'?: Linter.RuleEntry<[]>
-  /**
-   * Disallows unnecessary 'key' props on nested child elements when rendering lists.
-   * @see https://eslint-react.xyz/docs/rules/no-unnecessary-key
-   */
-  'react/no-unnecessary-key'?: Linter.RuleEntry<[]>
-  /**
-   * Disallows unnecessary usage of 'useCallback'.
-   * @see https://eslint-react.xyz/docs/rules/no-unnecessary-use-callback
-   */
-  'react/no-unnecessary-use-callback'?: Linter.RuleEntry<[]>
-  /**
-   * Disallows unnecessary usage of 'useMemo'.
-   * @see https://eslint-react.xyz/docs/rules/no-unnecessary-use-memo
-   */
-  'react/no-unnecessary-use-memo'?: Linter.RuleEntry<[]>
-  /**
    * Enforces that a function with the 'use' prefix uses at least one Hook inside it.
    * @see https://eslint-react.xyz/docs/rules/no-unnecessary-use-prefix
    */
   'react/no-unnecessary-use-prefix'?: Linter.RuleEntry<[]>
-  /**
-   * Disallows unnecessary usage of 'useRef'.
-   * @see https://eslint-react.xyz/docs/rules/no-unnecessary-use-ref
-   */
-  'react/no-unnecessary-use-ref'?: Linter.RuleEntry<[]>
   /**
    * Warns about the use of 'UNSAFE_componentWillMount' in class components.
    * @see https://eslint-react.xyz/docs/rules/no-unsafe-component-will-mount
@@ -4193,7 +4162,7 @@ export interface RuleOptions {
    */
   'react/no-unused-props'?: Linter.RuleEntry<[]>
   /**
-   * Warns about unused class component state.
+   * Warns about state variables that are defined but never used.
    * @see https://eslint-react.xyz/docs/rules/no-unused-state
    */
   'react/no-unused-state'?: Linter.RuleEntry<[]>
@@ -4203,35 +4172,350 @@ export interface RuleOptions {
    */
   'react/no-use-context'?: Linter.RuleEntry<[]>
   /**
-   * Disallows useless 'forwardRef' calls on components that don't use 'ref's.
-   * @see https://eslint-react.xyz/docs/rules/no-useless-forward-ref
+   * Validates that components and hooks are pure by checking that they do not call known-impure functions during render.
+   * @see https://eslint-react.xyz/docs/rules/purity
    */
-  'react/no-useless-forward-ref'?: Linter.RuleEntry<[]>
+  'react/purity'?: Linter.RuleEntry<[]>
   /**
-   * Disallows useless fragment elements.
-   * @see https://eslint-react.xyz/docs/rules/no-useless-fragment
+   * Validates correct usage of refs by checking that 'ref.current' is not read or written during render.
+   * @see https://eslint-react.xyz/docs/rules/refs
    */
-  'react/no-useless-fragment'?: Linter.RuleEntry<ReactNoUselessFragment>
+  'react/refs'?: Linter.RuleEntry<[]>
   /**
-   * Enforces destructuring assignment for component props and context.
-   * @see https://eslint-react.xyz/docs/rules/prefer-destructuring-assignment
+   * Validates and transforms React Client/Server Function definitions.
+   * @see https://eslint-react.xyz/docs/rules/rsc-function-definition
    */
-  'react/prefer-destructuring-assignment'?: Linter.RuleEntry<[]>
+  'react/rsc-function-definition'?: Linter.RuleEntry<[]>
   /**
-   * Enforces importing React via a namespace import.
-   * @see https://eslint-react.xyz/docs/rules/prefer-namespace-import
+   * Enforces the Rules of Hooks.
+   * @see https://react.dev/reference/rules/rules-of-hooks
    */
-  'react/prefer-namespace-import'?: Linter.RuleEntry<[]>
+  'react/rules-of-hooks'?: Linter.RuleEntry<ReactRulesOfHooks>
   /**
-   * Enforces read-only props in components.
-   * @see https://eslint-react.xyz/docs/rules/prefer-read-only-props
+   * Validates against setting state synchronously in an effect, which can lead to re-renders that degrade performance.
+   * @see https://eslint-react.xyz/docs/rules/set-state-in-effect
    */
-  'react/prefer-read-only-props'?: Linter.RuleEntry<[]>
+  'react/set-state-in-effect'?: Linter.RuleEntry<[]>
   /**
-   * Enforces wrapping function calls made inside 'useState' in an 'initializer function'.
-   * @see https://eslint-react.xyz/docs/rules/prefer-use-state-lazy-initialization
+   * Validates against unconditionally setting state during render, which can trigger additional renders and potential infinite render loops.
+   * @see https://eslint-react.xyz/docs/rules/set-state-in-render
    */
-  'react/prefer-use-state-lazy-initialization'?: Linter.RuleEntry<[]>
+  'react/set-state-in-render'?: Linter.RuleEntry<[]>
+  /**
+   * Validates that components are static, not recreated every render.
+   * @see https://eslint-react.xyz/docs/rules/static-components
+   */
+  'react/static-components'?: Linter.RuleEntry<[]>
+  /**
+   * Validates against syntax that React Compiler does not support.
+   * @see https://eslint-react.xyz/docs/rules/unsupported-syntax
+   */
+  'react/unsupported-syntax'?: Linter.RuleEntry<[]>
+  /**
+   * Validates that 'useMemo' is called with a callback that returns a value.
+   * @see https://eslint-react.xyz/docs/rules/use-memo
+   */
+  'react/use-memo'?: Linter.RuleEntry<[]>
+  /**
+   * Enforces correct usage of 'useState', including destructuring, symmetric naming of the value and setter, and wrapping expensive initializers in a lazy initializer function.
+   * @see https://eslint-react.xyz/docs/rules/use-state
+   */
+  'react/use-state'?: Linter.RuleEntry<ReactUseState>
+  /**
+   * Enforces that every 'addEventListener' in a component or custom hook has a corresponding 'removeEventListener'.
+   * @see https://eslint-react.xyz/docs/rules/web-api-no-leaked-event-listener
+   */
+  'react/web-api-no-leaked-event-listener'?: Linter.RuleEntry<[]>
+  /**
+   * Enforces that every 'fetch' in a component or custom hook has a corresponding 'AbortController' abort in the cleanup function.
+   * @see https://eslint-react.xyz/docs/rules/web-api-no-leaked-fetch
+   */
+  'react/web-api-no-leaked-fetch'?: Linter.RuleEntry<[]>
+  /**
+   * Enforces that every 'IntersectionObserver' created in a component or custom hook has a corresponding 'IntersectionObserver.disconnect()'.
+   * @see https://eslint-react.xyz/docs/rules/web-api-no-leaked-intersection-observer
+   */
+  'react/web-api-no-leaked-intersection-observer'?: Linter.RuleEntry<[]>
+  /**
+   * Enforces that every 'setInterval' in a component or custom hook has a corresponding 'clearInterval'.
+   * @see https://eslint-react.xyz/docs/rules/web-api-no-leaked-interval
+   */
+  'react/web-api-no-leaked-interval'?: Linter.RuleEntry<[]>
+  /**
+   * Enforces that every 'ResizeObserver' created in a component or custom hook has a corresponding 'ResizeObserver.disconnect()'.
+   * @see https://eslint-react.xyz/docs/rules/web-api-no-leaked-resize-observer
+   */
+  'react/web-api-no-leaked-resize-observer'?: Linter.RuleEntry<[]>
+  /**
+   * Enforces that every 'setTimeout' in a component or custom hook has a corresponding 'clearTimeout'.
+   * @see https://eslint-react.xyz/docs/rules/web-api-no-leaked-timeout
+   */
+  'react/web-api-no-leaked-timeout'?: Linter.RuleEntry<[]>
+  /**
+   * Validates usage of Error Boundaries instead of try/catch for errors in child components.
+   * @see https://eslint-react.xyz/docs/rules/error-boundaries
+   */
+  'react/x-error-boundaries'?: Linter.RuleEntry<[]>
+  /**
+   * Verifies the list of dependencies for Hooks like 'useEffect' and similar.
+   * @see https://github.com/facebook/react/issues/14920
+   */
+  'react/x-exhaustive-deps'?: Linter.RuleEntry<ReactXExhaustiveDeps>
+  /**
+   * Validates against assignment/mutation of globals during render, part of ensuring that side effects must run outside of render.
+   * @see https://eslint-react.xyz/docs/rules/globals
+   */
+  'react/x-globals'?: Linter.RuleEntry<[]>
+  /**
+   * Validates against mutating props, state, and other immutable values, including through functions passed into frozen contexts such as JSX props, hook arguments, and hook return values.
+   * @see https://eslint-react.xyz/docs/rules/immutability
+   */
+  'react/x-immutability'?: Linter.RuleEntry<[]>
+  /**
+   * Disallows accessing 'this.state' inside 'setState' calls.
+   * @see https://eslint-react.xyz/docs/rules/no-access-state-in-setstate
+   */
+  'react/x-no-access-state-in-setstate'?: Linter.RuleEntry<[]>
+  /**
+   * Disallows using an item's index in the array as its key.
+   * @see https://eslint-react.xyz/docs/rules/no-array-index-key
+   */
+  'react/x-no-array-index-key'?: Linter.RuleEntry<[]>
+  /**
+   * Disallows the use of 'Children.count' from the 'react' package.
+   * @see https://eslint-react.xyz/docs/rules/no-children-count
+   */
+  'react/x-no-children-count'?: Linter.RuleEntry<[]>
+  /**
+   * Disallows the use of 'Children.forEach' from the 'react' package.
+   * @see https://eslint-react.xyz/docs/rules/no-children-for-each
+   */
+  'react/x-no-children-for-each'?: Linter.RuleEntry<[]>
+  /**
+   * Disallows the use of 'Children.map' from the 'react' package.
+   * @see https://eslint-react.xyz/docs/rules/no-children-map
+   */
+  'react/x-no-children-map'?: Linter.RuleEntry<[]>
+  /**
+   * Disallows the use of 'Children.only' from the 'react' package.
+   * @see https://eslint-react.xyz/docs/rules/no-children-only
+   */
+  'react/x-no-children-only'?: Linter.RuleEntry<[]>
+  /**
+   * Disallows the use of 'Children.toArray' from the 'react' package.
+   * @see https://eslint-react.xyz/docs/rules/no-children-to-array
+   */
+  'react/x-no-children-to-array'?: Linter.RuleEntry<[]>
+  /**
+   * Disallows class components except for error boundaries.
+   * @see https://eslint-react.xyz/docs/rules/no-class-component
+   */
+  'react/x-no-class-component'?: Linter.RuleEntry<[]>
+  /**
+   * Disallows 'cloneElement'.
+   * @see https://eslint-react.xyz/docs/rules/no-clone-element
+   */
+  'react/x-no-clone-element'?: Linter.RuleEntry<[]>
+  /**
+   * Replaces usage of 'componentWillMount' with 'UNSAFE_componentWillMount'.
+   * @see https://eslint-react.xyz/docs/rules/no-component-will-mount
+   */
+  'react/x-no-component-will-mount'?: Linter.RuleEntry<[]>
+  /**
+   * Replaces usage of 'componentWillReceiveProps' with 'UNSAFE_componentWillReceiveProps'.
+   * @see https://eslint-react.xyz/docs/rules/no-component-will-receive-props
+   */
+  'react/x-no-component-will-receive-props'?: Linter.RuleEntry<[]>
+  /**
+   * Replaces usage of 'componentWillUpdate' with 'UNSAFE_componentWillUpdate'.
+   * @see https://eslint-react.xyz/docs/rules/no-component-will-update
+   */
+  'react/x-no-component-will-update'?: Linter.RuleEntry<[]>
+  /**
+   * Replaces usage of '<Context.Provider>' with '<Context>'.
+   * @see https://eslint-react.xyz/docs/rules/no-context-provider
+   */
+  'react/x-no-context-provider'?: Linter.RuleEntry<[]>
+  /**
+   * Disallows 'createRef' in function components and Hooks.
+   * @see https://eslint-react.xyz/docs/rules/no-create-ref
+   */
+  'react/x-no-create-ref'?: Linter.RuleEntry<[]>
+  /**
+   * Disallows direct mutation of 'this.state'.
+   * @see https://eslint-react.xyz/docs/rules/no-direct-mutation-state
+   */
+  'react/x-no-direct-mutation-state'?: Linter.RuleEntry<[]>
+  /**
+   * Prevents duplicate 'key' props on sibling elements when rendering lists.
+   * @see https://eslint-react.xyz/docs/rules/no-duplicate-key
+   */
+  'react/x-no-duplicate-key'?: Linter.RuleEntry<[]>
+  /**
+   * Replaces usage of 'forwardRef' with passing 'ref' as a prop.
+   * @see https://eslint-react.xyz/docs/rules/no-forward-ref
+   */
+  'react/x-no-forward-ref'?: Linter.RuleEntry<[]>
+  /**
+   * Prevents implicitly passing the 'children' prop to components.
+   * @see https://eslint-react.xyz/docs/rules/no-implicit-children
+   */
+  'react/x-no-implicit-children'?: Linter.RuleEntry<[]>
+  /**
+   * Prevents implicitly passing the 'key' prop to components.
+   * @see https://eslint-react.xyz/docs/rules/no-implicit-key
+   */
+  'react/x-no-implicit-key'?: Linter.RuleEntry<[]>
+  /**
+   * Prevents implicitly passing the 'ref' prop to components.
+   * @see https://eslint-react.xyz/docs/rules/no-implicit-ref
+   */
+  'react/x-no-implicit-ref'?: Linter.RuleEntry<[]>
+  /**
+   * Prevents problematic leaked values from being rendered.
+   * @see https://eslint-react.xyz/docs/rules/no-leaked-conditional-rendering
+   */
+  'react/x-no-leaked-conditional-rendering'?: Linter.RuleEntry<[]>
+  /**
+   * Enforces that all components have a 'displayName' that can be used in DevTools.
+   * @see https://eslint-react.xyz/docs/rules/no-missing-component-display-name
+   */
+  'react/x-no-missing-component-display-name'?: Linter.RuleEntry<[]>
+  /**
+   * Enforces that all contexts have a 'displayName' that can be used in DevTools.
+   * @see https://eslint-react.xyz/docs/rules/no-missing-context-display-name
+   */
+  'react/x-no-missing-context-display-name'?: Linter.RuleEntry<[]>
+  /**
+   * Disallows missing 'key' on items in list rendering.
+   * @see https://eslint-react.xyz/docs/rules/no-missing-key
+   */
+  'react/x-no-missing-key'?: Linter.RuleEntry<[]>
+  /**
+   * Prevents incorrect usage of 'captureOwnerStack'.
+   * @see https://eslint-react.xyz/docs/rules/no-misused-capture-owner-stack
+   */
+  'react/x-no-misused-capture-owner-stack'?: Linter.RuleEntry<[]>
+  /**
+   * Disallows nesting component definitions inside other components.
+   * @see https://eslint-react.xyz/docs/rules/no-nested-component-definitions
+   */
+  'react/x-no-nested-component-definitions'?: Linter.RuleEntry<[]>
+  /**
+   * Disallows nesting lazy component declarations inside other components or hooks.
+   * @see https://eslint-react.xyz/docs/rules/no-nested-lazy-component-declarations
+   */
+  'react/x-no-nested-lazy-component-declarations'?: Linter.RuleEntry<[]>
+  /**
+   * Disallows calling 'this.setState' in 'componentDidMount' outside functions such as callbacks.
+   * @see https://eslint-react.xyz/docs/rules/no-set-state-in-component-did-mount
+   */
+  'react/x-no-set-state-in-component-did-mount'?: Linter.RuleEntry<[]>
+  /**
+   * Disallows calling 'this.setState' in 'componentDidUpdate' outside functions such as callbacks.
+   * @see https://eslint-react.xyz/docs/rules/no-set-state-in-component-did-update
+   */
+  'react/x-no-set-state-in-component-did-update'?: Linter.RuleEntry<[]>
+  /**
+   * Disallows calling 'this.setState' in 'componentWillUpdate' outside functions such as callbacks.
+   * @see https://eslint-react.xyz/docs/rules/no-set-state-in-component-will-update
+   */
+  'react/x-no-set-state-in-component-will-update'?: Linter.RuleEntry<[]>
+  /**
+   * Enforces that a function with the 'use' prefix uses at least one Hook inside it.
+   * @see https://eslint-react.xyz/docs/rules/no-unnecessary-use-prefix
+   */
+  'react/x-no-unnecessary-use-prefix'?: Linter.RuleEntry<[]>
+  /**
+   * Warns about the use of 'UNSAFE_componentWillMount' in class components.
+   * @see https://eslint-react.xyz/docs/rules/no-unsafe-component-will-mount
+   */
+  'react/x-no-unsafe-component-will-mount'?: Linter.RuleEntry<[]>
+  /**
+   * Warns about the use of 'UNSAFE_componentWillReceiveProps' in class components.
+   * @see https://eslint-react.xyz/docs/rules/no-unsafe-component-will-receive-props
+   */
+  'react/x-no-unsafe-component-will-receive-props'?: Linter.RuleEntry<[]>
+  /**
+   * Warns about the use of 'UNSAFE_componentWillUpdate' in class components.
+   * @see https://eslint-react.xyz/docs/rules/no-unsafe-component-will-update
+   */
+  'react/x-no-unsafe-component-will-update'?: Linter.RuleEntry<[]>
+  /**
+   * Prevents non-stable values (i.e., object literals) from being used as a value for 'Context.Provider'.
+   * @see https://eslint-react.xyz/docs/rules/no-unstable-context-value
+   */
+  'react/x-no-unstable-context-value'?: Linter.RuleEntry<[]>
+  /**
+   * Prevents using referential-type values as default props in object destructuring.
+   * @see https://eslint-react.xyz/docs/rules/no-unstable-default-props
+   */
+  'react/x-no-unstable-default-props'?: Linter.RuleEntry<ReactXNoUnstableDefaultProps>
+  /**
+   * Warns about unused class component methods and properties.
+   * @see https://eslint-react.xyz/docs/rules/no-unused-class-component-members
+   */
+  'react/x-no-unused-class-component-members'?: Linter.RuleEntry<[]>
+  /**
+   * Warns about component props that are defined but never used.
+   * @see https://eslint-react.xyz/docs/rules/no-unused-props
+   */
+  'react/x-no-unused-props'?: Linter.RuleEntry<[]>
+  /**
+   * Warns about state variables that are defined but never used.
+   * @see https://eslint-react.xyz/docs/rules/no-unused-state
+   */
+  'react/x-no-unused-state'?: Linter.RuleEntry<[]>
+  /**
+   * Replaces usage of 'useContext' with 'use'.
+   * @see https://eslint-react.xyz/docs/rules/no-use-context
+   */
+  'react/x-no-use-context'?: Linter.RuleEntry<[]>
+  /**
+   * Validates that components and hooks are pure by checking that they do not call known-impure functions during render.
+   * @see https://eslint-react.xyz/docs/rules/purity
+   */
+  'react/x-purity'?: Linter.RuleEntry<[]>
+  /**
+   * Validates correct usage of refs by checking that 'ref.current' is not read or written during render.
+   * @see https://eslint-react.xyz/docs/rules/refs
+   */
+  'react/x-refs'?: Linter.RuleEntry<[]>
+  /**
+   * Enforces the Rules of Hooks.
+   * @see https://react.dev/reference/rules/rules-of-hooks
+   */
+  'react/x-rules-of-hooks'?: Linter.RuleEntry<ReactXRulesOfHooks>
+  /**
+   * Validates against setting state synchronously in an effect, which can lead to re-renders that degrade performance.
+   * @see https://eslint-react.xyz/docs/rules/set-state-in-effect
+   */
+  'react/x-set-state-in-effect'?: Linter.RuleEntry<[]>
+  /**
+   * Validates against unconditionally setting state during render, which can trigger additional renders and potential infinite render loops.
+   * @see https://eslint-react.xyz/docs/rules/set-state-in-render
+   */
+  'react/x-set-state-in-render'?: Linter.RuleEntry<[]>
+  /**
+   * Validates that components are static, not recreated every render.
+   * @see https://eslint-react.xyz/docs/rules/static-components
+   */
+  'react/x-static-components'?: Linter.RuleEntry<[]>
+  /**
+   * Validates against syntax that React Compiler does not support.
+   * @see https://eslint-react.xyz/docs/rules/unsupported-syntax
+   */
+  'react/x-unsupported-syntax'?: Linter.RuleEntry<[]>
+  /**
+   * Validates that 'useMemo' is called with a callback that returns a value.
+   * @see https://eslint-react.xyz/docs/rules/use-memo
+   */
+  'react/x-use-memo'?: Linter.RuleEntry<[]>
+  /**
+   * Enforces correct usage of 'useState', including destructuring, symmetric naming of the value and setter, and wrapping expensive initializers in a lazy initializer function.
+   * @see https://eslint-react.xyz/docs/rules/use-state
+   */
+  'react/x-use-state'?: Linter.RuleEntry<ReactXUseState>
   /**
    * disallow confusing quantifiers
    * @see https://ota-meshi.github.io/eslint-plugin-regexp/rules/confusing-quantifier.html
@@ -4687,6 +4971,38 @@ export interface RuleOptions {
    */
   'semi-style'?: Linter.RuleEntry<SemiStyle>
   /**
+   * Limit comments by word count.
+   */
+  'slop/max-comment-length'?: Linter.RuleEntry<SlopMaxCommentLength>
+  /**
+   * Disallow chains of TypeScript type assertions.
+   */
+  'slop/no-chained-type-assertions'?: Linter.RuleEntry<SlopNoChainedTypeAssertions>
+  /**
+   * Disallow em dashes in source text.
+   */
+  'slop/no-em-dash'?: Linter.RuleEntry<SlopNoEmDash>
+  /**
+   * Disallow inflated vocabulary in comments.
+   */
+  'slop/no-jargon'?: Linter.RuleEntry<SlopNoJargon>
+  /**
+   * Disallow classes that group only static members.
+   */
+  'slop/no-static-only-class'?: Linter.RuleEntry<SlopNoStaticOnlyClass>
+  /**
+   * Disallow low-use top-level forwarding and property-access functions.
+   */
+  'slop/no-trivial-functions'?: Linter.RuleEntry<SlopNoTrivialFunctions>
+  /**
+   * Disallow type aliases that resolve only to a primitive or unknown.
+   */
+  'slop/no-trivial-type-aliases'?: Linter.RuleEntry<SlopNoTrivialTypeAliases>
+  /**
+   * Require /** *\/ rather than // for the comment documenting an export or member.
+   */
+  'slop/prefer-jsdoc'?: Linter.RuleEntry<SlopPreferJsdoc>
+  /**
    * Disallow early returns in components. Solid components only run once, and so conditionals should be inside JSX.
    * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/components-return-once.md
    */
@@ -4722,10 +5038,20 @@ export interface RuleOptions {
    */
   'solid/jsx-uses-vars'?: Linter.RuleEntry<[]>
   /**
+   * Disallow passing uncalled signal accessors or other functions as value-typed DOM element attributes.
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-accessor-as-prop.md
+   */
+  'solid/no-accessor-as-prop'?: Linter.RuleEntry<[]>
+  /**
    * Disallow usage of type-unsafe event handlers.
    * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-array-handlers.md
    */
   'solid/no-array-handlers'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow browser-only globals inside server functions, which run exclusively on the server.
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-browser-globals-in-server-function.md
+   */
+  'solid/no-browser-globals-in-server-function'?: Linter.RuleEntry<[]>
   /**
    * Disallow destructuring props. In Solid, props must be used with property accesses (`props.foo`) to preserve reactivity. This rule only tracks destructuring in the parameter list.
    * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-destructure.md
@@ -4736,6 +5062,16 @@ export interface RuleOptions {
    * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-innerhtml.md
    */
   'solid/no-innerhtml'?: Linter.RuleEntry<SolidNoInnerhtml>
+  /**
+   * Disallow server functions from capturing variables in enclosing non-module scopes, mirroring the compiler's build-time validation.
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-invalid-server-capture.md
+   */
+  'solid/no-invalid-server-capture'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow reactive primitives at module scope, where state is shared across SSR requests.
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-module-scope-reactive-primitive.md
+   */
+  'solid/no-module-scope-reactive-primitive'?: Linter.RuleEntry<[]>
   /**
    * Disallow usage of APIs that use ES6 Proxies, only to target environments that don't support them.
    * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-proxy-apis.md
@@ -4751,6 +5087,16 @@ export interface RuleOptions {
    * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-react-specific-props.md
    */
   'solid/no-react-specific-props'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow restating a prop or option value that is already the default.
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-restated-default-options.md
+   */
+  'solid/no-restated-default-options'?: Linter.RuleEntry<[]>
+  /**
+   * Require the two-argument `createEffect(compute, effect)` form used by Solid 2.0.
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-single-arg-create-effect.md
+   */
+  'solid/no-single-arg-create-effect'?: Linter.RuleEntry<[]>
   /**
    * Enforce using only Solid-specific namespaced attribute names (i.e. `'on:'` in `<div on:click={...} />`).
    * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/no-unknown-namespaces.md
@@ -4768,15 +5114,35 @@ export interface RuleOptions {
    */
   'solid/prefer-for'?: Linter.RuleEntry<[]>
   /**
+   * Enforce running side-effectful setup (timers, global listeners, observers) inside `onSettled` instead of the component body.
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/prefer-onSettled-for-side-effects.md
+   */
+  'solid/prefer-onSettled-for-side-effects'?: Linter.RuleEntry<[]>
+  /**
    * Enforce using Solid's `<Show />` component for conditionally showing content. Solid's compiler covers this case, so it's a stylistic rule only.
    * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/prefer-show.md
    */
   'solid/prefer-show'?: Linter.RuleEntry<[]>
   /**
+   * Enforce using the structured array/object forms of the `class` prop over manually-built class strings.
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/prefer-structured-class.md
+   */
+  'solid/prefer-structured-class'?: Linter.RuleEntry<[]>
+  /**
    * Enforce that reactivity (props, signals, memos, etc.) is properly used, so changes in those values will be tracked and update the view as expected.
    * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/reactivity.md
    */
   'solid/reactivity'?: Linter.RuleEntry<SolidReactivity>
+  /**
+   * Disallow Solid 1.x APIs that were removed or renamed in Solid 2.0, with migration guidance.
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/removed-api.md
+   */
+  'solid/removed-api'?: Linter.RuleEntry<[]>
+  /**
+   * Require server functions to be async, matching their client-side contract.
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/require-async-server-function.md
+   */
+  'solid/require-async-server-function'?: Linter.RuleEntry<[]>
   /**
    * Disallow extra closing tags for components without children.
    * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/self-closing-comp.md
@@ -4787,6 +5153,1499 @@ export interface RuleOptions {
    * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/style-prop.md
    */
   'solid/style-prop'?: Linter.RuleEntry<SolidStyleProp>
+  /**
+   * Enforce that "use server" directives are placed where the compiler honors them, and that module-level directive files export working server functions.
+   * @see https://github.com/solidjs-community/eslint-plugin-solid/blob/main/packages/eslint-plugin-solid/docs/valid-use-server.md
+   */
+  'solid/valid-use-server'?: Linter.RuleEntry<SolidValidUseServer>
+  /**
+   * Alternatives in regular expressions should be grouped when used with anchors
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5850/javascript
+   */
+  'sonarjs/anchor-precedence'?: Linter.RuleEntry<[]>
+  /**
+   * Arguments to built-in functions should match documented types
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3782/javascript
+   */
+  'sonarjs/argument-type'?: Linter.RuleEntry<[]>
+  /**
+   * Parameters should be passed in the correct order
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2234/javascript
+   */
+  'sonarjs/arguments-order'?: Linter.RuleEntry<[]>
+  /**
+   * "arguments" should not be accessed directly
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3513/javascript
+   */
+  'sonarjs/arguments-usage'?: Linter.RuleEntry<[]>
+  /**
+   * Callbacks of array methods should have return statements
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3796/javascript
+   */
+  'sonarjs/array-callback-without-return'?: Linter.RuleEntry<[]>
+  /**
+   * Array constructors should not be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1528/javascript
+   */
+  'sonarjs/array-constructor'?: Linter.RuleEntry<[]>
+  /**
+   * Braces and parentheses should be used consistently with arrow functions
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3524/javascript
+   */
+  'sonarjs/arrow-function-convention'?: Linter.RuleEntry<SonarjsArrowFunctionConvention>
+  /**
+   * Assertions should be placed inside test cases or hooks
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8784/javascript
+   */
+  'sonarjs/assertions-in-test-cases'?: Linter.RuleEntry<[]>
+  /**
+   * Tests should include assertions
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2699/javascript
+   */
+  'sonarjs/assertions-in-tests'?: Linter.RuleEntry<[]>
+  /**
+   * Async test assertions should be awaited or returned
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8780/javascript
+   */
+  'sonarjs/async-test-assertions'?: Linter.RuleEntry<[]>
+  /**
+   * Nested properties of Lodash and Underscore.js clone results should not be mutated
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9135/javascript
+   */
+  'sonarjs/avoid-mutating-nested-properties-of-shallow-clones'?: Linter.RuleEntry<[]>
+  /**
+   * AWS API Gateway should require authentication
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6333/javascript
+   */
+  'sonarjs/aws-apigateway-public-api'?: Linter.RuleEntry<[]>
+  /**
+   * Public network access to cloud resources should be disabled
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6329/javascript
+   */
+  'sonarjs/aws-ec2-rds-dms-public'?: Linter.RuleEntry<[]>
+  /**
+   * EBS volumes should be encrypted
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6275/javascript
+   */
+  'sonarjs/aws-ec2-unencrypted-ebs-volume'?: Linter.RuleEntry<[]>
+  /**
+   * Amazon EFS file systems should be encrypted
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6332/javascript
+   */
+  'sonarjs/aws-efs-unencrypted'?: Linter.RuleEntry<[]>
+  /**
+   * Policies should not grant all privileges
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6302/javascript
+   */
+  'sonarjs/aws-iam-all-privileges'?: Linter.RuleEntry<[]>
+  /**
+   * IAM policies should not grant access to all account resources
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6304/javascript
+   */
+  'sonarjs/aws-iam-all-resources-accessible'?: Linter.RuleEntry<[]>
+  /**
+   * AWS IAM policies should limit the scope of permissions given
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6317/javascript
+   */
+  'sonarjs/aws-iam-privilege-escalation'?: Linter.RuleEntry<[]>
+  /**
+   * AWS resource-based policies should not grant public access
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6270/javascript
+   */
+  'sonarjs/aws-iam-public-access'?: Linter.RuleEntry<[]>
+  /**
+   * OpenSearch domains should have encryption at rest enabled
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6308/javascript
+   */
+  'sonarjs/aws-opensearchservice-domain'?: Linter.RuleEntry<[]>
+  /**
+   * Amazon RDS resources should be encrypted at rest
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6303/javascript
+   */
+  'sonarjs/aws-rds-unencrypted-databases'?: Linter.RuleEntry<[]>
+  /**
+   * Administration services access should be restricted to specific IP addresses
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6321/javascript
+   */
+  'sonarjs/aws-restricted-ip-admin-access'?: Linter.RuleEntry<[]>
+  /**
+   * S3 buckets should not grant access to all users or authenticated users
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6265/javascript
+   */
+  'sonarjs/aws-s3-bucket-granted-access'?: Linter.RuleEntry<[]>
+  /**
+   * S3 buckets should enforce HTTPS-only access
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6249/javascript
+   */
+  'sonarjs/aws-s3-bucket-insecure-http'?: Linter.RuleEntry<[]>
+  /**
+   * Amazon S3 bucket public access should be fully blocked
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6281/javascript
+   */
+  'sonarjs/aws-s3-bucket-public-access'?: Linter.RuleEntry<[]>
+  /**
+   * Amazon S3 buckets should have versioning enabled
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6252/javascript
+   */
+  'sonarjs/aws-s3-bucket-versioning'?: Linter.RuleEntry<[]>
+  /**
+   * SageMaker notebook instances should be encrypted at rest
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6319/javascript
+   */
+  'sonarjs/aws-sagemaker-unencrypted-notebook'?: Linter.RuleEntry<[]>
+  /**
+   * Amazon SNS topics should be encrypted at rest
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6327/javascript
+   */
+  'sonarjs/aws-sns-unencrypted-topics'?: Linter.RuleEntry<[]>
+  /**
+   * SQS queues should be encrypted
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6330/javascript
+   */
+  'sonarjs/aws-sqs-unencrypted-queue'?: Linter.RuleEntry<[]>
+  /**
+   * Bitwise operators should not be used in boolean contexts
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1529/javascript
+   */
+  'sonarjs/bitwise-operators'?: Linter.RuleEntry<[]>
+  /**
+   * Variables should be used in the blocks where they are declared
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2392/javascript
+   */
+  'sonarjs/block-scoped-var'?: Linter.RuleEntry<[]>
+  /**
+   * Optional boolean parameters should have default value
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4798/javascript
+   */
+  'sonarjs/bool-param-default'?: Linter.RuleEntry<[]>
+  /**
+   * Function call arguments should not start on new lines
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1472/javascript
+   */
+  'sonarjs/call-argument-line'?: Linter.RuleEntry<[]>
+  /**
+   * Chai assertions should have only one reason to succeed
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6092/javascript
+   */
+  'sonarjs/chai-determinate-assertion'?: Linter.RuleEntry<[]>
+  /**
+   * Class names should comply with a naming convention
+   * @see https://sonarsource.github.io/rspec/#/rspec/S101/javascript
+   */
+  'sonarjs/class-name'?: Linter.RuleEntry<SonarjsClassName>
+  /**
+   * Class methods should be used instead of "prototype" assignments
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3525/javascript
+   */
+  'sonarjs/class-prototype'?: Linter.RuleEntry<[]>
+  /**
+   * Dynamic code execution should not use user-controlled data
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1523/javascript
+   */
+  'sonarjs/code-eval'?: Linter.RuleEntry<[]>
+  /**
+   * Cognitive Complexity of functions should not be too high
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3776/javascript
+   */
+  'sonarjs/cognitive-complexity'?: Linter.RuleEntry<SonarjsCognitiveComplexity>
+  /**
+   * Comma and logical OR operators should not be used in switch cases
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3616/javascript
+   */
+  'sonarjs/comma-or-logical-or-case'?: Linter.RuleEntry<[]>
+  /**
+   * Track comments matching a regular expression
+   * @see https://sonarsource.github.io/rspec/#/rspec/S124/javascript
+   */
+  'sonarjs/comment-regex'?: Linter.RuleEntry<SonarjsCommentRegex>
+  /**
+   * Composite assertions should be split
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9073/javascript
+   */
+  'sonarjs/composite-assertions'?: Linter.RuleEntry<[]>
+  /**
+   * Regular expression quantifiers and character classes should be used concisely
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6353/javascript
+   */
+  'sonarjs/concise-regex'?: Linter.RuleEntry<[]>
+  /**
+   * A conditionally executed single line should be denoted by indentation
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3973/javascript
+   * @deprecated
+   */
+  'sonarjs/conditional-indentation'?: Linter.RuleEntry<[]>
+  /**
+   * Confidential information should not be logged
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5757/javascript
+   * @deprecated
+   */
+  'sonarjs/confidential-information-logging'?: Linter.RuleEntry<[]>
+  /**
+   * Objects should not be created to be dropped immediately without being used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1848/javascript
+   */
+  'sonarjs/constructor-for-side-effects'?: Linter.RuleEntry<[]>
+  /**
+   * HTTP request content length should be limited
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5693/javascript
+   */
+  'sonarjs/content-length'?: Linter.RuleEntry<SonarjsContentLength>
+  /**
+   * Content security policy fetch directives should not be disabled
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5728/javascript
+   */
+  'sonarjs/content-security-policy'?: Linter.RuleEntry<[]>
+  /**
+   * Cookies should have the "HttpOnly" flag
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3330/javascript
+   */
+  'sonarjs/cookie-no-httponly'?: Linter.RuleEntry<[]>
+  /**
+   * Cross-Origin Resource Sharing (CORS) policy should be restricted to trusted origins
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5122/javascript
+   */
+  'sonarjs/cors'?: Linter.RuleEntry<[]>
+  /**
+   * CSRF protections should not be disabled
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4502/javascript
+   */
+  'sonarjs/csrf'?: Linter.RuleEntry<[]>
+  /**
+   * Cyclomatic Complexity of functions should not be too high
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1541/javascript
+   */
+  'sonarjs/cyclomatic-complexity'?: Linter.RuleEntry<SonarjsCyclomaticComplexity>
+  /**
+   * Variables and functions should not be declared in the global scope
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3798/javascript
+   */
+  'sonarjs/declarations-in-global-scope'?: Linter.RuleEntry<[]>
+  /**
+   * Deprecated APIs should not be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1874/javascript
+   */
+  'sonarjs/deprecation'?: Linter.RuleEntry<[]>
+  /**
+   * Destructuring syntax should be used for assignments
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3514/javascript
+   */
+  'sonarjs/destructuring-assignment-syntax'?: Linter.RuleEntry<[]>
+  /**
+   * Strict equality operators should not be used with dissimilar types
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3403/javascript
+   */
+  'sonarjs/different-types-comparison'?: Linter.RuleEntry<[]>
+  /**
+   * Auto-escaping in HTML template engines should not be disabled
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5247/javascript
+   */
+  'sonarjs/disabled-auto-escaping'?: Linter.RuleEntry<[]>
+  /**
+   * Remote artifacts should not be used without integrity checks
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5725/javascript
+   */
+  'sonarjs/disabled-resource-integrity'?: Linter.RuleEntry<[]>
+  /**
+   * Disabling Mocha timeouts should be explicit
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6080/javascript
+   */
+  'sonarjs/disabled-timeout'?: Linter.RuleEntry<[]>
+  /**
+   * DOMPurify configuration should not be bypassable
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8479/javascript
+   */
+  'sonarjs/dompurify-unsafe-config'?: Linter.RuleEntry<[]>
+  /**
+   * Character classes in regular expressions should not contain the same character twice
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5869/javascript
+   */
+  'sonarjs/duplicates-in-character-class'?: Linter.RuleEntry<[]>
+  /**
+   * Templates should not be constructed dynamically
+   * @see https://sonarsource.github.io/rspec/#/rspec/S7790/javascript
+   */
+  'sonarjs/dynamically-constructed-templates'?: Linter.RuleEntry<[]>
+  /**
+   * "if ... else if" constructs should end with "else" clauses
+   * @see https://sonarsource.github.io/rspec/#/rspec/S126/javascript
+   */
+  'sonarjs/elseif-without-else'?: Linter.RuleEntry<[]>
+  /**
+   * Repeated patterns in regular expressions should not match the empty string
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5842/javascript
+   */
+  'sonarjs/empty-string-repetition'?: Linter.RuleEntry<[]>
+  /**
+   * Encryption algorithms should be used with secure mode and padding scheme
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5542/javascript
+   */
+  'sonarjs/encryption-secure-mode'?: Linter.RuleEntry<[]>
+  /**
+   * Replacement strings should reference existing regular expression groups
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6328/javascript
+   */
+  'sonarjs/existing-groups'?: Linter.RuleEntry<[]>
+  /**
+   * Tests should be skipped explicitly
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8968/javascript
+   */
+  'sonarjs/explicit-test-skip'?: Linter.RuleEntry<[]>
+  /**
+   * Expressions should not be too complex
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1067/javascript
+   */
+  'sonarjs/expression-complexity'?: Linter.RuleEntry<SonarjsExpressionComplexity>
+  /**
+   * Track lack of copyright and license headers
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1451/javascript
+   */
+  'sonarjs/file-header'?: Linter.RuleEntry<SonarjsFileHeader>
+  /**
+   * Default export names and file names should match
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3317/javascript
+   */
+  'sonarjs/file-name-differ-from-class'?: Linter.RuleEntry<[]>
+  /**
+   * File permissions should not be set to world-accessible values
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2612/javascript
+   */
+  'sonarjs/file-permissions'?: Linter.RuleEntry<[]>
+  /**
+   * File uploads should be restricted
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2598/javascript
+   */
+  'sonarjs/file-uploads'?: Linter.RuleEntry<[]>
+  /**
+   * Track uses of "FIXME" tags
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1134/javascript
+   */
+  'sonarjs/fixme-tag'?: Linter.RuleEntry<[]>
+  /**
+   * "for...in" loops should filter properties before acting on them
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1535/javascript
+   */
+  'sonarjs/for-in'?: Linter.RuleEntry<[]>
+  /**
+   * A "for" loop update clause should move the counter in the right direction
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2251/javascript
+   */
+  'sonarjs/for-loop-increment-sign'?: Linter.RuleEntry<[]>
+  /**
+   * Content Security Policy frame-ancestors directive should not be disabled
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5732/javascript
+   * @deprecated
+   */
+  'sonarjs/frame-ancestors'?: Linter.RuleEntry<[]>
+  /**
+   * Functions should not be defined inside loops
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1515/javascript
+   */
+  'sonarjs/function-inside-loop'?: Linter.RuleEntry<[]>
+  /**
+   * Function and method names should comply with a naming convention
+   * @see https://sonarsource.github.io/rspec/#/rspec/S100/javascript
+   */
+  'sonarjs/function-name'?: Linter.RuleEntry<SonarjsFunctionName>
+  /**
+   * Functions should always return the same type
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3800/javascript
+   */
+  'sonarjs/function-return-type'?: Linter.RuleEntry<[]>
+  /**
+   * Future reserved words should not be used as identifiers
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1527/javascript
+   */
+  'sonarjs/future-reserved-words'?: Linter.RuleEntry<[]>
+  /**
+   * Generators should explicitly "yield" a value
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3531/javascript
+   */
+  'sonarjs/generator-without-yield'?: Linter.RuleEntry<[]>
+  /**
+   * Credentials should not be hard-coded
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6437/javascript
+   */
+  'sonarjs/hardcoded-secret-signatures'?: Linter.RuleEntry<[]>
+  /**
+   * Weak hashing algorithms should not be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4790/javascript
+   */
+  'sonarjs/hashing'?: Linter.RuleEntry<[]>
+  /**
+   * Hidden files should not be served statically
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5691/javascript
+   * @deprecated
+   */
+  'sonarjs/hidden-files'?: Linter.RuleEntry<[]>
+  /**
+   * Lifecycle hooks should not be interleaved with test cases or nested suites
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8782/javascript
+   */
+  'sonarjs/hooks-before-test-cases'?: Linter.RuleEntry<[]>
+  /**
+   * "in" should not be used with primitive types
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3785/javascript
+   */
+  'sonarjs/in-operator-type-error'?: Linter.RuleEntry<[]>
+  /**
+   * Functions should be called consistently with or without "new"
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3686/javascript
+   */
+  'sonarjs/inconsistent-function-call'?: Linter.RuleEntry<[]>
+  /**
+   * "indexOf" checks should not be for positive numbers
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2692/javascript
+   */
+  'sonarjs/index-of-compare-to-positive-number'?: Linter.RuleEntry<[]>
+  /**
+   * Cookies should have the "secure" flag
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2092/javascript
+   */
+  'sonarjs/insecure-cookie'?: Linter.RuleEntry<[]>
+  /**
+   * JWT should be signed and verified with strong cipher algorithms
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5659/javascript
+   */
+  'sonarjs/insecure-jwt-token'?: Linter.RuleEntry<[]>
+  /**
+   * Assertion arguments should be passed in the correct order
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3415/javascript
+   */
+  'sonarjs/inverted-assertion-arguments'?: Linter.RuleEntry<[]>
+  /**
+   * React components should not render non-boolean condition values
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6439/javascript
+   */
+  'sonarjs/jsx-no-leaked-render'?: Linter.RuleEntry<[]>
+  /**
+   * Only "while", "do", "for" and "switch" statements should be labelled
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1439/javascript
+   */
+  'sonarjs/label-position'?: Linter.RuleEntry<[]>
+  /**
+   * Opened windows should not have access to the originating page
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5148/javascript
+   */
+  'sonarjs/link-with-target-blank'?: Linter.RuleEntry<[]>
+  /**
+   * Files should not have too many lines of code
+   * @see https://sonarsource.github.io/rspec/#/rspec/S104/javascript
+   */
+  'sonarjs/max-lines'?: Linter.RuleEntry<SonarjsMaxLines>
+  /**
+   * Functions should not have too many lines of code
+   * @see https://sonarsource.github.io/rspec/#/rspec/S138/javascript
+   */
+  'sonarjs/max-lines-per-function'?: Linter.RuleEntry<SonarjsMaxLinesPerFunction>
+  /**
+   * "switch" statements should not have too many "case" clauses
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1479/javascript
+   */
+  'sonarjs/max-switch-cases'?: Linter.RuleEntry<SonarjsMaxSwitchCases>
+  /**
+   * Union types should not have too many elements
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4622/javascript
+   */
+  'sonarjs/max-union-size'?: Linter.RuleEntry<SonarjsMaxUnionSize>
+  /**
+   * Lodash and Underscore.js `memoize` calls on functions with multiple parameters should use an explicit cache key function
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8932/javascript
+   */
+  'sonarjs/memoize-cache-key'?: Linter.RuleEntry<[]>
+  /**
+   * "for" loop increment clauses should modify the loops' counters
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1994/javascript
+   */
+  'sonarjs/misplaced-loop-counter'?: Linter.RuleEntry<[]>
+  /**
+   * Control flow statements "if", "for", "while", "switch" and "try" should not be nested too deeply
+   * @see https://sonarsource.github.io/rspec/#/rspec/S134/javascript
+   */
+  'sonarjs/nested-control-flow'?: Linter.RuleEntry<SonarjsNestedControlFlow>
+  /**
+   * "new" should only be used with functions and classes
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2999/javascript
+   */
+  'sonarjs/new-operator-misuse'?: Linter.RuleEntry<SonarjsNewOperatorMisuse>
+  /**
+   * All branches in a conditional structure should not have exactly the same implementation
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3923/javascript
+   */
+  'sonarjs/no-all-duplicated-branches'?: Linter.RuleEntry<[]>
+  /**
+   * "Array.prototype.sort()" and "Array.prototype.toSorted()" should use a compare function
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2871/javascript
+   */
+  'sonarjs/no-alphabetical-sort'?: Linter.RuleEntry<[]>
+  /**
+   * Angular built-in sanitization should not be disabled
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6268/javascript
+   */
+  'sonarjs/no-angular-bypass-sanitization'?: Linter.RuleEntry<[]>
+  /**
+   * "delete" should not be used on arrays
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2870/javascript
+   */
+  'sonarjs/no-array-delete'?: Linter.RuleEntry<[]>
+  /**
+   * Array indexes should be numeric
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3579/javascript
+   */
+  'sonarjs/no-associative-arrays'?: Linter.RuleEntry<[]>
+  /**
+   * Constructors should not contain asynchronous operations
+   * @see https://sonarsource.github.io/rspec/#/rspec/S7059/javascript
+   */
+  'sonarjs/no-async-constructor'?: Linter.RuleEntry<[]>
+  /**
+   * Built-in objects should not be overridden
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2424/javascript
+   */
+  'sonarjs/no-built-in-override'?: Linter.RuleEntry<[]>
+  /**
+   * "switch" statements should not contain non-case labels
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1219/javascript
+   */
+  'sonarjs/no-case-label-in-switch'?: Linter.RuleEntry<[]>
+  /**
+   * Clear-text protocols should not be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5332/javascript
+   */
+  'sonarjs/no-clear-text-protocols'?: Linter.RuleEntry<[]>
+  /**
+   * Tests should not execute any code after "done()" is called
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6079/javascript
+   */
+  'sonarjs/no-code-after-done'?: Linter.RuleEntry<[]>
+  /**
+   * Mergeable "if" statements should be combined
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1066/javascript
+   */
+  'sonarjs/no-collapsible-if'?: Linter.RuleEntry<[]>
+  /**
+   * Collection size and array length comparisons should make sense
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3981/javascript
+   */
+  'sonarjs/no-collection-size-mischeck'?: Linter.RuleEntry<[]>
+  /**
+   * Sections of code should not be commented out
+   * @see https://sonarsource.github.io/rspec/#/rspec/S125/javascript
+   */
+  'sonarjs/no-commented-code'?: Linter.RuleEntry<[]>
+  /**
+   * Regular expressions should not contain control characters
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6324/javascript
+   */
+  'sonarjs/no-control-regex'?: Linter.RuleEntry<[]>
+  /**
+   * Unused assignments should be removed
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1854/javascript
+   */
+  'sonarjs/no-dead-store'?: Linter.RuleEntry<[]>
+  /**
+   * Lodash and Underscore.js debounced or throttled functions should not be recreated on every React render
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9114/javascript
+   */
+  'sonarjs/no-debounce-throttle-in-render'?: Linter.RuleEntry<[]>
+  /**
+   * UI test debug commands should not be committed to version control
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8959/javascript
+   */
+  'sonarjs/no-debug-commands-in-ui-tests'?: Linter.RuleEntry<[]>
+  /**
+   * Default imports from modular utility libraries should not be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8927/javascript
+   */
+  'sonarjs/no-default-utility-imports'?: Linter.RuleEntry<[]>
+  /**
+   * "delete" should be used only with object properties
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3001/javascript
+   */
+  'sonarjs/no-delete-var'?: Linter.RuleEntry<[]>
+  /**
+   * Union and intersection types should not include duplicated constituents
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4621/javascript
+   */
+  'sonarjs/no-duplicate-in-composite'?: Linter.RuleEntry<[]>
+  /**
+   * Parameterized tests should not contain duplicate test cases
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9078/javascript
+   */
+  'sonarjs/no-duplicate-parameterized-test-case'?: Linter.RuleEntry<[]>
+  /**
+   * String literals should not be duplicated
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1192/javascript
+   */
+  'sonarjs/no-duplicate-string'?: Linter.RuleEntry<SonarjsNoDuplicateString>
+  /**
+   * Test titles should be unique within the same suite
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8754/javascript
+   */
+  'sonarjs/no-duplicate-test-title'?: Linter.RuleEntry<[]>
+  /**
+   * Two branches in a conditional structure should not have exactly the same implementation
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1871/javascript
+   */
+  'sonarjs/no-duplicated-branches'?: Linter.RuleEntry<[]>
+  /**
+   * Collection elements should not be replaced unconditionally
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4143/javascript
+   */
+  'sonarjs/no-element-overwrite'?: Linter.RuleEntry<[]>
+  /**
+   * Reluctant quantifiers in regular expressions should be followed by an expression that can't match the empty string
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6019/javascript
+   */
+  'sonarjs/no-empty-after-reluctant'?: Linter.RuleEntry<[]>
+  /**
+   * Alternation in regular expressions should not contain empty alternatives
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6323/javascript
+   */
+  'sonarjs/no-empty-alternatives'?: Linter.RuleEntry<[]>
+  /**
+   * Empty character classes should not be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2639/javascript
+   */
+  'sonarjs/no-empty-character-class'?: Linter.RuleEntry<[]>
+  /**
+   * Empty collections should not be accessed or iterated
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4158/javascript
+   */
+  'sonarjs/no-empty-collection'?: Linter.RuleEntry<[]>
+  /**
+   * Regular expressions should not contain empty groups
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6331/javascript
+   */
+  'sonarjs/no-empty-group'?: Linter.RuleEntry<[]>
+  /**
+   * Parameterized tests should not have empty datasets
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8998/javascript
+   */
+  'sonarjs/no-empty-parameterized-test-dataset'?: Linter.RuleEntry<[]>
+  /**
+   * Test files should contain at least one test case
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2187/javascript
+   */
+  'sonarjs/no-empty-test-file'?: Linter.RuleEntry<[]>
+  /**
+   * Test and suite titles should not be empty or whitespace-only
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8781/javascript
+   */
+  'sonarjs/no-empty-test-title'?: Linter.RuleEntry<[]>
+  /**
+   * Equality operators should not be used in "for" loop termination conditions
+   * @see https://sonarsource.github.io/rspec/#/rspec/S888/javascript
+   */
+  'sonarjs/no-equals-in-for-termination'?: Linter.RuleEntry<[]>
+  /**
+   * Exclusive tests should not be committed to version control
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6426/javascript
+   */
+  'sonarjs/no-exclusive-tests'?: Linter.RuleEntry<[]>
+  /**
+   * Function calls should not pass extra arguments
+   * @see https://sonarsource.github.io/rspec/#/rspec/S930/javascript
+   */
+  'sonarjs/no-extra-arguments'?: Linter.RuleEntry<[]>
+  /**
+   * Switch cases should end with an unconditional "break" statement
+   * @see https://sonarsource.github.io/rspec/#/rspec/S128/javascript
+   */
+  'sonarjs/no-fallthrough'?: Linter.RuleEntry<[]>
+  /**
+   * Fixed waits should not be used in tests
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2925/javascript
+   */
+  'sonarjs/no-fixed-wait-in-tests'?: Linter.RuleEntry<[]>
+  /**
+   * Floating point numbers should not be tested for equality
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1244/javascript
+   */
+  'sonarjs/no-floating-point-equality'?: Linter.RuleEntry<[]>
+  /**
+   * "for in" should not be used with iterables
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4139/javascript
+   */
+  'sonarjs/no-for-in-iterable'?: Linter.RuleEntry<[]>
+  /**
+   * Forced browser interactions should not bypass actionability checks
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8783/javascript
+   */
+  'sonarjs/no-forced-browser-interaction'?: Linter.RuleEntry<[]>
+  /**
+   * Function declarations should not be made within blocks
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1530/javascript
+   */
+  'sonarjs/no-function-declaration-in-block'?: Linter.RuleEntry<[]>
+  /**
+   * The global "this" object should not be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2990/javascript
+   */
+  'sonarjs/no-global-this'?: Linter.RuleEntry<[]>
+  /**
+   * Special identifiers should not be bound or assigned
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2137/javascript
+   */
+  'sonarjs/no-globals-shadowing'?: Linter.RuleEntry<[]>
+  /**
+   * Boolean expressions should not be gratuitous
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2589/javascript
+   */
+  'sonarjs/no-gratuitous-expressions'?: Linter.RuleEntry<[]>
+  /**
+   * IP addresses should not be hardcoded
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1313/javascript
+   */
+  'sonarjs/no-hardcoded-ip'?: Linter.RuleEntry<[]>
+  /**
+   * Credentials should not be hard-coded
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2068/javascript
+   */
+  'sonarjs/no-hardcoded-passwords'?: Linter.RuleEntry<SonarjsNoHardcodedPasswords>
+  /**
+   * Secrets should not be hard-coded
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6418/javascript
+   */
+  'sonarjs/no-hardcoded-secrets'?: Linter.RuleEntry<SonarjsNoHardcodedSecrets>
+  /**
+   * React's useState hook should not be used directly in the render function or body of a component
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6442/javascript
+   */
+  'sonarjs/no-hook-setter-in-body'?: Linter.RuleEntry<[]>
+  /**
+   * "if/else if" chains and "switch" cases should not have the same condition
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1862/javascript
+   */
+  'sonarjs/no-identical-conditions'?: Linter.RuleEntry<[]>
+  /**
+   * Identical expressions should not be used on both sides of a binary operator
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1764/javascript
+   */
+  'sonarjs/no-identical-expressions'?: Linter.RuleEntry<[]>
+  /**
+   * Functions should not have identical implementations
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4144/javascript
+   */
+  'sonarjs/no-identical-functions'?: Linter.RuleEntry<SonarjsNoIdenticalFunctions>
+  /**
+   * Exceptions should not be ignored
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2486/javascript
+   */
+  'sonarjs/no-ignored-exceptions'?: Linter.RuleEntry<[]>
+  /**
+   * Return values from functions without side effects should not be ignored
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2201/javascript
+   */
+  'sonarjs/no-ignored-return'?: Linter.RuleEntry<[]>
+  /**
+   * Dependencies should be explicit
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4328/javascript
+   */
+  'sonarjs/no-implicit-dependencies'?: Linter.RuleEntry<SonarjsNoImplicitDependencies>
+  /**
+   * Variables should be declared explicitly
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2703/javascript
+   */
+  'sonarjs/no-implicit-global'?: Linter.RuleEntry<[]>
+  /**
+   * "in" should not be used on arrays
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4619/javascript
+   */
+  'sonarjs/no-in-misuse'?: Linter.RuleEntry<[]>
+  /**
+   * Assertions comparing incompatible types should not be made
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5845/javascript
+   */
+  'sonarjs/no-incompatible-assertion-types'?: Linter.RuleEntry<[]>
+  /**
+   * Assertions should be complete
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2970/javascript
+   */
+  'sonarjs/no-incomplete-assertions'?: Linter.RuleEntry<[]>
+  /**
+   * Functions should use "return" consistently
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3801/javascript
+   */
+  'sonarjs/no-inconsistent-returns'?: Linter.RuleEntry<[]>
+  /**
+   * Strings and non-strings should not be added
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3402/javascript
+   */
+  'sonarjs/no-incorrect-string-concat'?: Linter.RuleEntry<[]>
+  /**
+   * Users should not use internal APIs
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6627/javascript
+   */
+  'sonarjs/no-internal-api-use'?: Linter.RuleEntry<[]>
+  /**
+   * Inline snapshots should not contain interpolations
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8967/javascript
+   */
+  'sonarjs/no-interpolation-in-inline-snapshots'?: Linter.RuleEntry<[]>
+  /**
+   * Sensitive permissions should not be requested unnecessarily
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5604/javascript
+   * @deprecated
+   */
+  'sonarjs/no-intrusive-permissions'?: Linter.RuleEntry<SonarjsNoIntrusivePermissions>
+  /**
+   * Regular expressions should be syntactically valid
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5856/javascript
+   */
+  'sonarjs/no-invalid-regexp'?: Linter.RuleEntry<[]>
+  /**
+   * Function returns should not be invariant
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3516/javascript
+   */
+  'sonarjs/no-invariant-returns'?: Linter.RuleEntry<[]>
+  /**
+   * Boolean checks should not be inverted
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1940/javascript
+   */
+  'sonarjs/no-inverted-boolean-check'?: Linter.RuleEntry<[]>
+  /**
+   * Client IP address should not be forwarded to proxies
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5759/javascript
+   * @deprecated
+   */
+  'sonarjs/no-ip-forward'?: Linter.RuleEntry<[]>
+  /**
+   * Labels should not be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1119/javascript
+   */
+  'sonarjs/no-labels'?: Linter.RuleEntry<[]>
+  /**
+   * Literals should not be used as functions
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6958/javascript
+   */
+  'sonarjs/no-literal-call'?: Linter.RuleEntry<[]>
+  /**
+   * Browsers should not be allowed to perform MIME type sniffing
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5734/javascript
+   */
+  'sonarjs/no-mime-sniff'?: Linter.RuleEntry<[]>
+  /**
+   * Array-mutating methods should not be used misleadingly
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4043/javascript
+   */
+  'sonarjs/no-misleading-array-reverse'?: Linter.RuleEntry<[]>
+  /**
+   * Unicode Grapheme Clusters should be avoided inside regex character classes
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5868/javascript
+   */
+  'sonarjs/no-misleading-character-class'?: Linter.RuleEntry<[]>
+  /**
+   * Test and hook callbacks should use a single completion style
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8960/javascript
+   */
+  'sonarjs/no-mixed-completion-style'?: Linter.RuleEntry<[]>
+  /**
+   * Content Security Policy should block mixed-content
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5730/javascript
+   * @deprecated
+   */
+  'sonarjs/no-mixed-content'?: Linter.RuleEntry<[]>
+  /**
+   * Reactive state should not be unconditionally mutated inside Vue's "updated" lifecycle hook
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9163/javascript
+   */
+  'sonarjs/no-mutate-reactive-state-in-updated-hook'?: Linter.RuleEntry<[]>
+  /**
+   * Assignments should not be made from within sub-expressions
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1121/javascript
+   */
+  'sonarjs/no-nested-assignment'?: Linter.RuleEntry<[]>
+  /**
+   * Ternary operators should not be nested
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3358/javascript
+   */
+  'sonarjs/no-nested-conditional'?: Linter.RuleEntry<[]>
+  /**
+   * Functions should not be nested too deeply
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2004/javascript
+   */
+  'sonarjs/no-nested-functions'?: Linter.RuleEntry<SonarjsNoNestedFunctions>
+  /**
+   * Increment (++) and decrement (--) operators should not be used in a method call or mixed with other operators in an expression
+   * @see https://sonarsource.github.io/rspec/#/rspec/S881/javascript
+   */
+  'sonarjs/no-nested-incdec'?: Linter.RuleEntry<[]>
+  /**
+   * "switch" statements should not be nested
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1821/javascript
+   */
+  'sonarjs/no-nested-switch'?: Linter.RuleEntry<[]>
+  /**
+   * Template literals should not be nested
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4624/javascript
+   */
+  'sonarjs/no-nested-template-literals'?: Linter.RuleEntry<[]>
+  /**
+   * Playwright "networkidle" waits should not be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9332/javascript
+   */
+  'sonarjs/no-networkidle-wait'?: Linter.RuleEntry<[]>
+  /**
+   * OS commands should not rely on PATH resolution
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4036/javascript
+   */
+  'sonarjs/no-os-command-from-path'?: Linter.RuleEntry<[]>
+  /**
+   * Initial values of parameters, caught exceptions, and loop variables should not be ignored
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1226/javascript
+   */
+  'sonarjs/no-parameter-reassignment'?: Linter.RuleEntry<[]>
+  /**
+   * Wrapper objects should not be used for primitive types
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1533/javascript
+   */
+  'sonarjs/no-primitive-wrappers'?: Linter.RuleEntry<[]>
+  /**
+   * Assignments should not be redundant
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4165/javascript
+   */
+  'sonarjs/no-redundant-assignments'?: Linter.RuleEntry<[]>
+  /**
+   * Boolean literals should not be used in comparisons
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1125/javascript
+   */
+  'sonarjs/no-redundant-boolean'?: Linter.RuleEntry<[]>
+  /**
+   * Jump statements should not be redundant
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3626/javascript
+   */
+  'sonarjs/no-redundant-jump'?: Linter.RuleEntry<[]>
+  /**
+   * Optional property declarations should not use both '?' and 'undefined' syntax
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4782/javascript
+   */
+  'sonarjs/no-redundant-optional'?: Linter.RuleEntry<[]>
+  /**
+   * Redundant pairs of parentheses should be removed
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1110/javascript
+   * @deprecated
+   */
+  'sonarjs/no-redundant-parentheses'?: Linter.RuleEntry<[]>
+  /**
+   * Variables should be defined before being used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3827/javascript
+   */
+  'sonarjs/no-reference-error'?: Linter.RuleEntry<[]>
+  /**
+   * HTTP Referrer-Policy should not be set to an unsafe value
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5736/javascript
+   */
+  'sonarjs/no-referrer-policy'?: Linter.RuleEntry<[]>
+  /**
+   * Regular expressions should not contain multiple spaces
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6326/javascript
+   */
+  'sonarjs/no-regex-spaces'?: Linter.RuleEntry<[]>
+  /**
+   * "import" should be used to include external code
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3533/javascript
+   */
+  'sonarjs/no-require-or-define'?: Linter.RuleEntry<[]>
+  /**
+   * Primitive return types should be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4324/javascript
+   */
+  'sonarjs/no-return-type-any'?: Linter.RuleEntry<[]>
+  /**
+   * Assertions should not be given twice the same argument
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5863/javascript
+   */
+  'sonarjs/no-same-argument-assert'?: Linter.RuleEntry<[]>
+  /**
+   * Conditionals should start on new lines
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3972/javascript
+   */
+  'sonarjs/no-same-line-conditional'?: Linter.RuleEntry<[]>
+  /**
+   * Methods should not contain selector parameters
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2301/javascript
+   */
+  'sonarjs/no-selector-parameter'?: Linter.RuleEntry<[]>
+  /**
+   * Static Assets should not serve session cookies
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8441/javascript
+   */
+  'sonarjs/no-session-cookies-on-static-assets'?: Linter.RuleEntry<[]>
+  /**
+   * Tests should not be skipped without providing a reason
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1607/javascript
+   */
+  'sonarjs/no-skipped-tests'?: Linter.RuleEntry<[]>
+  /**
+   * "if" statements should be preferred over "switch" when simpler
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1301/javascript
+   */
+  'sonarjs/no-small-switch'?: Linter.RuleEntry<[]>
+  /**
+   * Track uses of "NOSONAR" comments
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1291/javascript
+   */
+  'sonarjs/no-sonar-comments'?: Linter.RuleEntry<[]>
+  /**
+   * Tabulation characters should not be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S105/javascript
+   * @deprecated
+   */
+  'sonarjs/no-tab'?: Linter.RuleEntry<[]>
+  /**
+   * HTML "<table>" should not be used for layout purposes
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5257/javascript
+   */
+  'sonarjs/no-table-as-layout'?: Linter.RuleEntry<[]>
+  /**
+   * Assertions should not be trivially true
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5914/javascript
+   */
+  'sonarjs/no-trivial-assertions'?: Linter.RuleEntry<[]>
+  /**
+   * Promise rejections should not be caught by "try" blocks
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4822/javascript
+   */
+  'sonarjs/no-try-promise'?: Linter.RuleEntry<[]>
+  /**
+   * "undefined" should not be passed as the value of optional parameters
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4623/javascript
+   */
+  'sonarjs/no-undefined-argument'?: Linter.RuleEntry<[]>
+  /**
+   * "undefined" should not be assigned
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2138/javascript
+   */
+  'sonarjs/no-undefined-assignment'?: Linter.RuleEntry<[]>
+  /**
+   * Multiline blocks should be enclosed in curly braces
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2681/javascript
+   */
+  'sonarjs/no-unenclosed-multiline-block'?: Linter.RuleEntry<[]>
+  /**
+   * JSX list components keys should match up between renders
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6486/javascript
+   */
+  'sonarjs/no-uniq-key'?: Linter.RuleEntry<[]>
+  /**
+   * Expanding archive files should not be done without controlling resource consumption
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5042/javascript
+   * @deprecated
+   */
+  'sonarjs/no-unsafe-unzip'?: Linter.RuleEntry<[]>
+  /**
+   * Errors should not be created without being thrown
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3984/javascript
+   */
+  'sonarjs/no-unthrown-error'?: Linter.RuleEntry<[]>
+  /**
+   * Collection contents should be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4030/javascript
+   */
+  'sonarjs/no-unused-collection'?: Linter.RuleEntry<[]>
+  /**
+   * Unused function parameters should be removed
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1172/javascript
+   */
+  'sonarjs/no-unused-function-argument'?: Linter.RuleEntry<[]>
+  /**
+   * Unused local variables and functions should be removed
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1481/javascript
+   */
+  'sonarjs/no-unused-vars'?: Linter.RuleEntry<[]>
+  /**
+   * The return value of void functions should not be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3699/javascript
+   */
+  'sonarjs/no-use-of-empty-return-value'?: Linter.RuleEntry<[]>
+  /**
+   * "catch" clauses should do more than rethrow
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2737/javascript
+   */
+  'sonarjs/no-useless-catch'?: Linter.RuleEntry<[]>
+  /**
+   * Values should not be uselessly incremented
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2123/javascript
+   */
+  'sonarjs/no-useless-increment'?: Linter.RuleEntry<[]>
+  /**
+   * Type intersections should use meaningful types
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4335/javascript
+   */
+  'sonarjs/no-useless-intersection'?: Linter.RuleEntry<[]>
+  /**
+   * React state setter function should not be called with its matching state variable
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6443/javascript
+   */
+  'sonarjs/no-useless-react-setstate'?: Linter.RuleEntry<[]>
+  /**
+   * Variables declared with "var" should be declared before they are used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1526/javascript
+   */
+  'sonarjs/no-variable-usage-before-declaration'?: Linter.RuleEntry<[]>
+  /**
+   * Vue components should not use the deprecated "vue-class-component" or "vue-property-decorator" libraries
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9145/javascript
+   */
+  'sonarjs/no-vue-class-component'?: Linter.RuleEntry<[]>
+  /**
+   * Vue components should not use mixins
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9150/javascript
+   */
+  'sonarjs/no-vue-mixins'?: Linter.RuleEntry<[]>
+  /**
+   * Cipher algorithms should be robust
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5547/javascript
+   */
+  'sonarjs/no-weak-cipher'?: Linter.RuleEntry<[]>
+  /**
+   * Cryptographic keys should be robust
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4426/javascript
+   */
+  'sonarjs/no-weak-keys'?: Linter.RuleEntry<[]>
+  /**
+   * Wildcard imports should not be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2208/javascript
+   */
+  'sonarjs/no-wildcard-import'?: Linter.RuleEntry<[]>
+  /**
+   * Non-existent operators '=+', '=-' and '=!' should not be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2757/javascript
+   */
+  'sonarjs/non-existent-operator'?: Linter.RuleEntry<[]>
+  /**
+   * Arithmetic operators should only have numbers as operands
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3760/javascript
+   */
+  'sonarjs/non-number-in-arithmetic-expression'?: Linter.RuleEntry<[]>
+  /**
+   * Properties of variables with "null" or "undefined" values should not be accessed
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2259/javascript
+   */
+  'sonarjs/null-dereference'?: Linter.RuleEntry<[]>
+  /**
+   * "<object>" tags should provide an alternative content
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5264/javascript
+   */
+  'sonarjs/object-alt-content'?: Linter.RuleEntry<[]>
+  /**
+   * Arithmetic operations should not result in "NaN"
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3757/javascript
+   */
+  'sonarjs/operation-returning-nan'?: Linter.RuleEntry<[]>
+  /**
+   * OS commands should not be executed using a shell interpreter
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4721/javascript
+   * @deprecated
+   */
+  'sonarjs/os-command'?: Linter.RuleEntry<[]>
+  /**
+   * Similar tests should be grouped in a single Parameterized test
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5976/javascript
+   */
+  'sonarjs/parameterized-tests'?: Linter.RuleEntry<[]>
+  /**
+   * Origins should be verified during cross-origin communications
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2819/javascript
+   */
+  'sonarjs/post-message'?: Linter.RuleEntry<[]>
+  /**
+   * Cypress assertions should be retryable
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9162/javascript
+   */
+  'sonarjs/prefer-cypress-should'?: Linter.RuleEntry<[]>
+  /**
+   * "default" clauses should be last
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4524/javascript
+   */
+  'sonarjs/prefer-default-last'?: Linter.RuleEntry<[]>
+  /**
+   * Local variables should not be declared and then immediately returned or thrown
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1488/javascript
+   */
+  'sonarjs/prefer-immediate-return'?: Linter.RuleEntry<[]>
+  /**
+   * Native APIs should be preferred over Axios utility methods
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9339/javascript
+   */
+  'sonarjs/prefer-native-axios-alternative'?: Linter.RuleEntry<[]>
+  /**
+   * Native APIs should be preferred over jQuery utility methods
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9144/javascript
+   */
+  'sonarjs/prefer-native-jquery-alternative'?: Linter.RuleEntry<[]>
+  /**
+   * Native APIs should be preferred over Lodash and Underscore.js methods
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8907/javascript
+   */
+  'sonarjs/prefer-native-lodash-alternative'?: Linter.RuleEntry<[]>
+  /**
+   * Object literal syntax should be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2428/javascript
+   */
+  'sonarjs/prefer-object-literal'?: Linter.RuleEntry<[]>
+  /**
+   * Shorthand promises should be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4634/javascript
+   */
+  'sonarjs/prefer-promise-shorthand'?: Linter.RuleEntry<[]>
+  /**
+   * React props should be read-only
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6759/javascript
+   */
+  'sonarjs/prefer-read-only-props'?: Linter.RuleEntry<[]>
+  /**
+   * "RegExp.exec()" should be preferred over "String.match()"
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6594/javascript
+   */
+  'sonarjs/prefer-regexp-exec'?: Linter.RuleEntry<[]>
+  /**
+   * Return of boolean expressions should not be wrapped into an "if-then-else" statement
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1126/javascript
+   */
+  'sonarjs/prefer-single-boolean-return'?: Linter.RuleEntry<[]>
+  /**
+   * The most specific assertion should be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5906/javascript
+   */
+  'sonarjs/prefer-specific-assertions'?: Linter.RuleEntry<[]>
+  /**
+   * Type predicates should be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4322/javascript
+   */
+  'sonarjs/prefer-type-guard'?: Linter.RuleEntry<[]>
+  /**
+   * A "while" loop should be used instead of a "for" loop
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1264/javascript
+   */
+  'sonarjs/prefer-while'?: Linter.RuleEntry<[]>
+  /**
+   * Debugging features should not be enabled in production
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4507/javascript
+   */
+  'sonarjs/production-debug'?: Linter.RuleEntry<[]>
+  /**
+   * Pseudorandom number generators (PRNGs) should not be used in security contexts
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2245/javascript
+   */
+  'sonarjs/pseudo-random'?: Linter.RuleEntry<[]>
+  /**
+   * Public "static" fields should be read-only
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1444/javascript
+   */
+  'sonarjs/public-static-readonly'?: Linter.RuleEntry<[]>
+  /**
+   * Temporary files should not be created in publicly writable directories
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5443/javascript
+   */
+  'sonarjs/publicly-writable-directories'?: Linter.RuleEntry<[]>
+  /**
+   * "Array.reduce()" calls should include an initial value
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6959/javascript
+   */
+  'sonarjs/reduce-initial-value'?: Linter.RuleEntry<[]>
+  /**
+   * Redundant type aliases should not be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6564/javascript
+   */
+  'sonarjs/redundant-type-aliases'?: Linter.RuleEntry<[]>
+  /**
+   * Regular expressions should not be too complicated
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5843/javascript
+   */
+  'sonarjs/regex-complexity'?: Linter.RuleEntry<SonarjsRegexComplexity>
+  /**
+   * Wallet phrases should not be hard-coded
+   * @see https://sonarsource.github.io/rspec/#/rspec/S7639/javascript
+   */
+  'sonarjs/review-blockchain-mnemonic'?: Linter.RuleEntry<[]>
+  /**
+   * A new session should be created during user authentication
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5876/javascript
+   */
+  'sonarjs/session-regeneration'?: Linter.RuleEntry<[]>
+  /**
+   * Shorthand object properties should be grouped at the beginning or end of an object declaration
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3499/javascript
+   */
+  'sonarjs/shorthand-property-grouping'?: Linter.RuleEntry<[]>
+  /**
+   * Character classes in regular expressions should not contain only one character
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6397/javascript
+   */
+  'sonarjs/single-char-in-character-classes'?: Linter.RuleEntry<[]>
+  /**
+   * Single-character alternations in regular expressions should be replaced with character classes
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6035/javascript
+   */
+  'sonarjs/single-character-alternation'?: Linter.RuleEntry<[]>
+  /**
+   * Regular expressions should not cause catastrophic backtracking
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5852/javascript
+   */
+  'sonarjs/slow-regex'?: Linter.RuleEntry<[]>
+  /**
+   * SQL queries should not be dynamically formatted
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2077/javascript
+   */
+  'sonarjs/sql-queries'?: Linter.RuleEntry<[]>
+  /**
+   * Tests should be stable
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5973/javascript
+   */
+  'sonarjs/stable-tests'?: Linter.RuleEntry<[]>
+  /**
+   * Regular expressions with the global flag should be used with caution
+   * @see https://sonarsource.github.io/rspec/#/rspec/S6351/javascript
+   */
+  'sonarjs/stateful-regex'?: Linter.RuleEntry<[]>
+  /**
+   * HTTP Strict-Transport-Security policy should not be disabled
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5739/javascript
+   */
+  'sonarjs/strict-transport-security'?: Linter.RuleEntry<[]>
+  /**
+   * Comparison operators should not be used with strings
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3003/javascript
+   */
+  'sonarjs/strings-comparison'?: Linter.RuleEntry<[]>
+  /**
+   * Regular expressions should not cause non-linear backtracking
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8786/javascript
+   */
+  'sonarjs/super-linear-regex'?: Linter.RuleEntry<[]>
+  /**
+   * Synchronous exception assertions should receive synchronous callbacks
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9072/javascript
+   */
+  'sonarjs/synchronous-exception-assertions'?: Linter.RuleEntry<[]>
+  /**
+   * Tests should not be registered asynchronously in suite callbacks
+   * @see https://sonarsource.github.io/rspec/#/rspec/S8785/javascript
+   */
+  'sonarjs/synchronous-suite-callback'?: Linter.RuleEntry<[]>
+  /**
+   * Tables should have headers
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5256/javascript
+   */
+  'sonarjs/table-header'?: Linter.RuleEntry<[]>
+  /**
+   * Table cells should reference their headers
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5260/javascript
+   */
+  'sonarjs/table-header-reference'?: Linter.RuleEntry<[]>
+  /**
+   * Tests should check which exception is thrown
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5958/javascript
+   */
+  'sonarjs/test-check-exception'?: Linter.RuleEntry<[]>
+  /**
+   * Testing Library disappearance waits should use non-throwing queries
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9153/javascript
+   */
+  'sonarjs/testing-library-prefer-query-by-disappearance'?: Linter.RuleEntry<[]>
+  /**
+   * Testing Library queries should match presence assertions
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9027/javascript
+   */
+  'sonarjs/testing-library-query-assertion'?: Linter.RuleEntry<[]>
+  /**
+   * Track uses of "TODO" tags
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1135/javascript
+   */
+  'sonarjs/todo-tag'?: Linter.RuleEntry<[]>
+  /**
+   * Loops should not contain more than a single "break" or "continue" statement
+   * @see https://sonarsource.github.io/rspec/#/rspec/S135/javascript
+   */
+  'sonarjs/too-many-break-or-continue-in-loop'?: Linter.RuleEntry<[]>
+  /**
+   * Regular expressions using Unicode character classes or property escapes should enable the unicode flag
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5867/javascript
+   */
+  'sonarjs/unicode-aware-regex'?: Linter.RuleEntry<[]>
+  /**
+   * Unnecessary imports should be removed
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1128/javascript
+   */
+  'sonarjs/unused-import'?: Linter.RuleEntry<[]>
+  /**
+   * Names of regular expressions named groups should be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5860/javascript
+   */
+  'sonarjs/unused-named-groups'?: Linter.RuleEntry<[]>
+  /**
+   * Server certificates should be verified during SSL/TLS connections
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4830/javascript
+   */
+  'sonarjs/unverified-certificate'?: Linter.RuleEntry<[]>
+  /**
+   * Server hostnames should be verified during SSL/TLS connections
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5527/javascript
+   */
+  'sonarjs/unverified-hostname'?: Linter.RuleEntry<[]>
+  /**
+   * "const" variables should not be reassigned
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3500/javascript
+   */
+  'sonarjs/updated-const-var'?: Linter.RuleEntry<[]>
+  /**
+   * Loop counters should not be assigned within the loop body
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2310/javascript
+   */
+  'sonarjs/updated-loop-counter'?: Linter.RuleEntry<[]>
+  /**
+   * Type aliases should be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4323/javascript
+   */
+  'sonarjs/use-type-alias'?: Linter.RuleEntry<[]>
+  /**
+   * Results of operations on strings should not be ignored
+   * @see https://sonarsource.github.io/rspec/#/rspec/S1154/javascript
+   * @deprecated
+   */
+  'sonarjs/useless-string-operation'?: Linter.RuleEntry<[]>
+  /**
+   * Values not convertible to numbers should not be used in numeric comparisons
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3758/javascript
+   */
+  'sonarjs/values-not-convertible-to-numbers'?: Linter.RuleEntry<[]>
+  /**
+   * Variable, property and parameter names should comply with a naming convention
+   * @see https://sonarsource.github.io/rspec/#/rspec/S117/javascript
+   */
+  'sonarjs/variable-name'?: Linter.RuleEntry<SonarjsVariableName>
+  /**
+   * vi.mock should be declared at module scope
+   * @see https://sonarsource.github.io/rspec/#/rspec/S9169/javascript
+   */
+  'sonarjs/vitest-mock-at-module-scope'?: Linter.RuleEntry<[]>
+  /**
+   * "void" should not be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S3735/javascript
+   */
+  'sonarjs/void-use'?: Linter.RuleEntry<[]>
+  /**
+   * Weak SSL/TLS protocols should not be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S4423/javascript
+   */
+  'sonarjs/weak-ssl'?: Linter.RuleEntry<[]>
+  /**
+   * Web SQL databases should not be used
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2817/javascript
+   * @deprecated
+   */
+  'sonarjs/web-sql-database'?: Linter.RuleEntry<[]>
+  /**
+   * Web application technologies should not disclose version information
+   * @see https://sonarsource.github.io/rspec/#/rspec/S5689/javascript
+   */
+  'sonarjs/x-powered-by'?: Linter.RuleEntry<[]>
+  /**
+   * XML parsers should not be vulnerable to XXE attacks
+   * @see https://sonarsource.github.io/rspec/#/rspec/S2755/javascript
+   */
+  'sonarjs/xml-parser-xxe'?: Linter.RuleEntry<[]>
   /**
    * Enforce sorted `import` declarations within modules
    * @see https://eslint.org/docs/latest/rules/sort-imports
@@ -5875,7 +7734,7 @@ export interface RuleOptions {
    */
   'test/no-mocks-import'?: Linter.RuleEntry<[]>
   /**
-   * disallow .only blocks in tests
+   * disallow focused/only tests
    * @see https://github.com/levibuzolic/eslint-plugin-no-only-tests
    */
   'test/no-only-tests'?: Linter.RuleEntry<TestNoOnlyTests>
@@ -6000,7 +7859,7 @@ export interface RuleOptions {
    */
   'test/prefer-expect-resolves'?: Linter.RuleEntry<[]>
   /**
-   * enforce using `expectTypeOf` instead of `expect(typeof ...)`
+   * enforce using `expect(...).toBeTypeOf(...)` instead of `expect(typeof ...).toBe(...)`
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-expect-type-of.md
    */
   'test/prefer-expect-type-of'?: Linter.RuleEntry<[]>
@@ -6139,6 +7998,11 @@ export interface RuleOptions {
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/require-top-level-describe.md
    */
   'test/require-top-level-describe'?: Linter.RuleEntry<TestRequireTopLevelDescribe>
+  /**
+   * enforce unbound methods are called with their expected scope
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/unbound-method.md
+   */
+  'test/unbound-method'?: Linter.RuleEntry<TestUnboundMethod>
   /**
    * enforce valid describe callback
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/valid-describe-callback.md
@@ -6497,6 +8361,11 @@ export interface RuleOptions {
    */
   'ts/no-for-in-array'?: Linter.RuleEntry<[]>
   /**
+   * Disallow type operations that resolve to the "empty object" type
+   * @see https://typescript-eslint.io/rules/no-generated-empty-object-type
+   */
+  'ts/no-generated-empty-object-type'?: Linter.RuleEntry<[]>
+  /**
    * Disallow the use of `eval()`-like functions
    * @see https://typescript-eslint.io/rules/no-implied-eval
    */
@@ -6524,6 +8393,7 @@ export interface RuleOptions {
   /**
    * Disallow function declarations that contain unsafe references inside loop statements
    * @see https://typescript-eslint.io/rules/no-loop-func
+   * @deprecated
    */
   'ts/no-loop-func'?: Linter.RuleEntry<[]>
   /**
@@ -6600,6 +8470,7 @@ export interface RuleOptions {
   /**
    * Disallow specified modules when loaded by `import`
    * @see https://typescript-eslint.io/rules/no-restricted-imports
+   * @deprecated
    */
   'ts/no-restricted-imports'?: Linter.RuleEntry<TsNoRestrictedImports>
   /**
@@ -6693,6 +8564,11 @@ export interface RuleOptions {
    * @see https://typescript-eslint.io/rules/no-unsafe-declaration-merging
    */
   'ts/no-unsafe-declaration-merging'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow assigning non-enum values to enum typed locations
+   * @see https://typescript-eslint.io/rules/no-unsafe-enum-assignment
+   */
+  'ts/no-unsafe-enum-assignment'?: Linter.RuleEntry<[]>
   /**
    * Disallow comparing an enum value with a non-enum value
    * @see https://typescript-eslint.io/rules/no-unsafe-enum-comparison
@@ -6968,733 +8844,1743 @@ export interface RuleOptions {
    */
   'unicode-bom'?: Linter.RuleEntry<UnicodeBom>
   /**
-   * Improve regexes by making them shorter, consistent, and safer.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/better-regex.md
+   * Prefer better DOM traversal APIs.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/better-dom-traversing.md
    */
-  'unicorn/better-regex'?: Linter.RuleEntry<UnicornBetterRegex>
+  'unicorn/better-dom-traversing'?: Linter.RuleEntry<[]>
+  /**
+   * Removed. Prefer `eslint-plugin-regexp`
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/deleted-and-deprecated-rules.md#better-regex
+   * @deprecated
+   */
+  'unicorn/better-regex'?: Linter.RuleEntry<[]>
   /**
    * Enforce a specific parameter name in catch clauses.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/catch-error-name.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/catch-error-name.md
    */
   'unicorn/catch-error-name'?: Linter.RuleEntry<UnicornCatchErrorName>
   /**
+   * Enforce consistent class references in static methods.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/class-reference-in-static-methods.md
+   */
+  'unicorn/class-reference-in-static-methods'?: Linter.RuleEntry<UnicornClassReferenceInStaticMethods>
+  /**
+   * Enforce better comment content.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/comment-content.md
+   */
+  'unicorn/comment-content'?: Linter.RuleEntry<UnicornCommentContent>
+  /**
+   * Enforce a consistent return style for multiline arrow function bodies.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-arrow-return-style.md
+   */
+  'unicorn/consistent-arrow-return-style'?: Linter.RuleEntry<[]>
+  /**
    * Enforce consistent assertion style with `node:assert`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/consistent-assert.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-assert.md
    */
   'unicorn/consistent-assert'?: Linter.RuleEntry<[]>
   /**
+   * Enforce consistent naming for boolean names.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-boolean-name.md
+   */
+  'unicorn/consistent-boolean-name'?: Linter.RuleEntry<UnicornConsistentBooleanName>
+  /**
+   * Enforce consistent class member order.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-class-member-order.md
+   */
+  'unicorn/consistent-class-member-order'?: Linter.RuleEntry<UnicornConsistentClassMemberOrder>
+  /**
+   * Enforce consistent spelling of compound words in identifiers.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-compound-words.md
+   */
+  'unicorn/consistent-compound-words'?: Linter.RuleEntry<UnicornConsistentCompoundWords>
+  /**
+   * Enforce consistent conditional object spread style.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-conditional-object-spread.md
+   */
+  'unicorn/consistent-conditional-object-spread'?: Linter.RuleEntry<UnicornConsistentConditionalObjectSpread>
+  /**
    * Prefer passing `Date` directly to the constructor when cloning.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/consistent-date-clone.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-date-clone.md
    */
   'unicorn/consistent-date-clone'?: Linter.RuleEntry<[]>
   /**
    * Use destructured variables over properties.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/consistent-destructuring.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-destructuring.md
    */
   'unicorn/consistent-destructuring'?: Linter.RuleEntry<[]>
   /**
    * Prefer consistent types when spreading a ternary in an array literal.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/consistent-empty-array-spread.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-empty-array-spread.md
    */
   'unicorn/consistent-empty-array-spread'?: Linter.RuleEntry<[]>
   /**
    * Enforce consistent style for element existence checks with `indexOf()`, `lastIndexOf()`, `findIndex()`, and `findLastIndex()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/consistent-existence-index-check.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-existence-index-check.md
    */
   'unicorn/consistent-existence-index-check'?: Linter.RuleEntry<[]>
   /**
+   * Enforce consistent decorator position on exported classes.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-export-decorator-position.md
+   */
+  'unicorn/consistent-export-decorator-position'?: Linter.RuleEntry<UnicornConsistentExportDecoratorPosition>
+  /**
    * Move function definitions to the highest possible scope.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/consistent-function-scoping.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-function-scoping.md
    */
   'unicorn/consistent-function-scoping'?: Linter.RuleEntry<UnicornConsistentFunctionScoping>
   /**
+   * Enforce function syntax by role.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-function-style.md
+   */
+  'unicorn/consistent-function-style'?: Linter.RuleEntry<UnicornConsistentFunctionStyle>
+  /**
+   * Enforce consistent JSON file reads before `JSON.parse()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-json-file-read.md
+   */
+  'unicorn/consistent-json-file-read'?: Linter.RuleEntry<UnicornConsistentJsonFileRead>
+  /**
+   * Enforce consistent optional chaining for same-base member access.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-optional-chaining.md
+   */
+  'unicorn/consistent-optional-chaining'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce consistent style for escaping `${` in template literals.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-template-literal-escape.md
+   */
+  'unicorn/consistent-template-literal-escape'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce consistent labels on tuple type elements.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/consistent-tuple-labels.md
+   */
+  'unicorn/consistent-tuple-labels'?: Linter.RuleEntry<[]>
+  /**
    * Enforce correct `Error` subclassing.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/custom-error-definition.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/custom-error-definition.md
    */
   'unicorn/custom-error-definition'?: Linter.RuleEntry<[]>
   /**
+   * Enforce consistent default export declarations.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/default-export-style.md
+   */
+  'unicorn/default-export-style'?: Linter.RuleEntry<UnicornDefaultExportStyle>
+  /**
+   * Enforce consistent style for DOM element dataset access.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/dom-node-dataset.md
+   */
+  'unicorn/dom-node-dataset'?: Linter.RuleEntry<UnicornDomNodeDataset>
+  /**
    * Enforce no spaces between braces.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/empty-brace-spaces.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/empty-brace-spaces.md
    */
   'unicorn/empty-brace-spaces'?: Linter.RuleEntry<[]>
   /**
    * Enforce passing a `message` value when creating a built-in error.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/error-message.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/error-message.md
    */
   'unicorn/error-message'?: Linter.RuleEntry<[]>
   /**
    * Require escape sequences to use uppercase or lowercase values.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/escape-case.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/escape-case.md
    */
   'unicorn/escape-case'?: Linter.RuleEntry<UnicornEscapeCase>
   /**
    * Add expiration conditions to TODO comments.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/expiring-todo-comments.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/expiring-todo-comments.md
    */
   'unicorn/expiring-todo-comments'?: Linter.RuleEntry<UnicornExpiringTodoComments>
   /**
    * Enforce explicitly comparing the `length` or `size` property of a value.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/explicit-length-check.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/explicit-length-check.md
    */
   'unicorn/explicit-length-check'?: Linter.RuleEntry<UnicornExplicitLengthCheck>
   /**
-   * Enforce a case style for filenames.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/filename-case.md
+   * Enforce or disallow explicit `delay` argument for `setTimeout()` and `setInterval()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/explicit-timer-delay.md
+   */
+  'unicorn/explicit-timer-delay'?: Linter.RuleEntry<UnicornExplicitTimerDelay>
+  /**
+   * Enforce a case style for filenames and directory names.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/filename-case.md
    */
   'unicorn/filename-case'?: Linter.RuleEntry<UnicornFilenameCase>
   /**
+   * Require identifiers to match a specified regular expression.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/id-match.md
+   */
+  'unicorn/id-match'?: Linter.RuleEntry<UnicornIdMatch>
+  /**
    * Enforce specific import styles per module.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/import-style.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/import-style.md
    */
   'unicorn/import-style'?: Linter.RuleEntry<UnicornImportStyle>
   /**
    * Prevent usage of variables from outside the scope of isolated functions.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/isolated-functions.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/isolated-functions.md
    */
   'unicorn/isolated-functions'?: Linter.RuleEntry<UnicornIsolatedFunctions>
   /**
-   * Enforce the use of `new` for all builtins, except `String`, `Number`, `Boolean`, `Symbol` and `BigInt`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/new-for-builtins.md
+   * Enforce a consistent style for optional loop sources.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/iteration-fallback-style.md
+   */
+  'unicorn/iteration-fallback-style'?: Linter.RuleEntry<UnicornIterationFallbackStyle>
+  /**
+   * Require or disallow logical assignment operator shorthand
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/logical-assignment-operators.md
+   */
+  'unicorn/logical-assignment-operators'?: Linter.RuleEntry<UnicornLogicalAssignmentOperators>
+  /**
+   * Limit the depth of nested calls.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/max-nested-calls.md
+   */
+  'unicorn/max-nested-calls'?: Linter.RuleEntry<UnicornMaxNestedCalls>
+  /**
+   * Enforce replacements for variable, property, and filenames.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/name-replacements.md
+   */
+  'unicorn/name-replacements'?: Linter.RuleEntry<UnicornNameReplacements>
+  /**
+   * Enforce correct use of `new` for builtin constructors.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/new-for-builtins.md
    */
   'unicorn/new-for-builtins'?: Linter.RuleEntry<[]>
   /**
    * Enforce specifying rules to disable in `eslint-disable` comments.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-abusive-eslint-disable.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-abusive-eslint-disable.md
    */
   'unicorn/no-abusive-eslint-disable'?: Linter.RuleEntry<[]>
   /**
    * Disallow recursive access to `this` within getters and setters.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-accessor-recursion.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-accessor-recursion.md
    */
   'unicorn/no-accessor-recursion'?: Linter.RuleEntry<[]>
   /**
+   * Disallow bitwise operators where a logical operator was likely intended.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-accidental-bitwise-operator.md
+   */
+  'unicorn/no-accidental-bitwise-operator'?: Linter.RuleEntry<[]>
+  /**
    * Disallow anonymous functions and classes as the default export.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-anonymous-default-export.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-anonymous-default-export.md
    */
   'unicorn/no-anonymous-default-export'?: Linter.RuleEntry<[]>
   /**
    * Prevent passing a function reference directly to iterator methods.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-array-callback-reference.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-array-callback-reference.md
    */
-  'unicorn/no-array-callback-reference'?: Linter.RuleEntry<[]>
+  'unicorn/no-array-callback-reference'?: Linter.RuleEntry<UnicornNoArrayCallbackReference>
   /**
-   * Prefer `for…of` over the `forEach` method.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-array-for-each.md
+   * Disallow array accumulation with `Array#concat()` in loops.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-array-concat-in-loop.md
    */
-  'unicorn/no-array-for-each'?: Linter.RuleEntry<[]>
+  'unicorn/no-array-concat-in-loop'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow using reference values as `Array#fill()` values.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-array-fill-with-reference-type.md
+   */
+  'unicorn/no-array-fill-with-reference-type'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow `.fill()` after `Array.from({length: …})`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-array-from-fill.md
+   */
+  'unicorn/no-array-from-fill'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow front-of-array mutation.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-array-front-mutation.md
+   */
+  'unicorn/no-array-front-mutation'?: Linter.RuleEntry<[]>
   /**
    * Disallow using the `this` argument in array methods.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-array-method-this-argument.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-array-method-this-argument.md
    */
   'unicorn/no-array-method-this-argument'?: Linter.RuleEntry<[]>
   /**
    * Replaced by `unicorn/prefer-single-call` which covers more cases.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/deleted-and-deprecated-rules.md#no-array-push-push
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/deleted-and-deprecated-rules.md#no-array-push-push
    * @deprecated
    */
   'unicorn/no-array-push-push'?: Linter.RuleEntry<[]>
   /**
    * Disallow `Array#reduce()` and `Array#reduceRight()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-array-reduce.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-array-reduce.md
    */
   'unicorn/no-array-reduce'?: Linter.RuleEntry<UnicornNoArrayReduce>
   /**
    * Prefer `Array#toReversed()` over `Array#reverse()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-array-reverse.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-array-reverse.md
    */
   'unicorn/no-array-reverse'?: Linter.RuleEntry<UnicornNoArrayReverse>
   /**
    * Prefer `Array#toSorted()` over `Array#sort()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-array-sort.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-array-sort.md
    */
   'unicorn/no-array-sort'?: Linter.RuleEntry<UnicornNoArraySort>
   /**
+   * Disallow sorting arrays to get the minimum or maximum value.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-array-sort-for-min-max.md
+   */
+  'unicorn/no-array-sort-for-min-max'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `Array#toSpliced()` over `Array#splice()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-array-splice.md
+   */
+  'unicorn/no-array-splice'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow asterisk prefixes in documentation comments.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-asterisk-prefix-in-documentation-comments.md
+   */
+  'unicorn/no-asterisk-prefix-in-documentation-comments'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow async functions as `Promise#finally()` callbacks.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-async-promise-finally.md
+   */
+  'unicorn/no-async-promise-finally'?: Linter.RuleEntry<[]>
+  /**
    * Disallow member access from await expression.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-await-expression-member.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-await-expression-member.md
    */
   'unicorn/no-await-expression-member'?: Linter.RuleEntry<[]>
   /**
    * Disallow using `await` in `Promise` method parameters.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-await-in-promise-methods.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-await-in-promise-methods.md
    */
   'unicorn/no-await-in-promise-methods'?: Linter.RuleEntry<[]>
   /**
+   * Disallow barrel files.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-barrel-files.md
+   */
+  'unicorn/no-barrel-files'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow unnecessary `Blob` to `File` conversion.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-blob-to-file.md
+   */
+  'unicorn/no-blob-to-file'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow boolean-returning sort comparators.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-boolean-sort-comparator.md
+   */
+  'unicorn/no-boolean-sort-comparator'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow `break` and `continue` in nested loops and switches inside loops.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-break-in-nested-loop.md
+   */
+  'unicorn/no-break-in-nested-loop'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer drawing canvases directly instead of converting them to images.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-canvas-to-image.md
+   */
+  'unicorn/no-canvas-to-image'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow chained comparisons such as `a < b < c`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-chained-comparison.md
+   */
+  'unicorn/no-chained-comparison'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow accessing `Map`, `Set`, `WeakMap`, and `WeakSet` entries with bracket notation.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-collection-bracket-access.md
+   */
+  'unicorn/no-collection-bracket-access'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow dynamic object property existence checks.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-computed-property-existence-check.md
+   */
+  'unicorn/no-computed-property-existence-check'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow confusing uses of `Array#{splice,toSpliced}()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-confusing-array-splice.md
+   */
+  'unicorn/no-confusing-array-splice'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow confusing uses of `Array#with()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-confusing-array-with.md
+   */
+  'unicorn/no-confusing-array-with'?: Linter.RuleEntry<[]>
+  /**
    * Do not use leading/trailing space between `console.log` parameters.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-console-spaces.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-console-spaces.md
    */
   'unicorn/no-console-spaces'?: Linter.RuleEntry<[]>
   /**
+   * Disallow arithmetic and bitwise operations that always evaluate to `0`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-constant-zero-expression.md
+   */
+  'unicorn/no-constant-zero-expression'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow declarations before conditional early exits when they are only used after the exit.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-declarations-before-early-exit.md
+   */
+  'unicorn/no-declarations-before-early-exit'?: Linter.RuleEntry<[]>
+  /**
    * Do not use `document.cookie` directly.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-document-cookie.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-document-cookie.md
    */
   'unicorn/no-document-cookie'?: Linter.RuleEntry<[]>
   /**
-   * Disallow empty files.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-empty-file.md
+   * Disallow two comparisons of the same operands that can be combined into one.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-double-comparison.md
    */
-  'unicorn/no-empty-file'?: Linter.RuleEntry<[]>
+  'unicorn/no-double-comparison'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow duplicate adjacent branches in if chains.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-duplicate-if-branches.md
+   */
+  'unicorn/no-duplicate-if-branches'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow adjacent duplicate operands in logical expressions.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-duplicate-logical-operands.md
+   */
+  'unicorn/no-duplicate-logical-operands'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow `.map()` and `.filter()` in `for…of` and `for await…of` loop headers.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-duplicate-loops.md
+   */
+  'unicorn/no-duplicate-loops'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow duplicate values in `Set` constructor array literals.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-duplicate-set-values.md
+   */
+  'unicorn/no-duplicate-set-values'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow empty files.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-empty-file.md
+   */
+  'unicorn/no-empty-file'?: Linter.RuleEntry<UnicornNoEmptyFile>
+  /**
+   * Disallow assigning to built-in error properties.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-error-property-assignment.md
+   */
+  'unicorn/no-error-property-assignment'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow exports in scripts.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-exports-in-scripts.md
+   */
+  'unicorn/no-exports-in-scripts'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `for…of` over the `forEach` method.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-for-each.md
+   */
+  'unicorn/no-for-each'?: Linter.RuleEntry<[]>
   /**
    * Do not use a `for` loop that can be replaced with a `for-of` loop.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-for-loop.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-for-loop.md
    */
   'unicorn/no-for-loop'?: Linter.RuleEntry<[]>
   /**
-   * Enforce the use of Unicode escapes instead of hexadecimal escapes.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-hex-escape.md
+   * Disallow assigning properties on the global object.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-global-object-property-assignment.md
+   */
+  'unicorn/no-global-object-property-assignment'?: Linter.RuleEntry<[]>
+  /**
+   * Replaced by `unicorn/prefer-unicode-code-point-escapes` which covers more cases.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/deleted-and-deprecated-rules.md#no-hex-escape
+   * @deprecated
    */
   'unicorn/no-hex-escape'?: Linter.RuleEntry<[]>
   /**
    * Disallow immediate mutation after variable assignment.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-immediate-mutation.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-immediate-mutation.md
    */
   'unicorn/no-immediate-mutation'?: Linter.RuleEntry<[]>
   /**
+   * Disallow impossible comparisons against `.length` or `.size`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-impossible-length-comparison.md
+   */
+  'unicorn/no-impossible-length-comparison'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow incorrect `querySelector()` and `querySelectorAll()` usage.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-incorrect-query-selector.md
+   */
+  'unicorn/no-incorrect-query-selector'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow incorrect template literal interpolation syntax.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-incorrect-template-string-interpolation.md
+   */
+  'unicorn/no-incorrect-template-string-interpolation'?: Linter.RuleEntry<[]>
+  /**
    * Replaced by `unicorn/no-instanceof-builtins` which covers more cases.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/deleted-and-deprecated-rules.md#no-instanceof-array
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/deleted-and-deprecated-rules.md#no-instanceof-array
    * @deprecated
    */
   'unicorn/no-instanceof-array'?: Linter.RuleEntry<[]>
   /**
    * Disallow `instanceof` with built-in objects
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-instanceof-builtins.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-instanceof-builtins.md
    */
   'unicorn/no-instanceof-builtins'?: Linter.RuleEntry<UnicornNoInstanceofBuiltins>
   /**
+   * Disallow calling functions and constructors with an invalid number of arguments.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-invalid-argument-count.md
+   */
+  'unicorn/no-invalid-argument-count'?: Linter.RuleEntry<UnicornNoInvalidArgumentCount>
+  /**
+   * Disallow comparing a single character from a string to a multi-character string.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-invalid-character-comparison.md
+   */
+  'unicorn/no-invalid-character-comparison'?: Linter.RuleEntry<[]>
+  /**
    * Disallow invalid options in `fetch()` and `new Request()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-invalid-fetch-options.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-invalid-fetch-options.md
    */
   'unicorn/no-invalid-fetch-options'?: Linter.RuleEntry<[]>
   /**
+   * Disallow invalid `accept` values on file inputs.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-invalid-file-input-accept.md
+   */
+  'unicorn/no-invalid-file-input-accept'?: Linter.RuleEntry<[]>
+  /**
    * Prevent calling `EventTarget#removeEventListener()` with the result of an expression.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-invalid-remove-event-listener.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-invalid-remove-event-listener.md
    */
   'unicorn/no-invalid-remove-event-listener'?: Linter.RuleEntry<[]>
   /**
+   * Disallow invalid implementations of well-known symbol methods.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-invalid-well-known-symbol-methods.md
+   */
+  'unicorn/no-invalid-well-known-symbol-methods'?: Linter.RuleEntry<[]>
+  /**
    * Disallow identifiers starting with `new` or `class`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-keyword-prefix.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-keyword-prefix.md
    */
   'unicorn/no-keyword-prefix'?: Linter.RuleEntry<UnicornNoKeywordPrefix>
   /**
+   * Disallow accessing `event.currentTarget` after the synchronous event dispatch has finished.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-late-current-target-access.md
+   */
+  'unicorn/no-late-current-target-access'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow event-control method calls after the synchronous event dispatch has finished.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-late-event-control.md
+   */
+  'unicorn/no-late-event-control'?: Linter.RuleEntry<[]>
+  /**
    * Replaced by `unicorn/no-unnecessary-slice-end` which covers more cases.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/deleted-and-deprecated-rules.md#no-length-as-slice-end
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/deleted-and-deprecated-rules.md#no-length-as-slice-end
    * @deprecated
    */
   'unicorn/no-length-as-slice-end'?: Linter.RuleEntry<[]>
   /**
    * Disallow `if` statements as the only statement in `if` blocks without `else`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-lonely-if.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-lonely-if.md
    */
   'unicorn/no-lonely-if'?: Linter.RuleEntry<[]>
   /**
+   * Disallow mutating a loop iterable during iteration.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-loop-iterable-mutation.md
+   */
+  'unicorn/no-loop-iterable-mutation'?: Linter.RuleEntry<[]>
+  /**
    * Disallow a magic number as the `depth` argument in `Array#flat(…).`
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-magic-array-flat-depth.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-magic-array-flat-depth.md
    */
   'unicorn/no-magic-array-flat-depth'?: Linter.RuleEntry<[]>
   /**
+   * Disallow manually wrapped comments.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-manually-wrapped-comments.md
+   */
+  'unicorn/no-manually-wrapped-comments'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow checking a Map key before accessing a different key.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-mismatched-map-key.md
+   */
+  'unicorn/no-mismatched-map-key'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow misrefactored compound assignments where the target is duplicated in the right-hand side.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-misrefactored-assignment.md
+   */
+  'unicorn/no-misrefactored-assignment'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow references to missing local resources.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-missing-local-resource.md
+   */
+  'unicorn/no-missing-local-resource'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow calling Promise executor resolver functions more than once on the same execution path.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-multiple-promise-resolver-calls.md
+   */
+  'unicorn/no-multiple-promise-resolver-calls'?: Linter.RuleEntry<[]>
+  /**
    * Disallow named usage of default import and export.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-named-default.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-named-default.md
    */
   'unicorn/no-named-default'?: Linter.RuleEntry<[]>
   /**
+   * Disallow negated array predicate calls.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-negated-array-predicate.md
+   */
+  'unicorn/no-negated-array-predicate'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow negated comparisons.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-negated-comparison.md
+   */
+  'unicorn/no-negated-comparison'?: Linter.RuleEntry<UnicornNoNegatedComparison>
+  /**
    * Disallow negated conditions.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-negated-condition.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-negated-condition.md
    */
   'unicorn/no-negated-condition'?: Linter.RuleEntry<[]>
   /**
    * Disallow negated expression in equality check.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-negation-in-equality-check.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-negation-in-equality-check.md
    */
   'unicorn/no-negation-in-equality-check'?: Linter.RuleEntry<[]>
   /**
    * Disallow nested ternary expressions.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-nested-ternary.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-nested-ternary.md
    */
   'unicorn/no-nested-ternary'?: Linter.RuleEntry<[]>
   /**
    * Disallow `new Array()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-new-array.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-new-array.md
    */
   'unicorn/no-new-array'?: Linter.RuleEntry<[]>
   /**
    * Enforce the use of `Buffer.from()` and `Buffer.alloc()` instead of the deprecated `new Buffer()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-new-buffer.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-new-buffer.md
    */
   'unicorn/no-new-buffer'?: Linter.RuleEntry<[]>
   /**
+   * Disallow non-function values with function-style verb prefixes.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-non-function-verb-prefix.md
+   */
+  'unicorn/no-non-function-verb-prefix'?: Linter.RuleEntry<UnicornNoNonFunctionVerbPrefix>
+  /**
+   * Disallow non-standard properties on built-in objects.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-nonstandard-builtin-properties.md
+   */
+  'unicorn/no-nonstandard-builtin-properties'?: Linter.RuleEntry<[]>
+  /**
    * Disallow the use of the `null` literal.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-null.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-null.md
    */
   'unicorn/no-null'?: Linter.RuleEntry<UnicornNoNull>
   /**
    * Disallow the use of objects as default parameters.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-object-as-default-parameter.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-object-as-default-parameter.md
    */
   'unicorn/no-object-as-default-parameter'?: Linter.RuleEntry<[]>
   /**
+   * Disallow `Object` methods with `Map` or `Set`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-object-methods-with-collections.md
+   */
+  'unicorn/no-object-methods-with-collections'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow optional chaining on undeclared variables.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-optional-chaining-on-undeclared-variable.md
+   */
+  'unicorn/no-optional-chaining-on-undeclared-variable'?: Linter.RuleEntry<[]>
+  /**
    * Disallow `process.exit()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-process-exit.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-process-exit.md
    */
   'unicorn/no-process-exit'?: Linter.RuleEntry<[]>
   /**
+   * Disallow comparisons made redundant by an equality check in the same logical AND.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-redundant-comparison.md
+   */
+  'unicorn/no-redundant-comparison'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow using the return value of `Array#push()` and `Array#unshift()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-return-array-push.md
+   */
+  'unicorn/no-return-array-push'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow selector syntax in DOM names.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-selector-as-dom-name.md
+   */
+  'unicorn/no-selector-as-dom-name'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow shorthand properties that override related longhand properties.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-shorthand-property-overrides.md
+   */
+  'unicorn/no-shorthand-property-overrides'?: Linter.RuleEntry<[]>
+  /**
    * Disallow passing single-element arrays to `Promise` methods.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-single-promise-in-promise-methods.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-single-promise-in-promise-methods.md
    */
   'unicorn/no-single-promise-in-promise-methods'?: Linter.RuleEntry<[]>
   /**
    * Disallow classes that only have static members.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-static-only-class.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-static-only-class.md
    */
   'unicorn/no-static-only-class'?: Linter.RuleEntry<[]>
   /**
+   * Prefer comparing values directly over subtracting and comparing to `0`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-subtraction-comparison.md
+   */
+  'unicorn/no-subtraction-comparison'?: Linter.RuleEntry<[]>
+  /**
    * Disallow `then` property.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-thenable.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-thenable.md
    */
   'unicorn/no-thenable'?: Linter.RuleEntry<[]>
   /**
    * Disallow assigning `this` to a variable.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-this-assignment.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-this-assignment.md
    */
   'unicorn/no-this-assignment'?: Linter.RuleEntry<[]>
   /**
+   * Disallow `this` outside of classes.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-this-outside-of-class.md
+   */
+  'unicorn/no-this-outside-of-class'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow assigning to top-level variables from inside functions.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-top-level-assignment-in-function.md
+   */
+  'unicorn/no-top-level-assignment-in-function'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow top-level side effects in exported modules.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-top-level-side-effects.md
+   */
+  'unicorn/no-top-level-side-effects'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow `all` as a transition property.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-transition-all.md
+   */
+  'unicorn/no-transition-all'?: Linter.RuleEntry<[]>
+  /**
    * Disallow comparing `undefined` using `typeof`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-typeof-undefined.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-typeof-undefined.md
    */
   'unicorn/no-typeof-undefined'?: Linter.RuleEntry<UnicornNoTypeofUndefined>
   /**
+   * Disallow referencing methods without calling them.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-uncalled-method.md
+   */
+  'unicorn/no-uncalled-method'?: Linter.RuleEntry<[]>
+  /**
+   * Require class members to be declared.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-undeclared-class-members.md
+   */
+  'unicorn/no-undeclared-class-members'?: Linter.RuleEntry<[]>
+  /**
    * Disallow using `1` as the `depth` argument of `Array#flat()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-unnecessary-array-flat-depth.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unnecessary-array-flat-depth.md
    */
   'unicorn/no-unnecessary-array-flat-depth'?: Linter.RuleEntry<[]>
   /**
+   * Disallow `Array#flatMap()` callbacks that only wrap a single item.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unnecessary-array-flat-map.md
+   */
+  'unicorn/no-unnecessary-array-flat-map'?: Linter.RuleEntry<[]>
+  /**
    * Disallow using `.length` or `Infinity` as the `deleteCount` or `skipCount` argument of `Array#{splice,toSpliced}()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-unnecessary-array-splice-count.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unnecessary-array-splice-count.md
    */
   'unicorn/no-unnecessary-array-splice-count'?: Linter.RuleEntry<[]>
   /**
    * Disallow awaiting non-promise values.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-unnecessary-await.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unnecessary-await.md
    */
   'unicorn/no-unnecessary-await'?: Linter.RuleEntry<[]>
   /**
+   * Disallow unnecessary comparisons against boolean literals.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unnecessary-boolean-comparison.md
+   */
+  'unicorn/no-unnecessary-boolean-comparison'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow unnecessary options in `fetch()` and `new Request()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unnecessary-fetch-options.md
+   */
+  'unicorn/no-unnecessary-fetch-options'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow unnecessary `globalThis` references.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unnecessary-global-this.md
+   */
+  'unicorn/no-unnecessary-global-this'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow unnecessary nested ternary expressions.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unnecessary-nested-ternary.md
+   */
+  'unicorn/no-unnecessary-nested-ternary'?: Linter.RuleEntry<[]>
+  /**
    * Enforce the use of built-in methods instead of unnecessary polyfills.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-unnecessary-polyfills.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unnecessary-polyfills.md
    */
   'unicorn/no-unnecessary-polyfills'?: Linter.RuleEntry<UnicornNoUnnecessaryPolyfills>
   /**
    * Disallow using `.length` or `Infinity` as the `end` argument of `{Array,String,TypedArray}#slice()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-unnecessary-slice-end.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unnecessary-slice-end.md
    */
   'unicorn/no-unnecessary-slice-end'?: Linter.RuleEntry<[]>
   /**
-   * Disallow unreadable array destructuring.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-unreadable-array-destructuring.md
+   * Disallow `Array#splice()` when simpler alternatives exist.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unnecessary-splice.md
    */
-  'unicorn/no-unreadable-array-destructuring'?: Linter.RuleEntry<[]>
+  'unicorn/no-unnecessary-splice'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow `String#trim()` before `String#startsWith()` or `String#endsWith()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unnecessary-string-trim.md
+   */
+  'unicorn/no-unnecessary-string-trim'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow unreadable array destructuring.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unreadable-array-destructuring.md
+   */
+  'unicorn/no-unreadable-array-destructuring'?: Linter.RuleEntry<UnicornNoUnreadableArrayDestructuring>
+  /**
+   * Disallow unreadable iterable expressions in `for…of` and `for await…of` loop headers.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unreadable-for-of-expression.md
+   */
+  'unicorn/no-unreadable-for-of-expression'?: Linter.RuleEntry<[]>
   /**
    * Disallow unreadable IIFEs.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-unreadable-iife.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unreadable-iife.md
    */
   'unicorn/no-unreadable-iife'?: Linter.RuleEntry<[]>
   /**
+   * Disallow unreadable `new` expressions.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unreadable-new-expression.md
+   */
+  'unicorn/no-unreadable-new-expression'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow unreadable object destructuring.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unreadable-object-destructuring.md
+   */
+  'unicorn/no-unreadable-object-destructuring'?: Linter.RuleEntry<[]>
+  /**
+   * Prevent unsafe use of ArrayBuffer view `.buffer`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unsafe-buffer-conversion.md
+   */
+  'unicorn/no-unsafe-buffer-conversion'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow unsafe DOM HTML APIs.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unsafe-dom-html.md
+   */
+  'unicorn/no-unsafe-dom-html'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow reading `.value` from `Promise.allSettled()` results without a fulfilled status guard.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unsafe-promise-all-settled-values.md
+   */
+  'unicorn/no-unsafe-promise-all-settled-values'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow unsafe values as property keys.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unsafe-property-key.md
+   */
+  'unicorn/no-unsafe-property-key'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow interpolation into SQL strings passed to Node’s `node:sqlite` APIs.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unsafe-sqlite-interpolation.md
+   */
+  'unicorn/no-unsafe-sqlite-interpolation'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow non-literal replacement values in `String#replace()` and `String#replaceAll()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unsafe-string-replacement.md
+   */
+  'unicorn/no-unsafe-string-replacement'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow ignoring the return value of selected array methods.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unused-array-method-return.md
+   */
+  'unicorn/no-unused-array-method-return'?: Linter.RuleEntry<[]>
+  /**
    * Disallow unused object properties.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-unused-properties.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-unused-properties.md
    */
   'unicorn/no-unused-properties'?: Linter.RuleEntry<[]>
   /**
+   * Disallow unnecessary `Boolean()` casts in array predicate callbacks.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-boolean-cast.md
+   */
+  'unicorn/no-useless-boolean-cast'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow useless type coercions of values that are already of the target type.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-coercion.md
+   */
+  'unicorn/no-useless-coercion'?: Linter.RuleEntry<[]>
+  /**
    * Disallow useless values or fallbacks in `Set`, `Map`, `WeakSet`, or `WeakMap`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-useless-collection-argument.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-collection-argument.md
    */
   'unicorn/no-useless-collection-argument'?: Linter.RuleEntry<[]>
   /**
+   * Disallow useless compound assignments such as `x += 0`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-compound-assignment.md
+   */
+  'unicorn/no-useless-compound-assignment'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow useless concatenation of literals.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-concat.md
+   */
+  'unicorn/no-useless-concat'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow useless `continue` statements.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-continue.md
+   */
+  'unicorn/no-useless-continue'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow unnecessary existence checks before deletion.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-delete-check.md
+   */
+  'unicorn/no-useless-delete-check'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow `else` after a statement that exits.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-else.md
+   */
+  'unicorn/no-useless-else'?: Linter.RuleEntry<[]>
+  /**
    * Disallow unnecessary `Error.captureStackTrace(…)`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-useless-error-capture-stack-trace.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-error-capture-stack-trace.md
    */
   'unicorn/no-useless-error-capture-stack-trace'?: Linter.RuleEntry<[]>
   /**
    * Disallow useless fallback when spreading in object literals.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-useless-fallback-in-spread.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-fallback-in-spread.md
    */
   'unicorn/no-useless-fallback-in-spread'?: Linter.RuleEntry<[]>
   /**
+   * Disallow unnecessary `.toArray()` on iterators.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-iterator-to-array.md
+   */
+  'unicorn/no-useless-iterator-to-array'?: Linter.RuleEntry<[]>
+  /**
    * Disallow useless array length check.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-useless-length-check.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-length-check.md
    */
   'unicorn/no-useless-length-check'?: Linter.RuleEntry<[]>
   /**
+   * Disallow unnecessary operands in logical expressions involving boolean literals.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-logical-operand.md
+   */
+  'unicorn/no-useless-logical-operand'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow useless overrides of class methods.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-override.md
+   */
+  'unicorn/no-useless-override'?: Linter.RuleEntry<[]>
+  /**
    * Disallow returning/yielding `Promise.resolve/reject()` in async functions or promise callbacks
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-useless-promise-resolve-reject.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-promise-resolve-reject.md
    */
   'unicorn/no-useless-promise-resolve-reject'?: Linter.RuleEntry<[]>
   /**
+   * Disallow redundant re-exports.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-re-export.md
+   */
+  'unicorn/no-useless-re-export'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow simple recursive function calls that can be replaced with a loop.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-recursion.md
+   */
+  'unicorn/no-useless-recursion'?: Linter.RuleEntry<[]>
+  /**
    * Disallow unnecessary spread.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-useless-spread.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-spread.md
    */
   'unicorn/no-useless-spread'?: Linter.RuleEntry<[]>
   /**
    * Disallow useless case in switch statements.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-useless-switch-case.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-switch-case.md
    */
   'unicorn/no-useless-switch-case'?: Linter.RuleEntry<[]>
   /**
+   * Disallow useless template literal expressions.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-template-literals.md
+   */
+  'unicorn/no-useless-template-literals'?: Linter.RuleEntry<[]>
+  /**
    * Disallow useless `undefined`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-useless-undefined.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-useless-undefined.md
    */
   'unicorn/no-useless-undefined'?: Linter.RuleEntry<UnicornNoUselessUndefined>
   /**
+   * Disallow the bitwise XOR operator where exponentiation was likely intended.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-xor-as-exponentiation.md
+   */
+  'unicorn/no-xor-as-exponentiation'?: Linter.RuleEntry<[]>
+  /**
    * Disallow number literals with zero fractions or dangling dots.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/no-zero-fractions.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/no-zero-fractions.md
    */
   'unicorn/no-zero-fractions'?: Linter.RuleEntry<[]>
   /**
    * Enforce proper case for numeric literals.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/number-literal-case.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/number-literal-case.md
    */
   'unicorn/number-literal-case'?: Linter.RuleEntry<UnicornNumberLiteralCase>
   /**
    * Enforce the style of numeric separators by correctly grouping digits.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/numeric-separators-style.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/numeric-separators-style.md
    */
   'unicorn/numeric-separators-style'?: Linter.RuleEntry<UnicornNumericSeparatorsStyle>
   /**
+   * Require assignment operator shorthand where possible.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/operator-assignment.md
+   */
+  'unicorn/operator-assignment'?: Linter.RuleEntry<UnicornOperatorAssignment>
+  /**
+   * Prefer `AbortSignal.any()` over manually forwarding abort events between signals.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-abort-signal-any.md
+   */
+  'unicorn/prefer-abort-signal-any'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `AbortSignal.timeout()` over manually aborting an `AbortController` with `setTimeout()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-abort-signal-timeout.md
+   */
+  'unicorn/prefer-abort-signal-timeout'?: Linter.RuleEntry<[]>
+  /**
    * Prefer `.addEventListener()` and `.removeEventListener()` over `on`-functions.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-add-event-listener.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-add-event-listener.md
    */
   'unicorn/prefer-add-event-listener'?: Linter.RuleEntry<UnicornPreferAddEventListener>
   /**
+   * Prefer an options object over a boolean in `.addEventListener()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-add-event-listener-options.md
+   */
+  'unicorn/prefer-add-event-listener-options'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `AggregateError` when throwing collected errors.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-aggregate-error.md
+   */
+  'unicorn/prefer-aggregate-error'?: Linter.RuleEntry<[]>
+  /**
    * Prefer `.find(…)` and `.findLast(…)` over the first or last element from `.filter(…)`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-array-find.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-array-find.md
    */
   'unicorn/prefer-array-find'?: Linter.RuleEntry<UnicornPreferArrayFind>
   /**
    * Prefer `Array#flat()` over legacy techniques to flatten arrays.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-array-flat.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-array-flat.md
    */
   'unicorn/prefer-array-flat'?: Linter.RuleEntry<UnicornPreferArrayFlat>
   /**
-   * Prefer `.flatMap(…)` over `.map(…).flat()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-array-flat-map.md
+   * Prefer `.flatMap(…)` over `.map(…).flat()` and `.filter(…).flatMap(…)`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-array-flat-map.md
    */
   'unicorn/prefer-array-flat-map'?: Linter.RuleEntry<[]>
   /**
+   * Prefer `Array.fromAsync()` over `for await…of` array accumulation.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-array-from-async.md
+   */
+  'unicorn/prefer-array-from-async'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer using the `Array.from()` mapping function argument.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-array-from-map.md
+   */
+  'unicorn/prefer-array-from-map'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `Array.from({length}, …)` when creating range arrays.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-array-from-range.md
+   */
+  'unicorn/prefer-array-from-range'?: Linter.RuleEntry<[]>
+  /**
    * Prefer `Array#{indexOf,lastIndexOf}()` over `Array#{findIndex,findLastIndex}()` when looking for the index of an item.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-array-index-of.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-array-index-of.md
    */
   'unicorn/prefer-array-index-of'?: Linter.RuleEntry<[]>
   /**
+   * Prefer iterating an array directly or with `Array#keys()` over `Array#entries()` when the index or value is unused.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-array-iterable-methods.md
+   */
+  'unicorn/prefer-array-iterable-methods'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer last-oriented array methods over `Array#reverse()` or `Array#toReversed()` followed by a method.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-array-last-methods.md
+   */
+  'unicorn/prefer-array-last-methods'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `Array#slice()` over `Array#splice()` when reading from the returned array.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-array-slice.md
+   */
+  'unicorn/prefer-array-slice'?: Linter.RuleEntry<[]>
+  /**
    * Prefer `.some(…)` over `.filter(…).length` check and `.{find,findLast,findIndex,findLastIndex}(…)`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-array-some.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-array-some.md
    */
   'unicorn/prefer-array-some'?: Linter.RuleEntry<[]>
   /**
    * Prefer `.at()` method for index access and `String#charAt()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-at.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-at.md
    */
   'unicorn/prefer-at'?: Linter.RuleEntry<UnicornPreferAt>
   /**
+   * Prefer `await` over promise chaining.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-await.md
+   */
+  'unicorn/prefer-await'?: Linter.RuleEntry<[]>
+  /**
    * Prefer `BigInt` literals over the constructor.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-bigint-literals.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-bigint-literals.md
    */
   'unicorn/prefer-bigint-literals'?: Linter.RuleEntry<[]>
   /**
    * Prefer `Blob#arrayBuffer()` over `FileReader#readAsArrayBuffer(…)` and `Blob#text()` over `FileReader#readAsText(…)`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-blob-reading-methods.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-blob-reading-methods.md
    */
   'unicorn/prefer-blob-reading-methods'?: Linter.RuleEntry<[]>
   /**
+   * Prefer block statements over IIFEs used only for scoping.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-block-statement-over-iife.md
+   */
+  'unicorn/prefer-block-statement-over-iife'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer directly returning boolean expressions over `if` statements.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-boolean-return.md
+   */
+  'unicorn/prefer-boolean-return'?: Linter.RuleEntry<[]>
+  /**
    * Prefer class field declarations over `this` assignments in constructors.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-class-fields.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-class-fields.md
    */
   'unicorn/prefer-class-fields'?: Linter.RuleEntry<[]>
   /**
    * Prefer using `Element#classList.toggle()` to toggle class names.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-classlist-toggle.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-classlist-toggle.md
    */
   'unicorn/prefer-classlist-toggle'?: Linter.RuleEntry<[]>
   /**
    * Prefer `String#codePointAt(…)` over `String#charCodeAt(…)` and `String.fromCodePoint(…)` over `String.fromCharCode(…)`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-code-point.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-code-point.md
    */
   'unicorn/prefer-code-point'?: Linter.RuleEntry<[]>
   /**
+   * Prefer early continues over whole-loop conditional wrapping.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-continue.md
+   */
+  'unicorn/prefer-continue'?: Linter.RuleEntry<UnicornPreferContinue>
+  /**
    * Prefer `Date.now()` to get the number of milliseconds since the Unix Epoch.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-date-now.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-date-now.md
    */
   'unicorn/prefer-date-now'?: Linter.RuleEntry<[]>
   /**
    * Prefer default parameters over reassignment.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-default-parameters.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-default-parameters.md
    */
   'unicorn/prefer-default-parameters'?: Linter.RuleEntry<[]>
   /**
-   * Prefer `Node#append()` over `Node#appendChild()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-dom-node-append.md
+   * Prefer direct iteration over default iterator method calls.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-direct-iteration.md
+   */
+  'unicorn/prefer-direct-iteration'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer using `using`/`await using` over manual `try`/`finally` resource disposal.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-dispose.md
+   */
+  'unicorn/prefer-dispose'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `Element#append()` over `Node#appendChild()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-dom-node-append.md
    */
   'unicorn/prefer-dom-node-append'?: Linter.RuleEntry<[]>
   /**
-   * Prefer using `.dataset` on DOM elements over calling attribute methods.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-dom-node-dataset.md
+   * Renamed to `unicorn/dom-node-dataset`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/deleted-and-deprecated-rules.md#prefer-dom-node-dataset
+   * @deprecated
    */
   'unicorn/prefer-dom-node-dataset'?: Linter.RuleEntry<[]>
   /**
+   * Prefer `.getHTML()` and `.setHTML()` over `.innerHTML`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-dom-node-html-methods.md
+   */
+  'unicorn/prefer-dom-node-html-methods'?: Linter.RuleEntry<UnicornPreferDomNodeHtmlMethods>
+  /**
    * Prefer `childNode.remove()` over `parentNode.removeChild(childNode)`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-dom-node-remove.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-dom-node-remove.md
    */
   'unicorn/prefer-dom-node-remove'?: Linter.RuleEntry<[]>
   /**
+   * Prefer `.replaceChildren()` when emptying DOM children.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-dom-node-replace-children.md
+   */
+  'unicorn/prefer-dom-node-replace-children'?: Linter.RuleEntry<[]>
+  /**
    * Prefer `.textContent` over `.innerText`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-dom-node-text-content.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-dom-node-text-content.md
    */
   'unicorn/prefer-dom-node-text-content'?: Linter.RuleEntry<[]>
   /**
+   * Prefer early returns over full-function conditional wrapping.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-early-return.md
+   */
+  'unicorn/prefer-early-return'?: Linter.RuleEntry<UnicornPreferEarlyReturn>
+  /**
+   * Prefer `else if` over adjacent `if` statements with related conditions.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-else-if.md
+   */
+  'unicorn/prefer-else-if'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `Error.isError()` when checking for errors.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-error-is-error.md
+   */
+  'unicorn/prefer-error-is-error'?: Linter.RuleEntry<[]>
+  /**
    * Prefer `EventTarget` over `EventEmitter`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-event-target.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-event-target.md
    */
   'unicorn/prefer-event-target'?: Linter.RuleEntry<[]>
   /**
+   * Prefer explicit viewport units.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-explicit-viewport-units.md
+   */
+  'unicorn/prefer-explicit-viewport-units'?: Linter.RuleEntry<UnicornPreferExplicitViewportUnits>
+  /**
    * Prefer `export…from` when re-exporting.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-export-from.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-export-from.md
    */
   'unicorn/prefer-export-from'?: Linter.RuleEntry<UnicornPreferExportFrom>
   /**
+   * Prefer flat `Math.min()` and `Math.max()` calls over nested calls.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-flat-math-min-max.md
+   */
+  'unicorn/prefer-flat-math-min-max'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `.getOrInsertComputed()` when the default value has side effects.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-get-or-insert-computed.md
+   */
+  'unicorn/prefer-get-or-insert-computed'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer global numeric constants over `Number` static properties.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-global-number-constants.md
+   */
+  'unicorn/prefer-global-number-constants'?: Linter.RuleEntry<[]>
+  /**
    * Prefer `globalThis` over `window`, `self`, and `global`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-global-this.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-global-this.md
    */
   'unicorn/prefer-global-this'?: Linter.RuleEntry<[]>
   /**
+   * Prefer `Object.groupBy()` or `Map.groupBy()` over reduce-based grouping.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-group-by.md
+   */
+  'unicorn/prefer-group-by'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `.has()` when checking existence.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-has-check.md
+   */
+  'unicorn/prefer-has-check'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer moving code shared by all branches of an `if` statement out of the branches.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-hoisting-branch-code.md
+   */
+  'unicorn/prefer-hoisting-branch-code'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer HTTPS over HTTP.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-https.md
+   */
+  'unicorn/prefer-https'?: Linter.RuleEntry<UnicornPreferHttps>
+  /**
+   * Prefer identifiers over string literals in import and export specifiers.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-identifier-import-export-specifiers.md
+   */
+  'unicorn/prefer-identifier-import-export-specifiers'?: Linter.RuleEntry<[]>
+  /**
    * Prefer `import.meta.{dirname,filename}` over legacy techniques for getting file paths.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-import-meta-properties.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-import-meta-properties.md
    */
   'unicorn/prefer-import-meta-properties'?: Linter.RuleEntry<[]>
   /**
    * Prefer `.includes()` over `.indexOf()`, `.lastIndexOf()`, and `Array#some()` when checking for existence or non-existence.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-includes.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-includes.md
    */
   'unicorn/prefer-includes'?: Linter.RuleEntry<[]>
   /**
-   * Prefer reading a JSON file as a buffer.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-json-parse-buffer.md
+   * Prefer `.includes()` over repeated equality comparisons.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-includes-over-repeated-comparisons.md
+   */
+  'unicorn/prefer-includes-over-repeated-comparisons'?: Linter.RuleEntry<UnicornPreferIncludesOverRepeatedComparisons>
+  /**
+   * Prefer passing iterables directly to constructors instead of filling empty collections.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-iterable-in-constructor.md
+   */
+  'unicorn/prefer-iterable-in-constructor'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `Iterator.concat(…)` over temporary spread arrays.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-iterator-concat.md
+   */
+  'unicorn/prefer-iterator-concat'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer iterator helpers over temporary arrays from iterators.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-iterator-helpers.md
+   */
+  'unicorn/prefer-iterator-helpers'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `Iterator#toArray()` over temporary arrays from iterator spreads.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-iterator-to-array.md
+   */
+  'unicorn/prefer-iterator-to-array'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer moving `.toArray()` to the end of iterator helper chains.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-iterator-to-array-at-end.md
+   */
+  'unicorn/prefer-iterator-to-array-at-end'?: Linter.RuleEntry<[]>
+  /**
+   * Renamed to `unicorn/consistent-json-file-read`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/deleted-and-deprecated-rules.md#prefer-json-parse-buffer
+   * @deprecated
    */
   'unicorn/prefer-json-parse-buffer'?: Linter.RuleEntry<[]>
   /**
-   * Prefer `KeyboardEvent#key` over `KeyboardEvent#keyCode`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-keyboard-event-key.md
+   * Prefer `KeyboardEvent#key` over deprecated keyboard event properties.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-keyboard-event-key.md
    */
   'unicorn/prefer-keyboard-event-key'?: Linter.RuleEntry<[]>
   /**
+   * Prefer `location.assign()` over assigning to `location.href`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-location-assign.md
+   */
+  'unicorn/prefer-location-assign'?: Linter.RuleEntry<[]>
+  /**
    * Prefer using a logical operator over a ternary.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-logical-operator-over-ternary.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-logical-operator-over-ternary.md
    */
   'unicorn/prefer-logical-operator-over-ternary'?: Linter.RuleEntry<[]>
   /**
+   * Prefer `new Map()` over `Object.fromEntries()` when using the result as a map.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-map-from-entries.md
+   */
+  'unicorn/prefer-map-from-entries'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `Math.abs()` over manual absolute value expressions and symmetric range checks.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-math-abs.md
+   */
+  'unicorn/prefer-math-abs'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `Math` constants over their approximate numeric values.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-math-constants.md
+   */
+  'unicorn/prefer-math-constants'?: Linter.RuleEntry<[]>
+  /**
    * Prefer `Math.min()` and `Math.max()` over ternaries for simple comparisons.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-math-min-max.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-math-min-max.md
    */
   'unicorn/prefer-math-min-max'?: Linter.RuleEntry<[]>
   /**
-   * Enforce the use of `Math.trunc` instead of bitwise operators.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-math-trunc.md
+   * Prefer `Math.trunc()` for truncating numbers.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-math-trunc.md
    */
   'unicorn/prefer-math-trunc'?: Linter.RuleEntry<[]>
   /**
-   * Prefer `.before()` over `.insertBefore()`, `.replaceWith()` over `.replaceChild()`, prefer one of `.before()`, `.after()`, `.append()` or `.prepend()` over `insertAdjacentText()` and `insertAdjacentElement()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-modern-dom-apis.md
+   * Prefer moving ternaries into the minimal varying part of an expression.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-minimal-ternary.md
+   */
+  'unicorn/prefer-minimal-ternary'?: Linter.RuleEntry<UnicornPreferMinimalTernary>
+  /**
+   * Prefer modern DOM APIs.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-modern-dom-apis.md
    */
   'unicorn/prefer-modern-dom-apis'?: Linter.RuleEntry<[]>
   /**
    * Prefer modern `Math` APIs over legacy patterns.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-modern-math-apis.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-modern-math-apis.md
    */
   'unicorn/prefer-modern-math-apis'?: Linter.RuleEntry<[]>
   /**
    * Prefer JavaScript modules (ESM) over CommonJS.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-module.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-module.md
    */
   'unicorn/prefer-module'?: Linter.RuleEntry<[]>
   /**
    * Prefer using `String`, `Number`, `BigInt`, `Boolean`, and `Symbol` directly.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-native-coercion-functions.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-native-coercion-functions.md
    */
   'unicorn/prefer-native-coercion-functions'?: Linter.RuleEntry<[]>
   /**
    * Prefer negative index over `.length - index` when possible.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-negative-index.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-negative-index.md
    */
   'unicorn/prefer-negative-index'?: Linter.RuleEntry<[]>
   /**
    * Prefer using the `node:` protocol when importing Node.js builtin modules.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-node-protocol.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-node-protocol.md
    */
   'unicorn/prefer-node-protocol'?: Linter.RuleEntry<[]>
   /**
-   * Prefer `Number` static properties over global ones.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-number-properties.md
+   * Prefer `Number()` over `parseFloat()` and base-10 `parseInt()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-number-coercion.md
+   */
+  'unicorn/prefer-number-coercion'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `Number.isSafeInteger()` over integer checks.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-number-is-safe-integer.md
+   */
+  'unicorn/prefer-number-is-safe-integer'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `Number` static methods over global functions and optionally static properties over global constants.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-number-properties.md
    */
   'unicorn/prefer-number-properties'?: Linter.RuleEntry<UnicornPreferNumberProperties>
   /**
+   * Prefer `Object.defineProperties()` over multiple `Object.defineProperty()` calls.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-object-define-properties.md
+   */
+  'unicorn/prefer-object-define-properties'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer object destructuring defaults over default object literals with spread.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-object-destructuring-defaults.md
+   */
+  'unicorn/prefer-object-destructuring-defaults'?: Linter.RuleEntry<[]>
+  /**
    * Prefer using `Object.fromEntries(…)` to transform a list of key-value pairs into an object.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-object-from-entries.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-object-from-entries.md
    */
   'unicorn/prefer-object-from-entries'?: Linter.RuleEntry<UnicornPreferObjectFromEntries>
   /**
+   * Prefer the most specific `Object` iterable method.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-object-iterable-methods.md
+   */
+  'unicorn/prefer-object-iterable-methods'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer observer APIs over resize and scroll listeners with layout reads.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-observer-apis.md
+   */
+  'unicorn/prefer-observer-apis'?: Linter.RuleEntry<[]>
+  /**
    * Prefer omitting the `catch` binding parameter.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-optional-catch-binding.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-optional-catch-binding.md
    */
   'unicorn/prefer-optional-catch-binding'?: Linter.RuleEntry<[]>
   /**
+   * Prefer `Path2D` for repeatedly drawn canvas paths.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-path2d.md
+   */
+  'unicorn/prefer-path2d'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer private class fields over the underscore-prefix convention.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-private-class-fields.md
+   */
+  'unicorn/prefer-private-class-fields'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `Promise.try()` over promise-wrapping boilerplate.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-promise-try.md
+   */
+  'unicorn/prefer-promise-try'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `Promise.withResolvers()` when extracting resolver functions from `new Promise()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-promise-with-resolvers.md
+   */
+  'unicorn/prefer-promise-with-resolvers'?: Linter.RuleEntry<[]>
+  /**
    * Prefer borrowing methods from the prototype instead of the instance.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-prototype-methods.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-prototype-methods.md
    */
   'unicorn/prefer-prototype-methods'?: Linter.RuleEntry<[]>
   /**
-   * Prefer `.querySelector()` over `.getElementById()`, `.querySelectorAll()` over `.getElementsByClassName()` and `.getElementsByTagName()` and `.getElementsByName()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-query-selector.md
+   * Prefer `.querySelector()` and `.querySelectorAll()` over older DOM query methods.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-query-selector.md
    */
-  'unicorn/prefer-query-selector'?: Linter.RuleEntry<[]>
+  'unicorn/prefer-query-selector'?: Linter.RuleEntry<UnicornPreferQuerySelector>
+  /**
+   * Prefer `queueMicrotask()` over `process.nextTick()`, `setImmediate()`, and `setTimeout(…, 0)`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-queue-microtask.md
+   */
+  'unicorn/prefer-queue-microtask'?: Linter.RuleEntry<UnicornPreferQueueMicrotask>
   /**
    * Prefer `Reflect.apply()` over `Function#apply()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-reflect-apply.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-reflect-apply.md
    */
   'unicorn/prefer-reflect-apply'?: Linter.RuleEntry<[]>
   /**
-   * Prefer `RegExp#test()` over `String#match()` and `RegExp#exec()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-regexp-test.md
+   * Prefer `RegExp.escape()` for escaping strings to use in regular expressions.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-regexp-escape.md
+   */
+  'unicorn/prefer-regexp-escape'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `RegExp#test()` over `String#match()`, `String#search()`, and `RegExp#exec()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-regexp-test.md
    */
   'unicorn/prefer-regexp-test'?: Linter.RuleEntry<[]>
   /**
    * Prefer `Response.json()` over `new Response(JSON.stringify())`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-response-static-json.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-response-static-json.md
    */
   'unicorn/prefer-response-static-json'?: Linter.RuleEntry<[]>
   /**
-   * Prefer `Set#has()` over `Array#includes()` when checking for existence or non-existence.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-set-has.md
+   * Prefer `:scope` when using element query selector methods.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-scoped-selector.md
    */
-  'unicorn/prefer-set-has'?: Linter.RuleEntry<[]>
+  'unicorn/prefer-scoped-selector'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `Set#has()` over `Array#includes()` when checking for existence or non-existence.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-set-has.md
+   */
+  'unicorn/prefer-set-has'?: Linter.RuleEntry<UnicornPreferSetHas>
+  /**
+   * Prefer `Set` methods for Set operations.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-set-methods.md
+   */
+  'unicorn/prefer-set-methods'?: Linter.RuleEntry<[]>
   /**
    * Prefer using `Set#size` instead of `Array#length`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-set-size.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-set-size.md
    */
   'unicorn/prefer-set-size'?: Linter.RuleEntry<[]>
   /**
-   * Enforce combining multiple `Array#push()`, `Element#classList.{add,remove}()`, and `importScripts()` into one call.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-single-call.md
+   * Prefer arrow function properties over methods with a single return.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-short-arrow-method.md
+   */
+  'unicorn/prefer-short-arrow-method'?: Linter.RuleEntry<UnicornPreferShortArrowMethod>
+  /**
+   * Prefer simple conditions first in logical expressions.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-simple-condition-first.md
+   */
+  'unicorn/prefer-simple-condition-first'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer a simple comparison function for `Array#sort()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-simple-sort-comparator.md
+   */
+  'unicorn/prefer-simple-sort-comparator'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer simplified conditions.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-simplified-conditions.md
+   */
+  'unicorn/prefer-simplified-conditions'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer a single `Array#some()` or `Array#every()` with a combined predicate.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-single-array-predicate.md
+   */
+  'unicorn/prefer-single-array-predicate'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce combining multiple `Array#{push,unshift}()`, `Element#classList.{add,remove}()`, and `importScripts()` into one call.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-single-call.md
    */
   'unicorn/prefer-single-call'?: Linter.RuleEntry<UnicornPreferSingleCall>
   /**
-   * Prefer the spread operator over `Array.from(…)`, `Array#concat(…)`, `Array#{slice,toSpliced}()` and `String#split('')`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-spread.md
+   * Prefer a single object destructuring declaration per local const source.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-single-object-destructuring.md
+   */
+  'unicorn/prefer-single-object-destructuring'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce combining multiple single-character replacements into a single `String#replaceAll()` with a regular expression.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-single-replace.md
+   */
+  'unicorn/prefer-single-replace'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer declaring variables in the smallest possible scope.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-smaller-scope.md
+   */
+  'unicorn/prefer-smaller-scope'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `String#split()` with a limit.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-split-limit.md
+   */
+  'unicorn/prefer-split-limit'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer the spread operator over `Array.from(…)`, `Array#concat(…)`, `Array#{slice,toSpliced}()`, and trivial `for…of` copies.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-spread.md
    */
   'unicorn/prefer-spread'?: Linter.RuleEntry<[]>
   /**
+   * Prefer `String#matchAll()` over `RegExp#exec()` loops.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-string-match-all.md
+   */
+  'unicorn/prefer-string-match-all'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `String#padStart()` and `String#padEnd()` over manual string padding.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-string-pad-start-end.md
+   */
+  'unicorn/prefer-string-pad-start-end'?: Linter.RuleEntry<[]>
+  /**
    * Prefer using the `String.raw` tag to avoid escaping `\`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-string-raw.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-string-raw.md
    */
   'unicorn/prefer-string-raw'?: Linter.RuleEntry<[]>
   /**
-   * Prefer `String#replaceAll()` over regex searches with the global flag.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-string-replace-all.md
+   * Prefer `String#repeat()` for repeated whitespace.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-string-repeat.md
+   */
+  'unicorn/prefer-string-repeat'?: Linter.RuleEntry<UnicornPreferStringRepeat>
+  /**
+   * Prefer `String#replaceAll()` over regex searches with the global flag and `String#split().join()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-string-replace-all.md
    */
   'unicorn/prefer-string-replace-all'?: Linter.RuleEntry<[]>
   /**
    * Prefer `String#slice()` over `String#substr()` and `String#substring()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-string-slice.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-string-slice.md
    */
   'unicorn/prefer-string-slice'?: Linter.RuleEntry<[]>
   /**
-   * Prefer `String#startsWith()` & `String#endsWith()` over `RegExp#test()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-string-starts-ends-with.md
+   * Prefer `String#startsWith()` & `String#endsWith()` over regexes, `String#indexOf() === 0`, and slice checks.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-string-starts-ends-with.md
    */
   'unicorn/prefer-string-starts-ends-with'?: Linter.RuleEntry<[]>
   /**
    * Prefer `String#trimStart()` / `String#trimEnd()` over `String#trimLeft()` / `String#trimRight()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-string-trim-start-end.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-string-trim-start-end.md
    */
   'unicorn/prefer-string-trim-start-end'?: Linter.RuleEntry<[]>
   /**
    * Prefer using `structuredClone` to create a deep clone.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-structured-clone.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-structured-clone.md
    */
   'unicorn/prefer-structured-clone'?: Linter.RuleEntry<UnicornPreferStructuredClone>
   /**
    * Prefer `switch` over multiple `else-if`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-switch.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-switch.md
    */
   'unicorn/prefer-switch'?: Linter.RuleEntry<UnicornPreferSwitch>
   /**
-   * Prefer ternary expressions over simple `if-else` statements.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-ternary.md
+   * Prefer `Temporal` over `Date`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-temporal.md
+   */
+  'unicorn/prefer-temporal'?: Linter.RuleEntry<UnicornPreferTemporal>
+  /**
+   * Prefer ternary expressions over simple `if` statements that return or assign values.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-ternary.md
    */
   'unicorn/prefer-ternary'?: Linter.RuleEntry<UnicornPreferTernary>
   /**
+   * Prefer `.then().catch()` over `.then(…, …)` for error handling.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-then-catch.md
+   */
+  'unicorn/prefer-then-catch'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer using `Element#toggleAttribute()` to toggle attributes.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-toggle-attribute.md
+   */
+  'unicorn/prefer-toggle-attribute'?: Linter.RuleEntry<[]>
+  /**
    * Prefer top-level await over top-level promises and async function calls.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-top-level-await.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-top-level-await.md
    */
   'unicorn/prefer-top-level-await'?: Linter.RuleEntry<[]>
   /**
    * Enforce throwing `TypeError` in type checking conditions.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prefer-type-error.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-type-error.md
    */
   'unicorn/prefer-type-error'?: Linter.RuleEntry<[]>
   /**
-   * Prevent abbreviations.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/prevent-abbreviations.md
+   * Require type literals to be last in union types.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-type-literal-last.md
    */
-  'unicorn/prevent-abbreviations'?: Linter.RuleEntry<UnicornPreventAbbreviations>
+  'unicorn/prefer-type-literal-last'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `Uint8Array#toBase64()` and `Uint8Array.fromBase64()` over `atob()`, `btoa()`, and `Buffer` base64 conversions.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-uint8array-base64.md
+   */
+  'unicorn/prefer-uint8array-base64'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer the unary minus operator over multiplying or dividing by `-1`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-unary-minus.md
+   */
+  'unicorn/prefer-unary-minus'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer Unicode code point escapes over legacy escape sequences.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-unicode-code-point-escapes.md
+   */
+  'unicorn/prefer-unicode-code-point-escapes'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `URL.canParse()` over constructing a `URL` in a try/catch for validation.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-url-can-parse.md
+   */
+  'unicorn/prefer-url-can-parse'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `URL#href` over stringifying a `URL`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-url-href.md
+   */
+  'unicorn/prefer-url-href'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `URLSearchParams` over manually splitting query strings.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-url-search-parameters.md
+   */
+  'unicorn/prefer-url-search-parameters'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer putting the condition in the while statement.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/prefer-while-loop-condition.md
+   */
+  'unicorn/prefer-while-loop-condition'?: Linter.RuleEntry<[]>
+  /**
+   * Renamed to `unicorn/name-replacements`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/deleted-and-deprecated-rules.md#prevent-abbreviations
+   * @deprecated
+   */
+  'unicorn/prevent-abbreviations'?: Linter.RuleEntry<[]>
   /**
    * Enforce consistent relative URL style.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/relative-url-style.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/relative-url-style.md
    */
   'unicorn/relative-url-style'?: Linter.RuleEntry<UnicornRelativeUrlStyle>
   /**
    * Enforce using the separator argument with `Array#join()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/require-array-join-separator.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/require-array-join-separator.md
    */
   'unicorn/require-array-join-separator'?: Linter.RuleEntry<[]>
   /**
+   * Require a compare function when calling `Array#sort()` or `Array#toSorted()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/require-array-sort-compare.md
+   */
+  'unicorn/require-array-sort-compare'?: Linter.RuleEntry<[]>
+  /**
+   * Require `CSS.escape()` for interpolated values in CSS selectors.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/require-css-escape.md
+   */
+  'unicorn/require-css-escape'?: Linter.RuleEntry<UnicornRequireCssEscape>
+  /**
+   * Require configured YAML frontmatter fields.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/require-frontmatter-fields.md
+   */
+  'unicorn/require-frontmatter-fields'?: Linter.RuleEntry<UnicornRequireFrontmatterFields>
+  /**
    * Require non-empty module attributes for imports and exports
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/require-module-attributes.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/require-module-attributes.md
    */
   'unicorn/require-module-attributes'?: Linter.RuleEntry<[]>
   /**
    * Require non-empty specifier list in import and export statements.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/require-module-specifiers.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/require-module-specifiers.md
    */
   'unicorn/require-module-specifiers'?: Linter.RuleEntry<[]>
   /**
    * Enforce using the digits argument with `Number#toFixed()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/require-number-to-fixed-digits-argument.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/require-number-to-fixed-digits-argument.md
    */
   'unicorn/require-number-to-fixed-digits-argument'?: Linter.RuleEntry<[]>
   /**
+   * Require passive event listeners for high-frequency events.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/require-passive-events.md
+   */
+  'unicorn/require-passive-events'?: Linter.RuleEntry<[]>
+  /**
    * Enforce using the `targetOrigin` argument with `window.postMessage()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/require-post-message-target-origin.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/require-post-message-target-origin.md
    */
   'unicorn/require-post-message-target-origin'?: Linter.RuleEntry<[]>
   /**
+   * Require boolean-returning Proxy traps to return booleans.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/require-proxy-trap-boolean-return.md
+   */
+  'unicorn/require-proxy-trap-boolean-return'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce a consistent style for single-line block comments.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/single-line-block-comment-style.md
+   */
+  'unicorn/single-line-block-comment-style'?: Linter.RuleEntry<UnicornSingleLineBlockCommentStyle>
+  /**
    * Enforce better string content.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/string-content.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/string-content.md
    */
   'unicorn/string-content'?: Linter.RuleEntry<UnicornStringContent>
   /**
    * Enforce consistent brace style for `case` clauses.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/switch-case-braces.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/switch-case-braces.md
    */
   'unicorn/switch-case-braces'?: Linter.RuleEntry<UnicornSwitchCaseBraces>
   /**
+   * Enforce consistent `break`/`return`/`continue`/`throw` position in `case` clauses.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/switch-case-break-position.md
+   */
+  'unicorn/switch-case-break-position'?: Linter.RuleEntry<[]>
+  /**
    * Fix whitespace-insensitive template indentation.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/template-indent.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/template-indent.md
    */
   'unicorn/template-indent'?: Linter.RuleEntry<UnicornTemplateIndent>
   /**
    * Enforce consistent case for text encoding identifiers.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/text-encoding-identifier-case.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/text-encoding-identifier-case.md
    */
   'unicorn/text-encoding-identifier-case'?: Linter.RuleEntry<UnicornTextEncodingIdentifierCase>
   /**
    * Require `new` when creating an error.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v63.0.0/docs/rules/throw-new-error.md
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/throw-new-error.md
    */
   'unicorn/throw-new-error'?: Linter.RuleEntry<[]>
+  /**
+   * Limit the complexity of `try` blocks.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v74.0.0/docs/rules/try-complexity.md
+   */
+  'unicorn/try-complexity'?: Linter.RuleEntry<UnicornTryComplexity>
   /**
    * Utilities in UnoCSS blocklist
    * @see https://unocss.dev/integrations/eslint#rules
@@ -8342,7 +11228,7 @@ export interface RuleOptions {
    * disallow object, array, and function literals in template
    * @see https://eslint.vuejs.org/rules/no-literals-in-template.html
    */
-  'vue/no-literals-in-template'?: Linter.RuleEntry<[]>
+  'vue/no-literals-in-template'?: Linter.RuleEntry<VueNoLiteralsInTemplate>
   /**
    * disallow unnecessary `<template>`
    * @see https://eslint.vuejs.org/rules/no-lone-template.html
@@ -8498,6 +11384,11 @@ export interface RuleOptions {
    * @see https://eslint.vuejs.org/rules/no-setup-props-reactivity-loss.html
    */
   'vue/no-setup-props-reactivity-loss'?: Linter.RuleEntry<[]>
+  /**
+   * disallow the use of event names that collide with native web event names
+   * @see https://eslint.vuejs.org/rules/no-shadow-native-events.html
+   */
+  'vue/no-shadow-native-events'?: Linter.RuleEntry<[]>
   /**
    * enforce component's data property to be a function
    * @see https://eslint.vuejs.org/rules/no-shared-component-data.html
@@ -8736,6 +11627,11 @@ export interface RuleOptions {
    */
   'vue/prefer-separate-static-class'?: Linter.RuleEntry<[]>
   /**
+   * enforce passing a single argument to custom event emissions
+   * @see https://eslint.vuejs.org/rules/prefer-single-event-payload.html
+   */
+  'vue/prefer-single-event-payload'?: Linter.RuleEntry<[]>
+  /**
    * Require template literals instead of string concatenation in `<template>`
    * @see https://eslint.vuejs.org/rules/prefer-template.html
    */
@@ -8750,6 +11646,11 @@ export interface RuleOptions {
    * @see https://eslint.vuejs.org/rules/prefer-use-template-ref.html
    */
   'vue/prefer-use-template-ref'?: Linter.RuleEntry<[]>
+  /**
+   * enforce using `v-model` instead of `:prop`/`@update:prop` pair
+   * @see https://eslint.vuejs.org/rules/prefer-v-model.html
+   */
+  'vue/prefer-v-model'?: Linter.RuleEntry<[]>
   /**
    * enforce specific casing for the Prop name in Vue components
    * @see https://eslint.vuejs.org/rules/prop-name-casing.html
@@ -9165,6 +12066,11 @@ export interface RuleOptions {
    */
   'yaml/key-spacing'?: Linter.RuleEntry<YamlKeySpacing>
   /**
+   * disallow boolean mapping keys
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-boolean-key.html
+   */
+  'yaml/no-boolean-key'?: Linter.RuleEntry<[]>
+  /**
    * disallow empty document
    * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-empty-document.html
    */
@@ -9199,6 +12105,11 @@ export interface RuleOptions {
    * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-tab-indent.html
    */
   'yaml/no-tab-indent'?: Linter.RuleEntry<[]>
+  /**
+   * disallow trailing whitespace at the end of lines
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-trailing-spaces.html
+   */
+  'yaml/no-trailing-spaces'?: Linter.RuleEntry<YamlNoTrailingSpaces>
   /**
    * disallow trailing zeros for floats
    * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-trailing-zeros.html
@@ -9263,7 +12174,7 @@ type AccessorPairs = []|[{
 // ----- angular-template/attributes-order -----
 type AngularTemplateAttributesOrder = []|[{
   alphabetical?: boolean
-  
+
   order?: [("STRUCTURAL_DIRECTIVE" | "TEMPLATE_REFERENCE" | "ATTRIBUTE_BINDING" | "INPUT_BINDING" | "TWO_WAY_BINDING" | "OUTPUT_BINDING"), ("STRUCTURAL_DIRECTIVE" | "TEMPLATE_REFERENCE" | "ATTRIBUTE_BINDING" | "INPUT_BINDING" | "TWO_WAY_BINDING" | "OUTPUT_BINDING"), ("STRUCTURAL_DIRECTIVE" | "TEMPLATE_REFERENCE" | "ATTRIBUTE_BINDING" | "INPUT_BINDING" | "TWO_WAY_BINDING" | "OUTPUT_BINDING"), ("STRUCTURAL_DIRECTIVE" | "TEMPLATE_REFERENCE" | "ATTRIBUTE_BINDING" | "INPUT_BINDING" | "TWO_WAY_BINDING" | "OUTPUT_BINDING"), ("STRUCTURAL_DIRECTIVE" | "TEMPLATE_REFERENCE" | "ATTRIBUTE_BINDING" | "INPUT_BINDING" | "TWO_WAY_BINDING" | "OUTPUT_BINDING"), ("STRUCTURAL_DIRECTIVE" | "TEMPLATE_REFERENCE" | "ATTRIBUTE_BINDING" | "INPUT_BINDING" | "TWO_WAY_BINDING" | "OUTPUT_BINDING"), ...(("STRUCTURAL_DIRECTIVE" | "TEMPLATE_REFERENCE" | "ATTRIBUTE_BINDING" | "INPUT_BINDING" | "TWO_WAY_BINDING" | "OUTPUT_BINDING"))[]]
 }]
 // ----- angular-template/button-has-type -----
@@ -9324,11 +12235,11 @@ type AngularTemplateNoCallExpression = []|[{
 }]
 // ----- angular-template/no-duplicate-attributes -----
 type AngularTemplateNoDuplicateAttributes = []|[{
-  
+
   allowTwoWayDataBinding?: boolean
-  
+
   allowStylePrecedenceDuplicates?: boolean
-  
+
   ignore?: string[]
 }]
 // ----- angular-template/no-inline-styles -----
@@ -9338,36 +12249,36 @@ type AngularTemplateNoInlineStyles = []|[{
 }]
 // ----- angular-template/no-interpolation-in-attributes -----
 type AngularTemplateNoInterpolationInAttributes = []|[{
-  
+
   allowSubstringInterpolation?: boolean
 }]
 // ----- angular-template/prefer-built-in-pipes -----
 type AngularTemplatePreferBuiltInPipes = []|[{
-  
+
   disallowList?: string[]
-  
+
   allowInOutputHandlers?: boolean
 }]
 // ----- angular-template/prefer-contextual-for-variables -----
 type AngularTemplatePreferContextualForVariables = []|[{
   allowedAliases?: {
-    
+
     $count?: string[]
-    
+
     $index?: string[]
-    
+
     $first?: string[]
-    
+
     $last?: string[]
-    
+
     $even?: string[]
-    
+
     $odd?: string[]
   }
 }]
 // ----- angular-template/prefer-static-string-properties -----
 type AngularTemplatePreferStaticStringProperties = []|[{
-  
+
   ignore?: string[]
 }]
 // ----- angular-template/use-track-by-function -----
@@ -9432,7 +12343,7 @@ type AngularNoInputPrefix = []|[{
 }]
 // ----- angular/no-input-rename -----
 type AngularNoInputRename = []|[{
-  
+
   allowedNames?: string[]
 }]
 // ----- angular/pipe-prefix -----
@@ -9466,7 +12377,7 @@ type AngularUseInjectableProvidedIn = []|[{
 }]
 // ----- antfu/consistent-chaining -----
 type AntfuConsistentChaining = []|[{
-  
+
   allowLeadingPropertyAccess?: boolean
 }]
 // ----- antfu/consistent-list-newline -----
@@ -9560,7 +12471,7 @@ type AstroJsxA11YAnchorHasContent = []|[{
 type AstroJsxA11YAnchorIsValid = []|[{
   components?: string[]
   specialLink?: string[]
-  
+
   aspects?: [("noHref" | "invalidHref" | "preferButton"), ...(("noHref" | "invalidHref" | "preferButton"))[]]
   [k: string]: unknown | undefined
 }]
@@ -9601,7 +12512,7 @@ type AstroJsxA11YControlHasAssociatedLabel = []|[{
   controlComponents?: string[]
   ignoreElements?: string[]
   ignoreRoles?: string[]
-  
+
   depth?: number
   [k: string]: unknown | undefined
 }]
@@ -9626,7 +12537,7 @@ type AstroJsxA11YImgRedundantAlt = []|[{
 }]
 // ----- astro/jsx-a11y/interactive-supports-focus -----
 type AstroJsxA11YInteractiveSupportsFocus = []|[{
-  
+
   tabbable?: ("button" | "checkbox" | "columnheader" | "combobox" | "grid" | "gridcell" | "link" | "listbox" | "menu" | "menubar" | "menuitem" | "menuitemcheckbox" | "menuitemradio" | "option" | "progressbar" | "radio" | "radiogroup" | "row" | "rowheader" | "scrollbar" | "searchbox" | "slider" | "spinbutton" | "switch" | "tab" | "tablist" | "textbox" | "tree" | "treegrid" | "treeitem" | "doc-backlink" | "doc-biblioref" | "doc-glossref" | "doc-noteref")[]
   [k: string]: unknown | undefined
 }]
@@ -9635,9 +12546,9 @@ type AstroJsxA11YLabelHasAssociatedControl = []|[{
   labelComponents?: string[]
   labelAttributes?: string[]
   controlComponents?: string[]
-  
+
   assert?: ("htmlFor" | "nesting" | "both" | "either")
-  
+
   depth?: number
   [k: string]: unknown | undefined
 }]
@@ -9654,9 +12565,9 @@ type AstroJsxA11YMediaHasCaption = []|[{
 }]
 // ----- astro/jsx-a11y/mouse-events-have-key-events -----
 type AstroJsxA11YMouseEventsHaveKeyEvents = []|[{
-  
+
   hoverInHandlers?: string[]
-  
+
   hoverOutHandlers?: string[]
   [k: string]: unknown | undefined
 }]
@@ -9675,7 +12586,7 @@ type AstroJsxA11YNoAutofocus = []|[{
 }]
 // ----- astro/jsx-a11y/no-distracting-elements -----
 type AstroJsxA11YNoDistractingElements = []|[{
-  
+
   elements?: ("marquee" | "blink")[]
   [k: string]: unknown | undefined
 }]
@@ -9694,9 +12605,9 @@ type AstroJsxA11YNoNoninteractiveElementToInteractiveRole = []|[{
 }]
 // ----- astro/jsx-a11y/no-noninteractive-tabindex -----
 type AstroJsxA11YNoNoninteractiveTabindex = []|[{
-  
+
   roles?: string[]
-  
+
   tags?: string[]
   [k: string]: unknown | undefined
 }]
@@ -9767,7 +12678,7 @@ type Camelcase = []|[{
   ignoreImports?: boolean
   ignoreGlobals?: boolean
   properties?: ("always" | "never")
-  
+
   allow?: string[]
 }]
 // ----- capitalized-comments -----
@@ -9844,6 +12755,15 @@ type DotNotation = []|[{
   allowKeywords?: boolean
   allowPattern?: string
 }]
+// ----- e18e/ban-dependencies -----
+type E18EBanDependencies = []|[{
+
+  presets?: string[]
+
+  modules?: string[]
+
+  allowed?: string[]
+}]
 // ----- eol-last -----
 type EolLast = []|[("always" | "never" | "unix" | "windows")]
 // ----- eqeqeq -----
@@ -9858,10 +12778,12 @@ type EslintCommentsDisableEnablePair = []|[{
 type EslintCommentsNoRestrictedDisable = string[]
 // ----- eslint-comments/no-use -----
 type EslintCommentsNoUse = []|[{
-  allow?: ("eslint" | "eslint-disable" | "eslint-disable-line" | "eslint-disable-next-line" | "eslint-enable" | "eslint-env" | "exported" | "global" | "globals")[]
+  additionalDirectives?: string[]
+  allow?: string[]
 }]
 // ----- eslint-comments/require-description -----
 type EslintCommentsRequireDescription = []|[{
+  additionalDirectives?: string[]
   ignore?: ("eslint" | "eslint-disable" | "eslint-disable-line" | "eslint-disable-next-line" | "eslint-enable" | "eslint-env" | "exported" | "global" | "globals")[]
 }]
 // ----- format/dprint -----
@@ -10045,7 +12967,7 @@ type InitDeclarations = ([]|["always"] | []|["never"]|["never", {
 }])
 // ----- jsdoc/check-alignment -----
 type JsdocCheckAlignment = []|[{
-  
+
   innerIndent?: number
 }]
 // ----- jsdoc/check-examples -----
@@ -10072,140 +12994,148 @@ type JsdocCheckExamples = []|[{
 }]
 // ----- jsdoc/check-indentation -----
 type JsdocCheckIndentation = []|[{
-  
+
   allowIndentedSections?: boolean
-  
+
   excludeTags?: string[]
 }]
 // ----- jsdoc/check-line-alignment -----
 type JsdocCheckLineAlignment = []|[("always" | "never" | "any")]|[("always" | "never" | "any"), {
-  
+
   customSpacings?: {
-    
+
     postDelimiter?: number
-    
+
     postHyphen?: number
-    
+
     postName?: number
-    
+
     postTag?: number
-    
+
     postType?: number
   }
-  
+
   disableWrapIndent?: boolean
-  
+
   preserveMainDescriptionPostDelimiter?: boolean
-  
+
   tags?: string[]
-  
+
   wrapIndent?: string
 }]
 // ----- jsdoc/check-param-names -----
 type JsdocCheckParamNames = []|[{
-  
+
   allowExtraTrailingParamDocs?: boolean
-  
+
+  badParamNames?: boolean
+
+  badParamOrder?: boolean
+
   checkDestructured?: boolean
-  
+
   checkRestProperty?: boolean
-  
+
   checkTypesPattern?: string
-  
+
   disableExtraPropertyReporting?: boolean
-  
+
   disableMissingParamChecks?: boolean
-  
+
+  duplicateParams?: boolean
+
   enableFixer?: boolean
-  
+
+  extraParams?: boolean
+
   useDefaultObjectProperties?: boolean
 }]
 // ----- jsdoc/check-property-names -----
 type JsdocCheckPropertyNames = []|[{
-  
+
   enableFixer?: boolean
 }]
 // ----- jsdoc/check-tag-names -----
 type JsdocCheckTagNames = []|[{
-  
+
   definedTags?: string[]
-  
+
   enableFixer?: boolean
-  
+
   inlineTags?: string[]
-  
+
   jsxTags?: boolean
-  
+
   typed?: boolean
 }]
 // ----- jsdoc/check-types -----
 type JsdocCheckTypes = []|[{
-  
+
   exemptTagContexts?: {
-    
+
     tag?: string
-    
+
     types?: (boolean | string[])
   }[]
-  
+
   noDefaults?: boolean
-  
+
   unifyParentAndChildTypeChecks?: boolean
 }]
 // ----- jsdoc/check-values -----
 type JsdocCheckValues = []|[{
-  
+
   allowedAuthors?: string[]
-  
+
   allowedLicenses?: (string[] | boolean)
-  
+
   licensePattern?: string
-  
+
   numericOnlyVariation?: boolean
 }]
 // ----- jsdoc/convert-to-jsdoc-comments -----
 type JsdocConvertToJsdocComments = []|[{
-  
+
   allowedPrefixes?: string[]
-  
+
   contexts?: (string | {
     context?: string
     inlineCommentBlock?: boolean
   })[]
-  
+
   contextsAfter?: (string | {
     context?: string
     inlineCommentBlock?: boolean
   })[]
-  
+
   contextsBeforeAndAfter?: (string | {
     context?: string
     inlineCommentBlock?: boolean
   })[]
-  
+
   enableFixer?: boolean
-  
+
   enforceJsdocLineStyle?: ("multi" | "single")
-  
+
   lineOrBlockStyle?: ("block" | "line" | "both")
 }]
 // ----- jsdoc/empty-tags -----
 type JsdocEmptyTags = []|[{
-  
+
   tags?: string[]
 }]
 // ----- jsdoc/escape-inline-tags -----
 type JsdocEscapeInlineTags = []|[{
-  
+
   allowedInlineTags?: string[]
-  
+
   enableFixer?: boolean
-  
+
   fixType?: ("backticks" | "backslash")
 }]
 // ----- jsdoc/implements-on-classes -----
 type JsdocImplementsOnClasses = []|[{
-  
+
   contexts?: (string | {
     comment?: string
     context?: string
@@ -10213,47 +13143,47 @@ type JsdocImplementsOnClasses = []|[{
 }]
 // ----- jsdoc/informative-docs -----
 type JsdocInformativeDocs = []|[{
-  
+
   aliases?: {
     [k: string]: string[]
   }
-  
+
   excludedTags?: string[]
-  
+
   uselessWords?: string[]
 }]
 // ----- jsdoc/lines-before-block -----
 type JsdocLinesBeforeBlock = []|[{
-  
+
   checkBlockStarts?: boolean
-  
+
   excludedTags?: string[]
-  
+
   ignoreSameLine?: boolean
-  
+
   ignoreSingleLines?: boolean
-  
+
   lines?: number
 }]
 // ----- jsdoc/match-description -----
 type JsdocMatchDescription = []|[{
-  
+
   contexts?: (string | {
     comment?: string
     context?: string
   })[]
-  
+
   mainDescription?: (string | boolean | {
     match?: (string | boolean)
     message?: string
   })
-  
+
   matchDescription?: string
-  
+
   message?: string
-  
+
   nonemptyTags?: boolean
-  
+
   tags?: {
     [k: string]: (string | true | {
       match?: (string | true)
@@ -10263,70 +13193,70 @@ type JsdocMatchDescription = []|[{
 }]
 // ----- jsdoc/match-name -----
 type JsdocMatchName = []|[{
-  
+
   match: {
-    
+
     allowName?: string
-    
+
     comment?: string
-    
+
     context?: string
-    
+
     disallowName?: string
-    
+
     message?: string
-    
+
     replacement?: string
-    
+
     tags?: string[]
   }[]
 }]
 // ----- jsdoc/multiline-blocks -----
 type JsdocMultilineBlocks = []|[{
-  
+
   allowMultipleTags?: boolean
-  
+
   minimumLengthForMultiline?: number
-  
+
   multilineTags?: ("*" | string[])
-  
+
   noFinalLineText?: boolean
-  
+
   noMultilineBlocks?: boolean
-  
+
   noSingleLineBlocks?: boolean
-  
+
   noZeroLineText?: boolean
-  
+
   requireSingleLineUnderCount?: number
-  
+
   singleLineTags?: string[]
 }]
 // ----- jsdoc/no-bad-blocks -----
 type JsdocNoBadBlocks = []|[{
-  
+
   ignore?: string[]
-  
+
   preventAllMultiAsteriskBlocks?: boolean
 }]
 // ----- jsdoc/no-blank-blocks -----
 type JsdocNoBlankBlocks = []|[{
-  
+
   enableFixer?: boolean
 }]
 // ----- jsdoc/no-defaults -----
 type JsdocNoDefaults = []|[{
-  
+
   contexts?: (string | {
     comment?: string
     context?: string
   })[]
-  
+
   noOptionalParamNames?: boolean
 }]
 // ----- jsdoc/no-missing-syntax -----
 type JsdocNoMissingSyntax = []|[{
-  
+
   contexts?: (string | {
     comment?: string
     context?: string
@@ -10336,16 +13266,16 @@ type JsdocNoMissingSyntax = []|[{
 }]
 // ----- jsdoc/no-multi-asterisks -----
 type JsdocNoMultiAsterisks = []|[{
-  
+
   allowWhitespace?: boolean
-  
+
   preventAtEnd?: boolean
-  
+
   preventAtMiddleLines?: boolean
 }]
 // ----- jsdoc/no-restricted-syntax -----
 type JsdocNoRestrictedSyntax = []|[{
-  
+
   contexts: (string | {
     comment?: string
     context?: string
@@ -10354,7 +13284,7 @@ type JsdocNoRestrictedSyntax = []|[{
 }]
 // ----- jsdoc/no-types -----
 type JsdocNoTypes = []|[{
-  
+
   contexts?: (string | {
     comment?: string
     context?: string
@@ -10362,86 +13292,108 @@ type JsdocNoTypes = []|[{
 }]
 // ----- jsdoc/no-undefined-types -----
 type JsdocNoUndefinedTypes = []|[{
-  
+
   checkUsedTypedefs?: boolean
-  
+
   definedTypes?: string[]
-  
+
   disableReporting?: boolean
-  
+
   markVariablesAsUsed?: boolean
+}]
+// ----- jsdoc/no-unnecessary-type-assertion -----
+type JsdocNoUnnecessaryTypeAssertion = []|[{
+
+  checkLiteralConstAssertions?: boolean
+
+  enableFixer?: boolean
+
+  preferConstToLiteralTuples?: boolean
+
+  treatAnyAsRedundant?: boolean
+
+  typesToIgnore?: string[]
+}]
+// ----- jsdoc/normalize-see-links -----
+type JsdocNormalizeSeeLinks = []|[{
+
+  canonicalForm?: ("pipe" | "prefix")
+
+  enableFixer?: boolean
+
+  wrapBareUrls?: boolean
 }]
 // ----- jsdoc/prefer-import-tag -----
 type JsdocPreferImportTag = []|[{
-  
+
   enableFixer?: boolean
-  
+
   exemptTypedefs?: boolean
-  
+
   outputType?: ("named-import" | "namespaced-import")
 }]
 // ----- jsdoc/require-asterisk-prefix -----
 type JsdocRequireAsteriskPrefix = []|[("always" | "never" | "any")]|[("always" | "never" | "any"), {
-  
+
   tags?: {
-    
+
     always?: string[]
-    
+
     any?: string[]
-    
+
     never?: string[]
   }
 }]
 // ----- jsdoc/require-description -----
 type JsdocRequireDescription = []|[{
-  
+
   checkConstructors?: boolean
-  
+
   checkGetters?: boolean
-  
+
   checkSetters?: boolean
-  
+
   contexts?: (string | {
     comment?: string
     context?: string
   })[]
-  
+
   descriptionStyle?: ("body" | "tag" | "any")
-  
+
   exemptedBy?: string[]
 }]
 // ----- jsdoc/require-description-complete-sentence -----
 type JsdocRequireDescriptionCompleteSentence = []|[{
-  
+
   abbreviations?: string[]
-  
+
   newlineBeforeCapsAssumesBadSentenceEnd?: boolean
-  
+
   tags?: string[]
 }]
 // ----- jsdoc/require-example -----
 type JsdocRequireExample = []|[{
-  
+
   checkConstructors?: boolean
-  
+
   checkGetters?: boolean
-  
+
   checkSetters?: boolean
-  
+
   contexts?: (string | {
     comment?: string
     context?: string
   })[]
-  
+
   enableFixer?: boolean
-  
+
   exemptedBy?: string[]
-  
+
   exemptNoArguments?: boolean
 }]
 // ----- jsdoc/require-file-overview -----
 type JsdocRequireFileOverview = []|[{
-  
+
   tags?: {
     [k: string]: {
       initialCommentsOnly?: boolean
@@ -10452,119 +13404,119 @@ type JsdocRequireFileOverview = []|[{
 }]
 // ----- jsdoc/require-hyphen-before-param-description -----
 type JsdocRequireHyphenBeforeParamDescription = []|[("always" | "never")]|[("always" | "never"), {
-  
+
   tags?: ({
     [k: string]: ("always" | "never")
   } | "any")
 }]
 // ----- jsdoc/require-jsdoc -----
 type JsdocRequireJsdoc = []|[{
-  
+
   checkAllFunctionExpressions?: boolean
-  
+
   checkConstructors?: boolean
-  
+
   checkGetters?: (boolean | "no-setter")
-  
+
   checkSetters?: (boolean | "no-getter")
-  
+
   contexts?: (string | {
     context?: string
     inlineCommentBlock?: boolean
     minLineCount?: number
   })[]
-  
+
   enableFixer?: boolean
-  
+
   exemptEmptyConstructors?: boolean
-  
+
   exemptEmptyFunctions?: boolean
-  
+
   exemptOverloadedImplementations?: boolean
-  
+
   fixerMessage?: string
-  
+
   minLineCount?: number
-  
+
   publicOnly?: (boolean | {
     ancestorsOnly?: boolean
     cjs?: boolean
     esm?: boolean
     window?: boolean
   })
-  
+
   require?: {
-    
+
     ArrowFunctionExpression?: boolean
-    
+
     ClassDeclaration?: boolean
-    
+
     ClassExpression?: boolean
-    
+
     FunctionDeclaration?: boolean
-    
+
     FunctionExpression?: boolean
-    
+
     MethodDefinition?: boolean
   }
-  
+
   skipInterveningOverloadedDeclarations?: boolean
 }]
 // ----- jsdoc/require-param -----
 type JsdocRequireParam = []|[{
-  
+
   autoIncrementBase?: number
-  
+
   checkConstructors?: boolean
-  
+
   checkDestructured?: boolean
-  
+
   checkDestructuredRoots?: boolean
-  
+
   checkGetters?: boolean
-  
+
   checkRestProperty?: boolean
-  
+
   checkSetters?: boolean
-  
+
   checkTypesPattern?: string
-  
+
   contexts?: (string | {
     comment?: string
     context?: string
   })[]
-  
+
   enableFixer?: boolean
-  
+
   enableRestElementFixer?: boolean
-  
+
   enableRootFixer?: boolean
-  
+
   exemptedBy?: string[]
-  
+
   ignoreWhenAllParamsMissing?: boolean
-  
+
   interfaceExemptsParamsCheck?: boolean
-  
+
   unnamedRootBase?: string[]
-  
+
   useDefaultObjectProperties?: boolean
 }]
 // ----- jsdoc/require-param-description -----
 type JsdocRequireParamDescription = []|[{
-  
+
   contexts?: (string | {
     comment?: string
     context?: string
   })[]
-  
+
   defaultDestructuredRootDescription?: string
-  
+
   setDefaultDestructuredRootDescription?: boolean
 }]
 // ----- jsdoc/require-param-name -----
 type JsdocRequireParamName = []|[{
-  
+
   contexts?: (string | {
     comment?: string
     context?: string
@@ -10572,47 +13524,47 @@ type JsdocRequireParamName = []|[{
 }]
 // ----- jsdoc/require-param-type -----
 type JsdocRequireParamType = []|[{
-  
+
   contexts?: (string | {
     comment?: string
     context?: string
   })[]
-  
+
   defaultDestructuredRootType?: string
-  
+
   setDefaultDestructuredRootType?: boolean
 }]
 // ----- jsdoc/require-rejects -----
 type JsdocRequireRejects = []|[{
-  
+
   contexts?: (string | {
     comment?: string
     context?: string
   })[]
-  
+
   exemptedBy?: string[]
 }]
 // ----- jsdoc/require-returns -----
 type JsdocRequireReturns = []|[{
-  
+
   checkConstructors?: boolean
-  
+
   checkGetters?: boolean
-  
+
   contexts?: (string | {
     comment?: string
     context?: string
     forceRequireReturn?: boolean
   })[]
-  
+
   enableFixer?: boolean
-  
+
   exemptedBy?: string[]
-  
+
   forceRequireReturn?: boolean
-  
+
   forceReturnsWithAsync?: boolean
-  
+
   publicOnly?: (boolean | {
     ancestorsOnly?: boolean
     cjs?: boolean
@@ -10622,18 +13574,18 @@ type JsdocRequireReturns = []|[{
 }]
 // ----- jsdoc/require-returns-check -----
 type JsdocRequireReturnsCheck = []|[{
-  
+
   exemptAsync?: boolean
-  
+
   exemptGenerators?: boolean
-  
+
   noNativeTypes?: boolean
-  
+
   reportMissingReturnForUndefinedTypes?: boolean
 }]
 // ----- jsdoc/require-returns-description -----
 type JsdocRequireReturnsDescription = []|[{
-  
+
   contexts?: (string | {
     comment?: string
     context?: string
@@ -10641,7 +13593,7 @@ type JsdocRequireReturnsDescription = []|[{
 }]
 // ----- jsdoc/require-returns-type -----
 type JsdocRequireReturnsType = []|[{
-  
+
   contexts?: (string | {
     comment?: string
     context?: string
@@ -10649,7 +13601,7 @@ type JsdocRequireReturnsType = []|[{
 }]
 // ----- jsdoc/require-tags -----
 type JsdocRequireTags = []|[{
-  
+
   tags?: (string | {
     context?: string
     tag?: string
@@ -10658,88 +13610,88 @@ type JsdocRequireTags = []|[{
 }]
 // ----- jsdoc/require-template -----
 type JsdocRequireTemplate = []|[{
-  
+
   exemptedBy?: string[]
-  
+
   requireSeparateTemplates?: boolean
 }]
 // ----- jsdoc/require-throws -----
 type JsdocRequireThrows = []|[{
-  
+
   contexts?: (string | {
     comment?: string
     context?: string
   })[]
-  
+
   exemptedBy?: string[]
 }]
 // ----- jsdoc/require-yields -----
 type JsdocRequireYields = []|[{
-  
+
   contexts?: (string | {
     comment?: string
     context?: string
   })[]
-  
+
   exemptedBy?: string[]
-  
+
   forceRequireNext?: boolean
-  
+
   forceRequireYields?: boolean
-  
+
   next?: boolean
-  
+
   nextWithGeneratorTag?: boolean
-  
+
   withGeneratorTag?: boolean
 }]
 // ----- jsdoc/require-yields-check -----
 type JsdocRequireYieldsCheck = []|[{
-  
+
   checkGeneratorsOnly?: boolean
-  
+
   contexts?: (string | {
     comment?: string
     context?: string
   })[]
-  
+
   next?: boolean
 }]
 // ----- jsdoc/sort-tags -----
 type JsdocSortTags = []|[{
-  
+
   alphabetizeExtras?: boolean
-  
+
   linesBetween?: number
-  
+
   reportIntraTagGroupSpacing?: boolean
-  
+
   reportTagGroupSpacing?: boolean
-  
+
   tagExceptions?: {
     [k: string]: number
   }
-  
+
   tagSequence?: {
-    
+
     tags?: string[]
   }[]
 }]
 // ----- jsdoc/tag-lines -----
 type JsdocTagLines = []|[("always" | "any" | "never")]|[("always" | "any" | "never"), {
-  
+
   applyToEndTag?: boolean
-  
+
   count?: number
-  
+
   endLines?: (number | null)
-  
+
   maxBlockLines?: (number | null)
-  
+
   startLines?: (number | null)
-  
+
   startLinesWithNoTags?: number
-  
+
   tags?: {
     [k: string]: {
       count?: number
@@ -10749,92 +13701,117 @@ type JsdocTagLines = []|[("always" | "any" | "never")]|[("always" | "any" | "nev
 }]
 // ----- jsdoc/text-escaping -----
 type JsdocTextEscaping = []|[{
-  
+
   escapeHTML?: boolean
-  
+
   escapeMarkdown?: boolean
+}]
+// ----- jsdoc/ts-ban-ts-comment -----
+type JsdocTsBanTsComment = []|[{
+
+  minimumDescriptionLength?: number
+
+  "ts-check"?: (boolean | "allow-with-description" | {
+
+    descriptionFormat?: string
+  })
+
+  "ts-expect-error"?: (boolean | "allow-with-description" | {
+
+    descriptionFormat?: string
+  })
+
+  "ts-ignore"?: (boolean | "allow-with-description" | {
+
+    descriptionFormat?: string
+  })
+
+  "ts-nocheck"?: (boolean | "allow-with-description" | {
+
+    descriptionFormat?: string
+  })
 }]
 // ----- jsdoc/ts-method-signature-style -----
 type JsdocTsMethodSignatureStyle = []|[("method" | "property")]|[("method" | "property"), {
-  
+
   enableFixer?: boolean
 }]
 // ----- jsdoc/ts-no-unnecessary-template-expression -----
 type JsdocTsNoUnnecessaryTemplateExpression = []|[{
-  
+
   enableFixer?: boolean
 }]
 // ----- jsdoc/ts-prefer-function-type -----
 type JsdocTsPreferFunctionType = []|[{
-  
+
   enableFixer?: boolean
 }]
 // ----- jsdoc/type-formatting -----
 type JsdocTypeFormatting = []|[{
-  
+
   arrayBrackets?: ("angle" | "square")
-  
+
   arrowFunctionPostReturnMarkerSpacing?: string
-  
+
   arrowFunctionPreReturnMarkerSpacing?: string
-  
+
   enableFixer?: boolean
-  
+
   functionOrClassParameterSpacing?: string
-  
+
   functionOrClassPostGenericSpacing?: string
-  
+
   functionOrClassPostReturnMarkerSpacing?: string
-  
+
   functionOrClassPreReturnMarkerSpacing?: string
-  
+
   functionOrClassTypeParameterSpacing?: string
-  
+
   genericAndTupleElementSpacing?: string
-  
+
   genericDot?: boolean
-  
+
   keyValuePostColonSpacing?: string
-  
+
   keyValuePostKeySpacing?: string
-  
+
   keyValuePostOptionalSpacing?: string
-  
+
   keyValuePostVariadicSpacing?: string
-  
+
   methodQuotes?: ("double" | "single")
-  
+
   objectFieldIndent?: string
-  
+
   objectFieldQuote?: ("double" | "single" | null)
-  
+
   objectFieldSeparator?: ("comma" | "comma-and-linebreak" | "linebreak" | "semicolon" | "semicolon-and-linebreak")
-  
+
   objectFieldSeparatorOptionalLinebreak?: boolean
-  
+
   objectFieldSeparatorTrailingPunctuation?: boolean
-  
+
   objectTypeBracketSpacing?: string
-  
+
   parameterDefaultValueSpacing?: string
-  
+
   postMethodNameSpacing?: string
-  
+
   postNewSpacing?: string
-  
+
   separatorForSingleObjectField?: boolean
-  
+
   stringQuotes?: ("double" | "single")
-  
+
   trailingPunctuationMultilineOnly?: boolean
-  
+
   typeBracketSpacing?: string
-  
+
   unionSpacing?: string
 }]
 // ----- jsdoc/valid-types -----
 type JsdocValidTypes = []|[{
-  
+
   allowEmptyNamepaths?: boolean
 }]
 // ----- jsonc/array-bracket-newline -----
@@ -11031,11 +14008,13 @@ type JsoncSortArrayValues = [{
       type?: ("asc" | "desc")
       caseSensitive?: boolean
       natural?: boolean
+      key?: string
     }
   })[] | {
     type?: ("asc" | "desc")
     caseSensitive?: boolean
     natural?: boolean
+    key?: string
   })
   minValues?: number
 }, ...({
@@ -11046,11 +14025,13 @@ type JsoncSortArrayValues = [{
       type?: ("asc" | "desc")
       caseSensitive?: boolean
       natural?: boolean
+      key?: string
     }
   })[] | {
     type?: ("asc" | "desc")
     caseSensitive?: boolean
     natural?: boolean
+    key?: string
   })
   minValues?: number
 })[]]
@@ -11060,15 +14041,19 @@ type JsoncSortKeys = ([{
   hasProperties?: string[]
   order: ((string | {
     keyPattern?: string
-    order?: {
+    order?: ({
       type?: ("asc" | "desc")
       caseSensitive?: boolean
       natural?: boolean
-    }
+    } | {
+      type: "ignore"
+    })
   })[] | {
     type?: ("asc" | "desc")
     caseSensitive?: boolean
     natural?: boolean
+  } | {
+    type: "ignore"
   })
   minKeys?: number
   allowLineSeparatedGroups?: boolean
@@ -11077,15 +14062,19 @@ type JsoncSortKeys = ([{
   hasProperties?: string[]
   order: ((string | {
     keyPattern?: string
-    order?: {
+    order?: ({
       type?: ("asc" | "desc")
       caseSensitive?: boolean
       natural?: boolean
-    }
+    } | {
+      type: "ignore"
+    })
   })[] | {
     type?: ("asc" | "desc")
     caseSensitive?: boolean
     natural?: boolean
+  } | {
+    type: "ignore"
   })
   minKeys?: number
   allowLineSeparatedGroups?: boolean
@@ -11130,7 +14119,7 @@ type JsxA11YAnchorHasContent = []|[{
 type JsxA11YAnchorIsValid = []|[{
   components?: string[]
   specialLink?: string[]
-  
+
   aspects?: [("noHref" | "invalidHref" | "preferButton"), ...(("noHref" | "invalidHref" | "preferButton"))[]]
   [k: string]: unknown | undefined
 }]
@@ -11171,7 +14160,7 @@ type JsxA11YControlHasAssociatedLabel = []|[{
   controlComponents?: string[]
   ignoreElements?: string[]
   ignoreRoles?: string[]
-  
+
   depth?: number
   [k: string]: unknown | undefined
 }]
@@ -11196,7 +14185,7 @@ type JsxA11YImgRedundantAlt = []|[{
 }]
 // ----- jsx-a11y/interactive-supports-focus -----
 type JsxA11YInteractiveSupportsFocus = []|[{
-  
+
   tabbable?: ("button" | "checkbox" | "columnheader" | "combobox" | "grid" | "gridcell" | "link" | "listbox" | "menu" | "menubar" | "menuitem" | "menuitemcheckbox" | "menuitemradio" | "option" | "progressbar" | "radio" | "radiogroup" | "row" | "rowheader" | "scrollbar" | "searchbox" | "slider" | "spinbutton" | "switch" | "tab" | "tablist" | "textbox" | "tree" | "treegrid" | "treeitem" | "doc-backlink" | "doc-biblioref" | "doc-glossref" | "doc-noteref")[]
   [k: string]: unknown | undefined
 }]
@@ -11205,9 +14194,9 @@ type JsxA11YLabelHasAssociatedControl = []|[{
   labelComponents?: string[]
   labelAttributes?: string[]
   controlComponents?: string[]
-  
+
   assert?: ("htmlFor" | "nesting" | "both" | "either")
-  
+
   depth?: number
   [k: string]: unknown | undefined
 }]
@@ -11215,11 +14204,11 @@ type JsxA11YLabelHasAssociatedControl = []|[{
 type JsxA11YLabelHasFor = []|[{
   components?: string[]
   required?: (("nesting" | "id") | {
-    
+
     some: ("nesting" | "id")[]
     [k: string]: unknown | undefined
   } | {
-    
+
     every: ("nesting" | "id")[]
     [k: string]: unknown | undefined
   })
@@ -11239,9 +14228,9 @@ type JsxA11YMediaHasCaption = []|[{
 }]
 // ----- jsx-a11y/mouse-events-have-key-events -----
 type JsxA11YMouseEventsHaveKeyEvents = []|[{
-  
+
   hoverInHandlers?: string[]
-  
+
   hoverOutHandlers?: string[]
   [k: string]: unknown | undefined
 }]
@@ -11260,7 +14249,7 @@ type JsxA11YNoAutofocus = []|[{
 }]
 // ----- jsx-a11y/no-distracting-elements -----
 type JsxA11YNoDistractingElements = []|[{
-  
+
   elements?: ("marquee" | "blink")[]
   [k: string]: unknown | undefined
 }]
@@ -11279,9 +14268,9 @@ type JsxA11YNoNoninteractiveElementToInteractiveRole = []|[{
 }]
 // ----- jsx-a11y/no-noninteractive-tabindex -----
 type JsxA11YNoNoninteractiveTabindex = []|[{
-  
+
   roles?: string[]
-  
+
   tags?: string[]
   [k: string]: unknown | undefined
 }]
@@ -11679,7 +14668,7 @@ type LinesAroundDirective = []|[(("always" | "never") | {
 })]
 // ----- lines-between-class-members -----
 type LinesBetweenClassMembers = []|[({
-  
+
   enforce: [{
     blankLine: ("always" | "never")
     prev: ("method" | "field" | "*")
@@ -11690,7 +14679,7 @@ type LinesBetweenClassMembers = []|[({
     next: ("method" | "field" | "*")
   })[]]
 } | ("always" | "never"))]|[({
-  
+
   enforce: [{
     blankLine: ("always" | "never")
     prev: ("method" | "field" | "*")
@@ -11711,6 +14700,8 @@ type LogicalAssignmentOperators = (([]|["always"]|["always", {
 type MarkdownFencedCodeLanguage = []|[{
   required?: string[]
 }]
+// ----- markdown/fenced-code-meta -----
+type MarkdownFencedCodeMeta = []|[("always" | "never")]
 // ----- markdown/heading-increment -----
 type MarkdownHeadingIncrement = []|[{
   frontmatterTitle?: string
@@ -11719,6 +14710,7 @@ type MarkdownHeadingIncrement = []|[{
 type MarkdownNoDuplicateDefinitions = []|[{
   allowDefinitions?: string[]
   allowFootnoteDefinitions?: string[]
+  checkFootnoteDefinitions?: boolean
 }]
 // ----- markdown/no-duplicate-headings -----
 type MarkdownNoDuplicateHeadings = []|[{
@@ -11760,6 +14752,7 @@ type MarkdownNoSpaceInEmphasis = []|[{
 type MarkdownNoUnusedDefinitions = []|[{
   allowDefinitions?: string[]
   allowFootnoteDefinitions?: string[]
+  checkFootnoteDefinitions?: boolean
 }]
 // ----- markdown/table-column-count -----
 type MarkdownTableColumnCount = []|[{
@@ -11860,14 +14853,15 @@ type MaxLinesPerFunction = []|[({
 type MaxNestedCallbacks = []|[(number | {
   maximum?: number
   max?: number
+  checkConstructorCallCallbacks?: boolean
 })]
 // ----- max-params -----
 type MaxParams = []|[(number | {
   maximum?: number
   max?: number
-  
+
   countVoidThis?: boolean
-  
+
   countThis?: ("never" | "except-void" | "always")
 })]
 // ----- max-statements -----
@@ -11890,6 +14884,13 @@ type MultilineCommentStyle = ([]|[("starred-block" | "bare-block")] | []|["separ
 }])
 // ----- multiline-ternary -----
 type MultilineTernary = []|[("always" | "always-multiline" | "never")]
+// ----- naily/builtin-import -----
+type NailyBuiltinImport = []|[{
+
+  fixTo?: ("namespace-import" | "default-import")
+
+  patterns?: string[]
+}]
 // ----- new-cap -----
 type NewCap = []|[{
   newIsCap?: boolean
@@ -11924,8 +14925,12 @@ type NoConfusingArrow = []|[{
 }]
 // ----- no-console -----
 type NoConsole = []|[{
-  
+
   allow?: [string, ...(string)[]]
+}]
+// ----- no-constant-binary-expression -----
+type NoConstantBinaryExpression = []|[{
+  checkRelationalComparisons?: boolean
 }]
 // ----- no-constant-condition -----
 type NoConstantCondition = []|[{
@@ -12120,7 +15125,7 @@ type NoRestrictedGlobals = ((string | {
   name: string
   message?: string
 })[] | []|[{
-  
+
   globals: (string | {
     name: string
     message?: string
@@ -12134,7 +15139,7 @@ type NoRestrictedImports = ((string | {
   message?: string
   importNames?: string[]
   allowImportNames?: string[]
-  
+
   allowTypeImports?: boolean
 })[] | []|[{
   paths?: (string | {
@@ -12142,7 +15147,7 @@ type NoRestrictedImports = ((string | {
     message?: string
     importNames?: string[]
     allowImportNames?: string[]
-    
+
     allowTypeImports?: boolean
   })[]
   patterns?: (string[] | ({
@@ -12225,6 +15230,10 @@ type NoUnderscoreDangle = []|[{
   allowInArrayDestructuring?: boolean
   allowInObjectDestructuring?: boolean
 }]
+// ----- no-unmodified-loop-condition -----
+type NoUnmodifiedLoopCondition = []|[{
+  checkConditionalExpressions?: boolean
+}]
 // ----- no-unneeded-ternary -----
 type NoUnneededTernary = []|[{
   defaultAssignment?: boolean
@@ -12295,7 +15304,7 @@ type NoVoid = []|[{
 type NoWarningComments = []|[{
   terms?: string[]
   location?: ("start" | "anywhere")
-  
+
   decoration?: [string, ...(string)[]]
 }]
 // ----- node/callback-return -----
@@ -12313,19 +15322,19 @@ type NodeHandleCallbackErr = []|[string]
 // ----- node/hashbang -----
 type NodeHashbang = []|[{
   convertPath?: ({
-    
+
     [k: string]: [string, string]
   } | [{
-    
+
     include: [string, ...(string)[]]
     exclude?: string[]
-    
+
     replace: [string, string]
   }, ...({
-    
+
     include: [string, ...(string)[]]
     exclude?: string[]
-    
+
     replace: [string, string]
   })[]])
   ignoreUnpublished?: boolean
@@ -12345,19 +15354,19 @@ type NodeNoDeprecatedApi = []|[{
 type NodeNoExtraneousImport = []|[{
   allowModules?: string[]
   convertPath?: ({
-    
+
     [k: string]: [string, string]
   } | [{
-    
+
     include: [string, ...(string)[]]
     exclude?: string[]
-    
+
     replace: [string, string]
   }, ...({
-    
+
     include: [string, ...(string)[]]
     exclude?: string[]
-    
+
     replace: [string, string]
   })[]])
   resolvePaths?: string[]
@@ -12369,19 +15378,19 @@ type NodeNoExtraneousImport = []|[{
 type NodeNoExtraneousRequire = []|[{
   allowModules?: string[]
   convertPath?: ({
-    
+
     [k: string]: [string, string]
   } | [{
-    
+
     include: [string, ...(string)[]]
     exclude?: string[]
-    
+
     replace: [string, string]
   }, ...({
-    
+
     include: [string, ...(string)[]]
     exclude?: string[]
-    
+
     replace: [string, string]
   })[]])
   resolvePaths?: string[]
@@ -12458,59 +15467,58 @@ type NodeNoSync = []|[{
 type NodeNoTopLevelAwait = []|[{
   ignoreBin?: boolean
   convertPath?: ({
-    
+
     [k: string]: [string, string]
   } | [{
-    
+
     include: [string, ...(string)[]]
     exclude?: string[]
-    
+
     replace: [string, string]
   }, ...({
-    
+
     include: [string, ...(string)[]]
     exclude?: string[]
-    
+
     replace: [string, string]
   })[]])
 }]
 // ----- node/no-unpublished-bin -----
 type NodeNoUnpublishedBin = []|[{
   convertPath?: ({
-    
+
     [k: string]: [string, string]
   } | [{
-    
+
     include: [string, ...(string)[]]
     exclude?: string[]
-    
+
     replace: [string, string]
   }, ...({
-    
+
     include: [string, ...(string)[]]
     exclude?: string[]
-    
+
     replace: [string, string]
   })[]])
-  [k: string]: unknown | undefined
 }]
 // ----- node/no-unpublished-import -----
 type NodeNoUnpublishedImport = []|[{
   allowModules?: string[]
   convertPath?: ({
-    
+
     [k: string]: [string, string]
   } | [{
-    
+
     include: [string, ...(string)[]]
     exclude?: string[]
-    
+
     replace: [string, string]
   }, ...({
-    
+
     include: [string, ...(string)[]]
     exclude?: string[]
-    
+
     replace: [string, string]
   })[]])
   resolvePaths?: string[]
@@ -12525,19 +15533,19 @@ type NodeNoUnpublishedImport = []|[{
 type NodeNoUnpublishedRequire = []|[{
   allowModules?: string[]
   convertPath?: ({
-    
+
     [k: string]: [string, string]
   } | [{
-    
+
     include: [string, ...(string)[]]
     exclude?: string[]
-    
+
     replace: [string, string]
   }, ...({
-    
+
     include: [string, ...(string)[]]
     exclude?: string[]
-    
+
     replace: [string, string]
   })[]])
   resolvePaths?: string[]
@@ -12561,7 +15569,7 @@ type NodeNoUnsupportedFeaturesEsSyntax = []|[{
 type NodeNoUnsupportedFeaturesNodeBuiltins = []|[{
   version?: string
   allowExperimental?: boolean
-  ignores?: ("__filename" | "__dirname" | "require" | "require.cache" | "require.extensions" | "require.main" | "require.resolve" | "require.resolve.paths" | "module" | "module.children" | "module.exports" | "module.filename" | "module.id" | "module.isPreloading" | "module.loaded" | "module.parent" | "module.path" | "module.paths" | "module.require" | "exports" | "AbortController" | "AbortSignal" | "AbortSignal.abort" | "AbortSignal.timeout" | "AbortSignal.any" | "DOMException" | "FormData" | "Headers" | "MessageEvent" | "Navigator" | "Request" | "Response" | "WebAssembly" | "WebSocket" | "fetch" | "global" | "queueMicrotask" | "navigator" | "navigator.hardwareConcurrency" | "navigator.language" | "navigator.languages" | "navigator.platform" | "navigator.userAgent" | "structuredClone" | "localStorage" | "sessionStorage" | "Storage" | "Blob" | "new Buffer()" | "Buffer" | "Buffer.alloc" | "Buffer.allocUnsafe" | "Buffer.allocUnsafeSlow" | "Buffer.byteLength" | "Buffer.compare" | "Buffer.concat" | "Buffer.copyBytesFrom" | "Buffer.from" | "Buffer.isBuffer" | "Buffer.isEncoding" | "File" | "atob" | "btoa" | "console" | "console.profile" | "console.profileEnd" | "console.timeStamp" | "console.Console" | "console.assert" | "console.clear" | "console.count" | "console.countReset" | "console.debug" | "console.dir" | "console.dirxml" | "console.error" | "console.group" | "console.groupCollapsed" | "console.groupEnd" | "console.info" | "console.log" | "console.table" | "console.time" | "console.timeEnd" | "console.timeLog" | "console.trace" | "console.warn" | "crypto" | "crypto.subtle" | "crypto.subtle.decrypt" | "crypto.subtle.deriveBits" | "crypto.subtle.deriveKey" | "crypto.subtle.digest" | "crypto.subtle.encrypt" | "crypto.subtle.exportKey" | "crypto.subtle.generateKey" | "crypto.subtle.importKey" | "crypto.subtle.sign" | "crypto.subtle.unwrapKey" | "crypto.subtle.verify" | "crypto.subtle.wrapKey" | "crypto.getRandomValues" | "crypto.randomUUID" | "Crypto" | "CryptoKey" | "SubtleCrypto" | "CloseEvent" | "CustomEvent" | "Event" | "EventSource" | "EventTarget" | "PerformanceEntry" | "PerformanceMark" | "PerformanceMeasure" | "PerformanceObserver" | "PerformanceObserverEntryList" | "PerformanceResourceTiming" | "performance" | "performance.clearMarks" | "performance.clearMeasures" | "performance.clearResourceTimings" | "performance.eventLoopUtilization" | "performance.getEntries" | "performance.getEntriesByName" | "performance.getEntriesByType" | "performance.mark" | "performance.markResourceTiming" | "performance.measure" | "performance.nodeTiming" | "performance.nodeTiming.bootstrapComplete" | "performance.nodeTiming.environment" | "performance.nodeTiming.idleTime" | "performance.nodeTiming.loopExit" | "performance.nodeTiming.loopStart" | "performance.nodeTiming.nodeStart" | "performance.nodeTiming.uvMetricsInfo" | "performance.nodeTiming.v8Start" | "performance.now" | "performance.onresourcetimingbufferfull" | "performance.setResourceTimingBufferSize" | "performance.timeOrigin" | "performance.timerify" | "performance.toJSON" | "process" | "process.allowedNodeEnvironmentFlags" | "process.availableMemory" | "process.arch" | "process.argv" | "process.argv0" | "process.channel" | "process.config" | "process.connected" | "process.debugPort" | "process.env" | "process.execArgv" | "process.execPath" | "process.execve" | "process.exitCode" | "process.features.cached_builtins" | "process.features.debug" | "process.features.inspector" | "process.features.ipv6" | "process.features.require_module" | "process.features.tls" | "process.features.tls_alpn" | "process.features.tls_ocsp" | "process.features.tls_sni" | "process.features.typescript" | "process.features.uv" | "process.finalization.register" | "process.finalization.registerBeforeExit" | "process.finalization.unregister" | "process.getBuiltinModule" | "process.mainModule" | "process.noDeprecation" | "process.permission" | "process.pid" | "process.platform" | "process.ppid" | "process.ref" | "process.release" | "process.report" | "process.report.excludeEnv" | "process.sourceMapsEnabled" | "process.stdin" | "process.stdin.isRaw" | "process.stdin.isTTY" | "process.stdin.setRawMode" | "process.stdout" | "process.stdout.clearLine" | "process.stdout.clearScreenDown" | "process.stdout.columns" | "process.stdout.cursorTo" | "process.stdout.getColorDepth" | "process.stdout.getWindowSize" | "process.stdout.hasColors" | "process.stdout.isTTY" | "process.stdout.moveCursor" | "process.stdout.rows" | "process.stderr" | "process.stderr.clearLine" | "process.stderr.clearScreenDown" | "process.stderr.columns" | "process.stderr.cursorTo" | "process.stderr.getColorDepth" | "process.stderr.getWindowSize" | "process.stderr.hasColors" | "process.stderr.isTTY" | "process.stderr.moveCursor" | "process.stderr.rows" | "process.threadCpuUsage" | "process.throwDeprecation" | "process.title" | "process.traceDeprecation" | "process.version" | "process.versions" | "process.abort" | "process.chdir" | "process.constrainedMemory" | "process.cpuUsage" | "process.cwd" | "process.disconnect" | "process.dlopen" | "process.emitWarning" | "process.exit" | "process.getActiveResourcesInfo" | "process.getegid" | "process.geteuid" | "process.getgid" | "process.getgroups" | "process.getuid" | "process.hasUncaughtExceptionCaptureCallback" | "process.hrtime" | "process.hrtime.bigint" | "process.initgroups" | "process.kill" | "process.loadEnvFile" | "process.memoryUsage" | "process.rss" | "process.nextTick" | "process.resourceUsage" | "process.send" | "process.setegid" | "process.seteuid" | "process.setgid" | "process.setgroups" | "process.setuid" | "process.setSourceMapsEnabled" | "process.setUncaughtExceptionCaptureCallback" | "process.umask" | "process.unref" | "process.uptime" | "ReadableStream" | "ReadableStream.from" | "ReadableStreamDefaultReader" | "ReadableStreamBYOBReader" | "ReadableStreamDefaultController" | "ReadableByteStreamController" | "ReadableStreamBYOBRequest" | "WritableStream" | "WritableStreamDefaultWriter" | "WritableStreamDefaultController" | "TransformStream" | "TransformStreamDefaultController" | "ByteLengthQueuingStrategy" | "CountQueuingStrategy" | "TextEncoderStream" | "TextDecoderStream" | "CompressionStream" | "DecompressionStream" | "setInterval" | "clearInterval" | "setTimeout" | "clearTimeout" | "setImmediate" | "clearImmediate" | "URL" | "URL.canParse" | "URL.createObjectURL" | "URL.revokeObjectURL" | "URLSearchParams" | "TextDecoder" | "TextEncoder" | "BroadcastChannel" | "MessageChannel" | "MessagePort" | "assert" | "assert.Assert" | "assert.assert" | "assert.deepEqual" | "assert.deepStrictEqual" | "assert.doesNotMatch" | "assert.doesNotReject" | "assert.doesNotThrow" | "assert.equal" | "assert.fail" | "assert.ifError" | "assert.match" | "assert.notDeepEqual" | "assert.notDeepStrictEqual" | "assert.notEqual" | "assert.notStrictEqual" | "assert.ok" | "assert.partialDeepStrictEqual" | "assert.rejects" | "assert.strictEqual" | "assert.throws" | "assert.CallTracker" | "assert.strict" | "assert.strict.Assert" | "assert.strict.assert" | "assert.strict.deepEqual" | "assert.strict.deepStrictEqual" | "assert.strict.doesNotMatch" | "assert.strict.doesNotReject" | "assert.strict.doesNotThrow" | "assert.strict.equal" | "assert.strict.fail" | "assert.strict.ifError" | "assert.strict.match" | "assert.strict.notDeepEqual" | "assert.strict.notDeepStrictEqual" | "assert.strict.notEqual" | "assert.strict.notStrictEqual" | "assert.strict.ok" | "assert.strict.partialDeepStrictEqual" | "assert.strict.rejects" | "assert.strict.strictEqual" | "assert.strict.throws" | "assert.strict.CallTracker" | "assert/strict" | "assert/strict.Assert" | "assert/strict.assert" | "assert/strict.deepEqual" | "assert/strict.deepStrictEqual" | "assert/strict.doesNotMatch" | "assert/strict.doesNotReject" | "assert/strict.doesNotThrow" | "assert/strict.equal" | "assert/strict.fail" | "assert/strict.ifError" | "assert/strict.match" | "assert/strict.notDeepEqual" | "assert/strict.notDeepStrictEqual" | "assert/strict.notEqual" | "assert/strict.notStrictEqual" | "assert/strict.ok" | "assert/strict.partialDeepStrictEqual" | "assert/strict.rejects" | "assert/strict.strictEqual" | "assert/strict.throws" | "assert/strict.CallTracker" | "async_hooks" | "async_hooks.createHook" | "async_hooks.executionAsyncResource" | "async_hooks.executionAsyncId" | "async_hooks.triggerAsyncId" | "async_hooks.AsyncLocalStorage" | "async_hooks.AsyncLocalStorage.bind" | "async_hooks.AsyncLocalStorage.snapshot" | "async_hooks.AsyncResource" | "async_hooks.AsyncResource.bind" | "buffer" | "buffer.constants" | "buffer.INSPECT_MAX_BYTES" | "buffer.kMaxLength" | "buffer.kStringMaxLength" | "buffer.atob" | "buffer.btoa" | "buffer.isAscii" | "buffer.isUtf8" | "buffer.resolveObjectURL" | "buffer.transcode" | "buffer.SlowBuffer" | "buffer.Blob" | "new buffer.Buffer()" | "buffer.Buffer" | "buffer.Buffer.alloc" | "buffer.Buffer.allocUnsafe" | "buffer.Buffer.allocUnsafeSlow" | "buffer.Buffer.byteLength" | "buffer.Buffer.compare" | "buffer.Buffer.concat" | "buffer.Buffer.copyBytesFrom" | "buffer.Buffer.from" | "buffer.Buffer.isBuffer" | "buffer.Buffer.isEncoding" | "buffer.File" | "child_process" | "child_process.exec" | "child_process.execFile" | "child_process.fork" | "child_process.spawn" | "child_process.execFileSync" | "child_process.execSync" | "child_process.spawnSync" | "child_process.ChildProcess" | "cluster" | "cluster.isMaster" | "cluster.isPrimary" | "cluster.isWorker" | "cluster.schedulingPolicy" | "cluster.settings" | "cluster.worker" | "cluster.workers" | "cluster.disconnect" | "cluster.fork" | "cluster.setupMaster" | "cluster.setupPrimary" | "cluster.Worker" | "crypto.constants" | "crypto.fips" | "crypto.webcrypto" | "crypto.webcrypto.subtle" | "crypto.webcrypto.subtle.decrypt" | "crypto.webcrypto.subtle.deriveBits" | "crypto.webcrypto.subtle.deriveKey" | "crypto.webcrypto.subtle.digest" | "crypto.webcrypto.subtle.encrypt" | "crypto.webcrypto.subtle.exportKey" | "crypto.webcrypto.subtle.generateKey" | "crypto.webcrypto.subtle.importKey" | "crypto.webcrypto.subtle.sign" | "crypto.webcrypto.subtle.unwrapKey" | "crypto.webcrypto.subtle.verify" | "crypto.webcrypto.subtle.wrapKey" | "crypto.webcrypto.getRandomValues" | "crypto.webcrypto.randomUUID" | "crypto.checkPrime" | "crypto.checkPrimeSync" | "crypto.createCipher" | "crypto.createCipheriv" | "crypto.createDecipher" | "crypto.createDecipheriv" | "crypto.createDiffieHellman" | "crypto.createDiffieHellmanGroup" | "crypto.createECDH" | "crypto.createHash" | "crypto.createHmac" | "crypto.createPrivateKey" | "crypto.createPublicKey" | "crypto.createSecretKey" | "crypto.createSign" | "crypto.createVerify" | "crypto.diffieHellman" | "crypto.generateKey" | "crypto.generateKeyPair" | "crypto.generateKeyPairSync" | "crypto.generateKeySync" | "crypto.generatePrime" | "crypto.generatePrimeSync" | "crypto.getCipherInfo" | "crypto.getCiphers" | "crypto.getCurves" | "crypto.getDiffieHellman" | "crypto.getFips" | "crypto.getHashes" | "crypto.hash" | "crypto.hkdf" | "crypto.hkdfSync" | "crypto.pbkdf2" | "crypto.pbkdf2Sync" | "crypto.privateDecrypt" | "crypto.privateEncrypt" | "crypto.publicDecrypt" | "crypto.publicEncrypt" | "crypto.randomBytes" | "crypto.randomFillSync" | "crypto.randomFill" | "crypto.randomInt" | "crypto.scrypt" | "crypto.scryptSync" | "crypto.secureHeapUsed" | "crypto.setEngine" | "crypto.setFips" | "crypto.sign" | "crypto.timingSafeEqual" | "crypto.verify" | "crypto.Certificate" | "crypto.Certificate.exportChallenge" | "crypto.Certificate.exportPublicKey" | "crypto.Certificate.verifySpkac" | "crypto.Cipher" | "crypto.Decipher" | "crypto.DiffieHellman" | "crypto.DiffieHellmanGroup" | "crypto.ECDH" | "crypto.ECDH.convertKey" | "crypto.Hash()" | "new crypto.Hash()" | "crypto.Hash" | "crypto.Hmac()" | "new crypto.Hmac()" | "crypto.Hmac" | "crypto.KeyObject" | "crypto.KeyObject.from" | "crypto.Sign" | "crypto.Verify" | "crypto.X509Certificate" | "dgram" | "dgram.createSocket" | "dgram.Socket" | "diagnostics_channel" | "diagnostics_channel.hasSubscribers" | "diagnostics_channel.channel" | "diagnostics_channel.subscribe" | "diagnostics_channel.unsubscribe" | "diagnostics_channel.tracingChannel" | "diagnostics_channel.Channel" | "diagnostics_channel.TracingChannel" | "dns" | "dns.Resolver" | "dns.getServers" | "dns.lookup" | "dns.lookupService" | "dns.resolve" | "dns.resolve4" | "dns.resolve6" | "dns.resolveAny" | "dns.resolveCname" | "dns.resolveCaa" | "dns.resolveMx" | "dns.resolveNaptr" | "dns.resolveNs" | "dns.resolvePtr" | "dns.resolveSoa" | "dns.resolveSrv" | "dns.resolveTlsa" | "dns.resolveTxt" | "dns.reverse" | "dns.setDefaultResultOrder" | "dns.getDefaultResultOrder" | "dns.setServers" | "dns.promises" | "dns.promises.Resolver" | "dns.promises.cancel" | "dns.promises.getServers" | "dns.promises.lookup" | "dns.promises.lookupService" | "dns.promises.resolve" | "dns.promises.resolve4" | "dns.promises.resolve6" | "dns.promises.resolveAny" | "dns.promises.resolveCaa" | "dns.promises.resolveCname" | "dns.promises.resolveMx" | "dns.promises.resolveNaptr" | "dns.promises.resolveNs" | "dns.promises.resolvePtr" | "dns.promises.resolveSoa" | "dns.promises.resolveSrv" | "dns.promises.resolveTlsa" | "dns.promises.resolveTxt" | "dns.promises.reverse" | "dns.promises.setDefaultResultOrder" | "dns.promises.getDefaultResultOrder" | "dns.promises.setServers" | "dns/promises" | "dns/promises.Resolver" | "dns/promises.cancel" | "dns/promises.getServers" | "dns/promises.lookup" | "dns/promises.lookupService" | "dns/promises.resolve" | "dns/promises.resolve4" | "dns/promises.resolve6" | "dns/promises.resolveAny" | "dns/promises.resolveCaa" | "dns/promises.resolveCname" | "dns/promises.resolveMx" | "dns/promises.resolveNaptr" | "dns/promises.resolveNs" | "dns/promises.resolvePtr" | "dns/promises.resolveSoa" | "dns/promises.resolveSrv" | "dns/promises.resolveTlsa" | "dns/promises.resolveTxt" | "dns/promises.reverse" | "dns/promises.setDefaultResultOrder" | "dns/promises.getDefaultResultOrder" | "dns/promises.setServers" | "domain" | "domain.create" | "domain.Domain" | "events" | "events.Event" | "events.EventTarget" | "events.CustomEvent" | "events.NodeEventTarget" | "events.EventEmitter" | "events.EventEmitter.defaultMaxListeners" | "events.EventEmitter.errorMonitor" | "events.EventEmitter.captureRejections" | "events.EventEmitter.captureRejectionSymbol" | "events.EventEmitter.getEventListeners" | "events.EventEmitter.getMaxListeners" | "events.EventEmitter.once" | "events.EventEmitter.listenerCount" | "events.EventEmitter.on" | "events.EventEmitter.setMaxListeners" | "events.EventEmitter.addAbortListener" | "events.EventEmitterAsyncResource" | "events.EventEmitterAsyncResource.defaultMaxListeners" | "events.EventEmitterAsyncResource.errorMonitor" | "events.EventEmitterAsyncResource.captureRejections" | "events.EventEmitterAsyncResource.captureRejectionSymbol" | "events.EventEmitterAsyncResource.getEventListeners" | "events.EventEmitterAsyncResource.getMaxListeners" | "events.EventEmitterAsyncResource.once" | "events.EventEmitterAsyncResource.listenerCount" | "events.EventEmitterAsyncResource.on" | "events.EventEmitterAsyncResource.setMaxListeners" | "events.EventEmitterAsyncResource.addAbortListener" | "events.defaultMaxListeners" | "events.errorMonitor" | "events.captureRejections" | "events.captureRejectionSymbol" | "events.getEventListeners" | "events.getMaxListeners" | "events.once" | "events.listenerCount" | "events.on" | "events.setMaxListeners" | "events.addAbortListener" | "fs" | "fs.promises" | "fs.promises.FileHandle" | "fs.promises.access" | "fs.promises.appendFile" | "fs.promises.chmod" | "fs.promises.chown" | "fs.promises.constants" | "fs.promises.copyFile" | "fs.promises.cp" | "fs.promises.glob" | "fs.promises.lchmod" | "fs.promises.lchown" | "fs.promises.link" | "fs.promises.lstat" | "fs.promises.lutimes" | "fs.promises.mkdir" | "fs.promises.mkdtemp" | "fs.promises.open" | "fs.promises.opendir" | "fs.promises.readFile" | "fs.promises.readdir" | "fs.promises.readlink" | "fs.promises.realpath" | "fs.promises.rename" | "fs.promises.rm" | "fs.promises.rmdir" | "fs.promises.stat" | "fs.promises.statfs" | "fs.promises.symlink" | "fs.promises.truncate" | "fs.promises.unlink" | "fs.promises.utimes" | "fs.promises.watch" | "fs.promises.writeFile" | "fs.access" | "fs.appendFile" | "fs.chmod" | "fs.chown" | "fs.close" | "fs.copyFile" | "fs.cp" | "fs.createReadStream" | "fs.createWriteStream" | "fs.exists" | "fs.fchmod" | "fs.fchown" | "fs.fdatasync" | "fs.fstat" | "fs.fsync" | "fs.ftruncate" | "fs.futimes" | "fs.glob" | "fs.lchmod" | "fs.lchown" | "fs.link" | "fs.lstat" | "fs.lutimes" | "fs.mkdir" | "fs.mkdtemp" | "fs.native" | "fs.open" | "fs.openAsBlob" | "fs.opendir" | "fs.read" | "fs.readdir" | "fs.readFile" | "fs.readlink" | "fs.readv" | "fs.realpath" | "fs.realpath.native" | "fs.rename" | "fs.rm" | "fs.rmdir" | "fs.stat" | "fs.statfs" | "fs.symlink" | "fs.truncate" | "fs.unlink" | "fs.unwatchFile" | "fs.utimes" | "fs.watch" | "fs.watchFile" | "fs.write" | "fs.writeFile" | "fs.writev" | "fs.accessSync" | "fs.appendFileSync" | "fs.chmodSync" | "fs.chownSync" | "fs.closeSync" | "fs.copyFileSync" | "fs.cpSync" | "fs.existsSync" | "fs.fchmodSync" | "fs.fchownSync" | "fs.fdatasyncSync" | "fs.fstatSync" | "fs.fsyncSync" | "fs.ftruncateSync" | "fs.futimesSync" | "fs.globSync" | "fs.lchmodSync" | "fs.lchownSync" | "fs.linkSync" | "fs.lstatSync" | "fs.lutimesSync" | "fs.mkdirSync" | "fs.mkdtempSync" | "fs.opendirSync" | "fs.openSync" | "fs.readdirSync" | "fs.readFileSync" | "fs.readlinkSync" | "fs.readSync" | "fs.readvSync" | "fs.realpathSync" | "fs.realpathSync.native" | "fs.renameSync" | "fs.rmdirSync" | "fs.rmSync" | "fs.statfsSync" | "fs.statSync" | "fs.symlinkSync" | "fs.truncateSync" | "fs.unlinkSync" | "fs.utimesSync" | "fs.writeFileSync" | "fs.writeSync" | "fs.writevSync" | "fs.constants" | "fs.Dir" | "fs.Dirent" | "fs.FSWatcher" | "fs.StatWatcher" | "fs.ReadStream" | "fs.Stats()" | "new fs.Stats()" | "fs.Stats" | "fs.StatFs" | "fs.WriteStream" | "fs.common_objects" | "fs/promises" | "fs/promises.FileHandle" | "fs/promises.access" | "fs/promises.appendFile" | "fs/promises.chmod" | "fs/promises.chown" | "fs/promises.constants" | "fs/promises.copyFile" | "fs/promises.cp" | "fs/promises.glob" | "fs/promises.lchmod" | "fs/promises.lchown" | "fs/promises.link" | "fs/promises.lstat" | "fs/promises.lutimes" | "fs/promises.mkdir" | "fs/promises.mkdtemp" | "fs/promises.open" | "fs/promises.opendir" | "fs/promises.readFile" | "fs/promises.readdir" | "fs/promises.readlink" | "fs/promises.realpath" | "fs/promises.rename" | "fs/promises.rm" | "fs/promises.rmdir" | "fs/promises.stat" | "fs/promises.statfs" | "fs/promises.symlink" | "fs/promises.truncate" | "fs/promises.unlink" | "fs/promises.utimes" | "fs/promises.watch" | "fs/promises.writeFile" | "http2" | "http2.constants" | "http2.sensitiveHeaders" | "http2.createServer" | "http2.createSecureServer" | "http2.connect" | "http2.getDefaultSettings" | "http2.getPackedSettings" | "http2.getUnpackedSettings" | "http2.performServerHandshake" | "http2.Http2Session" | "http2.ServerHttp2Session" | "http2.ClientHttp2Session" | "http2.Http2Stream" | "http2.ClientHttp2Stream" | "http2.ServerHttp2Stream" | "http2.Http2Server" | "http2.Http2SecureServer" | "http2.Http2ServerRequest" | "http2.Http2ServerResponse" | "http" | "http.METHODS" | "http.STATUS_CODES" | "http.globalAgent" | "http.maxHeaderSize" | "http.createServer" | "http.get" | "http.request" | "http.validateHeaderName" | "http.validateHeaderValue" | "http.setMaxIdleHTTPParsers" | "http.Agent" | "http.ClientRequest" | "http.Server" | "http.ServerResponse" | "http.IncomingMessage" | "http.OutgoingMessage" | "http.WebSocket" | "_http_agent" | "_http_client" | "_http_common" | "_http_incoming" | "_http_outgoing" | "_http_server" | "https" | "https.globalAgent" | "https.createServer" | "https.get" | "https.request" | "https.Agent" | "https.Server" | "inspector" | "inspector.Session" | "inspector.Network.dataReceived" | "inspector.Network.dataSent" | "inspector.Network.loadingFailed" | "inspector.Network.loadingFinished" | "inspector.Network.requestWillBeSent" | "inspector.Network.responseReceived" | "inspector.NetworkResources.put" | "inspector.console" | "inspector.close" | "inspector.open" | "inspector.url" | "inspector.waitForDebugger" | "inspector/promises" | "inspector/promises.Session" | "inspector/promises.Network.dataReceived" | "inspector/promises.Network.dataSent" | "inspector/promises.Network.loadingFailed" | "inspector/promises.Network.loadingFinished" | "inspector/promises.Network.requestWillBeSent" | "inspector/promises.Network.responseReceived" | "inspector/promises.NetworkResources.put" | "inspector/promises.console" | "inspector/promises.close" | "inspector/promises.open" | "inspector/promises.url" | "inspector/promises.waitForDebugger" | "module.builtinModules" | "module.constants.compileCacheStatus" | "module.createRequire" | "module.createRequireFromPath" | "module.enableCompileCache" | "module.findPackageJSON" | "module.flushCompileCache" | "module.getCompileCacheDir" | "module.getSourceMapsSupport" | "module.isBuiltin" | "module.registerHooks" | "module.register" | "module.setSourceMapsSupport" | "module.stripTypeScriptTypes" | "module.syncBuiltinESMExports" | "module.findSourceMap" | "module.SourceMap" | "module.Module.builtinModules" | "module.Module.createRequire" | "module.Module.createRequireFromPath" | "module.Module.enableCompileCache" | "module.Module.findPackageJSON" | "module.Module.flushCompileCache" | "module.Module.getCompileCacheDir" | "module.Module.getSourceMapsSupport" | "module.Module.isBuiltin" | "module.Module.registerHooks" | "module.Module.register" | "module.Module.setSourceMapsSupport" | "module.Module.stripTypeScriptTypes" | "module.Module.syncBuiltinESMExports" | "module.Module.findSourceMap" | "module.Module.SourceMap" | "net" | "net.connect" | "net.createConnection" | "net.createServer" | "net.getDefaultAutoSelectFamily" | "net.setDefaultAutoSelectFamily" | "net.getDefaultAutoSelectFamilyAttemptTimeout" | "net.setDefaultAutoSelectFamilyAttemptTimeout" | "net.isIP" | "net.isIPv4" | "net.isIPv6" | "net.BlockList" | "net.BlockList.isBlockList" | "net.SocketAddress" | "net.SocketAddress.parse" | "net.Server" | "net.Socket" | "os" | "os.EOL" | "os.constants" | "os.constants.priority" | "os.devNull" | "os.availableParallelism" | "os.arch" | "os.cpus" | "os.endianness" | "os.freemem" | "os.getPriority" | "os.homedir" | "os.hostname" | "os.loadavg" | "os.machine" | "os.networkInterfaces" | "os.platform" | "os.release" | "os.setPriority" | "os.tmpdir" | "os.totalmem" | "os.type" | "os.uptime" | "os.userInfo" | "os.version" | "path" | "path.posix" | "path.posix.delimiter" | "path.posix.sep" | "path.posix.basename" | "path.posix.dirname" | "path.posix.extname" | "path.posix.format" | "path.posix.matchesGlob" | "path.posix.isAbsolute" | "path.posix.join" | "path.posix.normalize" | "path.posix.parse" | "path.posix.relative" | "path.posix.resolve" | "path.posix.toNamespacedPath" | "path.win32" | "path.win32.delimiter" | "path.win32.sep" | "path.win32.basename" | "path.win32.dirname" | "path.win32.extname" | "path.win32.format" | "path.win32.matchesGlob" | "path.win32.isAbsolute" | "path.win32.join" | "path.win32.normalize" | "path.win32.parse" | "path.win32.relative" | "path.win32.resolve" | "path.win32.toNamespacedPath" | "path.delimiter" | "path.sep" | "path.basename" | "path.dirname" | "path.extname" | "path.format" | "path.matchesGlob" | "path.isAbsolute" | "path.join" | "path.normalize" | "path.parse" | "path.relative" | "path.resolve" | "path.toNamespacedPath" | "path/posix" | "path/posix.delimiter" | "path/posix.sep" | "path/posix.basename" | "path/posix.dirname" | "path/posix.extname" | "path/posix.format" | "path/posix.matchesGlob" | "path/posix.isAbsolute" | "path/posix.join" | "path/posix.normalize" | "path/posix.parse" | "path/posix.relative" | "path/posix.resolve" | "path/posix.toNamespacedPath" | "path/win32" | "path/win32.delimiter" | "path/win32.sep" | "path/win32.basename" | "path/win32.dirname" | "path/win32.extname" | "path/win32.format" | "path/win32.matchesGlob" | "path/win32.isAbsolute" | "path/win32.join" | "path/win32.normalize" | "path/win32.parse" | "path/win32.relative" | "path/win32.resolve" | "path/win32.toNamespacedPath" | "perf_hooks" | "perf_hooks.performance" | "perf_hooks.performance.clearMarks" | "perf_hooks.performance.clearMeasures" | "perf_hooks.performance.clearResourceTimings" | "perf_hooks.performance.eventLoopUtilization" | "perf_hooks.performance.getEntries" | "perf_hooks.performance.getEntriesByName" | "perf_hooks.performance.getEntriesByType" | "perf_hooks.performance.mark" | "perf_hooks.performance.markResourceTiming" | "perf_hooks.performance.measure" | "perf_hooks.performance.nodeTiming" | "perf_hooks.performance.nodeTiming.bootstrapComplete" | "perf_hooks.performance.nodeTiming.environment" | "perf_hooks.performance.nodeTiming.idleTime" | "perf_hooks.performance.nodeTiming.loopExit" | "perf_hooks.performance.nodeTiming.loopStart" | "perf_hooks.performance.nodeTiming.nodeStart" | "perf_hooks.performance.nodeTiming.uvMetricsInfo" | "perf_hooks.performance.nodeTiming.v8Start" | "perf_hooks.performance.now" | "perf_hooks.performance.onresourcetimingbufferfull" | "perf_hooks.performance.setResourceTimingBufferSize" | "perf_hooks.performance.timeOrigin" | "perf_hooks.performance.timerify" | "perf_hooks.performance.toJSON" | "perf_hooks.createHistogram" | "perf_hooks.monitorEventLoopDelay" | "perf_hooks.PerformanceEntry" | "perf_hooks.PerformanceMark" | "perf_hooks.PerformanceMeasure" | "perf_hooks.PerformanceNodeEntry" | "perf_hooks.PerformanceNodeTiming" | "perf_hooks.PerformanceResourceTiming" | "perf_hooks.PerformanceObserver" | "perf_hooks.PerformanceObserverEntryList" | "perf_hooks.Histogram" | "perf_hooks.IntervalHistogram" | "perf_hooks.RecordableHistogram" | "punycode" | "punycode.ucs2" | "punycode.version" | "punycode.decode" | "punycode.encode" | "punycode.toASCII" | "punycode.toUnicode" | "querystring" | "querystring.decode" | "querystring.encode" | "querystring.escape" | "querystring.parse" | "querystring.stringify" | "querystring.unescape" | "readline" | "readline.promises" | "readline.promises.createInterface" | "readline.promises.Interface" | "readline.promises.Readline" | "readline.clearLine" | "readline.clearScreenDown" | "readline.createInterface" | "readline.cursorTo" | "readline.moveCursor" | "readline.Interface" | "readline.emitKeypressEvents" | "readline.InterfaceConstructor" | "readline/promises" | "readline/promises.createInterface" | "readline/promises.Interface" | "readline/promises.Readline" | "repl" | "repl.start" | "repl.writer" | "repl.REPLServer()" | "repl.REPLServer" | "repl.REPL_MODE_MAGIC" | "repl.REPL_MODE_SLOPPY" | "repl.REPL_MODE_STRICT" | "repl.Recoverable()" | "repl.Recoverable" | "repl.builtinModules" | "sea" | "sea.isSea" | "sea.getAsset" | "sea.getAssetAsBlob" | "sea.getRawAsset" | "sea.sea.isSea" | "sea.sea.getAsset" | "sea.sea.getAssetAsBlob" | "sea.sea.getRawAsset" | "stream" | "stream.promises" | "stream.promises.pipeline" | "stream.promises.finished" | "stream.finished" | "stream.pipeline" | "stream.compose" | "stream.duplexPair" | "stream.Readable" | "stream.Readable.from" | "stream.Readable.isDisturbed" | "stream.Readable.fromWeb" | "stream.Readable.toWeb" | "stream.Writable" | "stream.Writable.fromWeb" | "stream.Writable.toWeb" | "stream.Duplex" | "stream.Duplex.from" | "stream.Duplex.fromWeb" | "stream.Duplex.toWeb" | "stream.Transform" | "stream.isErrored" | "stream.isReadable" | "stream.addAbortSignal" | "stream.getDefaultHighWaterMark" | "stream.setDefaultHighWaterMark" | "stream/promises.pipeline" | "stream/promises.finished" | "stream/web" | "stream/web.ReadableStream" | "stream/web.ReadableStream.from" | "stream/web.ReadableStreamDefaultReader" | "stream/web.ReadableStreamBYOBReader" | "stream/web.ReadableStreamDefaultController" | "stream/web.ReadableByteStreamController" | "stream/web.ReadableStreamBYOBRequest" | "stream/web.WritableStream" | "stream/web.WritableStreamDefaultWriter" | "stream/web.WritableStreamDefaultController" | "stream/web.TransformStream" | "stream/web.TransformStreamDefaultController" | "stream/web.ByteLengthQueuingStrategy" | "stream/web.CountQueuingStrategy" | "stream/web.TextEncoderStream" | "stream/web.TextDecoderStream" | "stream/web.CompressionStream" | "stream/web.DecompressionStream" | "stream/consumers" | "stream/consumers.arrayBuffer" | "stream/consumers.blob" | "stream/consumers.buffer" | "stream/consumers.json" | "stream/consumers.text" | "string_decoder" | "string_decoder.StringDecoder" | "sqlite" | "sqlite.constants" | "sqlite.constants.SQLITE_CHANGESET_OMIT" | "sqlite.constants.SQLITE_CHANGESET_REPLACE" | "sqlite.constants.SQLITE_CHANGESET_ABORT" | "sqlite.backup" | "sqlite.DatabaseSync" | "sqlite.StatementSync" | "sqlite.SQLITE_CHANGESET_OMIT" | "sqlite.SQLITE_CHANGESET_REPLACE" | "sqlite.SQLITE_CHANGESET_ABORT" | "test" | "test.after" | "test.afterEach" | "test.assert" | "test.assert.register" | "test.before" | "test.beforeEach" | "test.describe" | "test.describe.only" | "test.describe.skip" | "test.describe.todo" | "test.it" | "test.it.only" | "test.it.skip" | "test.it.todo" | "test.mock" | "test.mock.fn" | "test.mock.getter" | "test.mock.method" | "test.mock.module" | "test.mock.reset" | "test.mock.restoreAll" | "test.mock.setter" | "test.mock.timers" | "test.mock.timers.enable" | "test.mock.timers.reset" | "test.mock.timers.tick" | "test.only" | "test.run" | "test.snapshot" | "test.snapshot.setDefaultSnapshotSerializers" | "test.snapshot.setResolveSnapshotPath" | "test.skip" | "test.suite" | "test.test" | "test.test.only" | "test.test.skip" | "test.test.todo" | "test.todo" | "timers" | "timers.Immediate" | "timers.Timeout" | "timers.setImmediate" | "timers.clearImmediate" | "timers.setInterval" | "timers.clearInterval" | "timers.setTimeout" | "timers.clearTimeout" | "timers.promises" | "timers.promises.setTimeout" | "timers.promises.setImmediate" | "timers.promises.setInterval" | "timers.promises.scheduler.wait" | "timers.promises.scheduler.yield" | "timers/promises" | "timers/promises.setTimeout" | "timers/promises.setImmediate" | "timers/promises.setInterval" | "timers/promises.scheduler.wait" | "timers/promises.scheduler.yield" | "tls" | "tls.checkServerIdentity" | "tls.connect" | "tls.createSecureContext" | "tls.createSecurePair" | "tls.createServer" | "tls.CryptoStream" | "tls.DEFAULT_CIPHERS" | "tls.DEFAULT_ECDH_CURVE" | "tls.DEFAULT_MAX_VERSION" | "tls.DEFAULT_MIN_VERSION" | "tls.getCACertificates" | "tls.getCiphers" | "tls.rootCertificates" | "tls.SecureContext" | "tls.SecurePair" | "tls.Server" | "tls.setDefaultCACertificates" | "tls.TLSSocket" | "trace_events" | "trace_events.createTracing" | "trace_events.getEnabledCategories" | "tty" | "tty.isatty" | "tty.ReadStream" | "tty.WriteStream" | "url" | "url.domainToASCII" | "url.domainToUnicode" | "url.fileURLToPath" | "url.format" | "url.pathToFileURL" | "url.urlToHttpOptions" | "url.URL" | "url.URL.canParse" | "url.URL.createObjectURL" | "url.URL.revokeObjectURL" | "url.URLPattern" | "url.URLSearchParams" | "url.Url" | "util.promisify" | "util.promisify.custom" | "util.callbackify" | "util.debuglog" | "util.debug" | "util.deprecate" | "util.diff" | "util.format" | "util.formatWithOptions" | "util.getCallSite" | "util.getCallSites" | "util.getSystemErrorName" | "util.getSystemErrorMap" | "util.getSystemErrorMessage" | "util.inherits" | "util.inspect" | "util.inspect.custom" | "util.inspect.defaultOptions" | "util.inspect.replDefaults" | "util.isDeepStrictEqual" | "util.parseArgs" | "util.parseEnv" | "util.setTraceSigInt" | "util.stripVTControlCharacters" | "util.styleText" | "util.toUSVString" | "util.transferableAbortController" | "util.transferableAbortSignal" | "util.aborted" | "util.MIMEType" | "util.MIMEParams" | "util.TextDecoder" | "util.TextEncoder" | "util.types" | "util.types.isExternal" | "util.types.isDate" | "util.types.isArgumentsObject" | "util.types.isBigIntObject" | "util.types.isBooleanObject" | "util.types.isNumberObject" | "util.types.isStringObject" | "util.types.isSymbolObject" | "util.types.isNativeError" | "util.types.isRegExp" | "util.types.isAsyncFunction" | "util.types.isGeneratorFunction" | "util.types.isGeneratorObject" | "util.types.isPromise" | "util.types.isMap" | "util.types.isSet" | "util.types.isMapIterator" | "util.types.isSetIterator" | "util.types.isWeakMap" | "util.types.isWeakSet" | "util.types.isArrayBuffer" | "util.types.isDataView" | "util.types.isSharedArrayBuffer" | "util.types.isProxy" | "util.types.isModuleNamespaceObject" | "util.types.isAnyArrayBuffer" | "util.types.isBoxedPrimitive" | "util.types.isArrayBufferView" | "util.types.isTypedArray" | "util.types.isUint8Array" | "util.types.isUint8ClampedArray" | "util.types.isUint16Array" | "util.types.isUint32Array" | "util.types.isInt8Array" | "util.types.isInt16Array" | "util.types.isInt32Array" | "util.types.isFloat16Array" | "util.types.isFloat32Array" | "util.types.isFloat64Array" | "util.types.isBigInt64Array" | "util.types.isBigUint64Array" | "util.types.isKeyObject" | "util.types.isCryptoKey" | "util.types.isWebAssemblyCompiledModule" | "util._extend" | "util.isArray" | "util.isBoolean" | "util.isBuffer" | "util.isDate" | "util.isError" | "util.isFunction" | "util.isNull" | "util.isNullOrUndefined" | "util.isNumber" | "util.isObject" | "util.isPrimitive" | "util.isRegExp" | "util.isString" | "util.isSymbol" | "util.isUndefined" | "util.log" | "util" | "util/types" | "util/types.isExternal" | "util/types.isDate" | "util/types.isArgumentsObject" | "util/types.isBigIntObject" | "util/types.isBooleanObject" | "util/types.isNumberObject" | "util/types.isStringObject" | "util/types.isSymbolObject" | "util/types.isNativeError" | "util/types.isRegExp" | "util/types.isAsyncFunction" | "util/types.isGeneratorFunction" | "util/types.isGeneratorObject" | "util/types.isPromise" | "util/types.isMap" | "util/types.isSet" | "util/types.isMapIterator" | "util/types.isSetIterator" | "util/types.isWeakMap" | "util/types.isWeakSet" | "util/types.isArrayBuffer" | "util/types.isDataView" | "util/types.isSharedArrayBuffer" | "util/types.isProxy" | "util/types.isModuleNamespaceObject" | "util/types.isAnyArrayBuffer" | "util/types.isBoxedPrimitive" | "util/types.isArrayBufferView" | "util/types.isTypedArray" | "util/types.isUint8Array" | "util/types.isUint8ClampedArray" | "util/types.isUint16Array" | "util/types.isUint32Array" | "util/types.isInt8Array" | "util/types.isInt16Array" | "util/types.isInt32Array" | "util/types.isFloat16Array" | "util/types.isFloat32Array" | "util/types.isFloat64Array" | "util/types.isBigInt64Array" | "util/types.isBigUint64Array" | "util/types.isKeyObject" | "util/types.isCryptoKey" | "util/types.isWebAssemblyCompiledModule" | "v8" | "v8.serialize" | "v8.deserialize" | "v8.Serializer" | "v8.Deserializer" | "v8.DefaultSerializer" | "v8.DefaultDeserializer" | "v8.promiseHooks" | "v8.promiseHooks.onInit" | "v8.promiseHooks.onSettled" | "v8.promiseHooks.onBefore" | "v8.promiseHooks.onAfter" | "v8.promiseHooks.createHook" | "v8.startupSnapshot" | "v8.startupSnapshot.addSerializeCallback" | "v8.startupSnapshot.addDeserializeCallback" | "v8.startupSnapshot.setDeserializeMainFunction" | "v8.startupSnapshot.isBuildingSnapshot" | "v8.cachedDataVersionTag" | "v8.getHeapCodeStatistics" | "v8.getHeapSnapshot" | "v8.getHeapSpaceStatistics" | "v8.getHeapStatistics" | "v8.isStringOneByteRepresentation" | "v8.queryObjects" | "v8.setFlagsFromString" | "v8.stopCoverage" | "v8.takeCoverage" | "v8.writeHeapSnapshot" | "v8.setHeapSnapshotNearHeapLimit" | "v8.GCProfiler" | "vm.constants" | "vm.compileFunction" | "vm.createContext" | "vm.isContext" | "vm.measureMemory" | "vm.runInContext" | "vm.runInNewContext" | "vm.runInThisContext" | "vm.Script" | "vm.Module" | "vm.SourceTextModule" | "vm.SyntheticModule" | "vm" | "wasi.WASI" | "wasi" | "worker_threads" | "worker_threads.parentPort" | "worker_threads.resourceLimits" | "worker_threads.SHARE_ENV" | "worker_threads.threadId" | "worker_threads.workerData" | "worker_threads.getEnvironmentData" | "worker_threads.getHeapStatistics" | "worker_threads.markAsUncloneable" | "worker_threads.markAsUntransferable" | "worker_threads.isInternalThread" | "worker_threads.isMainThread" | "worker_threads.isMarkedAsUntransferable" | "worker_threads.moveMessagePortToContext" | "worker_threads.postMessageToThread" | "worker_threads.receiveMessageOnPort" | "worker_threads.setEnvironmentData" | "worker_threads.BroadcastChannel" | "worker_threads.MessageChannel" | "worker_threads.MessagePort" | "worker_threads.Worker" | "zlib.brotliCompress" | "zlib.brotliCompressSync" | "zlib.brotliDecompress" | "zlib.brotliDecompressSync" | "zlib.constants" | "zlib.constants.ZSTD_e_continue" | "zlib.constants.ZSTD_e_flush" | "zlib.constants.ZSTD_e_end" | "zlib.constants.ZSTD_fast" | "zlib.constants.ZSTD_dfast" | "zlib.constants.ZSTD_greedy" | "zlib.constants.ZSTD_lazy" | "zlib.constants.ZSTD_lazy2" | "zlib.constants.ZSTD_btlazy2" | "zlib.constants.ZSTD_btopt" | "zlib.constants.ZSTD_btultra" | "zlib.constants.ZSTD_btultra2" | "zlib.constants.ZSTD_c_compressionLevel" | "zlib.constants.ZSTD_c_windowLog" | "zlib.constants.ZSTD_c_hashLog" | "zlib.constants.ZSTD_c_chainLog" | "zlib.constants.ZSTD_c_searchLog" | "zlib.constants.ZSTD_c_minMatch" | "zlib.constants.ZSTD_c_targetLength" | "zlib.constants.ZSTD_c_strategy" | "zlib.constants.ZSTD_c_enableLongDistanceMatching" | "zlib.constants.ZSTD_c_ldmHashLog" | "zlib.constants.ZSTD_c_ldmMinMatch" | "zlib.constants.ZSTD_c_ldmBucketSizeLog" | "zlib.constants.ZSTD_c_ldmHashRateLog" | "zlib.constants.ZSTD_c_contentSizeFlag" | "zlib.constants.ZSTD_c_checksumFlag" | "zlib.constants.ZSTD_c_dictIDFlag" | "zlib.constants.ZSTD_c_nbWorkers" | "zlib.constants.ZSTD_c_jobSize" | "zlib.constants.ZSTD_c_overlapLog" | "zlib.constants.ZSTD_d_windowLogMax" | "zlib.constants.ZSTD_CLEVEL_DEFAULT" | "zlib.constants.ZSTD_error_no_error" | "zlib.constants.ZSTD_error_GENERIC" | "zlib.constants.ZSTD_error_prefix_unknown" | "zlib.constants.ZSTD_error_version_unsupported" | "zlib.constants.ZSTD_error_frameParameter_unsupported" | "zlib.constants.ZSTD_error_frameParameter_windowTooLarge" | "zlib.constants.ZSTD_error_corruption_detected" | "zlib.constants.ZSTD_error_checksum_wrong" | "zlib.constants.ZSTD_error_literals_headerWrong" | "zlib.constants.ZSTD_error_dictionary_corrupted" | "zlib.constants.ZSTD_error_dictionary_wrong" | "zlib.constants.ZSTD_error_dictionaryCreation_failed" | "zlib.constants.ZSTD_error_parameter_unsupported" | "zlib.constants.ZSTD_error_parameter_combination_unsupported" | "zlib.constants.ZSTD_error_parameter_outOfBound" | "zlib.constants.ZSTD_error_tableLog_tooLarge" | "zlib.constants.ZSTD_error_maxSymbolValue_tooLarge" | "zlib.constants.ZSTD_error_maxSymbolValue_tooSmall" | "zlib.constants.ZSTD_error_stabilityCondition_notRespected" | "zlib.constants.ZSTD_error_stage_wrong" | "zlib.constants.ZSTD_error_init_missing" | "zlib.constants.ZSTD_error_memory_allocation" | "zlib.constants.ZSTD_error_workSpace_tooSmall" | "zlib.constants.ZSTD_error_dstSize_tooSmall" | "zlib.constants.ZSTD_error_srcSize_wrong" | "zlib.constants.ZSTD_error_dstBuffer_null" | "zlib.constants.ZSTD_error_noForwardProgress_destFull" | "zlib.constants.ZSTD_error_noForwardProgress_inputEmpty" | "zlib.crc32" | "zlib.createBrotliCompress" | "zlib.createBrotliDecompress" | "zlib.createDeflate" | "zlib.createDeflateRaw" | "zlib.createGunzip" | "zlib.createGzip" | "zlib.createInflate" | "zlib.createInflateRaw" | "zlib.createUnzip" | "zlib.createZstdCompress" | "zlib.createZstdDecompress" | "zlib.deflate" | "zlib.deflateRaw" | "zlib.deflateRawSync" | "zlib.deflateSync" | "zlib.gunzip" | "zlib.gunzipSync" | "zlib.gzip" | "zlib.gzipSync" | "zlib.inflate" | "zlib.inflateRaw" | "zlib.inflateRawSync" | "zlib.inflateSync" | "zlib.unzip" | "zlib.unzipSync" | "zlib.zstdCompress" | "zlib.zstdCompressSync" | "zlib.zstdDecompress" | "zlib.zstdDecompressSync" | "zlib.BrotliCompress()" | "zlib.BrotliCompress" | "zlib.BrotliDecompress()" | "zlib.BrotliDecompress" | "zlib.Deflate()" | "zlib.Deflate" | "zlib.DeflateRaw()" | "zlib.DeflateRaw" | "zlib.Gunzip()" | "zlib.Gunzip" | "zlib.Gzip()" | "zlib.Gzip" | "zlib.Inflate()" | "zlib.Inflate" | "zlib.InflateRaw()" | "zlib.InflateRaw" | "zlib.Unzip()" | "zlib.Unzip" | "zlib.ZstdCompress" | "zlib.ZstdDecompress" | "zlib.ZstdOptions" | "zlib" | "import.meta.resolve" | "import.meta.dirname" | "import.meta.filename" | "import.meta.main")[]
+  ignores?: ("__filename" | "__dirname" | "require" | "require.cache" | "require.extensions" | "require.main" | "require.resolve" | "require.resolve.paths" | "module" | "module.children" | "module.exports" | "module.filename" | "module.id" | "module.isPreloading" | "module.loaded" | "module.parent" | "module.path" | "module.paths" | "module.require" | "exports" | "AbortController" | "AbortSignal" | "AbortSignal.abort" | "AbortSignal.timeout" | "AbortSignal.any" | "DOMException" | "FormData" | "Headers" | "MessageEvent" | "Navigator" | "Request" | "Response" | "WebAssembly" | "WebSocket" | "fetch" | "global" | "queueMicrotask" | "navigator" | "navigator.hardwareConcurrency" | "navigator.language" | "navigator.languages" | "navigator.locks" | "navigator.locks.request" | "navigator.locks.query" | "navigator.platform" | "navigator.userAgent" | "structuredClone" | "localStorage" | "sessionStorage" | "Storage" | "Blob" | "new Buffer()" | "Buffer" | "Buffer.alloc" | "Buffer.allocUnsafe" | "Buffer.allocUnsafeSlow" | "Buffer.byteLength" | "Buffer.compare" | "Buffer.concat" | "Buffer.copyBytesFrom" | "Buffer.from" | "Buffer.isBuffer" | "Buffer.isEncoding" | "File" | "atob" | "btoa" | "console" | "console.profile" | "console.profileEnd" | "console.timeStamp" | "console.Console" | "console.assert" | "console.clear" | "console.count" | "console.countReset" | "console.debug" | "console.dir" | "console.dirxml" | "console.error" | "console.group" | "console.groupCollapsed" | "console.groupEnd" | "console.info" | "console.log" | "console.table" | "console.time" | "console.timeEnd" | "console.timeLog" | "console.trace" | "console.warn" | "crypto" | "crypto.subtle" | "crypto.subtle.decapsulateBits" | "crypto.subtle.decapsulateKey" | "crypto.subtle.decrypt" | "crypto.subtle.deriveBits" | "crypto.subtle.deriveKey" | "crypto.subtle.digest" | "crypto.subtle.encapsulateBits" | "crypto.subtle.encapsulateKey" | "crypto.subtle.encrypt" | "crypto.subtle.exportKey" | "crypto.subtle.generateKey" | "crypto.subtle.getPublicKey" | "crypto.subtle.importKey" | "crypto.subtle.sign" | "crypto.subtle.unwrapKey" | "crypto.subtle.verify" | "crypto.subtle.wrapKey" | "crypto.getRandomValues" | "crypto.randomUUID" | "Crypto" | "CryptoKey" | "SubtleCrypto" | "SubtleCrypto.supports" | "CloseEvent" | "CustomEvent" | "Event" | "EventSource" | "EventTarget" | "PerformanceEntry" | "PerformanceMark" | "PerformanceMeasure" | "PerformanceObserver" | "PerformanceObserverEntryList" | "PerformanceResourceTiming" | "performance" | "performance.clearMarks" | "performance.clearMeasures" | "performance.clearResourceTimings" | "performance.eventLoopUtilization" | "performance.getEntries" | "performance.getEntriesByName" | "performance.getEntriesByType" | "performance.mark" | "performance.markResourceTiming" | "performance.measure" | "performance.nodeTiming" | "performance.nodeTiming.bootstrapComplete" | "performance.nodeTiming.environment" | "performance.nodeTiming.idleTime" | "performance.nodeTiming.loopExit" | "performance.nodeTiming.loopStart" | "performance.nodeTiming.nodeStart" | "performance.nodeTiming.uvMetricsInfo" | "performance.nodeTiming.v8Start" | "performance.now" | "performance.onresourcetimingbufferfull" | "performance.setResourceTimingBufferSize" | "performance.timeOrigin" | "performance.timerify" | "performance.toJSON" | "process" | "process.allowedNodeEnvironmentFlags" | "process.availableMemory" | "process.arch" | "process.argv" | "process.argv0" | "process.channel" | "process.config" | "process.connected" | "process.debugPort" | "process.env" | "process.execArgv" | "process.execPath" | "process.execve" | "process.exitCode" | "process.features.cached_builtins" | "process.features.debug" | "process.features.inspector" | "process.features.ipv6" | "process.features.require_module" | "process.features.tls" | "process.features.tls_alpn" | "process.features.tls_ocsp" | "process.features.tls_sni" | "process.features.typescript" | "process.features.uv" | "process.finalization.register" | "process.finalization.registerBeforeExit" | "process.finalization.unregister" | "process.getBuiltinModule" | "process.mainModule" | "process.noDeprecation" | "process.permission" | "process.pid" | "process.platform" | "process.ppid" | "process.ref" | "process.release" | "process.report" | "process.report.excludeEnv" | "process.sourceMapsEnabled" | "process.stdin" | "process.stdin.isRaw" | "process.stdin.isTTY" | "process.stdin.setRawMode" | "process.stdout" | "process.stdout.clearLine" | "process.stdout.clearScreenDown" | "process.stdout.columns" | "process.stdout.cursorTo" | "process.stdout.getColorDepth" | "process.stdout.getWindowSize" | "process.stdout.hasColors" | "process.stdout.isTTY" | "process.stdout.moveCursor" | "process.stdout.rows" | "process.stderr" | "process.stderr.clearLine" | "process.stderr.clearScreenDown" | "process.stderr.columns" | "process.stderr.cursorTo" | "process.stderr.getColorDepth" | "process.stderr.getWindowSize" | "process.stderr.hasColors" | "process.stderr.isTTY" | "process.stderr.moveCursor" | "process.stderr.rows" | "process.threadCpuUsage" | "process.throwDeprecation" | "process.title" | "process.traceDeprecation" | "process.version" | "process.versions" | "process.abort" | "process.chdir" | "process.constrainedMemory" | "process.cpuUsage" | "process.cwd" | "process.disconnect" | "process.dlopen" | "process.emitWarning" | "process.exit" | "process.getActiveResourcesInfo" | "process.getegid" | "process.geteuid" | "process.getgid" | "process.getgroups" | "process.getuid" | "process.hasUncaughtExceptionCaptureCallback" | "process.hrtime" | "process.hrtime.bigint" | "process.initgroups" | "process.kill" | "process.loadEnvFile" | "process.memoryUsage" | "process.rss" | "process.nextTick" | "process.resourceUsage" | "process.send" | "process.setegid" | "process.seteuid" | "process.setgid" | "process.setgroups" | "process.setuid" | "process.setSourceMapsEnabled" | "process.setUncaughtExceptionCaptureCallback" | "process.umask" | "process.unref" | "process.uptime" | "ReadableStream" | "ReadableStream.from" | "ReadableStreamDefaultReader" | "ReadableStreamBYOBReader" | "ReadableStreamDefaultController" | "ReadableByteStreamController" | "ReadableStreamBYOBRequest" | "WritableStream" | "WritableStreamDefaultWriter" | "WritableStreamDefaultController" | "TransformStream" | "TransformStreamDefaultController" | "ByteLengthQueuingStrategy" | "CountQueuingStrategy" | "TextEncoderStream" | "TextDecoderStream" | "CompressionStream" | "DecompressionStream" | "setInterval" | "clearInterval" | "setTimeout" | "clearTimeout" | "setImmediate" | "clearImmediate" | "URL" | "URL.canParse" | "URL.createObjectURL" | "URL.revokeObjectURL" | "URLSearchParams" | "TextDecoder" | "TextEncoder" | "BroadcastChannel" | "MessageChannel" | "MessagePort" | "assert" | "assert.Assert" | "assert.assert" | "assert.deepEqual" | "assert.deepStrictEqual" | "assert.doesNotMatch" | "assert.doesNotReject" | "assert.doesNotThrow" | "assert.equal" | "assert.fail" | "assert.ifError" | "assert.match" | "assert.notDeepEqual" | "assert.notDeepStrictEqual" | "assert.notEqual" | "assert.notStrictEqual" | "assert.ok" | "assert.partialDeepStrictEqual" | "assert.rejects" | "assert.strictEqual" | "assert.throws" | "assert.CallTracker" | "assert.strict" | "assert.strict.Assert" | "assert.strict.assert" | "assert.strict.deepEqual" | "assert.strict.deepStrictEqual" | "assert.strict.doesNotMatch" | "assert.strict.doesNotReject" | "assert.strict.doesNotThrow" | "assert.strict.equal" | "assert.strict.fail" | "assert.strict.ifError" | "assert.strict.match" | "assert.strict.notDeepEqual" | "assert.strict.notDeepStrictEqual" | "assert.strict.notEqual" | "assert.strict.notStrictEqual" | "assert.strict.ok" | "assert.strict.partialDeepStrictEqual" | "assert.strict.rejects" | "assert.strict.strictEqual" | "assert.strict.throws" | "assert.strict.CallTracker" | "assert/strict" | "assert/strict.Assert" | "assert/strict.assert" | "assert/strict.deepEqual" | "assert/strict.deepStrictEqual" | "assert/strict.doesNotMatch" | "assert/strict.doesNotReject" | "assert/strict.doesNotThrow" | "assert/strict.equal" | "assert/strict.fail" | "assert/strict.ifError" | "assert/strict.match" | "assert/strict.notDeepEqual" | "assert/strict.notDeepStrictEqual" | "assert/strict.notEqual" | "assert/strict.notStrictEqual" | "assert/strict.ok" | "assert/strict.partialDeepStrictEqual" | "assert/strict.rejects" | "assert/strict.strictEqual" | "assert/strict.throws" | "assert/strict.CallTracker" | "async_hooks" | "async_hooks.createHook" | "async_hooks.executionAsyncResource" | "async_hooks.executionAsyncId" | "async_hooks.triggerAsyncId" | "async_hooks.AsyncLocalStorage" | "async_hooks.AsyncLocalStorage.bind" | "async_hooks.AsyncLocalStorage.snapshot" | "async_hooks.AsyncResource" | "async_hooks.AsyncResource.bind" | "buffer" | "buffer.constants" | "buffer.INSPECT_MAX_BYTES" | "buffer.kMaxLength" | "buffer.kStringMaxLength" | "buffer.atob" | "buffer.btoa" | "buffer.isAscii" | "buffer.isUtf8" | "buffer.resolveObjectURL" | "buffer.transcode" | "buffer.SlowBuffer" | "buffer.Blob" | "new buffer.Buffer()" | "buffer.Buffer" | "buffer.Buffer.alloc" | "buffer.Buffer.allocUnsafe" | "buffer.Buffer.allocUnsafeSlow" | "buffer.Buffer.byteLength" | "buffer.Buffer.compare" | "buffer.Buffer.concat" | "buffer.Buffer.copyBytesFrom" | "buffer.Buffer.from" | "buffer.Buffer.isBuffer" | "buffer.Buffer.isEncoding" | "buffer.File" | "child_process" | "child_process.exec" | "child_process.execFile" | "child_process.fork" | "child_process.spawn" | "child_process.execFileSync" | "child_process.execSync" | "child_process.spawnSync" | "child_process.ChildProcess" | "cluster" | "cluster.isMaster" | "cluster.isPrimary" | "cluster.isWorker" | "cluster.schedulingPolicy" | "cluster.settings" | "cluster.worker" | "cluster.workers" | "cluster.disconnect" | "cluster.fork" | "cluster.setupMaster" | "cluster.setupPrimary" | "cluster.Worker" | "crypto.constants" | "crypto.fips" | "crypto.webcrypto" | "crypto.webcrypto.subtle" | "crypto.webcrypto.subtle.decapsulateBits" | "crypto.webcrypto.subtle.decapsulateKey" | "crypto.webcrypto.subtle.decrypt" | "crypto.webcrypto.subtle.deriveBits" | "crypto.webcrypto.subtle.deriveKey" | "crypto.webcrypto.subtle.digest" | "crypto.webcrypto.subtle.encapsulateBits" | "crypto.webcrypto.subtle.encapsulateKey" | "crypto.webcrypto.subtle.encrypt" | "crypto.webcrypto.subtle.exportKey" | "crypto.webcrypto.subtle.generateKey" | "crypto.webcrypto.subtle.getPublicKey" | "crypto.webcrypto.subtle.importKey" | "crypto.webcrypto.subtle.sign" | "crypto.webcrypto.subtle.unwrapKey" | "crypto.webcrypto.subtle.verify" | "crypto.webcrypto.subtle.wrapKey" | "crypto.webcrypto.getRandomValues" | "crypto.webcrypto.randomUUID" | "crypto.argon2" | "crypto.argon2Sync" | "crypto.checkPrime" | "crypto.checkPrimeSync" | "crypto.createCipher" | "crypto.createCipheriv" | "crypto.createDecipher" | "crypto.createDecipheriv" | "crypto.createDiffieHellman" | "crypto.createDiffieHellmanGroup" | "crypto.createECDH" | "crypto.createHash" | "crypto.createHmac" | "crypto.createPrivateKey" | "crypto.createPublicKey" | "crypto.createSecretKey" | "crypto.createSign" | "crypto.createVerify" | "crypto.decapsulate" | "crypto.diffieHellman" | "crypto.encapsulate" | "crypto.generateKey" | "crypto.generateKeyPair" | "crypto.generateKeyPairSync" | "crypto.generateKeySync" | "crypto.generatePrime" | "crypto.generatePrimeSync" | "crypto.getCipherInfo" | "crypto.getCiphers" | "crypto.getCurves" | "crypto.getDiffieHellman" | "crypto.getFips" | "crypto.getHashes" | "crypto.hash" | "crypto.hkdf" | "crypto.hkdfSync" | "crypto.pbkdf2" | "crypto.pbkdf2Sync" | "crypto.privateDecrypt" | "crypto.privateEncrypt" | "crypto.publicDecrypt" | "crypto.publicEncrypt" | "crypto.randomBytes" | "crypto.randomFillSync" | "crypto.randomFill" | "crypto.randomInt" | "crypto.scrypt" | "crypto.scryptSync" | "crypto.secureHeapUsed" | "crypto.setEngine" | "crypto.setFips" | "crypto.sign" | "crypto.timingSafeEqual" | "crypto.verify" | "crypto.Certificate" | "crypto.Certificate.exportChallenge" | "crypto.Certificate.exportPublicKey" | "crypto.Certificate.verifySpkac" | "crypto.Cipher" | "crypto.Decipher" | "crypto.DiffieHellman" | "crypto.DiffieHellmanGroup" | "crypto.ECDH" | "crypto.ECDH.convertKey" | "crypto.Hash()" | "new crypto.Hash()" | "crypto.Hash" | "crypto.Hmac()" | "new crypto.Hmac()" | "crypto.Hmac" | "crypto.KeyObject" | "crypto.KeyObject.from" | "crypto.Sign" | "crypto.Verify" | "crypto.X509Certificate" | "dgram" | "dgram.createSocket" | "dgram.Socket" | "diagnostics_channel" | "diagnostics_channel.hasSubscribers" | "diagnostics_channel.channel" | "diagnostics_channel.subscribe" | "diagnostics_channel.unsubscribe" | "diagnostics_channel.tracingChannel" | "diagnostics_channel.Channel" | "diagnostics_channel.TracingChannel" | "dns" | "dns.Resolver" | "dns.getServers" | "dns.lookup" | "dns.lookupService" | "dns.resolve" | "dns.resolve4" | "dns.resolve6" | "dns.resolveAny" | "dns.resolveCname" | "dns.resolveCaa" | "dns.resolveMx" | "dns.resolveNaptr" | "dns.resolveNs" | "dns.resolvePtr" | "dns.resolveSoa" | "dns.resolveSrv" | "dns.resolveTlsa" | "dns.resolveTxt" | "dns.reverse" | "dns.setDefaultResultOrder" | "dns.getDefaultResultOrder" | "dns.setServers" | "dns.promises" | "dns.promises.Resolver" | "dns.promises.cancel" | "dns.promises.getServers" | "dns.promises.lookup" | "dns.promises.lookupService" | "dns.promises.resolve" | "dns.promises.resolve4" | "dns.promises.resolve6" | "dns.promises.resolveAny" | "dns.promises.resolveCaa" | "dns.promises.resolveCname" | "dns.promises.resolveMx" | "dns.promises.resolveNaptr" | "dns.promises.resolveNs" | "dns.promises.resolvePtr" | "dns.promises.resolveSoa" | "dns.promises.resolveSrv" | "dns.promises.resolveTlsa" | "dns.promises.resolveTxt" | "dns.promises.reverse" | "dns.promises.setDefaultResultOrder" | "dns.promises.getDefaultResultOrder" | "dns.promises.setServers" | "dns/promises" | "dns/promises.Resolver" | "dns/promises.cancel" | "dns/promises.getServers" | "dns/promises.lookup" | "dns/promises.lookupService" | "dns/promises.resolve" | "dns/promises.resolve4" | "dns/promises.resolve6" | "dns/promises.resolveAny" | "dns/promises.resolveCaa" | "dns/promises.resolveCname" | "dns/promises.resolveMx" | "dns/promises.resolveNaptr" | "dns/promises.resolveNs" | "dns/promises.resolvePtr" | "dns/promises.resolveSoa" | "dns/promises.resolveSrv" | "dns/promises.resolveTlsa" | "dns/promises.resolveTxt" | "dns/promises.reverse" | "dns/promises.setDefaultResultOrder" | "dns/promises.getDefaultResultOrder" | "dns/promises.setServers" | "domain" | "domain.create" | "domain.Domain" | "events" | "events.Event" | "events.EventTarget" | "events.CustomEvent" | "events.NodeEventTarget" | "events.EventEmitter" | "events.EventEmitter.defaultMaxListeners" | "events.EventEmitter.errorMonitor" | "events.EventEmitter.captureRejections" | "events.EventEmitter.captureRejectionSymbol" | "events.EventEmitter.getEventListeners" | "events.EventEmitter.getMaxListeners" | "events.EventEmitter.once" | "events.EventEmitter.listenerCount" | "events.EventEmitter.on" | "events.EventEmitter.setMaxListeners" | "events.EventEmitter.addAbortListener" | "events.EventEmitterAsyncResource" | "events.EventEmitterAsyncResource.defaultMaxListeners" | "events.EventEmitterAsyncResource.errorMonitor" | "events.EventEmitterAsyncResource.captureRejections" | "events.EventEmitterAsyncResource.captureRejectionSymbol" | "events.EventEmitterAsyncResource.getEventListeners" | "events.EventEmitterAsyncResource.getMaxListeners" | "events.EventEmitterAsyncResource.once" | "events.EventEmitterAsyncResource.listenerCount" | "events.EventEmitterAsyncResource.on" | "events.EventEmitterAsyncResource.setMaxListeners" | "events.EventEmitterAsyncResource.addAbortListener" | "events.defaultMaxListeners" | "events.errorMonitor" | "events.captureRejections" | "events.captureRejectionSymbol" | "events.getEventListeners" | "events.getMaxListeners" | "events.once" | "events.listenerCount" | "events.on" | "events.setMaxListeners" | "events.addAbortListener" | "fs" | "fs.promises" | "fs.promises.FileHandle" | "fs.promises.access" | "fs.promises.appendFile" | "fs.promises.chmod" | "fs.promises.chown" | "fs.promises.constants" | "fs.promises.copyFile" | "fs.promises.cp" | "fs.promises.glob" | "fs.promises.lchmod" | "fs.promises.lchown" | "fs.promises.link" | "fs.promises.lstat" | "fs.promises.lutimes" | "fs.promises.mkdir" | "fs.promises.mkdtemp" | "fs.promises.mkdtempDisposable" | "fs.promises.open" | "fs.promises.opendir" | "fs.promises.readFile" | "fs.promises.readdir" | "fs.promises.readlink" | "fs.promises.realpath" | "fs.promises.rename" | "fs.promises.rm" | "fs.promises.rmdir" | "fs.promises.stat" | "fs.promises.statfs" | "fs.promises.symlink" | "fs.promises.truncate" | "fs.promises.unlink" | "fs.promises.utimes" | "fs.promises.watch" | "fs.promises.writeFile" | "fs.access" | "fs.appendFile" | "fs.chmod" | "fs.chown" | "fs.close" | "fs.copyFile" | "fs.cp" | "fs.createReadStream" | "fs.createWriteStream" | "fs.exists" | "fs.fchmod" | "fs.fchown" | "fs.fdatasync" | "fs.fstat" | "fs.fsync" | "fs.ftruncate" | "fs.futimes" | "fs.glob" | "fs.lchmod" | "fs.lchown" | "fs.link" | "fs.lstat" | "fs.lutimes" | "fs.mkdir" | "fs.mkdtemp" | "fs.native" | "fs.open" | "fs.openAsBlob" | "fs.opendir" | "fs.read" | "fs.readdir" | "fs.readFile" | "fs.readlink" | "fs.readv" | "fs.realpath" | "fs.realpath.native" | "fs.rename" | "fs.rm" | "fs.rmdir" | "fs.stat" | "fs.statfs" | "fs.symlink" | "fs.truncate" | "fs.unlink" | "fs.unwatchFile" | "fs.utimes" | "fs.watch" | "fs.watchFile" | "fs.write" | "fs.writeFile" | "fs.writev" | "fs.accessSync" | "fs.appendFileSync" | "fs.chmodSync" | "fs.chownSync" | "fs.closeSync" | "fs.copyFileSync" | "fs.cpSync" | "fs.existsSync" | "fs.fchmodSync" | "fs.fchownSync" | "fs.fdatasyncSync" | "fs.fstatSync" | "fs.fsyncSync" | "fs.ftruncateSync" | "fs.futimesSync" | "fs.globSync" | "fs.lchmodSync" | "fs.lchownSync" | "fs.linkSync" | "fs.lstatSync" | "fs.lutimesSync" | "fs.mkdirSync" | "fs.mkdtempSync" | "fs.mkdtempDisposableSync" | "fs.opendirSync" | "fs.openSync" | "fs.readdirSync" | "fs.readFileSync" | "fs.readlinkSync" | "fs.readSync" | "fs.readvSync" | "fs.realpathSync" | "fs.realpathSync.native" | "fs.renameSync" | "fs.rmdirSync" | "fs.rmSync" | "fs.statfsSync" | "fs.statSync" | "fs.symlinkSync" | "fs.truncateSync" | "fs.unlinkSync" | "fs.utimesSync" | "fs.writeFileSync" | "fs.writeSync" | "fs.writevSync" | "fs.constants" | "fs.Dir" | "fs.Dirent" | "fs.FSWatcher" | "fs.StatWatcher" | "fs.ReadStream" | "fs.Stats()" | "new fs.Stats()" | "fs.Stats" | "fs.StatFs" | "fs.WriteStream" | "fs.Utf8Stream" | "fs.common_objects" | "fs/promises" | "fs/promises.FileHandle" | "fs/promises.access" | "fs/promises.appendFile" | "fs/promises.chmod" | "fs/promises.chown" | "fs/promises.constants" | "fs/promises.copyFile" | "fs/promises.cp" | "fs/promises.glob" | "fs/promises.lchmod" | "fs/promises.lchown" | "fs/promises.link" | "fs/promises.lstat" | "fs/promises.lutimes" | "fs/promises.mkdir" | "fs/promises.mkdtemp" | "fs/promises.mkdtempDisposable" | "fs/promises.open" | "fs/promises.opendir" | "fs/promises.readFile" | "fs/promises.readdir" | "fs/promises.readlink" | "fs/promises.realpath" | "fs/promises.rename" | "fs/promises.rm" | "fs/promises.rmdir" | "fs/promises.stat" | "fs/promises.statfs" | "fs/promises.symlink" | "fs/promises.truncate" | "fs/promises.unlink" | "fs/promises.utimes" | "fs/promises.watch" | "fs/promises.writeFile" | "http2" | "http2.constants" | "http2.sensitiveHeaders" | "http2.createServer" | "http2.createSecureServer" | "http2.connect" | "http2.getDefaultSettings" | "http2.getPackedSettings" | "http2.getUnpackedSettings" | "http2.performServerHandshake" | "http2.Http2Session" | "http2.ServerHttp2Session" | "http2.ClientHttp2Session" | "http2.Http2Stream" | "http2.ClientHttp2Stream" | "http2.ServerHttp2Stream" | "http2.Http2Server" | "http2.Http2SecureServer" | "http2.Http2ServerRequest" | "http2.Http2ServerResponse" | "http" | "http.METHODS" | "http.STATUS_CODES" | "http.globalAgent" | "http.maxHeaderSize" | "http.createServer" | "http.get" | "http.request" | "http.validateHeaderName" | "http.validateHeaderValue" | "http.setMaxIdleHTTPParsers" | "http.Agent()" | "http.Agent" | "http.ClientRequest()" | "http.ClientRequest" | "http.Server()" | "http.Server" | "http.ServerResponse()" | "http.ServerResponse" | "http.IncomingMessage()" | "http.IncomingMessage" | "http.OutgoingMessage()" | "http.OutgoingMessage" | "http.WebSocket()" | "http.WebSocket" | "_http_agent" | "_http_client" | "_http_common" | "_http_incoming" | "_http_outgoing" | "_http_server" | "https" | "https.globalAgent" | "https.createServer" | "https.get" | "https.request" | "https.Agent" | "https.Server" | "inspector" | "inspector.Session" | "inspector.Network.dataReceived" | "inspector.Network.dataSent" | "inspector.Network.loadingFailed" | "inspector.Network.loadingFinished" | "inspector.Network.requestWillBeSent" | "inspector.Network.responseReceived" | "inspector.Network.webSocketCreated" | "inspector.Network.webSocketHandshakeResponseReceived" | "inspector.Network.webSocketClosed" | "inspector.NetworkResources.put" | "inspector.console" | "inspector.close" | "inspector.open" | "inspector.url" | "inspector.waitForDebugger" | "inspector/promises" | "inspector/promises.Session" | "inspector/promises.Network.dataReceived" | "inspector/promises.Network.dataSent" | "inspector/promises.Network.loadingFailed" | "inspector/promises.Network.loadingFinished" | "inspector/promises.Network.requestWillBeSent" | "inspector/promises.Network.responseReceived" | "inspector/promises.Network.webSocketCreated" | "inspector/promises.Network.webSocketHandshakeResponseReceived" | "inspector/promises.Network.webSocketClosed" | "inspector/promises.NetworkResources.put" | "inspector/promises.console" | "inspector/promises.close" | "inspector/promises.open" | "inspector/promises.url" | "inspector/promises.waitForDebugger" | "module.builtinModules" | "module.constants.compileCacheStatus" | "module.createRequire" | "module.createRequireFromPath" | "module.enableCompileCache" | "module.findPackageJSON" | "module.flushCompileCache" | "module.getCompileCacheDir" | "module.getSourceMapsSupport" | "module.isBuiltin" | "module.registerHooks" | "module.register" | "module.setSourceMapsSupport" | "module.stripTypeScriptTypes" | "module.syncBuiltinESMExports" | "module.findSourceMap" | "module.SourceMap" | "module.Module.builtinModules" | "module.Module.createRequire" | "module.Module.createRequireFromPath" | "module.Module.enableCompileCache" | "module.Module.findPackageJSON" | "module.Module.flushCompileCache" | "module.Module.getCompileCacheDir" | "module.Module.getSourceMapsSupport" | "module.Module.isBuiltin" | "module.Module.registerHooks" | "module.Module.register" | "module.Module.setSourceMapsSupport" | "module.Module.stripTypeScriptTypes" | "module.Module.syncBuiltinESMExports" | "module.Module.findSourceMap" | "module.Module.SourceMap" | "net" | "net.connect" | "net.createConnection" | "net.createServer" | "net.getDefaultAutoSelectFamily" | "net.setDefaultAutoSelectFamily" | "net.getDefaultAutoSelectFamilyAttemptTimeout" | "net.setDefaultAutoSelectFamilyAttemptTimeout" | "net.isIP" | "net.isIPv4" | "net.isIPv6" | "net.BlockList" | "net.BlockList.isBlockList" | "net.SocketAddress" | "net.SocketAddress.parse" | "net.Server" | "net.Socket" | "os" | "os.EOL" | "os.constants" | "os.constants.priority" | "os.devNull" | "os.availableParallelism" | "os.arch" | "os.cpus" | "os.endianness" | "os.freemem" | "os.getPriority" | "os.homedir" | "os.hostname" | "os.loadavg" | "os.machine" | "os.networkInterfaces" | "os.platform" | "os.release" | "os.setPriority" | "os.tmpdir" | "os.totalmem" | "os.type" | "os.uptime" | "os.userInfo" | "os.version" | "path" | "path.posix" | "path.posix.delimiter" | "path.posix.sep" | "path.posix.basename" | "path.posix.dirname" | "path.posix.extname" | "path.posix.format" | "path.posix.matchesGlob" | "path.posix.isAbsolute" | "path.posix.join" | "path.posix.normalize" | "path.posix.parse" | "path.posix.relative" | "path.posix.resolve" | "path.posix.toNamespacedPath" | "path.win32" | "path.win32.delimiter" | "path.win32.sep" | "path.win32.basename" | "path.win32.dirname" | "path.win32.extname" | "path.win32.format" | "path.win32.matchesGlob" | "path.win32.isAbsolute" | "path.win32.join" | "path.win32.normalize" | "path.win32.parse" | "path.win32.relative" | "path.win32.resolve" | "path.win32.toNamespacedPath" | "path.delimiter" | "path.sep" | "path.basename" | "path.dirname" | "path.extname" | "path.format" | "path.matchesGlob" | "path.isAbsolute" | "path.join" | "path.normalize" | "path.parse" | "path.relative" | "path.resolve" | "path.toNamespacedPath" | "path/posix" | "path/posix.delimiter" | "path/posix.sep" | "path/posix.basename" | "path/posix.dirname" | "path/posix.extname" | "path/posix.format" | "path/posix.matchesGlob" | "path/posix.isAbsolute" | "path/posix.join" | "path/posix.normalize" | "path/posix.parse" | "path/posix.relative" | "path/posix.resolve" | "path/posix.toNamespacedPath" | "path/win32" | "path/win32.delimiter" | "path/win32.sep" | "path/win32.basename" | "path/win32.dirname" | "path/win32.extname" | "path/win32.format" | "path/win32.matchesGlob" | "path/win32.isAbsolute" | "path/win32.join" | "path/win32.normalize" | "path/win32.parse" | "path/win32.relative" | "path/win32.resolve" | "path/win32.toNamespacedPath" | "perf_hooks" | "perf_hooks.performance" | "perf_hooks.performance.clearMarks" | "perf_hooks.performance.clearMeasures" | "perf_hooks.performance.clearResourceTimings" | "perf_hooks.performance.eventLoopUtilization" | "perf_hooks.performance.getEntries" | "perf_hooks.performance.getEntriesByName" | "perf_hooks.performance.getEntriesByType" | "perf_hooks.performance.mark" | "perf_hooks.performance.markResourceTiming" | "perf_hooks.performance.measure" | "perf_hooks.performance.nodeTiming" | "perf_hooks.performance.nodeTiming.bootstrapComplete" | "perf_hooks.performance.nodeTiming.environment" | "perf_hooks.performance.nodeTiming.idleTime" | "perf_hooks.performance.nodeTiming.loopExit" | "perf_hooks.performance.nodeTiming.loopStart" | "perf_hooks.performance.nodeTiming.nodeStart" | "perf_hooks.performance.nodeTiming.uvMetricsInfo" | "perf_hooks.performance.nodeTiming.v8Start" | "perf_hooks.performance.now" | "perf_hooks.performance.onresourcetimingbufferfull" | "perf_hooks.performance.setResourceTimingBufferSize" | "perf_hooks.performance.timeOrigin" | "perf_hooks.performance.timerify" | "perf_hooks.performance.toJSON" | "perf_hooks.createHistogram" | "perf_hooks.eventLoopUtilization" | "perf_hooks.timerify" | "perf_hooks.monitorEventLoopDelay" | "perf_hooks.PerformanceEntry" | "perf_hooks.PerformanceMark" | "perf_hooks.PerformanceMeasure" | "perf_hooks.PerformanceNodeEntry" | "perf_hooks.PerformanceNodeTiming" | "perf_hooks.PerformanceResourceTiming" | "perf_hooks.PerformanceObserver" | "perf_hooks.PerformanceObserverEntryList" | "perf_hooks.Histogram" | "perf_hooks.IntervalHistogram" | "perf_hooks.RecordableHistogram" | "punycode" | "punycode.ucs2" | "punycode.version" | "punycode.decode" | "punycode.encode" | "punycode.toASCII" | "punycode.toUnicode" | "querystring" | "querystring.decode" | "querystring.encode" | "querystring.escape" | "querystring.parse" | "querystring.stringify" | "querystring.unescape" | "readline" | "readline.promises" | "readline.promises.createInterface" | "readline.promises.Interface" | "readline.promises.Readline" | "readline.clearLine" | "readline.clearScreenDown" | "readline.createInterface" | "readline.cursorTo" | "readline.moveCursor" | "readline.Interface" | "readline.emitKeypressEvents" | "readline.InterfaceConstructor" | "readline/promises" | "readline/promises.createInterface" | "readline/promises.Interface" | "readline/promises.Readline" | "repl" | "repl.start" | "repl.writer" | "repl.REPLServer()" | "repl.REPLServer" | "repl.REPL_MODE_MAGIC" | "repl.REPL_MODE_SLOPPY" | "repl.REPL_MODE_STRICT" | "repl.Recoverable()" | "repl.Recoverable" | "repl.builtinModules" | "sea" | "sea.isSea" | "sea.getAsset" | "sea.getAssetAsBlob" | "sea.getAssetKeys" | "sea.getRawAsset" | "sea.sea.isSea" | "sea.sea.getAsset" | "sea.sea.getAssetAsBlob" | "sea.sea.getAssetKeys" | "sea.sea.getRawAsset" | "stream" | "stream.promises" | "stream.promises.pipeline" | "stream.promises.finished" | "stream.finished" | "stream.pipeline" | "stream.compose" | "stream.duplexPair" | "stream.Readable" | "stream.Readable.from" | "stream.Readable.isDisturbed" | "stream.Readable.fromWeb" | "stream.Readable.toWeb" | "stream.Writable" | "stream.Writable.fromWeb" | "stream.Writable.toWeb" | "stream.Duplex" | "stream.Duplex.from" | "stream.Duplex.fromWeb" | "stream.Duplex.toWeb" | "stream.Transform" | "stream.isErrored" | "stream.isReadable" | "stream.addAbortSignal" | "stream.getDefaultHighWaterMark" | "stream.setDefaultHighWaterMark" | "stream/promises.pipeline" | "stream/promises.finished" | "stream/web" | "stream/web.ReadableStream" | "stream/web.ReadableStream.from" | "stream/web.ReadableStreamDefaultReader" | "stream/web.ReadableStreamBYOBReader" | "stream/web.ReadableStreamDefaultController" | "stream/web.ReadableByteStreamController" | "stream/web.ReadableStreamBYOBRequest" | "stream/web.WritableStream" | "stream/web.WritableStreamDefaultWriter" | "stream/web.WritableStreamDefaultController" | "stream/web.TransformStream" | "stream/web.TransformStreamDefaultController" | "stream/web.ByteLengthQueuingStrategy" | "stream/web.CountQueuingStrategy" | "stream/web.TextEncoderStream" | "stream/web.TextDecoderStream" | "stream/web.CompressionStream" | "stream/web.DecompressionStream" | "stream/consumers" | "stream/consumers.arrayBuffer" | "stream/consumers.blob" | "stream/consumers.buffer" | "stream/consumers.json" | "stream/consumers.text" | "_stream_duplex" | "_stream_passthrough" | "_stream_readable" | "_stream_transform" | "_stream_wrap" | "_stream_writable" | "string_decoder" | "string_decoder.StringDecoder" | "sqlite" | "sqlite.constants" | "sqlite.constants.SQLITE_CHANGESET_OMIT" | "sqlite.constants.SQLITE_CHANGESET_REPLACE" | "sqlite.constants.SQLITE_CHANGESET_ABORT" | "sqlite.backup" | "sqlite.DatabaseSync" | "sqlite.Session" | "sqlite.StatementSync" | "sqlite.SQLITE_CHANGESET_OMIT" | "sqlite.SQLITE_CHANGESET_REPLACE" | "sqlite.SQLITE_CHANGESET_ABORT" | "test" | "test.after" | "test.afterEach" | "test.assert" | "test.assert.register" | "test.before" | "test.beforeEach" | "test.describe" | "test.describe.only" | "test.describe.skip" | "test.describe.todo" | "test.it" | "test.it.only" | "test.it.skip" | "test.it.todo" | "test.mock" | "test.mock.fn" | "test.mock.getter" | "test.mock.method" | "test.mock.module" | "test.mock.property" | "test.mock.reset" | "test.mock.restoreAll" | "test.mock.setter" | "test.mock.timers" | "test.mock.timers.enable" | "test.mock.timers.reset" | "test.mock.timers.tick" | "test.only" | "test.run" | "test.snapshot" | "test.snapshot.setDefaultSnapshotSerializers" | "test.snapshot.setResolveSnapshotPath" | "test.skip" | "test.suite" | "test.test" | "test.test.only" | "test.test.skip" | "test.test.todo" | "test.todo" | "timers" | "timers.Immediate" | "timers.Timeout" | "timers.setImmediate" | "timers.clearImmediate" | "timers.setInterval" | "timers.clearInterval" | "timers.setTimeout" | "timers.clearTimeout" | "timers.promises" | "timers.promises.setTimeout" | "timers.promises.setImmediate" | "timers.promises.setInterval" | "timers.promises.scheduler.wait" | "timers.promises.scheduler.yield" | "timers/promises" | "timers/promises.setTimeout" | "timers/promises.setImmediate" | "timers/promises.setInterval" | "timers/promises.scheduler.wait" | "timers/promises.scheduler.yield" | "tls" | "tls.checkServerIdentity" | "tls.connect" | "tls.createSecureContext" | "tls.createSecurePair" | "tls.createServer" | "tls.CryptoStream" | "tls.DEFAULT_CIPHERS" | "tls.DEFAULT_ECDH_CURVE" | "tls.DEFAULT_MAX_VERSION" | "tls.DEFAULT_MIN_VERSION" | "tls.getCACertificates" | "tls.getCiphers" | "tls.rootCertificates" | "tls.SecureContext" | "tls.SecurePair" | "tls.Server" | "tls.setDefaultCACertificates" | "tls.TLSSocket" | "_tls_common" | "_tls_wrap" | "trace_events" | "trace_events.createTracing" | "trace_events.getEnabledCategories" | "tty" | "tty.isatty" | "tty.ReadStream" | "tty.WriteStream" | "url" | "url.domainToASCII" | "url.domainToUnicode" | "url.fileURLToPath" | "url.format" | "url.pathToFileURL" | "url.urlToHttpOptions" | "url.URL" | "url.URL.canParse" | "url.URL.createObjectURL" | "url.URL.revokeObjectURL" | "url.URLPattern" | "url.URLSearchParams" | "url.Url" | "util.promisify" | "util.promisify.custom" | "util.callbackify" | "util.debuglog" | "util.debug" | "util.deprecate" | "util.diff" | "util.format" | "util.formatWithOptions" | "util.getCallSite" | "util.getCallSites" | "util.getSystemErrorName" | "util.getSystemErrorMap" | "util.getSystemErrorMessage" | "util.inherits" | "util.inspect" | "util.inspect.custom" | "util.inspect.defaultOptions" | "util.inspect.replDefaults" | "util.isDeepStrictEqual" | "util.parseArgs" | "util.parseEnv" | "util.setTraceSigInt" | "util.stripVTControlCharacters" | "util.styleText" | "util.toUSVString" | "util.transferableAbortController" | "util.transferableAbortSignal" | "util.aborted" | "util.MIMEType" | "util.MIMEParams" | "util.TextDecoder" | "util.TextEncoder" | "util.types" | "util.types.isExternal" | "util.types.isDate" | "util.types.isArgumentsObject" | "util.types.isBigIntObject" | "util.types.isBooleanObject" | "util.types.isNumberObject" | "util.types.isStringObject" | "util.types.isSymbolObject" | "util.types.isNativeError" | "util.types.isRegExp" | "util.types.isAsyncFunction" | "util.types.isGeneratorFunction" | "util.types.isGeneratorObject" | "util.types.isPromise" | "util.types.isMap" | "util.types.isSet" | "util.types.isMapIterator" | "util.types.isSetIterator" | "util.types.isWeakMap" | "util.types.isWeakSet" | "util.types.isArrayBuffer" | "util.types.isDataView" | "util.types.isSharedArrayBuffer" | "util.types.isProxy" | "util.types.isModuleNamespaceObject" | "util.types.isAnyArrayBuffer" | "util.types.isBoxedPrimitive" | "util.types.isArrayBufferView" | "util.types.isTypedArray" | "util.types.isUint8Array" | "util.types.isUint8ClampedArray" | "util.types.isUint16Array" | "util.types.isUint32Array" | "util.types.isInt8Array" | "util.types.isInt16Array" | "util.types.isInt32Array" | "util.types.isFloat16Array" | "util.types.isFloat32Array" | "util.types.isFloat64Array" | "util.types.isBigInt64Array" | "util.types.isBigUint64Array" | "util.types.isKeyObject" | "util.types.isCryptoKey" | "util.types.isWebAssemblyCompiledModule" | "util._extend" | "util.isArray" | "util.isBoolean" | "util.isBuffer" | "util.isDate" | "util.isError" | "util.isFunction" | "util.isNull" | "util.isNullOrUndefined" | "util.isNumber" | "util.isObject" | "util.isPrimitive" | "util.isRegExp" | "util.isString" | "util.isSymbol" | "util.isUndefined" | "util.log" | "util" | "util/types" | "util/types.isExternal" | "util/types.isDate" | "util/types.isArgumentsObject" | "util/types.isBigIntObject" | "util/types.isBooleanObject" | "util/types.isNumberObject" | "util/types.isStringObject" | "util/types.isSymbolObject" | "util/types.isNativeError" | "util/types.isRegExp" | "util/types.isAsyncFunction" | "util/types.isGeneratorFunction" | "util/types.isGeneratorObject" | "util/types.isPromise" | "util/types.isMap" | "util/types.isSet" | "util/types.isMapIterator" | "util/types.isSetIterator" | "util/types.isWeakMap" | "util/types.isWeakSet" | "util/types.isArrayBuffer" | "util/types.isDataView" | "util/types.isSharedArrayBuffer" | "util/types.isProxy" | "util/types.isModuleNamespaceObject" | "util/types.isAnyArrayBuffer" | "util/types.isBoxedPrimitive" | "util/types.isArrayBufferView" | "util/types.isTypedArray" | "util/types.isUint8Array" | "util/types.isUint8ClampedArray" | "util/types.isUint16Array" | "util/types.isUint32Array" | "util/types.isInt8Array" | "util/types.isInt16Array" | "util/types.isInt32Array" | "util/types.isFloat16Array" | "util/types.isFloat32Array" | "util/types.isFloat64Array" | "util/types.isBigInt64Array" | "util/types.isBigUint64Array" | "util/types.isKeyObject" | "util/types.isCryptoKey" | "util/types.isWebAssemblyCompiledModule" | "v8" | "v8.serialize" | "v8.deserialize" | "v8.Serializer" | "v8.Deserializer" | "v8.DefaultSerializer" | "v8.DefaultDeserializer" | "v8.promiseHooks" | "v8.promiseHooks.onInit" | "v8.promiseHooks.onSettled" | "v8.promiseHooks.onBefore" | "v8.promiseHooks.onAfter" | "v8.promiseHooks.createHook" | "v8.startupSnapshot" | "v8.startupSnapshot.addSerializeCallback" | "v8.startupSnapshot.addDeserializeCallback" | "v8.startupSnapshot.setDeserializeMainFunction" | "v8.startupSnapshot.isBuildingSnapshot" | "v8.cachedDataVersionTag" | "v8.getHeapCodeStatistics" | "v8.getHeapSnapshot" | "v8.getHeapSpaceStatistics" | "v8.getHeapStatistics" | "v8.isStringOneByteRepresentation" | "v8.queryObjects" | "v8.setFlagsFromString" | "v8.stopCoverage" | "v8.takeCoverage" | "v8.writeHeapSnapshot" | "v8.setHeapSnapshotNearHeapLimit" | "v8.GCProfiler" | "v8.startCpuProfile" | "vm.constants" | "vm.compileFunction" | "vm.createContext" | "vm.isContext" | "vm.measureMemory" | "vm.runInContext" | "vm.runInNewContext" | "vm.runInThisContext" | "vm.Script" | "vm.Module" | "vm.SourceTextModule" | "vm.SyntheticModule" | "vm" | "wasi.WASI" | "wasi" | "worker_threads" | "worker_threads.parentPort" | "worker_threads.resourceLimits" | "worker_threads.SHARE_ENV" | "worker_threads.threadId" | "worker_threads.threadName" | "worker_threads.workerData" | "worker_threads.getEnvironmentData" | "worker_threads.getHeapStatistics" | "worker_threads.markAsUncloneable" | "worker_threads.markAsUntransferable" | "worker_threads.isInternalThread" | "worker_threads.isMainThread" | "worker_threads.isMarkedAsUntransferable" | "worker_threads.locks" | "worker_threads.locks.request" | "worker_threads.locks.query" | "worker_threads.moveMessagePortToContext" | "worker_threads.postMessageToThread" | "worker_threads.receiveMessageOnPort" | "worker_threads.setEnvironmentData" | "worker_threads.BroadcastChannel" | "worker_threads.MessageChannel" | "worker_threads.MessagePort" | "worker_threads.Worker" | "zlib.brotliCompress" | "zlib.brotliCompressSync" | "zlib.brotliDecompress" | "zlib.brotliDecompressSync" | "zlib.constants" | "zlib.constants.ZSTD_e_continue" | "zlib.constants.ZSTD_e_flush" | "zlib.constants.ZSTD_e_end" | "zlib.constants.ZSTD_fast" | "zlib.constants.ZSTD_dfast" | "zlib.constants.ZSTD_greedy" | "zlib.constants.ZSTD_lazy" | "zlib.constants.ZSTD_lazy2" | "zlib.constants.ZSTD_btlazy2" | "zlib.constants.ZSTD_btopt" | "zlib.constants.ZSTD_btultra" | "zlib.constants.ZSTD_btultra2" | "zlib.constants.ZSTD_c_compressionLevel" | "zlib.constants.ZSTD_c_windowLog" | "zlib.constants.ZSTD_c_hashLog" | "zlib.constants.ZSTD_c_chainLog" | "zlib.constants.ZSTD_c_searchLog" | "zlib.constants.ZSTD_c_minMatch" | "zlib.constants.ZSTD_c_targetLength" | "zlib.constants.ZSTD_c_strategy" | "zlib.constants.ZSTD_c_enableLongDistanceMatching" | "zlib.constants.ZSTD_c_ldmHashLog" | "zlib.constants.ZSTD_c_ldmMinMatch" | "zlib.constants.ZSTD_c_ldmBucketSizeLog" | "zlib.constants.ZSTD_c_ldmHashRateLog" | "zlib.constants.ZSTD_c_contentSizeFlag" | "zlib.constants.ZSTD_c_checksumFlag" | "zlib.constants.ZSTD_c_dictIDFlag" | "zlib.constants.ZSTD_c_nbWorkers" | "zlib.constants.ZSTD_c_jobSize" | "zlib.constants.ZSTD_c_overlapLog" | "zlib.constants.ZSTD_d_windowLogMax" | "zlib.constants.ZSTD_CLEVEL_DEFAULT" | "zlib.constants.ZSTD_error_no_error" | "zlib.constants.ZSTD_error_GENERIC" | "zlib.constants.ZSTD_error_prefix_unknown" | "zlib.constants.ZSTD_error_version_unsupported" | "zlib.constants.ZSTD_error_frameParameter_unsupported" | "zlib.constants.ZSTD_error_frameParameter_windowTooLarge" | "zlib.constants.ZSTD_error_corruption_detected" | "zlib.constants.ZSTD_error_checksum_wrong" | "zlib.constants.ZSTD_error_literals_headerWrong" | "zlib.constants.ZSTD_error_dictionary_corrupted" | "zlib.constants.ZSTD_error_dictionary_wrong" | "zlib.constants.ZSTD_error_dictionaryCreation_failed" | "zlib.constants.ZSTD_error_parameter_unsupported" | "zlib.constants.ZSTD_error_parameter_combination_unsupported" | "zlib.constants.ZSTD_error_parameter_outOfBound" | "zlib.constants.ZSTD_error_tableLog_tooLarge" | "zlib.constants.ZSTD_error_maxSymbolValue_tooLarge" | "zlib.constants.ZSTD_error_maxSymbolValue_tooSmall" | "zlib.constants.ZSTD_error_stabilityCondition_notRespected" | "zlib.constants.ZSTD_error_stage_wrong" | "zlib.constants.ZSTD_error_init_missing" | "zlib.constants.ZSTD_error_memory_allocation" | "zlib.constants.ZSTD_error_workSpace_tooSmall" | "zlib.constants.ZSTD_error_dstSize_tooSmall" | "zlib.constants.ZSTD_error_srcSize_wrong" | "zlib.constants.ZSTD_error_dstBuffer_null" | "zlib.constants.ZSTD_error_noForwardProgress_destFull" | "zlib.constants.ZSTD_error_noForwardProgress_inputEmpty" | "zlib.crc32" | "zlib.createBrotliCompress" | "zlib.createBrotliDecompress" | "zlib.createDeflate" | "zlib.createDeflateRaw" | "zlib.createGunzip" | "zlib.createGzip" | "zlib.createInflate" | "zlib.createInflateRaw" | "zlib.createUnzip" | "zlib.createZstdCompress" | "zlib.createZstdDecompress" | "zlib.deflate" | "zlib.deflateRaw" | "zlib.deflateRawSync" | "zlib.deflateSync" | "zlib.gunzip" | "zlib.gunzipSync" | "zlib.gzip" | "zlib.gzipSync" | "zlib.inflate" | "zlib.inflateRaw" | "zlib.inflateRawSync" | "zlib.inflateSync" | "zlib.unzip" | "zlib.unzipSync" | "zlib.zstdCompress" | "zlib.zstdCompressSync" | "zlib.zstdDecompress" | "zlib.zstdDecompressSync" | "zlib.BrotliCompress()" | "zlib.BrotliCompress" | "zlib.BrotliDecompress()" | "zlib.BrotliDecompress" | "zlib.Deflate()" | "zlib.Deflate" | "zlib.DeflateRaw()" | "zlib.DeflateRaw" | "zlib.Gunzip()" | "zlib.Gunzip" | "zlib.Gzip()" | "zlib.Gzip" | "zlib.Inflate()" | "zlib.Inflate" | "zlib.InflateRaw()" | "zlib.InflateRaw" | "zlib.Unzip()" | "zlib.Unzip" | "zlib.ZstdCompress" | "zlib.ZstdDecompress" | "zlib.ZstdOptions" | "zlib" | "import.meta.resolve" | "import.meta.dirname" | "import.meta.filename" | "import.meta.main")[]
 }]
 // ----- node/prefer-global/buffer -----
 type NodePreferGlobalBuffer = []|[("always" | "never")]
@@ -12585,22 +15593,26 @@ type NodePreferGlobalUrlSearchParams = []|[("always" | "never")]
 type NodePreferNodeProtocol = []|[{
   version?: string
 }]
+// ----- node/prefer-process-get-builtin-module -----
+type NodePreferProcessGetBuiltinModule = []|[{
+  version?: string
+}]
 // ----- node/shebang -----
 type NodeShebang = []|[{
   convertPath?: ({
-    
+
     [k: string]: [string, string]
   } | [{
-    
+
     include: [string, ...(string)[]]
     exclude?: string[]
-    
+
     replace: [string, string]
   }, ...({
-    
+
     include: [string, ...(string)[]]
     exclude?: string[]
-    
+
     replace: [string, string]
   })[]])
   ignoreUnpublished?: boolean
@@ -12709,4055 +15721,4630 @@ type PaddingLineBetweenStatements = {
 }[]
 // ----- perfectionist/sort-array-includes -----
 type PerfectionistSortArrayIncludes = {
-  
+
   fallbackSort?: {
-    
+
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     order?: ("asc" | "desc")
   }
-  
+
   type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-  
+
   specialCharacters?: ("remove" | "trim" | "keep")
-  
+
   ignoreCase?: boolean
-  
+
   alphabet?: string
-  
+
   locales?: (string | string[])
-  
+
   order?: ("asc" | "desc")
-  
+
   customGroups?: ({
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     anyOf: [{
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       selector?: "literal"
     }, ...({
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       selector?: "literal"
     })[]]
   } | {
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     elementNamePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
-    
+
     selector?: "literal"
   })[]
   newlinesInside?: (("ignore" | number) | "newlinesBetween")
-  
+
   groups?: (string | [string, ...(string)[]] | {
     newlinesBetween: ("ignore" | number)
   } | {
     group: (string | [string, ...(string)[]])
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     commentAbove?: string
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
   })[]
   newlinesBetween?: ("ignore" | number)
-  
+
   useConfigurationIf?: {
-    
+
     allNamesMatchPattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
+
+    matchesAstSelector?: string
   }
-  
+
   partitionByComment?: (boolean | (({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)[] | ({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)) | {
-    
+
     block?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
-    
+
     line?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
   })
-  
+
   partitionByNewLine?: boolean
 }[]
-// ----- perfectionist/sort-classes -----
-type PerfectionistSortClasses = []|[{
-  
+// ----- perfectionist/sort-arrays -----
+type PerfectionistSortArrays = [{
+
   fallbackSort?: {
-    
+
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     order?: ("asc" | "desc")
   }
-  
+
   type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-  
+
   specialCharacters?: ("remove" | "trim" | "keep")
-  
+
   ignoreCase?: boolean
-  
+
   alphabet?: string
-  
+
   locales?: (string | string[])
-  
+
   order?: ("asc" | "desc")
-  
+
   customGroups?: ({
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     anyOf: [{
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
-      modifiers?: ("async" | "protected" | "private" | "public" | "static" | "abstract" | "override" | "readonly" | "decorated" | "declare" | "optional")[]
-      
-      selector?: ("accessor-property" | "index-signature" | "constructor" | "static-block" | "get-method" | "set-method" | "function-property" | "property" | "method")
-      
-      decoratorNamePattern?: (({
-        
-        pattern: string
-        
-        flags?: string
-      } | string)[] | ({
-        
-        pattern: string
-        
-        flags?: string
-      } | string))
-      
-      elementValuePattern?: (({
-        
-        pattern: string
-        
-        flags?: string
-      } | string)[] | ({
-        
-        pattern: string
-        
-        flags?: string
-      } | string))
+
+      selector?: "literal"
     }, ...({
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
-      modifiers?: ("async" | "protected" | "private" | "public" | "static" | "abstract" | "override" | "readonly" | "decorated" | "declare" | "optional")[]
-      
-      selector?: ("accessor-property" | "index-signature" | "constructor" | "static-block" | "get-method" | "set-method" | "function-property" | "property" | "method")
-      
-      decoratorNamePattern?: (({
-        
-        pattern: string
-        
-        flags?: string
-      } | string)[] | ({
-        
-        pattern: string
-        
-        flags?: string
-      } | string))
-      
-      elementValuePattern?: (({
-        
-        pattern: string
-        
-        flags?: string
-      } | string)[] | ({
-        
-        pattern: string
-        
-        flags?: string
-      } | string))
+
+      selector?: "literal"
     })[]]
   } | {
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     elementNamePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
-    
-    modifiers?: ("async" | "protected" | "private" | "public" | "static" | "abstract" | "override" | "readonly" | "decorated" | "declare" | "optional")[]
-    
-    selector?: ("accessor-property" | "index-signature" | "constructor" | "static-block" | "get-method" | "set-method" | "function-property" | "property" | "method")
-    
-    decoratorNamePattern?: (({
-      
-      pattern: string
-      
-      flags?: string
-    } | string)[] | ({
-      
-      pattern: string
-      
-      flags?: string
-    } | string))
-    
-    elementValuePattern?: (({
-      
-      pattern: string
-      
-      flags?: string
-    } | string)[] | ({
-      
-      pattern: string
-      
-      flags?: string
-    } | string))
+
+    selector?: "literal"
   })[]
   newlinesInside?: (("ignore" | number) | "newlinesBetween")
-  
+
   groups?: (string | [string, ...(string)[]] | {
     newlinesBetween: ("ignore" | number)
   } | {
     group: (string | [string, ...(string)[]])
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     commentAbove?: string
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
   })[]
   newlinesBetween?: ("ignore" | number)
-  
-  useExperimentalDependencyDetection?: boolean
-  
-  ignoreCallbackDependenciesPatterns?: (({
-    
+
+  useConfigurationIf: {
+
+    allNamesMatchPattern?: (({
+
+      pattern: string
+
+      flags?: string
+    } | string)[] | ({
+
+      pattern: string
+
+      flags?: string
+    } | string))
+
+    matchesAstSelector?: string
+  }
+
+  partitionByComment?: (boolean | (({
+
     pattern: string
-    
+
     flags?: string
   } | string)[] | ({
-    
+
     pattern: string
-    
+
+    flags?: string
+  } | string)) | {
+
+    block?: (boolean | (({
+
+      pattern: string
+
+      flags?: string
+    } | string)[] | ({
+
+      pattern: string
+
+      flags?: string
+    } | string)))
+
+    line?: (boolean | (({
+
+      pattern: string
+
+      flags?: string
+    } | string)[] | ({
+
+      pattern: string
+
+      flags?: string
+    } | string)))
+  })
+
+  partitionByNewLine?: boolean
+}, ...({
+
+  fallbackSort?: {
+
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+
+    order?: ("asc" | "desc")
+  }
+
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+
+  specialCharacters?: ("remove" | "trim" | "keep")
+
+  ignoreCase?: boolean
+
+  alphabet?: string
+
+  locales?: (string | string[])
+
+  order?: ("asc" | "desc")
+
+  customGroups?: ({
+
+    fallbackSort?: {
+
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+
+      order?: ("asc" | "desc")
+    }
+
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+
+    groupName: string
+    newlinesInside?: ("ignore" | number)
+
+    order?: ("asc" | "desc")
+
+    anyOf: [{
+
+      elementNamePattern?: (({
+
+        pattern: string
+
+        flags?: string
+      } | string)[] | ({
+
+        pattern: string
+
+        flags?: string
+      } | string))
+
+      selector?: "literal"
+    }, ...({
+
+      elementNamePattern?: (({
+
+        pattern: string
+
+        flags?: string
+      } | string)[] | ({
+
+        pattern: string
+
+        flags?: string
+      } | string))
+
+      selector?: "literal"
+    })[]]
+  } | {
+
+    fallbackSort?: {
+
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+
+      order?: ("asc" | "desc")
+    }
+
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+
+    groupName: string
+    newlinesInside?: ("ignore" | number)
+
+    order?: ("asc" | "desc")
+
+    elementNamePattern?: (({
+
+      pattern: string
+
+      flags?: string
+    } | string)[] | ({
+
+      pattern: string
+
+      flags?: string
+    } | string))
+
+    selector?: "literal"
+  })[]
+  newlinesInside?: (("ignore" | number) | "newlinesBetween")
+
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number)
+  } | {
+    group: (string | [string, ...(string)[]])
+
+    fallbackSort?: {
+
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+
+      order?: ("asc" | "desc")
+    }
+
+    commentAbove?: string
+
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+    newlinesInside?: ("ignore" | number)
+
+    order?: ("asc" | "desc")
+  })[]
+  newlinesBetween?: ("ignore" | number)
+
+  useConfigurationIf: {
+
+    allNamesMatchPattern?: (({
+
+      pattern: string
+
+      flags?: string
+    } | string)[] | ({
+
+      pattern: string
+
+      flags?: string
+    } | string))
+
+    matchesAstSelector?: string
+  }
+
+  partitionByComment?: (boolean | (({
+
+    pattern: string
+
+    flags?: string
+  } | string)[] | ({
+
+    pattern: string
+
+    flags?: string
+  } | string)) | {
+
+    block?: (boolean | (({
+
+      pattern: string
+
+      flags?: string
+    } | string)[] | ({
+
+      pattern: string
+
+      flags?: string
+    } | string)))
+
+    line?: (boolean | (({
+
+      pattern: string
+
+      flags?: string
+    } | string)[] | ({
+
+      pattern: string
+
+      flags?: string
+    } | string)))
+  })
+
+  partitionByNewLine?: boolean
+})[]]
+// ----- perfectionist/sort-classes -----
+type PerfectionistSortClasses = {
+
+  fallbackSort?: {
+
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+
+    order?: ("asc" | "desc")
+  }
+
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+
+  specialCharacters?: ("remove" | "trim" | "keep")
+
+  ignoreCase?: boolean
+
+  alphabet?: string
+
+  locales?: (string | string[])
+
+  order?: ("asc" | "desc")
+
+  customGroups?: ({
+
+    fallbackSort?: {
+
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+
+      order?: ("asc" | "desc")
+    }
+
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+
+    groupName: string
+    newlinesInside?: ("ignore" | number)
+
+    order?: ("asc" | "desc")
+
+    anyOf: [{
+
+      elementNamePattern?: (({
+
+        pattern: string
+
+        flags?: string
+      } | string)[] | ({
+
+        pattern: string
+
+        flags?: string
+      } | string))
+
+      modifiers?: ("async" | "protected" | "private" | "public" | "static" | "abstract" | "override" | "readonly" | "decorated" | "declare" | "optional")[]
+
+      selector?: ("accessor-property" | "index-signature" | "constructor" | "static-block" | "get-method" | "set-method" | "function-property" | "property" | "method")
+
+      decoratorNamePattern?: (({
+
+        pattern: string
+
+        flags?: string
+      } | string)[] | ({
+
+        pattern: string
+
+        flags?: string
+      } | string))
+
+      elementValuePattern?: (({
+
+        pattern: string
+
+        flags?: string
+      } | string)[] | ({
+
+        pattern: string
+
+        flags?: string
+      } | string))
+    }, ...({
+
+      elementNamePattern?: (({
+
+        pattern: string
+
+        flags?: string
+      } | string)[] | ({
+
+        pattern: string
+
+        flags?: string
+      } | string))
+
+      modifiers?: ("async" | "protected" | "private" | "public" | "static" | "abstract" | "override" | "readonly" | "decorated" | "declare" | "optional")[]
+
+      selector?: ("accessor-property" | "index-signature" | "constructor" | "static-block" | "get-method" | "set-method" | "function-property" | "property" | "method")
+
+      decoratorNamePattern?: (({
+
+        pattern: string
+
+        flags?: string
+      } | string)[] | ({
+
+        pattern: string
+
+        flags?: string
+      } | string))
+
+      elementValuePattern?: (({
+
+        pattern: string
+
+        flags?: string
+      } | string)[] | ({
+
+        pattern: string
+
+        flags?: string
+      } | string))
+    })[]]
+  } | {
+
+    fallbackSort?: {
+
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+
+      order?: ("asc" | "desc")
+    }
+
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+
+    groupName: string
+    newlinesInside?: ("ignore" | number)
+
+    order?: ("asc" | "desc")
+
+    elementNamePattern?: (({
+
+      pattern: string
+
+      flags?: string
+    } | string)[] | ({
+
+      pattern: string
+
+      flags?: string
+    } | string))
+
+    modifiers?: ("async" | "protected" | "private" | "public" | "static" | "abstract" | "override" | "readonly" | "decorated" | "declare" | "optional")[]
+
+    selector?: ("accessor-property" | "index-signature" | "constructor" | "static-block" | "get-method" | "set-method" | "function-property" | "property" | "method")
+
+    decoratorNamePattern?: (({
+
+      pattern: string
+
+      flags?: string
+    } | string)[] | ({
+
+      pattern: string
+
+      flags?: string
+    } | string))
+
+    elementValuePattern?: (({
+
+      pattern: string
+
+      flags?: string
+    } | string)[] | ({
+
+      pattern: string
+
+      flags?: string
+    } | string))
+  })[]
+  newlinesInside?: (("ignore" | number) | "newlinesBetween")
+
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number)
+  } | {
+    group: (string | [string, ...(string)[]])
+
+    fallbackSort?: {
+
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+
+      order?: ("asc" | "desc")
+    }
+
+    commentAbove?: string
+
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
+    newlinesInside?: ("ignore" | number)
+
+    order?: ("asc" | "desc")
+  })[]
+  newlinesBetween?: ("ignore" | number)
+
+  useConfigurationIf?: {
+
+    allNamesMatchPattern?: (({
+
+      pattern: string
+
+      flags?: string
+    } | string)[] | ({
+
+      pattern: string
+
+      flags?: string
+    } | string))
+
+    matchesAstSelector?: string
+  }
+
+  useExperimentalDependencyDetection?: boolean
+  newlinesBetweenOverloadSignatures?: ("ignore" | number)
+
+  ignoreCallbackDependenciesPatterns?: (({
+
+    pattern: string
+
+    flags?: string
+  } | string)[] | ({
+
+    pattern: string
+
     flags?: string
   } | string))
-  
+
   partitionByComment?: (boolean | (({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)[] | ({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)) | {
-    
+
     block?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
-    
+
     line?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
   })
-  
+
   partitionByNewLine?: boolean
-}]
+}[]
 // ----- perfectionist/sort-decorators -----
 type PerfectionistSortDecorators = {
-  
+
   fallbackSort?: {
-    
+
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     order?: ("asc" | "desc")
   }
-  
+
   type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-  
+
   specialCharacters?: ("remove" | "trim" | "keep")
-  
+
   ignoreCase?: boolean
-  
+
   alphabet?: string
-  
+
   locales?: (string | string[])
-  
+
   order?: ("asc" | "desc")
-  
+
   customGroups?: ({
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     anyOf: [{
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
     }, ...({
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
     })[]]
   } | {
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     elementNamePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
   })[]
   newlinesInside?: (("ignore" | number) | "newlinesBetween")
-  
+
   groups?: (string | [string, ...(string)[]] | {
     newlinesBetween: ("ignore" | number)
   } | {
     group: (string | [string, ...(string)[]])
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     commentAbove?: string
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
   })[]
   newlinesBetween?: ("ignore" | number)
-  
+
   sortOnParameters?: boolean
-  
+
   sortOnProperties?: boolean
-  
+
   sortOnAccessors?: boolean
-  
+
   sortOnMethods?: boolean
-  
+
   sortOnClasses?: boolean
-  
+
   partitionByComment?: (boolean | (({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)[] | ({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)) | {
-    
+
     block?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
-    
+
     line?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
   })
-  
+
   partitionByNewLine?: boolean
 }[]
 // ----- perfectionist/sort-enums -----
-type PerfectionistSortEnums = []|[{
-  
+type PerfectionistSortEnums = {
+
   fallbackSort?: {
-    
+
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     order?: ("asc" | "desc")
   }
-  
+
   type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-  
+
   specialCharacters?: ("remove" | "trim" | "keep")
-  
+
   ignoreCase?: boolean
-  
+
   alphabet?: string
-  
+
   locales?: (string | string[])
-  
+
   order?: ("asc" | "desc")
-  
+
   customGroups?: ({
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     anyOf: [{
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       elementValuePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
     }, ...({
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       elementValuePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
     })[]]
   } | {
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     elementNamePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
-    
+
     elementValuePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
   })[]
   newlinesInside?: (("ignore" | number) | "newlinesBetween")
-  
+
   groups?: (string | [string, ...(string)[]] | {
     newlinesBetween: ("ignore" | number)
   } | {
     group: (string | [string, ...(string)[]])
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     commentAbove?: string
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
   })[]
   newlinesBetween?: ("ignore" | number)
-  
+
   sortByValue?: ("always" | "ifNumericEnum" | "never")
-  
+
+  useConfigurationIf?: {
+
+    allNamesMatchPattern?: (({
+
+      pattern: string
+
+      flags?: string
+    } | string)[] | ({
+
+      pattern: string
+
+      flags?: string
+    } | string))
+
+    matchesAstSelector?: string
+  }
+
   useExperimentalDependencyDetection?: boolean
-  
+
   partitionByComment?: (boolean | (({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)[] | ({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)) | {
-    
+
     block?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
-    
+
     line?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
   })
-  
+
   partitionByNewLine?: boolean
-}]
+}[]
 // ----- perfectionist/sort-export-attributes -----
 type PerfectionistSortExportAttributes = {
-  
+
   fallbackSort?: {
-    
+
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     order?: ("asc" | "desc")
   }
-  
+
   type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-  
+
   specialCharacters?: ("remove" | "trim" | "keep")
-  
+
   ignoreCase?: boolean
-  
+
   alphabet?: string
-  
+
   locales?: (string | string[])
-  
+
   order?: ("asc" | "desc")
-  
+
   customGroups?: ({
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     anyOf: [{
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
     }, ...({
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
     })[]]
   } | {
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     elementNamePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
   })[]
   newlinesInside?: (("ignore" | number) | "newlinesBetween")
-  
+
   groups?: (string | [string, ...(string)[]] | {
     newlinesBetween: ("ignore" | number)
   } | {
     group: (string | [string, ...(string)[]])
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     commentAbove?: string
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
   })[]
   newlinesBetween?: ("ignore" | number)
-  
+
+  useConfigurationIf?: {
+
+    allNamesMatchPattern?: (({
+
+      pattern: string
+
+      flags?: string
+    } | string)[] | ({
+
+      pattern: string
+
+      flags?: string
+    } | string))
+
+    matchesAstSelector?: string
+  }
+
   partitionByComment?: (boolean | (({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)[] | ({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)) | {
-    
+
     block?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
-    
+
     line?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
   })
-  
+
   partitionByNewLine?: boolean
 }[]
 // ----- perfectionist/sort-exports -----
 type PerfectionistSortExports = {
-  
+
   fallbackSort?: {
-    
+
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     order?: ("asc" | "desc")
   }
-  
+
   type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-  
+
   specialCharacters?: ("remove" | "trim" | "keep")
-  
+
   ignoreCase?: boolean
-  
+
   alphabet?: string
-  
+
   locales?: (string | string[])
-  
+
   order?: ("asc" | "desc")
-  
+
   customGroups?: ({
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     anyOf: [{
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       modifiers?: ("value" | "type" | "named" | "wildcard" | "multiline" | "singleline")[]
-      
+
       selector?: "export"
     }, ...({
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       modifiers?: ("value" | "type" | "named" | "wildcard" | "multiline" | "singleline")[]
-      
+
       selector?: "export"
     })[]]
   } | {
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     elementNamePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
-    
+
     modifiers?: ("value" | "type" | "named" | "wildcard" | "multiline" | "singleline")[]
-    
+
     selector?: "export"
   })[]
   newlinesInside?: (("ignore" | number) | "newlinesBetween")
-  
+
   groups?: (string | [string, ...(string)[]] | {
     newlinesBetween: ("ignore" | number)
   } | {
     group: (string | [string, ...(string)[]])
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     commentAbove?: string
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
   })[]
   newlinesBetween?: ("ignore" | number)
-  
+
   partitionByComment?: (boolean | (({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)[] | ({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)) | {
-    
+
     block?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
-    
+
     line?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
   })
-  
+
   partitionByNewLine?: boolean
 }[]
 // ----- perfectionist/sort-heritage-clauses -----
 type PerfectionistSortHeritageClauses = {
-  
+
   fallbackSort?: {
-    
+
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     order?: ("asc" | "desc")
   }
-  
+
   type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-  
+
   specialCharacters?: ("remove" | "trim" | "keep")
-  
+
   ignoreCase?: boolean
-  
+
   alphabet?: string
-  
+
   locales?: (string | string[])
-  
+
   order?: ("asc" | "desc")
-  
+
   customGroups?: ({
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     anyOf: [{
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
     }, ...({
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
     })[]]
   } | {
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     elementNamePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
   })[]
   newlinesInside?: (("ignore" | number) | "newlinesBetween")
-  
+
   groups?: (string | [string, ...(string)[]] | {
     newlinesBetween: ("ignore" | number)
   } | {
     group: (string | [string, ...(string)[]])
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     commentAbove?: string
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
   })[]
   newlinesBetween?: ("ignore" | number)
-  
+
+  useConfigurationIf?: {
+
+    allNamesMatchPattern?: (({
+
+      pattern: string
+
+      flags?: string
+    } | string)[] | ({
+
+      pattern: string
+
+      flags?: string
+    } | string))
+
+    matchesAstSelector?: string
+  }
+
   partitionByNewLine?: boolean
-  
+
   partitionByComment?: (boolean | (({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)[] | ({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)) | {
-    
+
     block?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
-    
+
     line?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
   })
 }[]
 // ----- perfectionist/sort-import-attributes -----
 type PerfectionistSortImportAttributes = {
-  
+
   fallbackSort?: {
-    
+
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     order?: ("asc" | "desc")
   }
-  
+
   type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-  
+
   specialCharacters?: ("remove" | "trim" | "keep")
-  
+
   ignoreCase?: boolean
-  
+
   alphabet?: string
-  
+
   locales?: (string | string[])
-  
+
   order?: ("asc" | "desc")
-  
+
   customGroups?: ({
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     anyOf: [{
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
     }, ...({
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
     })[]]
   } | {
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     elementNamePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
   })[]
   newlinesInside?: (("ignore" | number) | "newlinesBetween")
-  
+
   groups?: (string | [string, ...(string)[]] | {
     newlinesBetween: ("ignore" | number)
   } | {
     group: (string | [string, ...(string)[]])
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     commentAbove?: string
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
   })[]
   newlinesBetween?: ("ignore" | number)
-  
+
+  useConfigurationIf?: {
+
+    allNamesMatchPattern?: (({
+
+      pattern: string
+
+      flags?: string
+    } | string)[] | ({
+
+      pattern: string
+
+      flags?: string
+    } | string))
+
+    matchesAstSelector?: string
+  }
+
   partitionByComment?: (boolean | (({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)[] | ({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)) | {
-    
+
     block?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
-    
+
     line?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
   })
-  
+
   partitionByNewLine?: boolean
 }[]
 // ----- perfectionist/sort-imports -----
 type PerfectionistSortImports = {
-  
+
   fallbackSort?: {
-    
+
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "type-import-first")
-    
+
     order?: ("asc" | "desc")
     sortBy?: ("specifier" | "path")
   }
-  
+
   type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "type-import-first")
-  
+
   specialCharacters?: ("remove" | "trim" | "keep")
-  
+
   ignoreCase?: boolean
-  
+
   alphabet?: string
-  
+
   locales?: (string | string[])
-  
+
   order?: ("asc" | "desc")
   sortBy?: ("specifier" | "path")
-  
+
   customGroups?: ({
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "type-import-first")
-      
+
       order?: ("asc" | "desc")
       sortBy?: ("specifier" | "path")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "type-import-first")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
     sortBy?: ("specifier" | "path")
-    
+
     anyOf: [{
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       modifiers?: ("default" | "multiline" | "named" | "require" | "side-effect" | "singleline" | "ts-equals" | "type" | "value" | "wildcard")[]
-      
+
       selector?: ("side-effect-style" | "tsconfig-path" | "side-effect" | "external" | "internal" | "builtin" | "sibling" | "subpath" | "import" | "parent" | "index" | "style" | "type")
     }, ...({
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       modifiers?: ("default" | "multiline" | "named" | "require" | "side-effect" | "singleline" | "ts-equals" | "type" | "value" | "wildcard")[]
-      
+
       selector?: ("side-effect-style" | "tsconfig-path" | "side-effect" | "external" | "internal" | "builtin" | "sibling" | "subpath" | "import" | "parent" | "index" | "style" | "type")
     })[]]
   } | {
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "type-import-first")
-      
+
       order?: ("asc" | "desc")
       sortBy?: ("specifier" | "path")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "type-import-first")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
     sortBy?: ("specifier" | "path")
-    
+
     elementNamePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
-    
+
     modifiers?: ("default" | "multiline" | "named" | "require" | "side-effect" | "singleline" | "ts-equals" | "type" | "value" | "wildcard")[]
-    
+
     selector?: ("side-effect-style" | "tsconfig-path" | "side-effect" | "external" | "internal" | "builtin" | "sibling" | "subpath" | "import" | "parent" | "index" | "style" | "type")
   })[]
   newlinesInside?: (("ignore" | number) | "newlinesBetween")
-  
+
   groups?: (string | [string, ...(string)[]] | {
     newlinesBetween: ("ignore" | number)
   } | {
     group: (string | [string, ...(string)[]])
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "type-import-first")
-      
+
       order?: ("asc" | "desc")
       sortBy?: ("specifier" | "path")
     }
-    
+
     commentAbove?: string
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "type-import-first")
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
     sortBy?: ("specifier" | "path")
   })[]
   newlinesBetween?: ("ignore" | number)
-  tsconfig?: {
-    
-    rootDir: string
-    
-    filename?: string
-  }
-  
+
   maxLineLength?: number
-  
+
   sortSideEffects?: boolean
-  
+
   environment?: ("node" | "bun")
-  
+
   useExperimentalDependencyDetection?: boolean
-  
+
   partitionByComment?: (boolean | (({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)[] | ({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)) | {
-    
+
     block?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
-    
+
     line?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
   })
-  
+
   partitionByNewLine?: boolean
-  
+
   internalPattern?: (({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)[] | ({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string))
+  tsconfig?: {
+
+    rootDir: string
+
+    filename?: string
+  }
 }[]
 // ----- perfectionist/sort-interfaces -----
 type PerfectionistSortInterfaces = {
-  
+
   fallbackSort?: {
-    
+
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     order?: ("asc" | "desc")
     sortBy?: ("name" | "value")
   }
-  
+
   type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-  
+
   specialCharacters?: ("remove" | "trim" | "keep")
-  
+
   ignoreCase?: boolean
-  
+
   alphabet?: string
-  
+
   locales?: (string | string[])
-  
+
   order?: ("asc" | "desc")
   sortBy?: ("name" | "value")
-  
+
   customGroups?: ({
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
       sortBy?: ("name" | "value")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
     sortBy?: ("name" | "value")
-    
+
     anyOf: [{
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       modifiers?: ("optional" | "required" | "multiline")[]
-      
+
       selector?: ("index-signature" | "member" | "method" | "property")
-      
+
       elementValuePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
     }, ...({
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       modifiers?: ("optional" | "required" | "multiline")[]
-      
+
       selector?: ("index-signature" | "member" | "method" | "property")
-      
+
       elementValuePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
     })[]]
   } | {
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
       sortBy?: ("name" | "value")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
     sortBy?: ("name" | "value")
-    
+
     elementNamePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
-    
+
     modifiers?: ("optional" | "required" | "multiline")[]
-    
+
     selector?: ("index-signature" | "member" | "method" | "property")
-    
+
     elementValuePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
   })[]
   newlinesInside?: (("ignore" | number) | "newlinesBetween")
-  
+
   groups?: (string | [string, ...(string)[]] | {
     newlinesBetween: ("ignore" | number)
   } | {
     group: (string | [string, ...(string)[]])
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
       sortBy?: ("name" | "value")
     }
-    
+
     commentAbove?: string
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
     sortBy?: ("name" | "value")
   })[]
   newlinesBetween?: ("ignore" | number)
-  
+
   useConfigurationIf?: {
-    
+
     allNamesMatchPattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
-    
+
     hasNumericKeysOnly?: boolean
-    
+
     declarationCommentMatchesPattern?: (({
       scope?: ("shallow" | "deep")
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
       scope?: ("shallow" | "deep")
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
-    
+
+    matchesAstSelector?: string
+
     declarationMatchesPattern?: (({
       scope?: ("shallow" | "deep")
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
       scope?: ("shallow" | "deep")
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
   }
-  
+
   partitionByComment?: (boolean | (({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)[] | ({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)) | {
-    
+
     block?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
-    
+
     line?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
   })
-  
+
   partitionByNewLine?: boolean
 }[]
 // ----- perfectionist/sort-intersection-types -----
 type PerfectionistSortIntersectionTypes = {
-  
+
   fallbackSort?: {
-    
+
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     order?: ("asc" | "desc")
   }
-  
+
   type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-  
+
   specialCharacters?: ("remove" | "trim" | "keep")
-  
+
   ignoreCase?: boolean
-  
+
   alphabet?: string
-  
+
   locales?: (string | string[])
-  
+
   order?: ("asc" | "desc")
-  
+
   customGroups?: ({
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     anyOf: [{
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       selector?: ("intersection" | "conditional" | "function" | "operator" | "keyword" | "literal" | "nullish" | "import" | "object" | "named" | "tuple" | "union")
     }, ...({
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       selector?: ("intersection" | "conditional" | "function" | "operator" | "keyword" | "literal" | "nullish" | "import" | "object" | "named" | "tuple" | "union")
     })[]]
   } | {
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     elementNamePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
-    
+
     selector?: ("intersection" | "conditional" | "function" | "operator" | "keyword" | "literal" | "nullish" | "import" | "object" | "named" | "tuple" | "union")
   })[]
   newlinesInside?: (("ignore" | number) | "newlinesBetween")
-  
+
   groups?: (string | [string, ...(string)[]] | {
     newlinesBetween: ("ignore" | number)
   } | {
     group: (string | [string, ...(string)[]])
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     commentAbove?: string
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
   })[]
   newlinesBetween?: ("ignore" | number)
-  
+
+  useConfigurationIf?: {
+
+    allNamesMatchPattern?: (({
+
+      pattern: string
+
+      flags?: string
+    } | string)[] | ({
+
+      pattern: string
+
+      flags?: string
+    } | string))
+
+    matchesAstSelector?: string
+  }
+
   partitionByComment?: (boolean | (({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)[] | ({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)) | {
-    
+
     block?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
-    
+
     line?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
   })
-  
+
   partitionByNewLine?: boolean
+  ignoreCallableTypes?: boolean
 }[]
 // ----- perfectionist/sort-jsx-props -----
 type PerfectionistSortJsxProps = {
-  
+
   fallbackSort?: {
-    
+
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     order?: ("asc" | "desc")
   }
-  
+
   type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-  
+
   specialCharacters?: ("remove" | "trim" | "keep")
-  
+
   ignoreCase?: boolean
-  
+
   alphabet?: string
-  
+
   locales?: (string | string[])
-  
+
   order?: ("asc" | "desc")
-  
+
   customGroups?: ({
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     anyOf: [{
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       modifiers?: ("shorthand" | "multiline")[]
-      
+
       selector?: "prop"
-      
+
       elementValuePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
     }, ...({
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       modifiers?: ("shorthand" | "multiline")[]
-      
+
       selector?: "prop"
-      
+
       elementValuePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
     })[]]
   } | {
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     elementNamePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
-    
+
     modifiers?: ("shorthand" | "multiline")[]
-    
+
     selector?: "prop"
-    
+
     elementValuePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
   })[]
   newlinesInside?: (("ignore" | number) | "newlinesBetween")
-  
+
   groups?: (string | [string, ...(string)[]] | {
     newlinesBetween: ("ignore" | number)
   } | {
     group: (string | [string, ...(string)[]])
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     commentAbove?: string
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
   })[]
   newlinesBetween?: ("ignore" | number)
-  
+
   useConfigurationIf?: {
-    
+
     allNamesMatchPattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
-    
+
+    matchesAstSelector?: string
+
     tagMatchesPattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
   }
-  
+
   partitionByNewLine?: boolean
 }[]
 // ----- perfectionist/sort-maps -----
 type PerfectionistSortMaps = {
-  
+
   fallbackSort?: {
-    
+
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     order?: ("asc" | "desc")
   }
-  
+
   type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-  
+
   specialCharacters?: ("remove" | "trim" | "keep")
-  
+
   ignoreCase?: boolean
-  
+
   alphabet?: string
-  
+
   locales?: (string | string[])
-  
+
   order?: ("asc" | "desc")
-  
+
   customGroups?: ({
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     anyOf: [{
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
     }, ...({
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
     })[]]
   } | {
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     elementNamePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
   })[]
   newlinesInside?: (("ignore" | number) | "newlinesBetween")
-  
+
   groups?: (string | [string, ...(string)[]] | {
     newlinesBetween: ("ignore" | number)
   } | {
     group: (string | [string, ...(string)[]])
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     commentAbove?: string
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
   })[]
   newlinesBetween?: ("ignore" | number)
-  
+
   useConfigurationIf?: {
-    
+
     allNamesMatchPattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
+
+    matchesAstSelector?: string
   }
-  
+
   partitionByComment?: (boolean | (({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)[] | ({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)) | {
-    
+
     block?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
-    
+
     line?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
   })
-  
+
   partitionByNewLine?: boolean
 }[]
 // ----- perfectionist/sort-modules -----
 type PerfectionistSortModules = []|[{
-  
+
   fallbackSort?: {
-    
+
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "usage")
-    
+
     order?: ("asc" | "desc")
   }
-  
+
   type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "usage")
-  
+
   specialCharacters?: ("remove" | "trim" | "keep")
-  
+
   ignoreCase?: boolean
-  
+
   alphabet?: string
-  
+
   locales?: (string | string[])
-  
+
   order?: ("asc" | "desc")
-  
+
   customGroups?: ({
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "usage")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "usage")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     anyOf: [{
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       modifiers?: ("async" | "declare" | "decorated" | "default" | "export")[]
-      
+
       selector?: ("enum" | "function" | "interface" | "type" | "class")
-      
+
       decoratorNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
     }, ...({
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       modifiers?: ("async" | "declare" | "decorated" | "default" | "export")[]
-      
+
       selector?: ("enum" | "function" | "interface" | "type" | "class")
-      
+
       decoratorNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
     })[]]
   } | {
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "usage")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "usage")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     elementNamePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
-    
+
     modifiers?: ("async" | "declare" | "decorated" | "default" | "export")[]
-    
+
     selector?: ("enum" | "function" | "interface" | "type" | "class")
-    
+
     decoratorNamePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
   })[]
   newlinesInside?: (("ignore" | number) | "newlinesBetween")
-  
+
   groups?: (string | [string, ...(string)[]] | {
     newlinesBetween: ("ignore" | number)
   } | {
     group: (string | [string, ...(string)[]])
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "usage")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     commentAbove?: string
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "usage")
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
   })[]
   newlinesBetween?: ("ignore" | number)
-  
+
+  additionalModuleBlockTypes?: string[]
+
   useExperimentalDependencyDetection?: boolean
-  
+  newlinesBetweenOverloadSignatures?: ("ignore" | number)
+
   partitionByComment?: (boolean | (({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)[] | ({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)) | {
-    
+
     block?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
-    
+
     line?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
   })
-  
+
   partitionByNewLine?: boolean
+  tsconfig?: {
+
+    rootDir: string
+
+    filename?: string
+  }
 }]
 // ----- perfectionist/sort-named-exports -----
 type PerfectionistSortNamedExports = {
-  
+
   fallbackSort?: {
-    
+
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     order?: ("asc" | "desc")
   }
-  
+
   type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-  
+
   specialCharacters?: ("remove" | "trim" | "keep")
-  
+
   ignoreCase?: boolean
-  
+
   alphabet?: string
-  
+
   locales?: (string | string[])
-  
+
   order?: ("asc" | "desc")
-  
+
   customGroups?: ({
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     anyOf: [{
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       modifiers?: ("value" | "type")[]
-      
+
       selector?: "export"
     }, ...({
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       modifiers?: ("value" | "type")[]
-      
+
       selector?: "export"
     })[]]
   } | {
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     elementNamePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
-    
+
     modifiers?: ("value" | "type")[]
-    
+
     selector?: "export"
   })[]
   newlinesInside?: (("ignore" | number) | "newlinesBetween")
-  
+
   groups?: (string | [string, ...(string)[]] | {
     newlinesBetween: ("ignore" | number)
   } | {
     group: (string | [string, ...(string)[]])
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     commentAbove?: string
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
   })[]
   newlinesBetween?: ("ignore" | number)
-  
+
+  useConfigurationIf?: {
+
+    allNamesMatchPattern?: (({
+
+      pattern: string
+
+      flags?: string
+    } | string)[] | ({
+
+      pattern: string
+
+      flags?: string
+    } | string))
+
+    matchesAstSelector?: string
+  }
+
   ignoreAlias?: boolean
-  
+
   partitionByComment?: (boolean | (({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)[] | ({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)) | {
-    
+
     block?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
-    
+
     line?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
   })
-  
+
   partitionByNewLine?: boolean
 }[]
 // ----- perfectionist/sort-named-imports -----
 type PerfectionistSortNamedImports = {
-  
+
   fallbackSort?: {
-    
+
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     order?: ("asc" | "desc")
   }
-  
+
   type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-  
+
   specialCharacters?: ("remove" | "trim" | "keep")
-  
+
   ignoreCase?: boolean
-  
+
   alphabet?: string
-  
+
   locales?: (string | string[])
-  
+
   order?: ("asc" | "desc")
-  
+
   customGroups?: ({
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     anyOf: [{
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       modifiers?: ("value" | "type")[]
-      
+
       selector?: "import"
     }, ...({
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       modifiers?: ("value" | "type")[]
-      
+
       selector?: "import"
     })[]]
   } | {
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     elementNamePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
-    
+
     modifiers?: ("value" | "type")[]
-    
+
     selector?: "import"
   })[]
   newlinesInside?: (("ignore" | number) | "newlinesBetween")
-  
+
   groups?: (string | [string, ...(string)[]] | {
     newlinesBetween: ("ignore" | number)
   } | {
     group: (string | [string, ...(string)[]])
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     commentAbove?: string
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
   })[]
   newlinesBetween?: ("ignore" | number)
-  
+
+  useConfigurationIf?: {
+
+    allNamesMatchPattern?: (({
+
+      pattern: string
+
+      flags?: string
+    } | string)[] | ({
+
+      pattern: string
+
+      flags?: string
+    } | string))
+
+    matchesAstSelector?: string
+  }
+
   ignoreAlias?: boolean
-  
+
   partitionByComment?: (boolean | (({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)[] | ({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)) | {
-    
+
     block?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
-    
+
     line?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
   })
-  
+
   partitionByNewLine?: boolean
 }[]
 // ----- perfectionist/sort-object-types -----
 type PerfectionistSortObjectTypes = {
-  
+
   fallbackSort?: {
-    
+
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     order?: ("asc" | "desc")
     sortBy?: ("name" | "value")
   }
-  
+
   type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-  
+
   specialCharacters?: ("remove" | "trim" | "keep")
-  
+
   ignoreCase?: boolean
-  
+
   alphabet?: string
-  
+
   locales?: (string | string[])
-  
+
   order?: ("asc" | "desc")
   sortBy?: ("name" | "value")
-  
+
   customGroups?: ({
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
       sortBy?: ("name" | "value")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
     sortBy?: ("name" | "value")
-    
+
     anyOf: [{
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       modifiers?: ("optional" | "required" | "multiline")[]
-      
+
       selector?: ("index-signature" | "member" | "method" | "property")
-      
+
       elementValuePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
     }, ...({
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       modifiers?: ("optional" | "required" | "multiline")[]
-      
+
       selector?: ("index-signature" | "member" | "method" | "property")
-      
+
       elementValuePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
     })[]]
   } | {
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
       sortBy?: ("name" | "value")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
     sortBy?: ("name" | "value")
-    
+
     elementNamePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
-    
+
     modifiers?: ("optional" | "required" | "multiline")[]
-    
+
     selector?: ("index-signature" | "member" | "method" | "property")
-    
+
     elementValuePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
   })[]
   newlinesInside?: (("ignore" | number) | "newlinesBetween")
-  
+
   groups?: (string | [string, ...(string)[]] | {
     newlinesBetween: ("ignore" | number)
   } | {
     group: (string | [string, ...(string)[]])
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
       sortBy?: ("name" | "value")
     }
-    
+
     commentAbove?: string
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
     sortBy?: ("name" | "value")
   })[]
   newlinesBetween?: ("ignore" | number)
-  
+
   useConfigurationIf?: {
-    
+
     allNamesMatchPattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
-    
+
     hasNumericKeysOnly?: boolean
-    
+
     declarationCommentMatchesPattern?: (({
       scope?: ("shallow" | "deep")
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
       scope?: ("shallow" | "deep")
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
-    
+
+    matchesAstSelector?: string
+
     declarationMatchesPattern?: (({
       scope?: ("shallow" | "deep")
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
       scope?: ("shallow" | "deep")
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
   }
-  
+
   partitionByComment?: (boolean | (({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)[] | ({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)) | {
-    
+
     block?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
-    
+
     line?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
   })
-  
+
   partitionByNewLine?: boolean
 }[]
 // ----- perfectionist/sort-objects -----
 type PerfectionistSortObjects = {
-  
+
   fallbackSort?: {
-    
+
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     order?: ("asc" | "desc")
     sortBy?: ("name" | "value")
   }
-  
+
   type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-  
+
   specialCharacters?: ("remove" | "trim" | "keep")
-  
+
   ignoreCase?: boolean
-  
+
   alphabet?: string
-  
+
   locales?: (string | string[])
-  
+
   order?: ("asc" | "desc")
   sortBy?: ("name" | "value")
-  
+
   customGroups?: ({
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
       sortBy?: ("name" | "value")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
     sortBy?: ("name" | "value")
-    
+
     anyOf: [{
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       modifiers?: ("multiline")[]
-      
+
       selector?: ("member" | "method" | "property")
-      
+
       elementValuePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
     }, ...({
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       modifiers?: ("multiline")[]
-      
+
       selector?: ("member" | "method" | "property")
-      
+
       elementValuePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
     })[]]
   } | {
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
       sortBy?: ("name" | "value")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
     sortBy?: ("name" | "value")
-    
+
     elementNamePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
-    
+
     modifiers?: ("multiline")[]
-    
+
     selector?: ("member" | "method" | "property")
-    
+
     elementValuePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
   })[]
   newlinesInside?: (("ignore" | number) | "newlinesBetween")
-  
+
   groups?: (string | [string, ...(string)[]] | {
     newlinesBetween: ("ignore" | number)
   } | {
     group: (string | [string, ...(string)[]])
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
       sortBy?: ("name" | "value")
     }
-    
+
     commentAbove?: string
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
     sortBy?: ("name" | "value")
   })[]
   newlinesBetween?: ("ignore" | number)
-  
+
   useConfigurationIf?: {
-    
+
     allNamesMatchPattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
-    
+
     objectType?: ("destructured" | "non-destructured")
-    
+
     hasNumericKeysOnly?: boolean
-    
+
     declarationCommentMatchesPattern?: (({
       scope?: ("shallow" | "deep")
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
       scope?: ("shallow" | "deep")
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
-    
+
     callingFunctionNamePattern?: (({
       scope?: ("shallow" | "deep")
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
       scope?: ("shallow" | "deep")
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
-    
+
+    matchesAstSelector?: string
+
     declarationMatchesPattern?: (({
       scope?: ("shallow" | "deep")
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
       scope?: ("shallow" | "deep")
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
   }
-  
+
+  partitionByComputedKey?: boolean
+
   styledComponents?: boolean
-  
+
   useExperimentalDependencyDetection?: boolean
-  
-  partitionByComment?: (boolean | (({
-    
+
+  ignoreCallbackDependenciesPatterns?: (({
+
     pattern: string
-    
+
     flags?: string
   } | string)[] | ({
-    
+
     pattern: string
-    
+
+    flags?: string
+  } | string))
+
+  partitionByComment?: (boolean | (({
+
+    pattern: string
+
+    flags?: string
+  } | string)[] | ({
+
+    pattern: string
+
     flags?: string
   } | string)) | {
-    
+
     block?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
-    
+
     line?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
   })
-  
+
   partitionByNewLine?: boolean
 }[]
 // ----- perfectionist/sort-sets -----
 type PerfectionistSortSets = {
-  
+
   fallbackSort?: {
-    
+
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     order?: ("asc" | "desc")
   }
-  
+
   type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-  
+
   specialCharacters?: ("remove" | "trim" | "keep")
-  
+
   ignoreCase?: boolean
-  
+
   alphabet?: string
-  
+
   locales?: (string | string[])
-  
+
   order?: ("asc" | "desc")
-  
+
   customGroups?: ({
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     anyOf: [{
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       selector?: "literal"
     }, ...({
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       selector?: "literal"
     })[]]
   } | {
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     elementNamePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
-    
+
     selector?: "literal"
   })[]
   newlinesInside?: (("ignore" | number) | "newlinesBetween")
-  
+
   groups?: (string | [string, ...(string)[]] | {
     newlinesBetween: ("ignore" | number)
   } | {
     group: (string | [string, ...(string)[]])
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     commentAbove?: string
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
   })[]
   newlinesBetween?: ("ignore" | number)
-  
+
   useConfigurationIf?: {
-    
+
     allNamesMatchPattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
+
+    matchesAstSelector?: string
   }
-  
+
   partitionByComment?: (boolean | (({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)[] | ({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)) | {
-    
+
     block?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
-    
+
     line?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
   })
-  
+
   partitionByNewLine?: boolean
 }[]
 // ----- perfectionist/sort-switch-case -----
 type PerfectionistSortSwitchCase = []|[{
-  
+
   fallbackSort?: {
-    
+
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     order?: ("asc" | "desc")
   }
-  
+
   type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-  
+
   specialCharacters?: ("remove" | "trim" | "keep")
-  
+
   ignoreCase?: boolean
-  
+
   alphabet?: string
-  
+
   locales?: (string | string[])
-  
+
   order?: ("asc" | "desc")
 }]
 // ----- perfectionist/sort-union-types -----
 type PerfectionistSortUnionTypes = {
-  
+
   fallbackSort?: {
-    
+
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     order?: ("asc" | "desc")
   }
-  
+
   type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-  
+
   specialCharacters?: ("remove" | "trim" | "keep")
-  
+
   ignoreCase?: boolean
-  
+
   alphabet?: string
-  
+
   locales?: (string | string[])
-  
+
   order?: ("asc" | "desc")
-  
+
   customGroups?: ({
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     anyOf: [{
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       selector?: ("intersection" | "conditional" | "function" | "operator" | "keyword" | "literal" | "nullish" | "import" | "object" | "named" | "tuple" | "union")
     }, ...({
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       selector?: ("intersection" | "conditional" | "function" | "operator" | "keyword" | "literal" | "nullish" | "import" | "object" | "named" | "tuple" | "union")
     })[]]
   } | {
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     elementNamePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
-    
+
     selector?: ("intersection" | "conditional" | "function" | "operator" | "keyword" | "literal" | "nullish" | "import" | "object" | "named" | "tuple" | "union")
   })[]
   newlinesInside?: (("ignore" | number) | "newlinesBetween")
-  
+
   groups?: (string | [string, ...(string)[]] | {
     newlinesBetween: ("ignore" | number)
   } | {
     group: (string | [string, ...(string)[]])
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     commentAbove?: string
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
   })[]
   newlinesBetween?: ("ignore" | number)
-  
+
+  useConfigurationIf?: {
+
+    allNamesMatchPattern?: (({
+
+      pattern: string
+
+      flags?: string
+    } | string)[] | ({
+
+      pattern: string
+
+      flags?: string
+    } | string))
+
+    matchesAstSelector?: string
+  }
+
   partitionByComment?: (boolean | (({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)[] | ({
-    
+
     pattern: string
-    
+
     flags?: string
   } | string)) | {
-    
+
     block?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
-    
+
     line?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
   })
-  
+
   partitionByNewLine?: boolean
 }[]
 // ----- perfectionist/sort-variable-declarations -----
-type PerfectionistSortVariableDeclarations = []|[{
-  
+type PerfectionistSortVariableDeclarations = {
+
   fallbackSort?: {
-    
+
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     order?: ("asc" | "desc")
   }
-  
+
   type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-  
+
   specialCharacters?: ("remove" | "trim" | "keep")
-  
+
   ignoreCase?: boolean
-  
+
   alphabet?: string
-  
+
   locales?: (string | string[])
-  
+
   order?: ("asc" | "desc")
-  
+
   customGroups?: ({
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     anyOf: [{
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       selector?: ("initialized" | "uninitialized")
     }, ...({
-      
+
       elementNamePattern?: (({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string)[] | ({
-        
+
         pattern: string
-        
+
         flags?: string
       } | string))
-      
+
       selector?: ("initialized" | "uninitialized")
     })[]]
   } | {
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-    
+
     groupName: string
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
-    
+
     elementNamePattern?: (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string))
-    
+
     selector?: ("initialized" | "uninitialized")
   })[]
   newlinesInside?: (("ignore" | number) | "newlinesBetween")
-  
+
   groups?: (string | [string, ...(string)[]] | {
     newlinesBetween: ("ignore" | number)
   } | {
     group: (string | [string, ...(string)[]])
-    
+
     fallbackSort?: {
-      
+
       type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
-      
+
       order?: ("asc" | "desc")
     }
-    
+
     commentAbove?: string
-    
+
     type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order")
     newlinesInside?: ("ignore" | number)
-    
+
     order?: ("asc" | "desc")
   })[]
   newlinesBetween?: ("ignore" | number)
-  
+
+  useConfigurationIf?: {
+
+    allNamesMatchPattern?: (({
+
+      pattern: string
+
+      flags?: string
+    } | string)[] | ({
+
+      pattern: string
+
+      flags?: string
+    } | string))
+
+    matchesAstSelector?: string
+  }
+
   useExperimentalDependencyDetection?: boolean
-  
-  partitionByComment?: (boolean | (({
-    
+
+  ignoreCallbackDependenciesPatterns?: (({
+
     pattern: string
-    
+
     flags?: string
   } | string)[] | ({
-    
+
     pattern: string
-    
+
+    flags?: string
+  } | string))
+
+  partitionByComment?: (boolean | (({
+
+    pattern: string
+
+    flags?: string
+  } | string)[] | ({
+
+    pattern: string
+
     flags?: string
   } | string)) | {
-    
+
     block?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
-    
+
     line?: (boolean | (({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)[] | ({
-      
+
       pattern: string
-      
+
       flags?: string
     } | string)))
   })
-  
+
   partitionByNewLine?: boolean
-}]
+}[]
 // ----- pnpm/json-enforce-catalog -----
 type PnpmJsonEnforceCatalog = []|[{
-  
+
   allowedProtocols?: string[]
-  
+
   autofix?: boolean
-  
+
   defaultCatalog?: string
-  
+
   reuseExistingCatalog?: boolean
-  
+
   conflicts?: ("new-catalog" | "overrides" | "error")
-  
+
   fields?: string[]
-  
+
   ignores?: string[]
 }]
 // ----- pnpm/json-prefer-workspace-settings -----
 type PnpmJsonPreferWorkspaceSettings = []|[{
-  
+
   autofix?: boolean
 }]
 // ----- pnpm/json-valid-catalog -----
 type PnpmJsonValidCatalog = []|[{
-  
+
   autoInsert?: boolean
-  
+
   autoInsertDefaultSpecifier?: string
-  
+
   autofix?: boolean
-  
+
   enforceNoConflict?: boolean
-  
+
   fields?: unknown[]
 }]
 // ----- pnpm/yaml-enforce-settings -----
 type PnpmYamlEnforceSettings = []|[{
-  
+
   autofix?: boolean
-  
+
   settings?: {
     [k: string]: unknown | undefined
   }
-  
+
   requiredFields?: string[]
-  
+
   forbiddenFields?: string[]
 }]
 // ----- pnpm/yaml-no-duplicate-catalog-item -----
 type PnpmYamlNoDuplicateCatalogItem = []|[{
   allow?: string[]
-  
+
   checkDuplicates?: ("name-only" | "exact-version")
 }]
 // ----- prefer-arrow-callback -----
@@ -16812,8 +20399,13 @@ type PreferRegexLiterals = []|[{
 }]
 // ----- preserve-caught-error -----
 type PreserveCaughtError = []|[{
-  
+
   requireCatchParameter?: boolean
+
+  errorClassNames?: (string | {
+    name: string
+    argumentPosition: number
+  })[]
 }]
 // ----- quote-props -----
 type QuoteProps = ([]|[("always" | "as-needed" | "consistent" | "consistent-as-needed")] | []|[("always" | "as-needed" | "consistent" | "consistent-as-needed")]|[("always" | "as-needed" | "consistent" | "consistent-as-needed"), {
@@ -16828,153 +20420,6 @@ type Quotes = []|[("single" | "double" | "backtick")]|[("single" | "double" | "b
 })]
 // ----- radix -----
 type Radix = []|[("always" | "as-needed")]
-// ----- react-dom/no-unknown-property -----
-type ReactDomNoUnknownProperty = []|[{
-  ignore?: string[]
-  requireDataLowercase?: boolean
-}]
-// ----- react-hooks/automatic-effect-dependencies -----
-type ReactHooksAutomaticEffectDependencies = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/capitalized-calls -----
-type ReactHooksCapitalizedCalls = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/component-hook-factories -----
-type ReactHooksComponentHookFactories = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/config -----
-type ReactHooksConfig = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/error-boundaries -----
-type ReactHooksErrorBoundaries = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/exhaustive-deps -----
-type ReactHooksExhaustiveDeps = []|[{
-  additionalHooks?: string
-  enableDangerousAutofixThisMayCauseInfiniteLoops?: boolean
-  experimental_autoDependenciesHooks?: string[]
-  requireExplicitEffectDeps?: boolean
-}]
-// ----- react-hooks/fbt -----
-type ReactHooksFbt = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/fire -----
-type ReactHooksFire = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/gating -----
-type ReactHooksGating = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/globals -----
-type ReactHooksGlobals = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/hooks -----
-type ReactHooksHooks = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/immutability -----
-type ReactHooksImmutability = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/incompatible-library -----
-type ReactHooksIncompatibleLibrary = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/invariant -----
-type ReactHooksInvariant = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/memoized-effect-dependencies -----
-type ReactHooksMemoizedEffectDependencies = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/no-deriving-state-in-effects -----
-type ReactHooksNoDerivingStateInEffects = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/preserve-manual-memoization -----
-type ReactHooksPreserveManualMemoization = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/purity -----
-type ReactHooksPurity = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/refs -----
-type ReactHooksRefs = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/rule-suppression -----
-type ReactHooksRuleSuppression = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/rules-of-hooks -----
-type ReactHooksRulesOfHooks = []|[{
-  additionalHooks?: string
-}]
-// ----- react-hooks/set-state-in-effect -----
-type ReactHooksSetStateInEffect = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/set-state-in-render -----
-type ReactHooksSetStateInRender = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/static-components -----
-type ReactHooksStaticComponents = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/syntax -----
-type ReactHooksSyntax = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/todo -----
-type ReactHooksTodo = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/unsupported-syntax -----
-type ReactHooksUnsupportedSyntax = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/use-memo -----
-type ReactHooksUseMemo = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-hooks/void-use-memo -----
-type ReactHooksVoidUseMemo = []|[{
-  [k: string]: unknown | undefined
-}]
-// ----- react-naming-convention/component-name -----
-type ReactNamingConventionComponentName = []|[(("PascalCase" | "CONSTANT_CASE") | {
-  allowAllCaps?: boolean
-  excepts?: string[]
-  rule?: ("PascalCase" | "CONSTANT_CASE")
-})]
-// ----- react-naming-convention/filename -----
-type ReactNamingConventionFilename = []|[(("PascalCase" | "camelCase" | "kebab-case" | "snake_case") | {
-  excepts?: string[]
-  extensions?: string[]
-  rule?: ("PascalCase" | "camelCase" | "kebab-case" | "snake_case")
-})]
-// ----- react-naming-convention/filename-extension -----
-type ReactNamingConventionFilenameExtension = []|[(("always" | "as-needed") | {
-  allow?: ("always" | "as-needed")
-  extensions?: string[]
-  ignoreFilesWithoutCode?: boolean
-})]
-// ----- react-naming-convention/use-state -----
-type ReactNamingConventionUseState = []|[{
-  enforceAssignment?: boolean
-  enforceSetterName?: boolean
-}]
 // ----- react-refresh/only-export-components -----
 type ReactRefreshOnlyExportComponents = []|[{
   extraHOCs?: string[]
@@ -16982,30 +20427,66 @@ type ReactRefreshOnlyExportComponents = []|[{
   allowConstantExport?: boolean
   checkJS?: boolean
 }]
-// ----- react/jsx-shorthand-boolean -----
-type ReactJsxShorthandBoolean = []|[(-1 | 1)]
-// ----- react/jsx-shorthand-fragment -----
-type ReactJsxShorthandFragment = []|[(-1 | 1)]
-// ----- react/no-forbidden-props -----
-type ReactNoForbiddenProps = []|[{
-  forbid?: (string | {
-    excludedNodes?: string[]
-    prop: string
-  } | {
-    includedNodes?: string[]
-    prop: string
-  })[]
+// ----- react/dom-no-unknown-property -----
+type ReactDomNoUnknownProperty = []|[{
+
+  ignore?: string[]
+
+  requireDataLowercase?: boolean
+}]
+// ----- react/dom-no-unsafe-target-blank -----
+type ReactDomNoUnsafeTargetBlank = []|[{
+
+  allowReferrer?: boolean
+}]
+// ----- react/exhaustive-deps -----
+type ReactExhaustiveDeps = []|[{
+  additionalHooks?: string
+  enableDangerousAutofixThisMayCauseInfiniteLoops?: boolean
+  experimental_autoDependenciesHooks?: string[]
+  requireExplicitEffectDeps?: boolean
+}]
+// ----- react/jsx-no-useless-fragment -----
+type ReactJsxNoUselessFragment = []|[{
+
+  allowEmptyFragment?: boolean
+
+  allowExpressions?: boolean
 }]
 // ----- react/no-unstable-default-props -----
 type ReactNoUnstableDefaultProps = []|[{
   safeDefaultProps?: string[]
 }]
-// ----- react/no-useless-fragment -----
-type ReactNoUselessFragment = []|[{
-  
-  allowEmptyFragment?: boolean
-  
-  allowExpressions?: boolean
+// ----- react/rules-of-hooks -----
+type ReactRulesOfHooks = []|[{
+  additionalHooks?: string
+}]
+// ----- react/use-state -----
+type ReactUseState = []|[{
+  enforceAssignment?: boolean
+  enforceLazyInitialization?: boolean
+  enforceSetterName?: boolean
+}]
+// ----- react/x-exhaustive-deps -----
+type ReactXExhaustiveDeps = []|[{
+  additionalHooks?: string
+  enableDangerousAutofixThisMayCauseInfiniteLoops?: boolean
+  experimental_autoDependenciesHooks?: string[]
+  requireExplicitEffectDeps?: boolean
+}]
+// ----- react/x-no-unstable-default-props -----
+type ReactXNoUnstableDefaultProps = []|[{
+  safeDefaultProps?: string[]
+}]
+// ----- react/x-rules-of-hooks -----
+type ReactXRulesOfHooks = []|[{
+  additionalHooks?: string
+}]
+// ----- react/x-use-state -----
+type ReactXUseState = []|[{
+  enforceAssignment?: boolean
+  enforceLazyInitialization?: boolean
+  enforceSetterName?: boolean
 }]
 // ----- regexp/hexadecimal-escape -----
 type RegexpHexadecimalEscape = []|[("always" | "never")]
@@ -17018,7 +20499,7 @@ type RegexpLetterCase = []|[{
 }]
 // ----- regexp/match-any -----
 type RegexpMatchAny = []|[{
-  
+
   allows?: [("[\\s\\S]" | "[\\S\\s]" | "[^]" | "dotAll"), ...(("[\\s\\S]" | "[\\S\\s]" | "[^]" | "dotAll"))[]]
 }]
 // ----- regexp/no-dupe-disjunctions -----
@@ -17153,66 +20634,238 @@ type SemiSpacing = []|[{
 }]
 // ----- semi-style -----
 type SemiStyle = []|[("last" | "first")]
+// ----- slop/max-comment-length -----
+type SlopMaxCommentLength = []|[{
+  cwd?: string
+  inspection?: (("full" | "uncommitted" | "recent-changes") | {
+    mode: ("full" | "uncommitted" | "recent-changes")
+    tracebackCommits?: number
+  })
+  ignoreJSDoc?: boolean
+  maximumWords?: number
+}]
+// ----- slop/no-chained-type-assertions -----
+type SlopNoChainedTypeAssertions = []|[{
+  cwd?: string
+  inspection?: (("full" | "uncommitted" | "recent-changes") | {
+    mode: ("full" | "uncommitted" | "recent-changes")
+    tracebackCommits?: number
+  })
+}]
+// ----- slop/no-em-dash -----
+type SlopNoEmDash = []|[{
+  cwd?: string
+  inspection?: (("full" | "uncommitted" | "recent-changes") | {
+    mode: ("full" | "uncommitted" | "recent-changes")
+    tracebackCommits?: number
+  })
+}]
+// ----- slop/no-jargon -----
+type SlopNoJargon = []|[{
+  cwd?: string
+  inspection?: (("full" | "uncommitted" | "recent-changes") | {
+    mode: ("full" | "uncommitted" | "recent-changes")
+    tracebackCommits?: number
+  })
+  allow?: string[]
+  extraWords?: string[]
+  ignoreJSDoc?: boolean
+  words?: string[]
+}]
+// ----- slop/no-static-only-class -----
+type SlopNoStaticOnlyClass = []|[{
+  cwd?: string
+  inspection?: (("full" | "uncommitted" | "recent-changes") | {
+    mode: ("full" | "uncommitted" | "recent-changes")
+    tracebackCommits?: number
+  })
+}]
+// ----- slop/no-trivial-functions -----
+type SlopNoTrivialFunctions = []|[{
+  cwd?: string
+  inspection?: (("full" | "uncommitted" | "recent-changes") | {
+    mode: ("full" | "uncommitted" | "recent-changes")
+    tracebackCommits?: number
+  })
+  minimumReferences?: number
+}]
+// ----- slop/no-trivial-type-aliases -----
+type SlopNoTrivialTypeAliases = []|[{
+  cwd?: string
+  inspection?: (("full" | "uncommitted" | "recent-changes") | {
+    mode: ("full" | "uncommitted" | "recent-changes")
+    tracebackCommits?: number
+  })
+}]
+// ----- slop/prefer-jsdoc -----
+type SlopPreferJsdoc = []|[{
+  cwd?: string
+  inspection?: (("full" | "uncommitted" | "recent-changes") | {
+    mode: ("full" | "uncommitted" | "recent-changes")
+    tracebackCommits?: number
+  })
+}]
 // ----- solid/event-handlers -----
 type SolidEventHandlers = []|[{
-  
+
   ignoreCase?: boolean
-  
+
   warnOnSpread?: boolean
 }]
 // ----- solid/jsx-no-duplicate-props -----
 type SolidJsxNoDuplicateProps = []|[{
-  
+
   ignoreCase?: boolean
-  [k: string]: unknown | undefined
 }]
 // ----- solid/jsx-no-undef -----
 type SolidJsxNoUndef = []|[{
-  
+
   allowGlobals?: boolean
-  
+
   autoImport?: boolean
-  
+
   typescriptEnabled?: boolean
 }]
 // ----- solid/no-innerhtml -----
 type SolidNoInnerhtml = []|[{
-  
+
   allowStatic?: boolean
 }]
 // ----- solid/no-unknown-namespaces -----
 type SolidNoUnknownNamespaces = []|[{
-  
+
   allowedNamespaces?: [string, ...(string)[]]
 }]
 // ----- solid/prefer-classlist -----
 type SolidPreferClasslist = []|[{
-  
+
   classnames?: [string, ...(string)[]]
 }]
 // ----- solid/reactivity -----
 type SolidReactivity = []|[{
-  
+
   customReactiveFunctions?: string[]
 }]
 // ----- solid/self-closing-comp -----
 type SolidSelfClosingComp = []|[{
-  
+
   component?: ("all" | "none")
-  
+
   html?: ("all" | "void" | "none")
 }]
 // ----- solid/style-prop -----
 type SolidStyleProp = []|[{
-  
+
   styleProps?: [string, ...(string)[]]
-  
+
   allowString?: boolean
+}]
+// ----- solid/valid-use-server -----
+type SolidValidUseServer = []|[{
+
+  clientWrappers?: string[]
+}]
+// ----- sonarjs/arrow-function-convention -----
+type SonarjsArrowFunctionConvention = []|[{
+  requireParameterParentheses?: boolean
+  requireBodyBraces?: boolean
+}]
+// ----- sonarjs/class-name -----
+type SonarjsClassName = []|[{
+  format?: string
+}]
+// ----- sonarjs/cognitive-complexity -----
+type SonarjsCognitiveComplexity = []|[(number | "silence-issues")]|[(number | "silence-issues"), "silence-issues"]
+// ----- sonarjs/comment-regex -----
+type SonarjsCommentRegex = []|[{
+  regularExpression?: string
+  message?: string
+  flags?: string
+}]
+// ----- sonarjs/content-length -----
+type SonarjsContentLength = []|[{
+  fileUploadSizeLimit?: number
+  standardSizeLimit?: number
+}]
+// ----- sonarjs/cyclomatic-complexity -----
+type SonarjsCyclomaticComplexity = []|[{
+  threshold?: number
+}]
+// ----- sonarjs/expression-complexity -----
+type SonarjsExpressionComplexity = []|[{
+  max?: number
+}]
+// ----- sonarjs/file-header -----
+type SonarjsFileHeader = []|[{
+  headerFormat?: string
+  isRegularExpression?: boolean
+}]
+// ----- sonarjs/function-name -----
+type SonarjsFunctionName = []|[{
+  format?: string
+}]
+// ----- sonarjs/max-lines -----
+type SonarjsMaxLines = []|[{
+  maximum?: number
+}]
+// ----- sonarjs/max-lines-per-function -----
+type SonarjsMaxLinesPerFunction = []|[{
+  maximum?: number
+}]
+// ----- sonarjs/max-switch-cases -----
+type SonarjsMaxSwitchCases = []|[number]
+// ----- sonarjs/max-union-size -----
+type SonarjsMaxUnionSize = []|[{
+  threshold?: number
+}]
+// ----- sonarjs/nested-control-flow -----
+type SonarjsNestedControlFlow = []|[{
+  maximumNestingLevel?: number
+}]
+// ----- sonarjs/new-operator-misuse -----
+type SonarjsNewOperatorMisuse = []|[{
+  considerJSDoc?: boolean
+}]
+// ----- sonarjs/no-duplicate-string -----
+type SonarjsNoDuplicateString = []|[{
+  threshold?: number
+  ignoreStrings?: string
+}]
+// ----- sonarjs/no-hardcoded-passwords -----
+type SonarjsNoHardcodedPasswords = []|[{
+  passwordWords?: string[]
+}]
+// ----- sonarjs/no-hardcoded-secrets -----
+type SonarjsNoHardcodedSecrets = []|[{
+  secretWords?: string
+  randomnessSensibility?: number
+}]
+// ----- sonarjs/no-identical-functions -----
+type SonarjsNoIdenticalFunctions = []|[number]
+// ----- sonarjs/no-implicit-dependencies -----
+type SonarjsNoImplicitDependencies = []|[{
+  whitelist?: string[]
+}]
+// ----- sonarjs/no-intrusive-permissions -----
+type SonarjsNoIntrusivePermissions = []|[{
+  permissions?: string[]
+}]
+// ----- sonarjs/no-nested-functions -----
+type SonarjsNoNestedFunctions = []|[{
+  threshold?: number
+}]
+// ----- sonarjs/regex-complexity -----
+type SonarjsRegexComplexity = []|[{
+  threshold?: number
+}]
+// ----- sonarjs/variable-name -----
+type SonarjsVariableName = []|[{
+  format?: string
 }]
 // ----- sort-imports -----
 type SortImports = []|[{
   ignoreCase?: boolean
-  
+
   memberSyntaxSortOrder?: [("none" | "all" | "multiple" | "single"), ("none" | "all" | "multiple" | "single"), ("none" | "all" | "multiple" | "single"), ("none" | "all" | "multiple" | "single")]
   ignoreDeclarationSort?: boolean
   ignoreMemberSort?: boolean
@@ -17470,33 +21123,33 @@ type StyleExpListStyle = []|[{
   singleLine?: _StyleExpListStyle_SingleLineConfig
   multiLine?: _StyleExpListStyle_MultiLineConfig
   overrides?: {
-    "()"?: _StyleExpListStyle_BaseConfig
-    "[]"?: _StyleExpListStyle_BaseConfig
-    "{}"?: _StyleExpListStyle_BaseConfig
-    "<>"?: _StyleExpListStyle_BaseConfig
-    ArrayExpression?: _StyleExpListStyle_BaseConfig
-    ArrayPattern?: _StyleExpListStyle_BaseConfig
-    ArrowFunctionExpression?: _StyleExpListStyle_BaseConfig
-    CallExpression?: _StyleExpListStyle_BaseConfig
-    ExportNamedDeclaration?: _StyleExpListStyle_BaseConfig
-    FunctionDeclaration?: _StyleExpListStyle_BaseConfig
-    FunctionExpression?: _StyleExpListStyle_BaseConfig
-    IfStatement?: _StyleExpListStyle_BaseConfig
-    ImportAttributes?: _StyleExpListStyle_BaseConfig
-    ImportDeclaration?: _StyleExpListStyle_BaseConfig
-    JSONArrayExpression?: _StyleExpListStyle_BaseConfig
-    JSONObjectExpression?: _StyleExpListStyle_BaseConfig
-    NewExpression?: _StyleExpListStyle_BaseConfig
-    ObjectExpression?: _StyleExpListStyle_BaseConfig
-    ObjectPattern?: _StyleExpListStyle_BaseConfig
-    TSDeclareFunction?: _StyleExpListStyle_BaseConfig
-    TSEnumBody?: _StyleExpListStyle_BaseConfig
-    TSFunctionType?: _StyleExpListStyle_BaseConfig
-    TSInterfaceBody?: _StyleExpListStyle_BaseConfig
-    TSTupleType?: _StyleExpListStyle_BaseConfig
-    TSTypeLiteral?: _StyleExpListStyle_BaseConfig
-    TSTypeParameterDeclaration?: _StyleExpListStyle_BaseConfig
-    TSTypeParameterInstantiation?: _StyleExpListStyle_BaseConfig
+    "()"?: (_StyleExpListStyle_BaseConfig | "off")
+    "[]"?: (_StyleExpListStyle_BaseConfig | "off")
+    "{}"?: (_StyleExpListStyle_BaseConfig | "off")
+    "<>"?: (_StyleExpListStyle_BaseConfig | "off")
+    ArrayExpression?: (_StyleExpListStyle_BaseConfig | "off")
+    ArrayPattern?: (_StyleExpListStyle_BaseConfig | "off")
+    ArrowFunctionExpression?: (_StyleExpListStyle_BaseConfig | "off")
+    CallExpression?: (_StyleExpListStyle_BaseConfig | "off")
+    ExportNamedDeclaration?: (_StyleExpListStyle_BaseConfig | "off")
+    FunctionDeclaration?: (_StyleExpListStyle_BaseConfig | "off")
+    FunctionExpression?: (_StyleExpListStyle_BaseConfig | "off")
+    IfStatement?: (_StyleExpListStyle_BaseConfig | "off")
+    ImportAttributes?: (_StyleExpListStyle_BaseConfig | "off")
+    ImportDeclaration?: (_StyleExpListStyle_BaseConfig | "off")
+    JSONArrayExpression?: (_StyleExpListStyle_BaseConfig | "off")
+    JSONObjectExpression?: (_StyleExpListStyle_BaseConfig | "off")
+    NewExpression?: (_StyleExpListStyle_BaseConfig | "off")
+    ObjectExpression?: (_StyleExpListStyle_BaseConfig | "off")
+    ObjectPattern?: (_StyleExpListStyle_BaseConfig | "off")
+    TSDeclareFunction?: (_StyleExpListStyle_BaseConfig | "off")
+    TSEnumBody?: (_StyleExpListStyle_BaseConfig | "off")
+    TSFunctionType?: (_StyleExpListStyle_BaseConfig | "off")
+    TSInterfaceBody?: (_StyleExpListStyle_BaseConfig | "off")
+    TSTupleType?: (_StyleExpListStyle_BaseConfig | "off")
+    TSTypeLiteral?: (_StyleExpListStyle_BaseConfig | "off")
+    TSTypeParameterDeclaration?: (_StyleExpListStyle_BaseConfig | "off")
+    TSTypeParameterInstantiation?: (_StyleExpListStyle_BaseConfig | "off")
   }
 }]
 interface _StyleExpListStyle_SingleLineConfig {
@@ -18124,7 +21777,7 @@ type StyleLinesAroundComment = []|[{
 }]
 // ----- style/lines-between-class-members -----
 type StyleLinesBetweenClassMembers = []|[({
-  
+
   enforce: [{
     blankLine: ("always" | "never")
     prev: ("method" | "field" | "*")
@@ -18135,7 +21788,7 @@ type StyleLinesBetweenClassMembers = []|[({
     next: ("method" | "field" | "*")
   })[]]
 } | ("always" | "never"))]|[({
-  
+
   enforce: [{
     blankLine: ("always" | "never")
     prev: ("method" | "field" | "*")
@@ -18424,6 +22077,7 @@ type StylePaddingLineBetweenStatements = {
 }[]
 interface _StylePaddingLineBetweenStatements_SelectorOption {
   selector: string
+  lineMode?: ("any" | "singleline" | "multiline")
 }
 // ----- style/quote-props -----
 type StyleQuoteProps = ([]|[("always" | "as-needed" | "consistent" | "consistent-as-needed")] | []|[("always" | "as-needed" | "consistent" | "consistent-as-needed")]|[("always" | "as-needed" | "consistent" | "consistent-as-needed"), {
@@ -18535,9 +22189,9 @@ type StyleYieldStarSpacing = []|[(("before" | "after" | "both" | "neither") | {
 })]
 // ----- svelte/@typescript-eslint/no-unnecessary-condition -----
 type SvelteTypescriptEslintNoUnnecessaryCondition = []|[{
-  
+
   allowConstantLoopConditions?: boolean
-  
+
   allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing?: boolean
 }]
 // ----- svelte/block-lang -----
@@ -18560,7 +22214,7 @@ type SvelteCommentDirective = []|[{
 // ----- svelte/consistent-selector-style -----
 type SvelteConsistentSelectorStyle = []|[{
   checkGlobal?: boolean
-  
+
   style?: []|[("class" | "id" | "type")]|[("class" | "id" | "type"), ("class" | "id" | "type")]|[("class" | "id" | "type"), ("class" | "id" | "type"), ("class" | "id" | "type")]
 }]
 // ----- svelte/first-attribute-linebreak -----
@@ -18655,11 +22309,11 @@ type SvelteNoReactiveReassign = []|[{
 }]
 // ----- svelte/no-restricted-html-elements -----
 type SvelteNoRestrictedHtmlElements = [(string | {
-  
+
   elements?: [string, ...(string)[]]
   message?: string
 }), ...((string | {
-  
+
   elements?: [string, ...(string)[]]
   message?: string
 }))[]]
@@ -18675,7 +22329,7 @@ type SvelteNoTrailingSpaces = []|[{
 }]
 // ----- svelte/no-unknown-style-directive-property -----
 type SvelteNoUnknownStyleDirectiveProperty = []|[{
-  
+
   ignoreProperties?: [string, ...(string)[]]
   ignorePrefixed?: boolean
 }]
@@ -18748,56 +22402,73 @@ type TemplateCurlySpacing = []|[("always" | "never")]
 type TemplateTagSpacing = []|[("always" | "never")]
 // ----- test/consistent-each-for -----
 type TestConsistentEachFor = []|[{
+
   test?: ("each" | "for")
+
   it?: ("each" | "for")
+
   describe?: ("each" | "for")
+
   suite?: ("each" | "for")
 }]
 // ----- test/consistent-test-filename -----
 type TestConsistentTestFilename = []|[{
+
   pattern?: string
+
   allTestPattern?: string
 }]
 // ----- test/consistent-test-it -----
 type TestConsistentTestIt = []|[{
+
   fn?: ("test" | "it")
+
   withinDescribe?: ("test" | "it")
 }]
 // ----- test/consistent-vitest-vi -----
 type TestConsistentVitestVi = []|[{
+
   fn?: ("vi" | "vitest")
 }]
 // ----- test/expect-expect -----
 type TestExpectExpect = []|[{
+
   assertFunctionNames?: string[]
+
   additionalTestBlockFunctions?: string[]
 }]
 // ----- test/max-expects -----
 type TestMaxExpects = []|[{
+
   max?: number
 }]
 // ----- test/max-nested-describe -----
 type TestMaxNestedDescribe = []|[{
+
   max?: number
 }]
 // ----- test/no-conditional-expect -----
 type TestNoConditionalExpect = []|[{
-  
+
   expectAssertions?: boolean
 }]
 // ----- test/no-focused-tests -----
 type TestNoFocusedTests = []|[{
+
   fixable?: boolean
 }]
 // ----- test/no-hooks -----
 type TestNoHooks = []|[{
-  
-  allow?: ("beforeAll" | "beforeEach" | "afterAll" | "afterEach")[]
+
+  allow?: ("beforeAll" | "beforeEach" | "afterAll" | "afterEach" | "aroundAll" | "aroundEach")[]
 }]
 // ----- test/no-large-snapshots -----
 type TestNoLargeSnapshots = []|[{
+
   maxSize?: number
+
   inlineMaxSize?: number
+
   allowedSnapshots?: {
     [k: string]: unknown[] | undefined
   }
@@ -18819,50 +22490,76 @@ type TestNoRestrictedViMethods = []|[{
 }]
 // ----- test/no-standalone-expect -----
 type TestNoStandaloneExpect = []|[{
+
   additionalTestBlockFunctions?: string[]
 }]
 // ----- test/prefer-expect-assertions -----
 type TestPreferExpectAssertions = []|[{
+
   onlyFunctionsWithAsyncKeyword?: boolean
+
   onlyFunctionsWithExpectInLoop?: boolean
+
   onlyFunctionsWithExpectInCallback?: boolean
+
+  disallowHasAssertions?: boolean
 }]
 // ----- test/prefer-import-in-mock -----
 type TestPreferImportInMock = []|[{
+
   fixable?: boolean
 }]
 // ----- test/prefer-lowercase-title -----
 type TestPreferLowercaseTitle = []|[{
+
   ignore?: ("describe" | "test" | "it")[]
+
   allowedPrefixes?: string[]
+
   ignoreTopLevelDescribe?: boolean
+
   lowercaseFirstCharacterOnly?: boolean
 }]
 // ----- test/prefer-snapshot-hint -----
 type TestPreferSnapshotHint = []|[("always" | "multi")]
 // ----- test/require-hook -----
 type TestRequireHook = []|[{
+
   allowedFunctionCalls?: string[]
 }]
 // ----- test/require-mock-type-parameters -----
 type TestRequireMockTypeParameters = []|[{
+
   checkImportFunctions?: boolean
 }]
 // ----- test/require-top-level-describe -----
 type TestRequireTopLevelDescribe = []|[{
+
   maxNumberOfTopLevelDescribes?: number
+}]
+// ----- test/unbound-method -----
+type TestUnboundMethod = []|[{
+
+  ignoreStatic?: boolean
 }]
 // ----- test/valid-expect -----
 type TestValidExpect = []|[{
+
   alwaysAwait?: boolean
+
   asyncMatchers?: string[]
+
   minArgs?: number
+
   maxArgs?: number
 }]
 // ----- test/valid-title -----
 type TestValidTitle = []|[{
+
   ignoreTypeOfDescribeName?: boolean
+
   allowArguments?: boolean
+
   disallowedWords?: string[]
   [k: string]: (string | [string]|[string, string] | {
     [k: string]: (string | [string]|[string, string]) | undefined
@@ -19005,28 +22702,28 @@ type TomlSpacedComment = []|[("always" | "never")]|[("always" | "never"), {
 type TomlTableBracketSpacing = []|[("always" | "never")]
 // ----- ts/array-type -----
 type TsArrayType = []|[{
-  
+
   default?: ("array" | "generic" | "array-simple")
-  
+
   readonly?: ("array" | "generic" | "array-simple")
 }]
 // ----- ts/ban-ts-comment -----
 type TsBanTsComment = []|[{
-  
+
   minimumDescriptionLength?: number
-  
+
   "ts-check"?: (boolean | "allow-with-description" | {
     descriptionFormat?: string
   })
-  
+
   "ts-expect-error"?: (boolean | "allow-with-description" | {
     descriptionFormat?: string
   })
-  
+
   "ts-ignore"?: (boolean | "allow-with-description" | {
     descriptionFormat?: string
   })
-  
+
   "ts-nocheck"?: (boolean | "allow-with-description" | {
     descriptionFormat?: string
   })
@@ -19035,13 +22732,13 @@ type TsBanTsComment = []|[{
 type TsClassLiteralPropertyStyle = []|[("fields" | "getters")]
 // ----- ts/class-methods-use-this -----
 type TsClassMethodsUseThis = []|[{
-  
+
   enforceForClassFields?: boolean
-  
+
   exceptMethods?: string[]
-  
+
   ignoreClassesThatImplementAnInterface?: (boolean | "public-fields")
-  
+
   ignoreOverrideMethods?: boolean
 }]
 // ----- ts/consistent-generic-constructors -----
@@ -19054,97 +22751,97 @@ type TsConsistentReturn = []|[{
 }]
 // ----- ts/consistent-type-assertions -----
 type TsConsistentTypeAssertions = []|[({
-  
+
   assertionStyle: "never"
 } | {
-  
+
   arrayLiteralTypeAssertions?: ("allow" | "allow-as-parameter" | "never")
-  
+
   assertionStyle?: ("as" | "angle-bracket")
-  
+
   objectLiteralTypeAssertions?: ("allow" | "allow-as-parameter" | "never")
 })]
 // ----- ts/consistent-type-definitions -----
 type TsConsistentTypeDefinitions = []|[("interface" | "type")]
 // ----- ts/consistent-type-exports -----
 type TsConsistentTypeExports = []|[{
-  
+
   fixMixedExportsWithInlineTypeSpecifier?: boolean
 }]
 // ----- ts/consistent-type-imports -----
 type TsConsistentTypeImports = []|[{
-  
+
   disallowTypeAnnotations?: boolean
-  
+
   fixStyle?: ("separate-type-imports" | "inline-type-imports")
-  
+
   prefer?: ("type-imports" | "no-type-imports")
 }]
 // ----- ts/dot-notation -----
 type TsDotNotation = []|[{
-  
+
   allowIndexSignaturePropertyAccess?: boolean
-  
+
   allowKeywords?: boolean
-  
+
   allowPattern?: string
-  
+
   allowPrivateClassPropertyAccess?: boolean
-  
+
   allowProtectedClassPropertyAccess?: boolean
 }]
 // ----- ts/explicit-function-return-type -----
 type TsExplicitFunctionReturnType = []|[{
-  
+
   allowConciseArrowFunctionExpressionsStartingWithVoid?: boolean
-  
+
   allowDirectConstAssertionInArrowFunctions?: boolean
-  
+
   allowedNames?: string[]
-  
+
   allowExpressions?: boolean
-  
+
   allowFunctionsWithoutTypeParameters?: boolean
-  
+
   allowHigherOrderFunctions?: boolean
-  
+
   allowIIFEs?: boolean
-  
+
   allowTypedFunctionExpressions?: boolean
 }]
 // ----- ts/explicit-member-accessibility -----
 type TsExplicitMemberAccessibility = []|[{
-  
+
   accessibility?: ("explicit" | "no-public" | "off")
-  
+
   ignoredMethodNames?: string[]
-  
+
   overrides?: {
-    
+
     accessors?: ("explicit" | "no-public" | "off")
-    
+
     constructors?: ("explicit" | "no-public" | "off")
-    
+
     methods?: ("explicit" | "no-public" | "off")
-    
+
     parameterProperties?: ("explicit" | "no-public" | "off")
-    
+
     properties?: ("explicit" | "no-public" | "off")
   }
 }]
 // ----- ts/explicit-module-boundary-types -----
 type TsExplicitModuleBoundaryTypes = []|[{
-  
+
   allowArgumentsExplicitlyTypedAsAny?: boolean
-  
+
   allowDirectConstAssertionInArrowFunctions?: boolean
-  
+
   allowedNames?: string[]
-  
+
   allowHigherOrderFunctions?: boolean
-  
+
   allowOverloadFunctions?: boolean
-  
+
   allowTypedFunctionExpressions?: boolean
 }]
 // ----- ts/init-declarations -----
@@ -19153,40 +22850,40 @@ type TsInitDeclarations = ([]|["always"] | []|["never"]|["never", {
 }])
 // ----- ts/max-params -----
 type TsMaxParams = []|[{
-  
+
   countVoidThis?: boolean
-  
+
   max?: number
-  
+
   maximum?: number
 }]
 // ----- ts/member-ordering -----
 type TsMemberOrdering = []|[{
-  
+
   classes?: ("never" | (("readonly-signature" | "signature" | "readonly-field" | "public-readonly-field" | "public-decorated-readonly-field" | "decorated-readonly-field" | "static-readonly-field" | "public-static-readonly-field" | "instance-readonly-field" | "public-instance-readonly-field" | "abstract-readonly-field" | "public-abstract-readonly-field" | "protected-readonly-field" | "protected-decorated-readonly-field" | "protected-static-readonly-field" | "protected-instance-readonly-field" | "protected-abstract-readonly-field" | "private-readonly-field" | "private-decorated-readonly-field" | "private-static-readonly-field" | "private-instance-readonly-field" | "#private-readonly-field" | "#private-static-readonly-field" | "#private-instance-readonly-field" | "field" | "public-field" | "public-decorated-field" | "decorated-field" | "static-field" | "public-static-field" | "instance-field" | "public-instance-field" | "abstract-field" | "public-abstract-field" | "protected-field" | "protected-decorated-field" | "protected-static-field" | "protected-instance-field" | "protected-abstract-field" | "private-field" | "private-decorated-field" | "private-static-field" | "private-instance-field" | "#private-field" | "#private-static-field" | "#private-instance-field" | "method" | "public-method" | "public-decorated-method" | "decorated-method" | "static-method" | "public-static-method" | "instance-method" | "public-instance-method" | "abstract-method" | "public-abstract-method" | "protected-method" | "protected-decorated-method" | "protected-static-method" | "protected-instance-method" | "protected-abstract-method" | "private-method" | "private-decorated-method" | "private-static-method" | "private-instance-method" | "#private-method" | "#private-static-method" | "#private-instance-method" | "call-signature" | "constructor" | "public-constructor" | "protected-constructor" | "private-constructor" | "accessor" | "public-accessor" | "public-decorated-accessor" | "decorated-accessor" | "static-accessor" | "public-static-accessor" | "instance-accessor" | "public-instance-accessor" | "abstract-accessor" | "public-abstract-accessor" | "protected-accessor" | "protected-decorated-accessor" | "protected-static-accessor" | "protected-instance-accessor" | "protected-abstract-accessor" | "private-accessor" | "private-decorated-accessor" | "private-static-accessor" | "private-instance-accessor" | "#private-accessor" | "#private-static-accessor" | "#private-instance-accessor" | "get" | "public-get" | "public-decorated-get" | "decorated-get" | "static-get" | "public-static-get" | "instance-get" | "public-instance-get" | "abstract-get" | "public-abstract-get" | "protected-get" | "protected-decorated-get" | "protected-static-get" | "protected-instance-get" | "protected-abstract-get" | "private-get" | "private-decorated-get" | "private-static-get" | "private-instance-get" | "#private-get" | "#private-static-get" | "#private-instance-get" | "set" | "public-set" | "public-decorated-set" | "decorated-set" | "static-set" | "public-static-set" | "instance-set" | "public-instance-set" | "abstract-set" | "public-abstract-set" | "protected-set" | "protected-decorated-set" | "protected-static-set" | "protected-instance-set" | "protected-abstract-set" | "private-set" | "private-decorated-set" | "private-static-set" | "private-instance-set" | "#private-set" | "#private-static-set" | "#private-instance-set" | "static-initialization" | "static-static-initialization" | "public-static-static-initialization" | "instance-static-initialization" | "public-instance-static-initialization" | "abstract-static-initialization" | "public-abstract-static-initialization" | "protected-static-static-initialization" | "protected-instance-static-initialization" | "protected-abstract-static-initialization" | "private-static-static-initialization" | "private-instance-static-initialization" | "#private-static-static-initialization" | "#private-instance-static-initialization") | ("readonly-signature" | "signature" | "readonly-field" | "public-readonly-field" | "public-decorated-readonly-field" | "decorated-readonly-field" | "static-readonly-field" | "public-static-readonly-field" | "instance-readonly-field" | "public-instance-readonly-field" | "abstract-readonly-field" | "public-abstract-readonly-field" | "protected-readonly-field" | "protected-decorated-readonly-field" | "protected-static-readonly-field" | "protected-instance-readonly-field" | "protected-abstract-readonly-field" | "private-readonly-field" | "private-decorated-readonly-field" | "private-static-readonly-field" | "private-instance-readonly-field" | "#private-readonly-field" | "#private-static-readonly-field" | "#private-instance-readonly-field" | "field" | "public-field" | "public-decorated-field" | "decorated-field" | "static-field" | "public-static-field" | "instance-field" | "public-instance-field" | "abstract-field" | "public-abstract-field" | "protected-field" | "protected-decorated-field" | "protected-static-field" | "protected-instance-field" | "protected-abstract-field" | "private-field" | "private-decorated-field" | "private-static-field" | "private-instance-field" | "#private-field" | "#private-static-field" | "#private-instance-field" | "method" | "public-method" | "public-decorated-method" | "decorated-method" | "static-method" | "public-static-method" | "instance-method" | "public-instance-method" | "abstract-method" | "public-abstract-method" | "protected-method" | "protected-decorated-method" | "protected-static-method" | "protected-instance-method" | "protected-abstract-method" | "private-method" | "private-decorated-method" | "private-static-method" | "private-instance-method" | "#private-method" | "#private-static-method" | "#private-instance-method" | "call-signature" | "constructor" | "public-constructor" | "protected-constructor" | "private-constructor" | "accessor" | "public-accessor" | "public-decorated-accessor" | "decorated-accessor" | "static-accessor" | "public-static-accessor" | "instance-accessor" | "public-instance-accessor" | "abstract-accessor" | "public-abstract-accessor" | "protected-accessor" | "protected-decorated-accessor" | "protected-static-accessor" | "protected-instance-accessor" | "protected-abstract-accessor" | "private-accessor" | "private-decorated-accessor" | "private-static-accessor" | "private-instance-accessor" | "#private-accessor" | "#private-static-accessor" | "#private-instance-accessor" | "get" | "public-get" | "public-decorated-get" | "decorated-get" | "static-get" | "public-static-get" | "instance-get" | "public-instance-get" | "abstract-get" | "public-abstract-get" | "protected-get" | "protected-decorated-get" | "protected-static-get" | "protected-instance-get" | "protected-abstract-get" | "private-get" | "private-decorated-get" | "private-static-get" | "private-instance-get" | "#private-get" | "#private-static-get" | "#private-instance-get" | "set" | "public-set" | "public-decorated-set" | "decorated-set" | "static-set" | "public-static-set" | "instance-set" | "public-instance-set" | "abstract-set" | "public-abstract-set" | "protected-set" | "protected-decorated-set" | "protected-static-set" | "protected-instance-set" | "protected-abstract-set" | "private-set" | "private-decorated-set" | "private-static-set" | "private-instance-set" | "#private-set" | "#private-static-set" | "#private-instance-set" | "static-initialization" | "static-static-initialization" | "public-static-static-initialization" | "instance-static-initialization" | "public-instance-static-initialization" | "abstract-static-initialization" | "public-abstract-static-initialization" | "protected-static-static-initialization" | "protected-instance-static-initialization" | "protected-abstract-static-initialization" | "private-static-static-initialization" | "private-instance-static-initialization" | "#private-static-static-initialization" | "#private-instance-static-initialization")[])[] | {
     memberTypes?: ((("readonly-signature" | "signature" | "readonly-field" | "public-readonly-field" | "public-decorated-readonly-field" | "decorated-readonly-field" | "static-readonly-field" | "public-static-readonly-field" | "instance-readonly-field" | "public-instance-readonly-field" | "abstract-readonly-field" | "public-abstract-readonly-field" | "protected-readonly-field" | "protected-decorated-readonly-field" | "protected-static-readonly-field" | "protected-instance-readonly-field" | "protected-abstract-readonly-field" | "private-readonly-field" | "private-decorated-readonly-field" | "private-static-readonly-field" | "private-instance-readonly-field" | "#private-readonly-field" | "#private-static-readonly-field" | "#private-instance-readonly-field" | "field" | "public-field" | "public-decorated-field" | "decorated-field" | "static-field" | "public-static-field" | "instance-field" | "public-instance-field" | "abstract-field" | "public-abstract-field" | "protected-field" | "protected-decorated-field" | "protected-static-field" | "protected-instance-field" | "protected-abstract-field" | "private-field" | "private-decorated-field" | "private-static-field" | "private-instance-field" | "#private-field" | "#private-static-field" | "#private-instance-field" | "method" | "public-method" | "public-decorated-method" | "decorated-method" | "static-method" | "public-static-method" | "instance-method" | "public-instance-method" | "abstract-method" | "public-abstract-method" | "protected-method" | "protected-decorated-method" | "protected-static-method" | "protected-instance-method" | "protected-abstract-method" | "private-method" | "private-decorated-method" | "private-static-method" | "private-instance-method" | "#private-method" | "#private-static-method" | "#private-instance-method" | "call-signature" | "constructor" | "public-constructor" | "protected-constructor" | "private-constructor" | "accessor" | "public-accessor" | "public-decorated-accessor" | "decorated-accessor" | "static-accessor" | "public-static-accessor" | "instance-accessor" | "public-instance-accessor" | "abstract-accessor" | "public-abstract-accessor" | "protected-accessor" | "protected-decorated-accessor" | "protected-static-accessor" | "protected-instance-accessor" | "protected-abstract-accessor" | "private-accessor" | "private-decorated-accessor" | "private-static-accessor" | "private-instance-accessor" | "#private-accessor" | "#private-static-accessor" | "#private-instance-accessor" | "get" | "public-get" | "public-decorated-get" | "decorated-get" | "static-get" | "public-static-get" | "instance-get" | "public-instance-get" | "abstract-get" | "public-abstract-get" | "protected-get" | "protected-decorated-get" | "protected-static-get" | "protected-instance-get" | "protected-abstract-get" | "private-get" | "private-decorated-get" | "private-static-get" | "private-instance-get" | "#private-get" | "#private-static-get" | "#private-instance-get" | "set" | "public-set" | "public-decorated-set" | "decorated-set" | "static-set" | "public-static-set" | "instance-set" | "public-instance-set" | "abstract-set" | "public-abstract-set" | "protected-set" | "protected-decorated-set" | "protected-static-set" | "protected-instance-set" | "protected-abstract-set" | "private-set" | "private-decorated-set" | "private-static-set" | "private-instance-set" | "#private-set" | "#private-static-set" | "#private-instance-set" | "static-initialization" | "static-static-initialization" | "public-static-static-initialization" | "instance-static-initialization" | "public-instance-static-initialization" | "abstract-static-initialization" | "public-abstract-static-initialization" | "protected-static-static-initialization" | "protected-instance-static-initialization" | "protected-abstract-static-initialization" | "private-static-static-initialization" | "private-instance-static-initialization" | "#private-static-static-initialization" | "#private-instance-static-initialization") | ("readonly-signature" | "signature" | "readonly-field" | "public-readonly-field" | "public-decorated-readonly-field" | "decorated-readonly-field" | "static-readonly-field" | "public-static-readonly-field" | "instance-readonly-field" | "public-instance-readonly-field" | "abstract-readonly-field" | "public-abstract-readonly-field" | "protected-readonly-field" | "protected-decorated-readonly-field" | "protected-static-readonly-field" | "protected-instance-readonly-field" | "protected-abstract-readonly-field" | "private-readonly-field" | "private-decorated-readonly-field" | "private-static-readonly-field" | "private-instance-readonly-field" | "#private-readonly-field" | "#private-static-readonly-field" | "#private-instance-readonly-field" | "field" | "public-field" | "public-decorated-field" | "decorated-field" | "static-field" | "public-static-field" | "instance-field" | "public-instance-field" | "abstract-field" | "public-abstract-field" | "protected-field" | "protected-decorated-field" | "protected-static-field" | "protected-instance-field" | "protected-abstract-field" | "private-field" | "private-decorated-field" | "private-static-field" | "private-instance-field" | "#private-field" | "#private-static-field" | "#private-instance-field" | "method" | "public-method" | "public-decorated-method" | "decorated-method" | "static-method" | "public-static-method" | "instance-method" | "public-instance-method" | "abstract-method" | "public-abstract-method" | "protected-method" | "protected-decorated-method" | "protected-static-method" | "protected-instance-method" | "protected-abstract-method" | "private-method" | "private-decorated-method" | "private-static-method" | "private-instance-method" | "#private-method" | "#private-static-method" | "#private-instance-method" | "call-signature" | "constructor" | "public-constructor" | "protected-constructor" | "private-constructor" | "accessor" | "public-accessor" | "public-decorated-accessor" | "decorated-accessor" | "static-accessor" | "public-static-accessor" | "instance-accessor" | "public-instance-accessor" | "abstract-accessor" | "public-abstract-accessor" | "protected-accessor" | "protected-decorated-accessor" | "protected-static-accessor" | "protected-instance-accessor" | "protected-abstract-accessor" | "private-accessor" | "private-decorated-accessor" | "private-static-accessor" | "private-instance-accessor" | "#private-accessor" | "#private-static-accessor" | "#private-instance-accessor" | "get" | "public-get" | "public-decorated-get" | "decorated-get" | "static-get" | "public-static-get" | "instance-get" | "public-instance-get" | "abstract-get" | "public-abstract-get" | "protected-get" | "protected-decorated-get" | "protected-static-get" | "protected-instance-get" | "protected-abstract-get" | "private-get" | "private-decorated-get" | "private-static-get" | "private-instance-get" | "#private-get" | "#private-static-get" | "#private-instance-get" | "set" | "public-set" | "public-decorated-set" | "decorated-set" | "static-set" | "public-static-set" | "instance-set" | "public-instance-set" | "abstract-set" | "public-abstract-set" | "protected-set" | "protected-decorated-set" | "protected-static-set" | "protected-instance-set" | "protected-abstract-set" | "private-set" | "private-decorated-set" | "private-static-set" | "private-instance-set" | "#private-set" | "#private-static-set" | "#private-instance-set" | "static-initialization" | "static-static-initialization" | "public-static-static-initialization" | "instance-static-initialization" | "public-instance-static-initialization" | "abstract-static-initialization" | "public-abstract-static-initialization" | "protected-static-static-initialization" | "protected-instance-static-initialization" | "protected-abstract-static-initialization" | "private-static-static-initialization" | "private-instance-static-initialization" | "#private-static-static-initialization" | "#private-instance-static-initialization")[])[] | "never")
     optionalityOrder?: ("optional-first" | "required-first")
     order?: ("alphabetically" | "alphabetically-case-insensitive" | "as-written" | "natural" | "natural-case-insensitive")
   })
-  
+
   classExpressions?: ("never" | (("readonly-signature" | "signature" | "readonly-field" | "public-readonly-field" | "public-decorated-readonly-field" | "decorated-readonly-field" | "static-readonly-field" | "public-static-readonly-field" | "instance-readonly-field" | "public-instance-readonly-field" | "abstract-readonly-field" | "public-abstract-readonly-field" | "protected-readonly-field" | "protected-decorated-readonly-field" | "protected-static-readonly-field" | "protected-instance-readonly-field" | "protected-abstract-readonly-field" | "private-readonly-field" | "private-decorated-readonly-field" | "private-static-readonly-field" | "private-instance-readonly-field" | "#private-readonly-field" | "#private-static-readonly-field" | "#private-instance-readonly-field" | "field" | "public-field" | "public-decorated-field" | "decorated-field" | "static-field" | "public-static-field" | "instance-field" | "public-instance-field" | "abstract-field" | "public-abstract-field" | "protected-field" | "protected-decorated-field" | "protected-static-field" | "protected-instance-field" | "protected-abstract-field" | "private-field" | "private-decorated-field" | "private-static-field" | "private-instance-field" | "#private-field" | "#private-static-field" | "#private-instance-field" | "method" | "public-method" | "public-decorated-method" | "decorated-method" | "static-method" | "public-static-method" | "instance-method" | "public-instance-method" | "abstract-method" | "public-abstract-method" | "protected-method" | "protected-decorated-method" | "protected-static-method" | "protected-instance-method" | "protected-abstract-method" | "private-method" | "private-decorated-method" | "private-static-method" | "private-instance-method" | "#private-method" | "#private-static-method" | "#private-instance-method" | "call-signature" | "constructor" | "public-constructor" | "protected-constructor" | "private-constructor" | "accessor" | "public-accessor" | "public-decorated-accessor" | "decorated-accessor" | "static-accessor" | "public-static-accessor" | "instance-accessor" | "public-instance-accessor" | "abstract-accessor" | "public-abstract-accessor" | "protected-accessor" | "protected-decorated-accessor" | "protected-static-accessor" | "protected-instance-accessor" | "protected-abstract-accessor" | "private-accessor" | "private-decorated-accessor" | "private-static-accessor" | "private-instance-accessor" | "#private-accessor" | "#private-static-accessor" | "#private-instance-accessor" | "get" | "public-get" | "public-decorated-get" | "decorated-get" | "static-get" | "public-static-get" | "instance-get" | "public-instance-get" | "abstract-get" | "public-abstract-get" | "protected-get" | "protected-decorated-get" | "protected-static-get" | "protected-instance-get" | "protected-abstract-get" | "private-get" | "private-decorated-get" | "private-static-get" | "private-instance-get" | "#private-get" | "#private-static-get" | "#private-instance-get" | "set" | "public-set" | "public-decorated-set" | "decorated-set" | "static-set" | "public-static-set" | "instance-set" | "public-instance-set" | "abstract-set" | "public-abstract-set" | "protected-set" | "protected-decorated-set" | "protected-static-set" | "protected-instance-set" | "protected-abstract-set" | "private-set" | "private-decorated-set" | "private-static-set" | "private-instance-set" | "#private-set" | "#private-static-set" | "#private-instance-set" | "static-initialization" | "static-static-initialization" | "public-static-static-initialization" | "instance-static-initialization" | "public-instance-static-initialization" | "abstract-static-initialization" | "public-abstract-static-initialization" | "protected-static-static-initialization" | "protected-instance-static-initialization" | "protected-abstract-static-initialization" | "private-static-static-initialization" | "private-instance-static-initialization" | "#private-static-static-initialization" | "#private-instance-static-initialization") | ("readonly-signature" | "signature" | "readonly-field" | "public-readonly-field" | "public-decorated-readonly-field" | "decorated-readonly-field" | "static-readonly-field" | "public-static-readonly-field" | "instance-readonly-field" | "public-instance-readonly-field" | "abstract-readonly-field" | "public-abstract-readonly-field" | "protected-readonly-field" | "protected-decorated-readonly-field" | "protected-static-readonly-field" | "protected-instance-readonly-field" | "protected-abstract-readonly-field" | "private-readonly-field" | "private-decorated-readonly-field" | "private-static-readonly-field" | "private-instance-readonly-field" | "#private-readonly-field" | "#private-static-readonly-field" | "#private-instance-readonly-field" | "field" | "public-field" | "public-decorated-field" | "decorated-field" | "static-field" | "public-static-field" | "instance-field" | "public-instance-field" | "abstract-field" | "public-abstract-field" | "protected-field" | "protected-decorated-field" | "protected-static-field" | "protected-instance-field" | "protected-abstract-field" | "private-field" | "private-decorated-field" | "private-static-field" | "private-instance-field" | "#private-field" | "#private-static-field" | "#private-instance-field" | "method" | "public-method" | "public-decorated-method" | "decorated-method" | "static-method" | "public-static-method" | "instance-method" | "public-instance-method" | "abstract-method" | "public-abstract-method" | "protected-method" | "protected-decorated-method" | "protected-static-method" | "protected-instance-method" | "protected-abstract-method" | "private-method" | "private-decorated-method" | "private-static-method" | "private-instance-method" | "#private-method" | "#private-static-method" | "#private-instance-method" | "call-signature" | "constructor" | "public-constructor" | "protected-constructor" | "private-constructor" | "accessor" | "public-accessor" | "public-decorated-accessor" | "decorated-accessor" | "static-accessor" | "public-static-accessor" | "instance-accessor" | "public-instance-accessor" | "abstract-accessor" | "public-abstract-accessor" | "protected-accessor" | "protected-decorated-accessor" | "protected-static-accessor" | "protected-instance-accessor" | "protected-abstract-accessor" | "private-accessor" | "private-decorated-accessor" | "private-static-accessor" | "private-instance-accessor" | "#private-accessor" | "#private-static-accessor" | "#private-instance-accessor" | "get" | "public-get" | "public-decorated-get" | "decorated-get" | "static-get" | "public-static-get" | "instance-get" | "public-instance-get" | "abstract-get" | "public-abstract-get" | "protected-get" | "protected-decorated-get" | "protected-static-get" | "protected-instance-get" | "protected-abstract-get" | "private-get" | "private-decorated-get" | "private-static-get" | "private-instance-get" | "#private-get" | "#private-static-get" | "#private-instance-get" | "set" | "public-set" | "public-decorated-set" | "decorated-set" | "static-set" | "public-static-set" | "instance-set" | "public-instance-set" | "abstract-set" | "public-abstract-set" | "protected-set" | "protected-decorated-set" | "protected-static-set" | "protected-instance-set" | "protected-abstract-set" | "private-set" | "private-decorated-set" | "private-static-set" | "private-instance-set" | "#private-set" | "#private-static-set" | "#private-instance-set" | "static-initialization" | "static-static-initialization" | "public-static-static-initialization" | "instance-static-initialization" | "public-instance-static-initialization" | "abstract-static-initialization" | "public-abstract-static-initialization" | "protected-static-static-initialization" | "protected-instance-static-initialization" | "protected-abstract-static-initialization" | "private-static-static-initialization" | "private-instance-static-initialization" | "#private-static-static-initialization" | "#private-instance-static-initialization")[])[] | {
     memberTypes?: ((("readonly-signature" | "signature" | "readonly-field" | "public-readonly-field" | "public-decorated-readonly-field" | "decorated-readonly-field" | "static-readonly-field" | "public-static-readonly-field" | "instance-readonly-field" | "public-instance-readonly-field" | "abstract-readonly-field" | "public-abstract-readonly-field" | "protected-readonly-field" | "protected-decorated-readonly-field" | "protected-static-readonly-field" | "protected-instance-readonly-field" | "protected-abstract-readonly-field" | "private-readonly-field" | "private-decorated-readonly-field" | "private-static-readonly-field" | "private-instance-readonly-field" | "#private-readonly-field" | "#private-static-readonly-field" | "#private-instance-readonly-field" | "field" | "public-field" | "public-decorated-field" | "decorated-field" | "static-field" | "public-static-field" | "instance-field" | "public-instance-field" | "abstract-field" | "public-abstract-field" | "protected-field" | "protected-decorated-field" | "protected-static-field" | "protected-instance-field" | "protected-abstract-field" | "private-field" | "private-decorated-field" | "private-static-field" | "private-instance-field" | "#private-field" | "#private-static-field" | "#private-instance-field" | "method" | "public-method" | "public-decorated-method" | "decorated-method" | "static-method" | "public-static-method" | "instance-method" | "public-instance-method" | "abstract-method" | "public-abstract-method" | "protected-method" | "protected-decorated-method" | "protected-static-method" | "protected-instance-method" | "protected-abstract-method" | "private-method" | "private-decorated-method" | "private-static-method" | "private-instance-method" | "#private-method" | "#private-static-method" | "#private-instance-method" | "call-signature" | "constructor" | "public-constructor" | "protected-constructor" | "private-constructor" | "accessor" | "public-accessor" | "public-decorated-accessor" | "decorated-accessor" | "static-accessor" | "public-static-accessor" | "instance-accessor" | "public-instance-accessor" | "abstract-accessor" | "public-abstract-accessor" | "protected-accessor" | "protected-decorated-accessor" | "protected-static-accessor" | "protected-instance-accessor" | "protected-abstract-accessor" | "private-accessor" | "private-decorated-accessor" | "private-static-accessor" | "private-instance-accessor" | "#private-accessor" | "#private-static-accessor" | "#private-instance-accessor" | "get" | "public-get" | "public-decorated-get" | "decorated-get" | "static-get" | "public-static-get" | "instance-get" | "public-instance-get" | "abstract-get" | "public-abstract-get" | "protected-get" | "protected-decorated-get" | "protected-static-get" | "protected-instance-get" | "protected-abstract-get" | "private-get" | "private-decorated-get" | "private-static-get" | "private-instance-get" | "#private-get" | "#private-static-get" | "#private-instance-get" | "set" | "public-set" | "public-decorated-set" | "decorated-set" | "static-set" | "public-static-set" | "instance-set" | "public-instance-set" | "abstract-set" | "public-abstract-set" | "protected-set" | "protected-decorated-set" | "protected-static-set" | "protected-instance-set" | "protected-abstract-set" | "private-set" | "private-decorated-set" | "private-static-set" | "private-instance-set" | "#private-set" | "#private-static-set" | "#private-instance-set" | "static-initialization" | "static-static-initialization" | "public-static-static-initialization" | "instance-static-initialization" | "public-instance-static-initialization" | "abstract-static-initialization" | "public-abstract-static-initialization" | "protected-static-static-initialization" | "protected-instance-static-initialization" | "protected-abstract-static-initialization" | "private-static-static-initialization" | "private-instance-static-initialization" | "#private-static-static-initialization" | "#private-instance-static-initialization") | ("readonly-signature" | "signature" | "readonly-field" | "public-readonly-field" | "public-decorated-readonly-field" | "decorated-readonly-field" | "static-readonly-field" | "public-static-readonly-field" | "instance-readonly-field" | "public-instance-readonly-field" | "abstract-readonly-field" | "public-abstract-readonly-field" | "protected-readonly-field" | "protected-decorated-readonly-field" | "protected-static-readonly-field" | "protected-instance-readonly-field" | "protected-abstract-readonly-field" | "private-readonly-field" | "private-decorated-readonly-field" | "private-static-readonly-field" | "private-instance-readonly-field" | "#private-readonly-field" | "#private-static-readonly-field" | "#private-instance-readonly-field" | "field" | "public-field" | "public-decorated-field" | "decorated-field" | "static-field" | "public-static-field" | "instance-field" | "public-instance-field" | "abstract-field" | "public-abstract-field" | "protected-field" | "protected-decorated-field" | "protected-static-field" | "protected-instance-field" | "protected-abstract-field" | "private-field" | "private-decorated-field" | "private-static-field" | "private-instance-field" | "#private-field" | "#private-static-field" | "#private-instance-field" | "method" | "public-method" | "public-decorated-method" | "decorated-method" | "static-method" | "public-static-method" | "instance-method" | "public-instance-method" | "abstract-method" | "public-abstract-method" | "protected-method" | "protected-decorated-method" | "protected-static-method" | "protected-instance-method" | "protected-abstract-method" | "private-method" | "private-decorated-method" | "private-static-method" | "private-instance-method" | "#private-method" | "#private-static-method" | "#private-instance-method" | "call-signature" | "constructor" | "public-constructor" | "protected-constructor" | "private-constructor" | "accessor" | "public-accessor" | "public-decorated-accessor" | "decorated-accessor" | "static-accessor" | "public-static-accessor" | "instance-accessor" | "public-instance-accessor" | "abstract-accessor" | "public-abstract-accessor" | "protected-accessor" | "protected-decorated-accessor" | "protected-static-accessor" | "protected-instance-accessor" | "protected-abstract-accessor" | "private-accessor" | "private-decorated-accessor" | "private-static-accessor" | "private-instance-accessor" | "#private-accessor" | "#private-static-accessor" | "#private-instance-accessor" | "get" | "public-get" | "public-decorated-get" | "decorated-get" | "static-get" | "public-static-get" | "instance-get" | "public-instance-get" | "abstract-get" | "public-abstract-get" | "protected-get" | "protected-decorated-get" | "protected-static-get" | "protected-instance-get" | "protected-abstract-get" | "private-get" | "private-decorated-get" | "private-static-get" | "private-instance-get" | "#private-get" | "#private-static-get" | "#private-instance-get" | "set" | "public-set" | "public-decorated-set" | "decorated-set" | "static-set" | "public-static-set" | "instance-set" | "public-instance-set" | "abstract-set" | "public-abstract-set" | "protected-set" | "protected-decorated-set" | "protected-static-set" | "protected-instance-set" | "protected-abstract-set" | "private-set" | "private-decorated-set" | "private-static-set" | "private-instance-set" | "#private-set" | "#private-static-set" | "#private-instance-set" | "static-initialization" | "static-static-initialization" | "public-static-static-initialization" | "instance-static-initialization" | "public-instance-static-initialization" | "abstract-static-initialization" | "public-abstract-static-initialization" | "protected-static-static-initialization" | "protected-instance-static-initialization" | "protected-abstract-static-initialization" | "private-static-static-initialization" | "private-instance-static-initialization" | "#private-static-static-initialization" | "#private-instance-static-initialization")[])[] | "never")
     optionalityOrder?: ("optional-first" | "required-first")
     order?: ("alphabetically" | "alphabetically-case-insensitive" | "as-written" | "natural" | "natural-case-insensitive")
   })
-  
+
   default?: ("never" | (("readonly-signature" | "signature" | "readonly-field" | "public-readonly-field" | "public-decorated-readonly-field" | "decorated-readonly-field" | "static-readonly-field" | "public-static-readonly-field" | "instance-readonly-field" | "public-instance-readonly-field" | "abstract-readonly-field" | "public-abstract-readonly-field" | "protected-readonly-field" | "protected-decorated-readonly-field" | "protected-static-readonly-field" | "protected-instance-readonly-field" | "protected-abstract-readonly-field" | "private-readonly-field" | "private-decorated-readonly-field" | "private-static-readonly-field" | "private-instance-readonly-field" | "#private-readonly-field" | "#private-static-readonly-field" | "#private-instance-readonly-field" | "field" | "public-field" | "public-decorated-field" | "decorated-field" | "static-field" | "public-static-field" | "instance-field" | "public-instance-field" | "abstract-field" | "public-abstract-field" | "protected-field" | "protected-decorated-field" | "protected-static-field" | "protected-instance-field" | "protected-abstract-field" | "private-field" | "private-decorated-field" | "private-static-field" | "private-instance-field" | "#private-field" | "#private-static-field" | "#private-instance-field" | "method" | "public-method" | "public-decorated-method" | "decorated-method" | "static-method" | "public-static-method" | "instance-method" | "public-instance-method" | "abstract-method" | "public-abstract-method" | "protected-method" | "protected-decorated-method" | "protected-static-method" | "protected-instance-method" | "protected-abstract-method" | "private-method" | "private-decorated-method" | "private-static-method" | "private-instance-method" | "#private-method" | "#private-static-method" | "#private-instance-method" | "call-signature" | "constructor" | "public-constructor" | "protected-constructor" | "private-constructor" | "accessor" | "public-accessor" | "public-decorated-accessor" | "decorated-accessor" | "static-accessor" | "public-static-accessor" | "instance-accessor" | "public-instance-accessor" | "abstract-accessor" | "public-abstract-accessor" | "protected-accessor" | "protected-decorated-accessor" | "protected-static-accessor" | "protected-instance-accessor" | "protected-abstract-accessor" | "private-accessor" | "private-decorated-accessor" | "private-static-accessor" | "private-instance-accessor" | "#private-accessor" | "#private-static-accessor" | "#private-instance-accessor" | "get" | "public-get" | "public-decorated-get" | "decorated-get" | "static-get" | "public-static-get" | "instance-get" | "public-instance-get" | "abstract-get" | "public-abstract-get" | "protected-get" | "protected-decorated-get" | "protected-static-get" | "protected-instance-get" | "protected-abstract-get" | "private-get" | "private-decorated-get" | "private-static-get" | "private-instance-get" | "#private-get" | "#private-static-get" | "#private-instance-get" | "set" | "public-set" | "public-decorated-set" | "decorated-set" | "static-set" | "public-static-set" | "instance-set" | "public-instance-set" | "abstract-set" | "public-abstract-set" | "protected-set" | "protected-decorated-set" | "protected-static-set" | "protected-instance-set" | "protected-abstract-set" | "private-set" | "private-decorated-set" | "private-static-set" | "private-instance-set" | "#private-set" | "#private-static-set" | "#private-instance-set" | "static-initialization" | "static-static-initialization" | "public-static-static-initialization" | "instance-static-initialization" | "public-instance-static-initialization" | "abstract-static-initialization" | "public-abstract-static-initialization" | "protected-static-static-initialization" | "protected-instance-static-initialization" | "protected-abstract-static-initialization" | "private-static-static-initialization" | "private-instance-static-initialization" | "#private-static-static-initialization" | "#private-instance-static-initialization") | ("readonly-signature" | "signature" | "readonly-field" | "public-readonly-field" | "public-decorated-readonly-field" | "decorated-readonly-field" | "static-readonly-field" | "public-static-readonly-field" | "instance-readonly-field" | "public-instance-readonly-field" | "abstract-readonly-field" | "public-abstract-readonly-field" | "protected-readonly-field" | "protected-decorated-readonly-field" | "protected-static-readonly-field" | "protected-instance-readonly-field" | "protected-abstract-readonly-field" | "private-readonly-field" | "private-decorated-readonly-field" | "private-static-readonly-field" | "private-instance-readonly-field" | "#private-readonly-field" | "#private-static-readonly-field" | "#private-instance-readonly-field" | "field" | "public-field" | "public-decorated-field" | "decorated-field" | "static-field" | "public-static-field" | "instance-field" | "public-instance-field" | "abstract-field" | "public-abstract-field" | "protected-field" | "protected-decorated-field" | "protected-static-field" | "protected-instance-field" | "protected-abstract-field" | "private-field" | "private-decorated-field" | "private-static-field" | "private-instance-field" | "#private-field" | "#private-static-field" | "#private-instance-field" | "method" | "public-method" | "public-decorated-method" | "decorated-method" | "static-method" | "public-static-method" | "instance-method" | "public-instance-method" | "abstract-method" | "public-abstract-method" | "protected-method" | "protected-decorated-method" | "protected-static-method" | "protected-instance-method" | "protected-abstract-method" | "private-method" | "private-decorated-method" | "private-static-method" | "private-instance-method" | "#private-method" | "#private-static-method" | "#private-instance-method" | "call-signature" | "constructor" | "public-constructor" | "protected-constructor" | "private-constructor" | "accessor" | "public-accessor" | "public-decorated-accessor" | "decorated-accessor" | "static-accessor" | "public-static-accessor" | "instance-accessor" | "public-instance-accessor" | "abstract-accessor" | "public-abstract-accessor" | "protected-accessor" | "protected-decorated-accessor" | "protected-static-accessor" | "protected-instance-accessor" | "protected-abstract-accessor" | "private-accessor" | "private-decorated-accessor" | "private-static-accessor" | "private-instance-accessor" | "#private-accessor" | "#private-static-accessor" | "#private-instance-accessor" | "get" | "public-get" | "public-decorated-get" | "decorated-get" | "static-get" | "public-static-get" | "instance-get" | "public-instance-get" | "abstract-get" | "public-abstract-get" | "protected-get" | "protected-decorated-get" | "protected-static-get" | "protected-instance-get" | "protected-abstract-get" | "private-get" | "private-decorated-get" | "private-static-get" | "private-instance-get" | "#private-get" | "#private-static-get" | "#private-instance-get" | "set" | "public-set" | "public-decorated-set" | "decorated-set" | "static-set" | "public-static-set" | "instance-set" | "public-instance-set" | "abstract-set" | "public-abstract-set" | "protected-set" | "protected-decorated-set" | "protected-static-set" | "protected-instance-set" | "protected-abstract-set" | "private-set" | "private-decorated-set" | "private-static-set" | "private-instance-set" | "#private-set" | "#private-static-set" | "#private-instance-set" | "static-initialization" | "static-static-initialization" | "public-static-static-initialization" | "instance-static-initialization" | "public-instance-static-initialization" | "abstract-static-initialization" | "public-abstract-static-initialization" | "protected-static-static-initialization" | "protected-instance-static-initialization" | "protected-abstract-static-initialization" | "private-static-static-initialization" | "private-instance-static-initialization" | "#private-static-static-initialization" | "#private-instance-static-initialization")[])[] | {
     memberTypes?: ((("readonly-signature" | "signature" | "readonly-field" | "public-readonly-field" | "public-decorated-readonly-field" | "decorated-readonly-field" | "static-readonly-field" | "public-static-readonly-field" | "instance-readonly-field" | "public-instance-readonly-field" | "abstract-readonly-field" | "public-abstract-readonly-field" | "protected-readonly-field" | "protected-decorated-readonly-field" | "protected-static-readonly-field" | "protected-instance-readonly-field" | "protected-abstract-readonly-field" | "private-readonly-field" | "private-decorated-readonly-field" | "private-static-readonly-field" | "private-instance-readonly-field" | "#private-readonly-field" | "#private-static-readonly-field" | "#private-instance-readonly-field" | "field" | "public-field" | "public-decorated-field" | "decorated-field" | "static-field" | "public-static-field" | "instance-field" | "public-instance-field" | "abstract-field" | "public-abstract-field" | "protected-field" | "protected-decorated-field" | "protected-static-field" | "protected-instance-field" | "protected-abstract-field" | "private-field" | "private-decorated-field" | "private-static-field" | "private-instance-field" | "#private-field" | "#private-static-field" | "#private-instance-field" | "method" | "public-method" | "public-decorated-method" | "decorated-method" | "static-method" | "public-static-method" | "instance-method" | "public-instance-method" | "abstract-method" | "public-abstract-method" | "protected-method" | "protected-decorated-method" | "protected-static-method" | "protected-instance-method" | "protected-abstract-method" | "private-method" | "private-decorated-method" | "private-static-method" | "private-instance-method" | "#private-method" | "#private-static-method" | "#private-instance-method" | "call-signature" | "constructor" | "public-constructor" | "protected-constructor" | "private-constructor" | "accessor" | "public-accessor" | "public-decorated-accessor" | "decorated-accessor" | "static-accessor" | "public-static-accessor" | "instance-accessor" | "public-instance-accessor" | "abstract-accessor" | "public-abstract-accessor" | "protected-accessor" | "protected-decorated-accessor" | "protected-static-accessor" | "protected-instance-accessor" | "protected-abstract-accessor" | "private-accessor" | "private-decorated-accessor" | "private-static-accessor" | "private-instance-accessor" | "#private-accessor" | "#private-static-accessor" | "#private-instance-accessor" | "get" | "public-get" | "public-decorated-get" | "decorated-get" | "static-get" | "public-static-get" | "instance-get" | "public-instance-get" | "abstract-get" | "public-abstract-get" | "protected-get" | "protected-decorated-get" | "protected-static-get" | "protected-instance-get" | "protected-abstract-get" | "private-get" | "private-decorated-get" | "private-static-get" | "private-instance-get" | "#private-get" | "#private-static-get" | "#private-instance-get" | "set" | "public-set" | "public-decorated-set" | "decorated-set" | "static-set" | "public-static-set" | "instance-set" | "public-instance-set" | "abstract-set" | "public-abstract-set" | "protected-set" | "protected-decorated-set" | "protected-static-set" | "protected-instance-set" | "protected-abstract-set" | "private-set" | "private-decorated-set" | "private-static-set" | "private-instance-set" | "#private-set" | "#private-static-set" | "#private-instance-set" | "static-initialization" | "static-static-initialization" | "public-static-static-initialization" | "instance-static-initialization" | "public-instance-static-initialization" | "abstract-static-initialization" | "public-abstract-static-initialization" | "protected-static-static-initialization" | "protected-instance-static-initialization" | "protected-abstract-static-initialization" | "private-static-static-initialization" | "private-instance-static-initialization" | "#private-static-static-initialization" | "#private-instance-static-initialization") | ("readonly-signature" | "signature" | "readonly-field" | "public-readonly-field" | "public-decorated-readonly-field" | "decorated-readonly-field" | "static-readonly-field" | "public-static-readonly-field" | "instance-readonly-field" | "public-instance-readonly-field" | "abstract-readonly-field" | "public-abstract-readonly-field" | "protected-readonly-field" | "protected-decorated-readonly-field" | "protected-static-readonly-field" | "protected-instance-readonly-field" | "protected-abstract-readonly-field" | "private-readonly-field" | "private-decorated-readonly-field" | "private-static-readonly-field" | "private-instance-readonly-field" | "#private-readonly-field" | "#private-static-readonly-field" | "#private-instance-readonly-field" | "field" | "public-field" | "public-decorated-field" | "decorated-field" | "static-field" | "public-static-field" | "instance-field" | "public-instance-field" | "abstract-field" | "public-abstract-field" | "protected-field" | "protected-decorated-field" | "protected-static-field" | "protected-instance-field" | "protected-abstract-field" | "private-field" | "private-decorated-field" | "private-static-field" | "private-instance-field" | "#private-field" | "#private-static-field" | "#private-instance-field" | "method" | "public-method" | "public-decorated-method" | "decorated-method" | "static-method" | "public-static-method" | "instance-method" | "public-instance-method" | "abstract-method" | "public-abstract-method" | "protected-method" | "protected-decorated-method" | "protected-static-method" | "protected-instance-method" | "protected-abstract-method" | "private-method" | "private-decorated-method" | "private-static-method" | "private-instance-method" | "#private-method" | "#private-static-method" | "#private-instance-method" | "call-signature" | "constructor" | "public-constructor" | "protected-constructor" | "private-constructor" | "accessor" | "public-accessor" | "public-decorated-accessor" | "decorated-accessor" | "static-accessor" | "public-static-accessor" | "instance-accessor" | "public-instance-accessor" | "abstract-accessor" | "public-abstract-accessor" | "protected-accessor" | "protected-decorated-accessor" | "protected-static-accessor" | "protected-instance-accessor" | "protected-abstract-accessor" | "private-accessor" | "private-decorated-accessor" | "private-static-accessor" | "private-instance-accessor" | "#private-accessor" | "#private-static-accessor" | "#private-instance-accessor" | "get" | "public-get" | "public-decorated-get" | "decorated-get" | "static-get" | "public-static-get" | "instance-get" | "public-instance-get" | "abstract-get" | "public-abstract-get" | "protected-get" | "protected-decorated-get" | "protected-static-get" | "protected-instance-get" | "protected-abstract-get" | "private-get" | "private-decorated-get" | "private-static-get" | "private-instance-get" | "#private-get" | "#private-static-get" | "#private-instance-get" | "set" | "public-set" | "public-decorated-set" | "decorated-set" | "static-set" | "public-static-set" | "instance-set" | "public-instance-set" | "abstract-set" | "public-abstract-set" | "protected-set" | "protected-decorated-set" | "protected-static-set" | "protected-instance-set" | "protected-abstract-set" | "private-set" | "private-decorated-set" | "private-static-set" | "private-instance-set" | "#private-set" | "#private-static-set" | "#private-instance-set" | "static-initialization" | "static-static-initialization" | "public-static-static-initialization" | "instance-static-initialization" | "public-instance-static-initialization" | "abstract-static-initialization" | "public-abstract-static-initialization" | "protected-static-static-initialization" | "protected-instance-static-initialization" | "protected-abstract-static-initialization" | "private-static-static-initialization" | "private-instance-static-initialization" | "#private-static-static-initialization" | "#private-instance-static-initialization")[])[] | "never")
     optionalityOrder?: ("optional-first" | "required-first")
     order?: ("alphabetically" | "alphabetically-case-insensitive" | "as-written" | "natural" | "natural-case-insensitive")
   })
-  
+
   interfaces?: ("never" | (("readonly-signature" | "signature" | "readonly-field" | "field" | "method" | "constructor") | ("readonly-signature" | "signature" | "readonly-field" | "field" | "method" | "constructor")[])[] | {
     memberTypes?: ((("readonly-signature" | "signature" | "readonly-field" | "field" | "method" | "constructor") | ("readonly-signature" | "signature" | "readonly-field" | "field" | "method" | "constructor")[])[] | "never")
     optionalityOrder?: ("optional-first" | "required-first")
     order?: ("alphabetically" | "alphabetically-case-insensitive" | "as-written" | "natural" | "natural-case-insensitive")
   })
-  
+
   typeLiterals?: ("never" | (("readonly-signature" | "signature" | "readonly-field" | "field" | "method" | "constructor") | ("readonly-signature" | "signature" | "readonly-field" | "field" | "method" | "constructor")[])[] | {
     memberTypes?: ((("readonly-signature" | "signature" | "readonly-field" | "field" | "method" | "constructor") | ("readonly-signature" | "signature" | "readonly-field" | "field" | "method" | "constructor")[])[] | "never")
     optionalityOrder?: ("optional-first" | "required-first")
@@ -19516,23 +23213,23 @@ interface _TsNamingConvention_MatchRegexConfig {
 }
 // ----- ts/no-base-to-string -----
 type TsNoBaseToString = []|[{
-  
+
   checkUnknown?: boolean
-  
+
   ignoredTypeNames?: string[]
 }]
 // ----- ts/no-confusing-void-expression -----
 type TsNoConfusingVoidExpression = []|[{
-  
+
   ignoreArrowShorthand?: boolean
-  
+
   ignoreVoidOperator?: boolean
-  
+
   ignoreVoidReturningFunctions?: boolean
 }]
 // ----- ts/no-deprecated -----
 type TsNoDeprecated = []|[{
-  
+
   allow?: (string | {
     from: "file"
     name: (string | [string, ...(string)[]])
@@ -19548,51 +23245,51 @@ type TsNoDeprecated = []|[{
 }]
 // ----- ts/no-duplicate-type-constituents -----
 type TsNoDuplicateTypeConstituents = []|[{
-  
+
   ignoreIntersections?: boolean
-  
+
   ignoreUnions?: boolean
 }]
 // ----- ts/no-empty-function -----
 type TsNoEmptyFunction = []|[{
-  
+
   allow?: ("functions" | "arrowFunctions" | "generatorFunctions" | "methods" | "generatorMethods" | "getters" | "setters" | "constructors" | "private-constructors" | "protected-constructors" | "asyncFunctions" | "asyncMethods" | "decoratedFunctions" | "overrideMethods")[]
 }]
 // ----- ts/no-empty-interface -----
 type TsNoEmptyInterface = []|[{
-  
+
   allowSingleExtends?: boolean
 }]
 // ----- ts/no-empty-object-type -----
 type TsNoEmptyObjectType = []|[{
-  
+
   allowInterfaces?: ("always" | "never" | "with-single-extends")
-  
+
   allowObjectTypes?: ("always" | "never")
-  
+
   allowWithName?: string
 }]
 // ----- ts/no-explicit-any -----
 type TsNoExplicitAny = []|[{
-  
+
   fixToUnknown?: boolean
-  
+
   ignoreRestArgs?: boolean
 }]
 // ----- ts/no-extraneous-class -----
 type TsNoExtraneousClass = []|[{
-  
+
   allowConstructorOnly?: boolean
-  
+
   allowEmpty?: boolean
-  
+
   allowStaticOnly?: boolean
-  
+
   allowWithDecorator?: boolean
 }]
 // ----- ts/no-floating-promises -----
 type TsNoFloatingPromises = []|[{
-  
+
   allowForKnownSafeCalls?: (string | {
     from: "file"
     name: (string | [string, ...(string)[]])
@@ -19605,7 +23302,7 @@ type TsNoFloatingPromises = []|[{
     name: (string | [string, ...(string)[]])
     package: string
   })[]
-  
+
   allowForKnownSafePromises?: (string | {
     from: "file"
     name: (string | [string, ...(string)[]])
@@ -19618,18 +23315,18 @@ type TsNoFloatingPromises = []|[{
     name: (string | [string, ...(string)[]])
     package: string
   })[]
-  
+
   checkThenables?: boolean
-  
+
   ignoreIIFE?: boolean
-  
+
   ignoreVoid?: boolean
 }]
 // ----- ts/no-inferrable-types -----
 type TsNoInferrableTypes = []|[{
-  
+
   ignoreParameters?: boolean
-  
+
   ignoreProperties?: boolean
 }]
 // ----- ts/no-invalid-this -----
@@ -19638,9 +23335,9 @@ type TsNoInvalidThis = []|[{
 }]
 // ----- ts/no-invalid-void-type -----
 type TsNoInvalidVoidType = []|[{
-  
+
   allowAsThisParameter?: boolean
-  
+
   allowInGenericTypeArguments?: (boolean | [string, ...(string)[]])
 }]
 // ----- ts/no-magic-numbers -----
@@ -19651,45 +23348,48 @@ type TsNoMagicNumbers = []|[{
   ignoreArrayIndexes?: boolean
   ignoreDefaultValues?: boolean
   ignoreClassFieldInitialValues?: boolean
-  
+
   ignoreEnums?: boolean
-  
+
   ignoreNumericLiteralTypes?: boolean
-  
+
   ignoreReadonlyClassProperties?: boolean
-  
+
   ignoreTypeIndexes?: boolean
 }]
 // ----- ts/no-meaningless-void-operator -----
 type TsNoMeaninglessVoidOperator = []|[{
-  
+
   checkNever?: boolean
 }]
 // ----- ts/no-misused-promises -----
 type TsNoMisusedPromises = []|[{
-  
-  checksConditionals?: boolean
-  
+
+  checksConditionals?: (boolean | {
+
+    flagUnions?: ("all" | "strict" | "none")
+  })
+
   checksSpreads?: boolean
-  
+
   checksVoidReturn?: (boolean | {
-    
+
     arguments?: boolean
-    
+
     attributes?: boolean
-    
+
     inheritedMethods?: boolean
-    
+
     properties?: boolean
-    
+
     returns?: boolean
-    
+
     variables?: boolean
   })
 }]
 // ----- ts/no-misused-spread -----
 type TsNoMisusedSpread = []|[{
-  
+
   allow?: (string | {
     from: "file"
     name: (string | [string, ...(string)[]])
@@ -19705,23 +23405,23 @@ type TsNoMisusedSpread = []|[{
 }]
 // ----- ts/no-namespace -----
 type TsNoNamespace = []|[{
-  
+
   allowDeclarations?: boolean
-  
+
   allowDefinitionFiles?: boolean
 }]
 // ----- ts/no-redeclare -----
 type TsNoRedeclare = []|[{
-  
+
   builtinGlobals?: boolean
-  
+
   ignoreDeclarationMerge?: boolean
 }]
 // ----- ts/no-require-imports -----
 type TsNoRequireImports = []|[{
-  
+
   allow?: string[]
-  
+
   allowAsImport?: boolean
 }]
 // ----- ts/no-restricted-imports -----
@@ -19730,7 +23430,7 @@ type TsNoRestrictedImports = ((string | {
   message?: string
   importNames?: string[]
   allowImportNames?: string[]
-  
+
   allowTypeImports?: boolean
 })[] | []|[{
   paths?: (string | {
@@ -19738,108 +23438,108 @@ type TsNoRestrictedImports = ((string | {
     message?: string
     importNames?: string[]
     allowImportNames?: string[]
-    
+
     allowTypeImports?: boolean
   })[]
   patterns?: (string[] | {
-    
+
     importNames?: [string, ...(string)[]]
-    
+
     allowImportNames?: [string, ...(string)[]]
-    
+
     group?: [string, ...(string)[]]
     regex?: string
     importNamePattern?: string
     allowImportNamePattern?: string
     message?: string
     caseSensitive?: boolean
-    
+
     allowTypeImports?: boolean
   }[])
 }])
 // ----- ts/no-restricted-types -----
 type TsNoRestrictedTypes = []|[{
-  
+
   types?: {
     [k: string]: (true | string | {
-      
+
       fixWith?: string
-      
+
       message?: string
-      
+
       suggest?: string[]
     }) | undefined
   }
 }]
 // ----- ts/no-shadow -----
 type TsNoShadow = []|[{
-  
+
   allow?: string[]
-  
+
   builtinGlobals?: boolean
-  
+
   hoist?: ("all" | "functions" | "functions-and-types" | "never" | "types")
-  
+
   ignoreFunctionTypeParameterNameValueShadow?: boolean
-  
+
   ignoreOnInitialization?: boolean
-  
+
   ignoreTypeValueShadow?: boolean
 }]
 // ----- ts/no-this-alias -----
 type TsNoThisAlias = []|[{
-  
+
   allowDestructuring?: boolean
-  
+
   allowedNames?: string[]
 }]
 // ----- ts/no-type-alias -----
 type TsNoTypeAlias = []|[{
-  
+
   allowAliases?: ("always" | "never" | "in-unions" | "in-intersections" | "in-unions-and-intersections")
-  
+
   allowCallbacks?: ("always" | "never")
-  
+
   allowConditionalTypes?: ("always" | "never")
-  
+
   allowConstructors?: ("always" | "never")
-  
+
   allowGenerics?: ("always" | "never")
-  
+
   allowLiterals?: ("always" | "never" | "in-unions" | "in-intersections" | "in-unions-and-intersections")
-  
+
   allowMappedTypes?: ("always" | "never" | "in-unions" | "in-intersections" | "in-unions-and-intersections")
-  
+
   allowTupleTypes?: ("always" | "never" | "in-unions" | "in-intersections" | "in-unions-and-intersections")
 }]
 // ----- ts/no-unnecessary-boolean-literal-compare -----
 type TsNoUnnecessaryBooleanLiteralCompare = []|[{
-  
+
   allowComparingNullableBooleansToFalse?: boolean
-  
+
   allowComparingNullableBooleansToTrue?: boolean
-  
+
   allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing?: boolean
 }]
 // ----- ts/no-unnecessary-condition -----
 type TsNoUnnecessaryCondition = []|[{
-  
+
   allowConstantLoopConditions?: (boolean | ("always" | "never" | "only-allowed-literals"))
-  
+
   allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing?: boolean
-  
+
   checkTypePredicates?: boolean
 }]
 // ----- ts/no-unnecessary-type-assertion -----
 type TsNoUnnecessaryTypeAssertion = []|[{
-  
+
   checkLiteralConstAssertions?: boolean
-  
+
   typesToIgnore?: string[]
 }]
 // ----- ts/no-unsafe-member-access -----
 type TsNoUnsafeMemberAccess = []|[{
-  
+
   allowOptionalChaining?: boolean
 }]
 // ----- ts/no-unused-expressions -----
@@ -19852,64 +23552,64 @@ type TsNoUnusedExpressions = []|[{
 }]
 // ----- ts/no-unused-vars -----
 type TsNoUnusedVars = []|[(("all" | "local") | {
-  
+
   args?: ("all" | "after-used" | "none")
-  
+
   argsIgnorePattern?: string
-  
+
   caughtErrors?: ("all" | "none")
-  
+
   caughtErrorsIgnorePattern?: string
-  
+
   destructuredArrayIgnorePattern?: string
-  
+
   enableAutofixRemoval?: {
-    
+
     imports?: boolean
   }
-  
+
   ignoreClassWithStaticInitBlock?: boolean
-  
+
   ignoreRestSiblings?: boolean
-  
+
   ignoreUsingDeclarations?: boolean
-  
+
   reportUsedIgnorePattern?: boolean
-  
+
   vars?: ("all" | "local")
-  
+
   varsIgnorePattern?: string
 })]
 // ----- ts/no-use-before-define -----
 type TsNoUseBeforeDefine = []|[("nofunc" | {
-  
+
   allowNamedExports?: boolean
-  
+
   classes?: boolean
-  
+
   enums?: boolean
-  
+
   functions?: boolean
-  
+
   ignoreTypeReferences?: boolean
-  
+
   typedefs?: boolean
-  
+
   variables?: boolean
 })]
 // ----- ts/no-useless-default-assignment -----
 type TsNoUselessDefaultAssignment = []|[{
-  
+
   allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing?: boolean
 }]
 // ----- ts/no-var-requires -----
 type TsNoVarRequires = []|[{
-  
+
   allow?: string[]
 }]
 // ----- ts/only-throw-error -----
 type TsOnlyThrowError = []|[{
-  
+
   allow?: (string | {
     from: "file"
     name: (string | [string, ...(string)[]])
@@ -19922,18 +23622,18 @@ type TsOnlyThrowError = []|[{
     name: (string | [string, ...(string)[]])
     package: string
   })[]
-  
+
   allowRethrowing?: boolean
-  
+
   allowThrowingAny?: boolean
-  
+
   allowThrowingUnknown?: boolean
 }]
 // ----- ts/parameter-properties -----
 type TsParameterProperties = []|[{
-  
+
   allow?: ("readonly" | "private" | "protected" | "public" | "private readonly" | "protected readonly" | "public readonly")[]
-  
+
   prefer?: ("class-property" | "parameter-property")
 }]
 // ----- ts/prefer-destructuring -----
@@ -19962,78 +23662,64 @@ type TsPreferDestructuring = []|[({
   array?: boolean
   object?: boolean
 }), {
-  
+
   enforceForDeclarationWithTypeAnnotation?: boolean
-  
+
   enforceForRenamedProperties?: boolean
 }]
 // ----- ts/prefer-literal-enum-member -----
 type TsPreferLiteralEnumMember = []|[{
-  
+
   allowBitwiseExpressions?: boolean
 }]
 // ----- ts/prefer-nullish-coalescing -----
 type TsPreferNullishCoalescing = []|[{
-  
+
   allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing?: boolean
-  
+
   ignoreBooleanCoercion?: boolean
-  
+
   ignoreConditionalTests?: boolean
-  
+
   ignoreIfStatements?: boolean
-  
+
   ignoreMixedLogicalExpressions?: boolean
-  
+
   ignorePrimitives?: ({
-    
+
     bigint?: boolean
-    
+
     boolean?: boolean
-    
+
     number?: boolean
-    
+
     string?: boolean
   } | true)
-  
+
   ignoreTernaryTests?: boolean
 }]
 // ----- ts/prefer-optional-chain -----
 type TsPreferOptionalChain = []|[{
-  
+
   allowPotentiallyUnsafeFixesThatModifyTheReturnTypeIKnowWhatImDoing?: boolean
-  
+
   checkAny?: boolean
-  
+
   checkBigInt?: boolean
-  
+
   checkBoolean?: boolean
-  
+
   checkNumber?: boolean
-  
+
   checkString?: boolean
-  
+
   checkUnknown?: boolean
-  
+
   requireNullish?: boolean
 }]
 // ----- ts/prefer-promise-reject-errors -----
 type TsPreferPromiseRejectErrors = []|[{
-  
-  allowEmptyReject?: boolean
-  
-  allowThrowingAny?: boolean
-  
-  allowThrowingUnknown?: boolean
-}]
-// ----- ts/prefer-readonly -----
-type TsPreferReadonly = []|[{
-  
-  onlyInlineLambdas?: boolean
-}]
-// ----- ts/prefer-readonly-parameter-types -----
-type TsPreferReadonlyParameterTypes = []|[{
-  
+
   allow?: (string | {
     from: "file"
     name: (string | [string, ...(string)[]])
@@ -20046,70 +23732,97 @@ type TsPreferReadonlyParameterTypes = []|[{
     name: (string | [string, ...(string)[]])
     package: string
   })[]
-  
+
+  allowEmptyReject?: boolean
+
+  allowThrowingAny?: boolean
+
+  allowThrowingUnknown?: boolean
+}]
+// ----- ts/prefer-readonly -----
+type TsPreferReadonly = []|[{
+
+  onlyInlineLambdas?: boolean
+}]
+// ----- ts/prefer-readonly-parameter-types -----
+type TsPreferReadonlyParameterTypes = []|[{
+
+  allow?: (string | {
+    from: "file"
+    name: (string | [string, ...(string)[]])
+    path?: string
+  } | {
+    from: "lib"
+    name: (string | [string, ...(string)[]])
+  } | {
+    from: "package"
+    name: (string | [string, ...(string)[]])
+    package: string
+  })[]
+
   checkParameterProperties?: boolean
-  
+
   ignoreInferredTypes?: boolean
-  
+
   treatMethodsAsReadonly?: boolean
 }]
 // ----- ts/prefer-string-starts-ends-with -----
 type TsPreferStringStartsEndsWith = []|[{
-  
+
   allowSingleElementEquality?: ("always" | "never")
 }]
 // ----- ts/promise-function-async -----
 type TsPromiseFunctionAsync = []|[{
-  
+
   allowAny?: boolean
-  
+
   allowedPromiseNames?: string[]
-  
+
   checkArrowFunctions?: boolean
-  
+
   checkFunctionDeclarations?: boolean
-  
+
   checkFunctionExpressions?: boolean
-  
+
   checkMethodDeclarations?: boolean
 }]
 // ----- ts/require-array-sort-compare -----
 type TsRequireArraySortCompare = []|[{
-  
+
   ignoreStringArrays?: boolean
 }]
 // ----- ts/restrict-plus-operands -----
 type TsRestrictPlusOperands = []|[{
-  
+
   allowAny?: boolean
-  
+
   allowBoolean?: boolean
-  
+
   allowNullish?: boolean
-  
+
   allowNumberAndString?: boolean
-  
+
   allowRegExp?: boolean
-  
+
   skipCompoundAssignments?: boolean
 }]
 // ----- ts/restrict-template-expressions -----
 type TsRestrictTemplateExpressions = []|[{
-  
+
   allowAny?: boolean
-  
+
   allowArray?: boolean
-  
+
   allowBoolean?: boolean
-  
+
   allowNullish?: boolean
-  
+
   allowNumber?: boolean
-  
+
   allowRegExp?: boolean
-  
+
   allowNever?: boolean
-  
+
   allow?: (string | {
     from: "file"
     name: (string | [string, ...(string)[]])
@@ -20127,142 +23840,290 @@ type TsRestrictTemplateExpressions = []|[{
 type TsReturnAwait = []|[(("always" | "error-handling-correctness-only" | "in-try-catch" | "never") & string)]
 // ----- ts/sort-type-constituents -----
 type TsSortTypeConstituents = []|[{
-  
+
   caseSensitive?: boolean
-  
+
   checkIntersections?: boolean
-  
+
   checkUnions?: boolean
-  
+
   groupOrder?: ("conditional" | "function" | "import" | "intersection" | "keyword" | "nullish" | "literal" | "named" | "object" | "operator" | "tuple" | "union")[]
 }]
 // ----- ts/strict-boolean-expressions -----
 type TsStrictBooleanExpressions = []|[{
-  
+
   allowAny?: boolean
-  
+
   allowNullableBoolean?: boolean
-  
+
   allowNullableEnum?: boolean
-  
+
   allowNullableNumber?: boolean
-  
+
   allowNullableObject?: boolean
-  
+
   allowNullableString?: boolean
-  
+
   allowNumber?: boolean
-  
+
   allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing?: boolean
-  
+
   allowString?: boolean
 }]
 // ----- ts/strict-void-return -----
 type TsStrictVoidReturn = []|[{
-  
+
   allowReturnAny?: boolean
 }]
 // ----- ts/switch-exhaustiveness-check -----
 type TsSwitchExhaustivenessCheck = []|[{
-  
+
   allowDefaultCaseForExhaustiveSwitch?: boolean
-  
+
   considerDefaultExhaustiveForUnions?: boolean
-  
+
   defaultCaseCommentPattern?: string
-  
+
   requireDefaultForNonUnion?: boolean
 }]
 // ----- ts/triple-slash-reference -----
 type TsTripleSlashReference = []|[{
-  
+
   lib?: ("always" | "never")
-  
+
   path?: ("always" | "never")
-  
+
   types?: ("always" | "never" | "prefer-import")
 }]
 // ----- ts/typedef -----
 type TsTypedef = []|[{
-  
+
   arrayDestructuring?: boolean
-  
+
   arrowParameter?: boolean
-  
+
   memberVariableDeclaration?: boolean
-  
+
   objectDestructuring?: boolean
-  
+
   parameter?: boolean
-  
+
   propertyDeclaration?: boolean
-  
+
   variableDeclaration?: boolean
-  
+
   variableDeclarationIgnoreFunction?: boolean
 }]
 // ----- ts/unbound-method -----
 type TsUnboundMethod = []|[{
-  
+
   ignoreStatic?: boolean
 }]
 // ----- ts/unified-signatures -----
 type TsUnifiedSignatures = []|[{
-  
+
   ignoreDifferentlyNamedParameters?: boolean
-  
+
   ignoreOverloadsWithDifferentJSDoc?: boolean
 }]
 // ----- unicode-bom -----
 type UnicodeBom = []|[("always" | "never")]
-// ----- unicorn/better-regex -----
-type UnicornBetterRegex = []|[{
-  sortCharacterClasses?: boolean
-}]
 // ----- unicorn/catch-error-name -----
 type UnicornCatchErrorName = []|[{
+
   name?: string
-  ignore?: unknown[]
+
+  ignore?: (string | {
+    [k: string]: unknown | undefined
+  })[]
 }]
+// ----- unicorn/class-reference-in-static-methods -----
+type UnicornClassReferenceInStaticMethods = []|[{
+
+  preferThis?: boolean
+
+  preferSuper?: boolean
+}]
+// ----- unicorn/comment-content -----
+type UnicornCommentContent = []|[{
+
+  checkUniformCase?: boolean
+
+  extendDefaultReplacements?: boolean
+
+  replacements?: {
+    [k: string]: (false | string | {
+      replacement: string
+      caseSensitive?: boolean
+    }) | undefined
+  }
+}]
+// ----- unicorn/consistent-boolean-name -----
+type UnicornConsistentBooleanName = []|[{
+
+  checkVariables?: ("always" | "prohibit" | "never")
+
+  checkArguments?: ("always" | "prohibit" | "never")
+
+  checkFunctions?: ("always" | "prohibit" | "never")
+
+  checkMethods?: ("always" | "prohibit" | "never")
+
+  checkFields?: ("always" | "prohibit" | "never")
+
+  prefixes?: {
+
+    [k: string]: boolean | undefined
+  }
+
+  wrappers?: {
+
+    [k: string]: string | undefined
+  }
+
+  ignore?: unknown[]
+  [k: string]: unknown
+}]
+// ----- unicorn/consistent-class-member-order -----
+type UnicornConsistentClassMemberOrder = []|[{
+
+  order?: [("static-field" | "static-block" | "static-method" | "private-field" | "public-field" | "constructor" | "private-method" | "public-method"), ("static-field" | "static-block" | "static-method" | "private-field" | "public-field" | "constructor" | "private-method" | "public-method"), ("static-field" | "static-block" | "static-method" | "private-field" | "public-field" | "constructor" | "private-method" | "public-method"), ("static-field" | "static-block" | "static-method" | "private-field" | "public-field" | "constructor" | "private-method" | "public-method"), ("static-field" | "static-block" | "static-method" | "private-field" | "public-field" | "constructor" | "private-method" | "public-method"), ("static-field" | "static-block" | "static-method" | "private-field" | "public-field" | "constructor" | "private-method" | "public-method"), ("static-field" | "static-block" | "static-method" | "private-field" | "public-field" | "constructor" | "private-method" | "public-method"), ("static-field" | "static-block" | "static-method" | "private-field" | "public-field" | "constructor" | "private-method" | "public-method")]
+}]
+// ----- unicorn/consistent-compound-words -----
+type UnicornConsistentCompoundWords = []|[{
+
+  checkProperties?: boolean
+
+  checkVariables?: boolean
+
+  checkDefaultAndNamespaceImports?: (boolean | "internal")
+
+  checkShorthandImports?: (boolean | "internal")
+
+  checkShorthandProperties?: boolean
+
+  extendDefaultReplacements?: boolean
+  replacements?: _UnicornConsistentCompoundWords_Replacements
+  allowList?: _UnicornConsistentCompoundWords_TrueObject
+}]
+interface _UnicornConsistentCompoundWords_Replacements {
+  [k: string]: (false | string) | undefined
+}
+interface _UnicornConsistentCompoundWords_TrueObject {
+  [k: string]: true | undefined
+}
+// ----- unicorn/consistent-conditional-object-spread -----
+type UnicornConsistentConditionalObjectSpread = []|[("logical" | "ternary")]
+// ----- unicorn/consistent-export-decorator-position -----
+type UnicornConsistentExportDecoratorPosition = []|[("above" | "before" | "after")]
 // ----- unicorn/consistent-function-scoping -----
 type UnicornConsistentFunctionScoping = []|[{
+
   checkArrowFunctions?: boolean
+}]
+// ----- unicorn/consistent-function-style -----
+type UnicornConsistentFunctionStyle = []|[{
+  default?: ("declaration" | "function-expression" | "arrow-function" | "ignore")
+  defaultExport?: ("declaration" | "function-expression" | "arrow-function" | "ignore")
+  namedFunctions?: ("declaration" | "function-expression" | "arrow-function" | "ignore")
+  namedExports?: ("declaration" | "function-expression" | "arrow-function" | "ignore")
+  callbacks?: ("function-expression" | "arrow-function" | "ignore")
+  objectProperties?: ("method" | "function-expression" | "arrow-function" | "ignore")
+  reassignedVariables?: ("function-expression" | "arrow-function" | "ignore")
+  typedVariables?: ("function-expression" | "arrow-function" | "ignore")
+}]
+// ----- unicorn/consistent-json-file-read -----
+type UnicornConsistentJsonFileRead = []|[("string" | "buffer")]
+// ----- unicorn/default-export-style -----
+type UnicornDefaultExportStyle = []|[{
+  functions?: ("inline" | "separate" | "ignore")
+  classes?: ("inline" | "separate" | "ignore")
+}]
+// ----- unicorn/dom-node-dataset -----
+type UnicornDomNodeDataset = []|[{
+
+  preferAttributes?: boolean
 }]
 // ----- unicorn/escape-case -----
 type UnicornEscapeCase = []|[("uppercase" | "lowercase")]
 // ----- unicorn/expiring-todo-comments -----
 type UnicornExpiringTodoComments = []|[{
+
   terms?: string[]
-  ignore?: unknown[]
-  ignoreDatesOnPullRequests?: boolean
+
+  ignore?: (string | {
+    [k: string]: unknown | undefined
+  })[]
+
+  checkDates?: boolean
+
+  checkDatesOnPullRequests?: boolean
+
   allowWarningComments?: boolean
+
   date?: string
 }]
 // ----- unicorn/explicit-length-check -----
 type UnicornExplicitLengthCheck = []|[{
   "non-zero"?: ("greater-than" | "not-equal")
 }]
+// ----- unicorn/explicit-timer-delay -----
+type UnicornExplicitTimerDelay = []|[("always" | "never")]
 // ----- unicorn/filename-case -----
 type UnicornFilenameCase = []|[({
-  case?: ("camelCase" | "snakeCase" | "kebabCase" | "pascalCase")
-  ignore?: unknown[]
+
+  case?: ("camelCase" | "camelCaseWithAcronyms" | "snakeCase" | "kebabCase" | "pascalCase")
+
+  ignore?: (string | {
+    [k: string]: unknown | undefined
+  })[]
+
   multipleFileExtensions?: boolean
+
+  checkDirectories?: boolean
 } | {
+
   cases?: {
+
     camelCase?: boolean
+
+    camelCaseWithAcronyms?: boolean
+
     snakeCase?: boolean
+
     kebabCase?: boolean
+
     pascalCase?: boolean
   }
-  ignore?: unknown[]
+
+  ignore?: (string | {
+    [k: string]: unknown | undefined
+  })[]
+
   multipleFileExtensions?: boolean
+
+  checkDirectories?: boolean
 })]
+// ----- unicorn/id-match -----
+type UnicornIdMatch = []|[string]|[string, {
+  properties?: boolean
+  classFields?: boolean
+  onlyDeclarations?: boolean
+  ignoreDestructuring?: boolean
+
+  checkNamedSpecifiers?: boolean
+}]
 // ----- unicorn/import-style -----
 type UnicornImportStyle = []|[{
+
   checkImport?: boolean
+
   checkDynamicImport?: boolean
+
   checkExportFrom?: boolean
+
   checkRequire?: boolean
+
   extendDefaultStyles?: boolean
   styles?: _UnicornImportStyle_ModuleStyles
 }]
@@ -20275,15 +24136,71 @@ interface _UnicornImportStyle_BooleanObject {
 }
 // ----- unicorn/isolated-functions -----
 type UnicornIsolatedFunctions = []|[{
+
   overrideGlobals?: {
     [k: string]: (boolean | ("readonly" | "writable" | "writeable" | "off")) | undefined
   }
+
   functions?: string[]
+
   selectors?: string[]
+
   comments?: string[]
+}]
+// ----- unicorn/iteration-fallback-style -----
+type UnicornIterationFallbackStyle = []|[("guard" | "fallback")]
+// ----- unicorn/logical-assignment-operators -----
+type UnicornLogicalAssignmentOperators = (([]|["always"]|["always", {
+  enforceForIfStatements?: boolean
+}] | ["never"]) & unknown[])
+// ----- unicorn/max-nested-calls -----
+type UnicornMaxNestedCalls = []|[{
+
+  max?: number
+}]
+// ----- unicorn/name-replacements -----
+type UnicornNameReplacements = []|[{
+
+  checkProperties?: boolean
+
+  checkVariables?: boolean
+
+  checkDefaultAndNamespaceImports?: (boolean | string)
+
+  checkShorthandImports?: (boolean | string)
+
+  checkShorthandProperties?: boolean
+
+  checkFilenames?: boolean
+
+  extendDefaultReplacements?: boolean
+  replacements?: _UnicornNameReplacements_NameReplacements
+
+  extendDefaultAllowList?: boolean
+  allowList?: _UnicornNameReplacements_BooleanObject
+
+  ignore?: (string | {
+    [k: string]: unknown | undefined
+  })[]
+}]
+type _UnicornNameReplacementsReplacements = (false | _UnicornNameReplacements_BooleanObject) | undefined
+interface _UnicornNameReplacements_NameReplacements {
+  [k: string]: _UnicornNameReplacementsReplacements | undefined
+}
+interface _UnicornNameReplacements_BooleanObject {
+  [k: string]: boolean | undefined
+}
+interface _UnicornNameReplacements_BooleanObject {
+  [k: string]: boolean | undefined
+}
+// ----- unicorn/no-array-callback-reference -----
+type UnicornNoArrayCallbackReference = []|[{
+
+  ignore?: string[]
 }]
 // ----- unicorn/no-array-reduce -----
 type UnicornNoArrayReduce = []|[{
+
   allowSimpleOperations?: boolean
 }]
 // ----- unicorn/no-array-reverse -----
@@ -20294,6 +24211,11 @@ type UnicornNoArrayReverse = []|[{
 type UnicornNoArraySort = []|[{
   allowExpressionStatement?: boolean
 }]
+// ----- unicorn/no-empty-file -----
+type UnicornNoEmptyFile = []|[{
+
+  allowComments?: boolean
+}]
 // ----- unicorn/no-instanceof-builtins -----
 type UnicornNoInstanceofBuiltins = []|[{
   useErrorIsError?: boolean
@@ -20301,30 +24223,65 @@ type UnicornNoInstanceofBuiltins = []|[{
   include?: string[]
   exclude?: string[]
 }]
+// ----- unicorn/no-invalid-argument-count -----
+type UnicornNoInvalidArgumentCount = []|[{
+  [k: string]: (number | [number, ...(number)[]] | {
+    min?: number
+    max?: number
+  }) | undefined
+}]
 // ----- unicorn/no-keyword-prefix -----
 type UnicornNoKeywordPrefix = []|[{
-  
-  disallowedPrefixes?: []|[string]
+
+  disallowedPrefixes?: string[]
+
   checkProperties?: boolean
+
   onlyCamelCase?: boolean
+}]
+// ----- unicorn/no-negated-comparison -----
+type UnicornNoNegatedComparison = []|[{
+
+  checkLogicalExpressions?: boolean
+}]
+// ----- unicorn/no-non-function-verb-prefix -----
+type UnicornNoNonFunctionVerbPrefix = []|[{
+
+  verbs?: string[]
+
+  ignore?: (string | {
+    [k: string]: unknown | undefined
+  })[]
 }]
 // ----- unicorn/no-null -----
 type UnicornNoNull = []|[{
+
+  checkArguments?: boolean
+
   checkStrictEquality?: boolean
 }]
 // ----- unicorn/no-typeof-undefined -----
 type UnicornNoTypeofUndefined = []|[{
+
   checkGlobalVariables?: boolean
 }]
 // ----- unicorn/no-unnecessary-polyfills -----
 type UnicornNoUnnecessaryPolyfills = []|[{
-  targets: (string | unknown[] | {
+
+  targets?: (string | string[] | {
     [k: string]: unknown | undefined
   })
 }]
+// ----- unicorn/no-unreadable-array-destructuring -----
+type UnicornNoUnreadableArrayDestructuring = []|[{
+
+  maximumIgnoredElements?: number
+}]
 // ----- unicorn/no-useless-undefined -----
 type UnicornNoUselessUndefined = []|[{
+
   checkArguments?: boolean
+
   checkArrowFunctionBody?: boolean
 }]
 // ----- unicorn/number-literal-case -----
@@ -20334,118 +24291,233 @@ type UnicornNumberLiteralCase = []|[{
 // ----- unicorn/numeric-separators-style -----
 type UnicornNumericSeparatorsStyle = []|[{
   binary?: {
+
     onlyIfContainsSeparator?: boolean
+
     minimumDigits?: number
+
     groupLength?: number
   }
   octal?: {
+
     onlyIfContainsSeparator?: boolean
+
     minimumDigits?: number
+
     groupLength?: number
   }
   hexadecimal?: {
+
     onlyIfContainsSeparator?: boolean
+
     minimumDigits?: number
+
     groupLength?: number
   }
   number?: {
+
     onlyIfContainsSeparator?: boolean
+
     minimumDigits?: number
+
     groupLength?: number
+
+    fractionGroupLength?: number
   }
+
   onlyIfContainsSeparator?: boolean
 }]
+// ----- unicorn/operator-assignment -----
+type UnicornOperatorAssignment = []|[("always" | "never")]
 // ----- unicorn/prefer-add-event-listener -----
 type UnicornPreferAddEventListener = []|[{
+
   excludedPackages?: string[]
 }]
 // ----- unicorn/prefer-array-find -----
 type UnicornPreferArrayFind = []|[{
+
   checkFromLast?: boolean
 }]
 // ----- unicorn/prefer-array-flat -----
 type UnicornPreferArrayFlat = []|[{
-  functions?: unknown[]
+
+  functions?: string[]
 }]
 // ----- unicorn/prefer-at -----
 type UnicornPreferAt = []|[{
-  getLastElementFunctions?: unknown[]
+
+  getLastElementFunctions?: string[]
+
   checkAllIndexAccess?: boolean
+}]
+// ----- unicorn/prefer-continue -----
+type UnicornPreferContinue = []|[{
+
+  maximumStatements?: number
+}]
+// ----- unicorn/prefer-dom-node-html-methods -----
+type UnicornPreferDomNodeHtmlMethods = []|[{
+
+  checkGetHTML?: boolean
+
+  checkSetHTML?: boolean
+}]
+// ----- unicorn/prefer-early-return -----
+type UnicornPreferEarlyReturn = []|[{
+
+  maximumStatements?: number
+}]
+// ----- unicorn/prefer-explicit-viewport-units -----
+type UnicornPreferExplicitViewportUnits = []|[{
+
+  unit?: ("dvh" | "svh" | "lvh")
 }]
 // ----- unicorn/prefer-export-from -----
 type UnicornPreferExportFrom = []|[{
-  ignoreUsedVariables?: boolean
+
+  checkUsedVariables?: boolean
+}]
+// ----- unicorn/prefer-https -----
+type UnicornPreferHttps = []|[{
+
+  ignore?: (string | {
+    [k: string]: unknown | undefined
+  })[]
+}]
+// ----- unicorn/prefer-includes-over-repeated-comparisons -----
+type UnicornPreferIncludesOverRepeatedComparisons = []|[{
+
+  minimumComparisons?: number
+}]
+// ----- unicorn/prefer-minimal-ternary -----
+type UnicornPreferMinimalTernary = []|[{
+
+  checkVaryingBase?: boolean
+
+  checkComputedMemberAccess?: boolean
 }]
 // ----- unicorn/prefer-number-properties -----
 type UnicornPreferNumberProperties = []|[{
+
   checkInfinity?: boolean
+
   checkNaN?: boolean
 }]
 // ----- unicorn/prefer-object-from-entries -----
 type UnicornPreferObjectFromEntries = []|[{
-  functions?: unknown[]
+
+  functions?: string[]
 }]
+// ----- unicorn/prefer-query-selector -----
+type UnicornPreferQuerySelector = []|[{
+
+  allowWithVariables?: boolean
+}]
+// ----- unicorn/prefer-queue-microtask -----
+type UnicornPreferQueueMicrotask = []|[{
+
+  checkSetImmediate?: boolean
+
+  checkSetTimeout?: boolean
+}]
+// ----- unicorn/prefer-set-has -----
+type UnicornPreferSetHas = []|[{
+
+  minimumItems?: number
+}]
+// ----- unicorn/prefer-short-arrow-method -----
+type UnicornPreferShortArrowMethod = []|[("always" | "consistent-as-needed")]
 // ----- unicorn/prefer-single-call -----
 type UnicornPreferSingleCall = []|[{
-  ignore?: unknown[]
+
+  ignore?: string[]
+}]
+// ----- unicorn/prefer-string-repeat -----
+type UnicornPreferStringRepeat = []|[{
+
+  minimumRepetitions?: number
 }]
 // ----- unicorn/prefer-structured-clone -----
 type UnicornPreferStructuredClone = []|[{
-  functions?: unknown[]
+
+  functions?: string[]
 }]
 // ----- unicorn/prefer-switch -----
 type UnicornPreferSwitch = []|[{
+
   minimumCases?: number
+
   emptyDefaultCase?: ("no-default-comment" | "do-nothing-comment" | "no-default-case")
+}]
+// ----- unicorn/prefer-temporal -----
+type UnicornPreferTemporal = []|[{
+
+  checkDateNow?: boolean
+
+  checkReferences?: boolean
+
+  checkMethods?: boolean
 }]
 // ----- unicorn/prefer-ternary -----
 type UnicornPreferTernary = []|[("always" | "only-single-line")]
-// ----- unicorn/prevent-abbreviations -----
-type UnicornPreventAbbreviations = []|[{
-  checkProperties?: boolean
-  checkVariables?: boolean
-  checkDefaultAndNamespaceImports?: (boolean | string)
-  checkShorthandImports?: (boolean | string)
-  checkShorthandProperties?: boolean
-  checkFilenames?: boolean
-  extendDefaultReplacements?: boolean
-  replacements?: _UnicornPreventAbbreviations_Abbreviations
-  extendDefaultAllowList?: boolean
-  allowList?: _UnicornPreventAbbreviations_BooleanObject
-  ignore?: unknown[]
-}]
-type _UnicornPreventAbbreviationsReplacements = (false | _UnicornPreventAbbreviations_BooleanObject) | undefined
-interface _UnicornPreventAbbreviations_Abbreviations {
-  [k: string]: _UnicornPreventAbbreviationsReplacements | undefined
-}
-interface _UnicornPreventAbbreviations_BooleanObject {
-  [k: string]: boolean | undefined
-}
 // ----- unicorn/relative-url-style -----
 type UnicornRelativeUrlStyle = []|[("never" | "always")]
+// ----- unicorn/require-css-escape -----
+type UnicornRequireCssEscape = []|[{
+
+  checkAllSelectors?: boolean
+}]
+// ----- unicorn/require-frontmatter-fields -----
+type UnicornRequireFrontmatterFields = []|[{
+
+  fields?: string[]
+}]
+// ----- unicorn/single-line-block-comment-style -----
+type UnicornSingleLineBlockCommentStyle = []|[("multiline" | "single-line")]|[("multiline" | "single-line"), {
+
+  ignore?: (string | {
+    [k: string]: unknown | undefined
+  })[]
+}]
 // ----- unicorn/string-content -----
 type UnicornStringContent = []|[{
+
   patterns?: {
     [k: string]: (string | {
       suggest: string
       fix?: boolean
+      caseSensitive?: boolean
       message?: string
     }) | undefined
   }
+
+  selectors?: string[]
 }]
 // ----- unicorn/switch-case-braces -----
-type UnicornSwitchCaseBraces = []|[("always" | "avoid")]
+type UnicornSwitchCaseBraces = []|[("always" | "avoid" | "single-statement")]
 // ----- unicorn/template-indent -----
 type UnicornTemplateIndent = []|[{
+
   indent?: (string | number)
+
   tags?: string[]
+
   functions?: string[]
+
   selectors?: string[]
+
   comments?: string[]
 }]
 // ----- unicorn/text-encoding-identifier-case -----
 type UnicornTextEncodingIdentifierCase = []|[{
+
   withDash?: boolean
+}]
+// ----- unicorn/try-complexity -----
+type UnicornTryComplexity = []|[{
+
+  max?: number
 }]
 // ----- unocss/enforce-class-compile -----
 type UnocssEnforceClassCompile = []|[{
@@ -20459,62 +24531,62 @@ type UnocssOrder = []|[{
 }]
 // ----- unused-imports/no-unused-imports -----
 type UnusedImportsNoUnusedImports = []|[(("all" | "local") | {
-  
+
   args?: ("all" | "after-used" | "none")
-  
+
   argsIgnorePattern?: string
-  
+
   caughtErrors?: ("all" | "none")
-  
+
   caughtErrorsIgnorePattern?: string
-  
+
   destructuredArrayIgnorePattern?: string
-  
+
   enableAutofixRemoval?: {
-    
+
     imports?: boolean
   }
-  
+
   ignoreClassWithStaticInitBlock?: boolean
-  
+
   ignoreRestSiblings?: boolean
-  
+
   ignoreUsingDeclarations?: boolean
-  
+
   reportUsedIgnorePattern?: boolean
-  
+
   vars?: ("all" | "local")
-  
+
   varsIgnorePattern?: string
 })]
 // ----- unused-imports/no-unused-vars -----
 type UnusedImportsNoUnusedVars = []|[(("all" | "local") | {
-  
+
   args?: ("all" | "after-used" | "none")
-  
+
   argsIgnorePattern?: string
-  
+
   caughtErrors?: ("all" | "none")
-  
+
   caughtErrorsIgnorePattern?: string
-  
+
   destructuredArrayIgnorePattern?: string
-  
+
   enableAutofixRemoval?: {
-    
+
     imports?: boolean
   }
-  
+
   ignoreClassWithStaticInitBlock?: boolean
-  
+
   ignoreRestSiblings?: boolean
-  
+
   ignoreUsingDeclarations?: boolean
-  
+
   reportUsedIgnorePattern?: boolean
-  
+
   vars?: ("all" | "local")
-  
+
   varsIgnorePattern?: string
 })]
 // ----- use-isnan -----
@@ -20674,7 +24746,7 @@ type VueCamelcase = []|[{
   ignoreImports?: boolean
   ignoreGlobals?: boolean
   properties?: ("always" | "never")
-  
+
   allow?: string[]
 }]
 // ----- vue/comma-dangle -----
@@ -20740,7 +24812,7 @@ type VueDotNotation = []|[{
 }]
 // ----- vue/enforce-style-attribute -----
 type VueEnforceStyleAttribute = []|[{
-  
+
   allow?: [("plain" | "scoped" | "module"), ...(("plain" | "scoped" | "module"))[]]
 }]
 // ----- vue/eqeqeq -----
@@ -21301,12 +25373,12 @@ type VueNoBareStringsInTemplate = []|[{
 type VueNoBooleanDefault = []|[("default-false" | "no-default")]
 // ----- vue/no-child-content -----
 type VueNoChildContent = []|[{
-  
+
   additionalDirectives: [string, ...(string)[]]
 }]
 // ----- vue/no-console -----
 type VueNoConsole = []|[{
-  
+
   allow?: [string, ...(string)[]]
 }]
 // ----- vue/no-constant-condition -----
@@ -21319,7 +25391,7 @@ type VueNoDeprecatedModelDefinition = []|[{
 }]
 // ----- vue/no-deprecated-router-link-tag-prop -----
 type VueNoDeprecatedRouterLinkTagProp = []|[{
-  
+
   components?: [string, ...(string)[]]
 }]
 // ----- vue/no-deprecated-slot-attribute -----
@@ -21329,7 +25401,7 @@ type VueNoDeprecatedSlotAttribute = []|[{
 }]
 // ----- vue/no-dupe-keys -----
 type VueNoDupeKeys = []|[{
-  groups?: unknown[]
+  groups?: string[]
 }]
 // ----- vue/no-duplicate-attr-inheritance -----
 type VueNoDuplicateAttrInheritance = []|[{
@@ -21373,6 +25445,10 @@ type VueNoIrregularWhitespace = []|[{
   skipRegExps?: boolean
   skipHTMLAttributeValues?: boolean
   skipHTMLTextContents?: boolean
+}]
+// ----- vue/no-literals-in-template -----
+type VueNoLiteralsInTemplate = []|[{
+  ignores?: string[]
 }]
 // ----- vue/no-lone-template -----
 type VueNoLoneTemplate = []|[{
@@ -21432,9 +25508,9 @@ type VueNoParsingError = []|[{
 }]
 // ----- vue/no-potential-component-option-typo -----
 type VueNoPotentialComponentOptionTypo = []|[{
-  
+
   presets?: ("all" | "vue" | "vue-router" | "nuxt")[]
-  
+
   custom?: string[]
   threshold?: number
 }]
@@ -21450,8 +25526,8 @@ type VueNoReservedComponentNames = []|[{
 }]
 // ----- vue/no-reserved-keys -----
 type VueNoReservedKeys = []|[{
-  reserved?: unknown[]
-  groups?: unknown[]
+  reserved?: string[]
+  groups?: string[]
 }]
 // ----- vue/no-reserved-props -----
 type VueNoReservedProps = []|[{
@@ -21522,7 +25598,7 @@ type VueNoRestrictedVOn = ((string | null) | {
   argument: (string | null)
   element?: string
   message?: string
-  
+
   modifiers?: [("prevent" | "stop" | "capture" | "self" | "once" | "passive"), ...(("prevent" | "stop" | "capture" | "self" | "once" | "passive"))[]]
 })[]
 // ----- vue/no-static-inline-styles -----
@@ -21540,7 +25616,7 @@ type VueNoTemplateTargetBlank = []|[{
 }]
 // ----- vue/no-undef-components -----
 type VueNoUndefComponents = []|[{
-  ignorePatterns?: unknown[]
+  ignorePatterns?: string[]
 }]
 // ----- vue/no-undef-directives -----
 type VueNoUndefDirectives = []|[{
@@ -21561,7 +25637,7 @@ type VueNoUnusedComponents = []|[{
 }]
 // ----- vue/no-unused-properties -----
 type VueNoUnusedProperties = []|[{
-  groups?: ("props" | "data" | "asyncData" | "computed" | "methods" | "setup")[]
+  groups?: ("props" | "data" | "asyncData" | "computed" | "methods" | "setup" | "inject")[]
   deepData?: boolean
   ignorePublicMembers?: boolean
   unreferencedOptions?: ("unknownMemberAsUnreferenced" | "returnAsUnreferenced")[]
@@ -21647,7 +25723,7 @@ type VueOperatorLinebreak = []|[("after" | "before" | "none" | null)]|[("after" 
 }]
 // ----- vue/order-in-components -----
 type VueOrderInComponents = []|[{
-  order?: unknown[]
+  order?: (string | string[])[]
 }]
 // ----- vue/padding-line-between-blocks -----
 type VuePaddingLineBetweenBlocks = []|[("never" | "always")]
@@ -21736,10 +25812,11 @@ type VueSlotNameCasing = []|[("camelCase" | "kebab-case" | "singleword")]
 // ----- vue/sort-keys -----
 type VueSortKeys = []|[("asc" | "desc")]|[("asc" | "desc"), {
   caseSensitive?: boolean
-  ignoreChildrenOf?: unknown[]
-  ignoreGrandchildrenOf?: unknown[]
+  ignoreChildrenOf?: string[]
+  ignoreGrandchildrenOf?: string[]
   minKeys?: number
   natural?: boolean
+  allowLineSeparatedGroups?: boolean
 }]
 // ----- vue/space-in-parens -----
 type VueSpaceInParens = []|[("always" | "never")]|[("always" | "never"), {
@@ -21795,7 +25872,7 @@ type VueValidVFor = []|[{
 }]
 // ----- vue/valid-v-on -----
 type VueValidVOn = []|[{
-  modifiers?: unknown[]
+  modifiers?: string[]
 }]
 // ----- vue/valid-v-slot -----
 type VueValidVSlot = []|[{
@@ -21924,6 +26001,11 @@ type YamlNoMultipleEmptyLines = []|[{
   maxEOF?: number
   maxBOF?: number
 }]
+// ----- yaml/no-trailing-spaces -----
+type YamlNoTrailingSpaces = []|[{
+  skipBlankLines?: boolean
+  ignoreComments?: boolean
+}]
 // ----- yaml/plain-scalar -----
 type YamlPlainScalar = []|[("always" | "never")]|[("always" | "never"), {
   ignorePatterns?: string[]
@@ -21942,15 +26024,19 @@ type YamlSortKeys = ([{
   hasProperties?: string[]
   order: ((string | {
     keyPattern?: string
-    order?: {
+    order?: ({
       type?: ("asc" | "desc")
       caseSensitive?: boolean
       natural?: boolean
-    }
+    } | {
+      type: "ignore"
+    })
   })[] | {
     type?: ("asc" | "desc")
     caseSensitive?: boolean
     natural?: boolean
+  } | {
+    type: "ignore"
   })
   minKeys?: number
   allowLineSeparatedGroups?: boolean
@@ -21959,15 +26045,19 @@ type YamlSortKeys = ([{
   hasProperties?: string[]
   order: ((string | {
     keyPattern?: string
-    order?: {
+    order?: ({
       type?: ("asc" | "desc")
       caseSensitive?: boolean
       natural?: boolean
-    }
+    } | {
+      type: "ignore"
+    })
   })[] | {
     type?: ("asc" | "desc")
     caseSensitive?: boolean
     natural?: boolean
+  } | {
+    type: "ignore"
   })
   minKeys?: number
   allowLineSeparatedGroups?: boolean
@@ -21986,11 +26076,13 @@ type YamlSortSequenceValues = [{
       type?: ("asc" | "desc")
       caseSensitive?: boolean
       natural?: boolean
+      key?: string
     }
   })[] | {
     type?: ("asc" | "desc")
     caseSensitive?: boolean
     natural?: boolean
+    key?: string
   })
   minValues?: number
 }, ...({
@@ -22001,11 +26093,13 @@ type YamlSortSequenceValues = [{
       type?: ("asc" | "desc")
       caseSensitive?: boolean
       natural?: boolean
+      key?: string
     }
   })[] | {
     type?: ("asc" | "desc")
     caseSensitive?: boolean
     natural?: boolean
+    key?: string
   })
   minValues?: number
 })[]]
@@ -22025,4 +26119,4 @@ type Yoda = []|[("always" | "never")]|[("always" | "never"), {
   onlyEquality?: boolean
 }]
 // Names of all the configs
-export type NailyConfigNames = 'antfu/gitignore' | 'antfu/ignores' | 'antfu/javascript/setup' | 'antfu/javascript/rules' | 'antfu/eslint-comments/rules' | 'antfu/command/rules' | 'antfu/perfectionist/setup' | 'antfu/node/setup' | 'antfu/node/rules' | 'antfu/jsdoc/setup' | 'antfu/jsdoc/rules' | 'antfu/imports/rules' | 'antfu/unicorn/rules' | 'antfu/jsx/setup' | 'antfu/typescript/setup' | 'antfu/typescript/parser' | 'antfu/typescript/type-aware-parser' | 'antfu/typescript/rules' | 'antfu/typescript/rules-type-aware' | 'antfu/typescript/erasable-syntax-only' | 'antfu/stylistic/rules' | 'antfu/regexp/rules' | 'antfu/test/setup' | 'antfu/test/rules' | 'antfu/vue/setup' | 'antfu/vue/rules' | 'antfu/react/setup' | 'antfu/react/rules' | 'antfu/react/typescript' | 'antfu/react/type-aware-rules' | 'antfu/nextjs/setup' | 'antfu/nextjs/rules' | 'antfu/solid/setup' | 'antfu/solid/rules' | 'antfu/svelte/setup' | 'antfu/svelte/rules' | 'antfu/unocss' | 'antfu/astro/setup' | 'antfu/astro/rules' | 'antfu/angular/setup' | 'antfu/angular/rules/ts' | 'antfu/angular/rules/template' | 'antfu/jsonc/setup' | 'antfu/jsonc/rules' | 'antfu/sort/package-json' | 'antfu/sort/tsconfig-json' | 'antfu/pnpm/package-json' | 'antfu/pnpm/pnpm-workspace-yaml' | 'antfu/pnpm/pnpm-workspace-yaml-sort' | 'antfu/yaml/setup' | 'antfu/yaml/rules' | 'antfu/toml/setup' | 'antfu/toml/rules' | 'antfu/markdown/setup' | 'antfu/markdown/processor' | 'antfu/markdown/parser' | 'antfu/markdown/rules' | 'antfu/markdown/disables/markdown' | 'antfu/markdown/disables/code' | 'antfu/formatter/setup' | 'antfu/formatter/css' | 'antfu/formatter/scss' | 'antfu/formatter/less' | 'antfu/formatter/html' | 'antfu/formatter/xml' | 'antfu/formatter/svg' | 'antfu/formatter/markdown' | 'antfu/formatter/astro' | 'antfu/formatter/astro/disables' | 'antfu/formatter/graphql' | 'antfu/disables/scripts' | 'antfu/disables/cli' | 'antfu/disables/bin' | 'antfu/disables/dts' | 'antfu/disables/cjs' | 'antfu/disables/config-files' | 'naily' | 'naily/typescript/unsafe' | 'naily/typescript/convention'
+export type NailyConfigNames = 'antfu/gitignore' | 'antfu/ignores' | 'antfu/javascript/setup' | 'antfu/javascript/rules' | 'antfu/eslint-comments/rules' | 'antfu/command/rules' | 'antfu/perfectionist/setup' | 'antfu/node/setup' | 'antfu/node/rules' | 'antfu/jsdoc/setup' | 'antfu/jsdoc/rules' | 'antfu/imports/rules' | 'antfu/e18e/rules' | 'antfu/unicorn/setup' | 'antfu/unicorn/rules' | 'antfu/jsx/setup' | 'antfu/typescript/setup' | 'antfu/typescript/parser' | 'antfu/typescript/type-aware-parser' | 'antfu/typescript/rules' | 'antfu/typescript/rules-type-aware' | 'antfu/typescript/erasable-syntax-only' | 'antfu/antislop/setup' | 'antfu/antislop/rules/universal' | 'antfu/antislop/rules/javascript' | 'antfu/stylistic/rules' | 'antfu/regexp/rules' | 'antfu/test/setup' | 'antfu/test/rules' | 'antfu/vue/setup' | 'antfu/vue/rules' | 'antfu/react/setup' | 'antfu/react/rules' | 'antfu/react/typescript' | 'antfu/react/type-aware-rules' | 'antfu/nextjs/setup' | 'antfu/nextjs/rules' | 'antfu/solid/setup' | 'antfu/solid/rules' | 'antfu/svelte/setup' | 'antfu/svelte/rules' | 'antfu/unocss' | 'antfu/astro/setup' | 'antfu/astro/rules' | 'antfu/angular/setup' | 'antfu/angular/rules/ts' | 'antfu/angular/rules/template' | 'antfu/jsonc/setup' | 'antfu/jsonc/rules' | 'antfu/sort/package-json' | 'antfu/sort/tsconfig-json' | 'antfu/pnpm/package-json' | 'antfu/pnpm/pnpm-workspace-yaml' | 'antfu/pnpm/pnpm-workspace-yaml-stylistic' | 'antfu/pnpm/pnpm-workspace-yaml-sort' | 'antfu/yaml/setup' | 'antfu/yaml/rules' | 'antfu/toml/setup' | 'antfu/toml/rules' | 'antfu/markdown/setup' | 'antfu/markdown/processor' | 'antfu/markdown/parser' | 'antfu/markdown/rules' | 'antfu/markdown/disables/code' | 'antfu/formatter/setup' | 'antfu/formatter/css' | 'antfu/formatter/scss' | 'antfu/formatter/less' | 'antfu/formatter/html' | 'antfu/formatter/xml' | 'antfu/formatter/svg' | 'antfu/formatter/markdown' | 'antfu/formatter/astro' | 'antfu/formatter/astro/disables' | 'antfu/formatter/graphql' | 'antfu/disables/scripts' | 'antfu/disables/cli' | 'antfu/disables/bin' | 'antfu/disables/dts' | 'antfu/disables/cjs' | 'antfu/disables/config-files' | 'naily' | 'naily/typescript/unsafe' | 'naily/typescript/convention'

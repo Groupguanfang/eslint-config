@@ -22,6 +22,7 @@ I very like the way @antfu/eslint-config is organized, so I keep almost all the 
 
 - Disable `antfu/if-newline` rule.
 - Add `naily/if-oneline` rule.
+- Add `naily/interface-naming` rule.
 
 - Add `naily/typescript/convention` rule when `convention` is `true`.
 - Add `naily/typescript/unsafe` rule when `freedom` is `true`.

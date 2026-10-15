@@ -39,5 +39,8 @@
     "yaml",
     "toml",
     "xml"
+  ],
+  "cSpell.words": [
+    "Oneline"
   ]
 }

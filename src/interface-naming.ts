@@ -16,7 +16,7 @@ export default {
     messages: {
       invalidInterfaceName: 'Interface name must start with I, unless in a namespace or the same namespace.',
     },
-  },
+  } satisfies import('eslint').Rule.RuleMetaData,
   create(context: Rule.RuleContext) {
     // 存储所有命名空间的名称
     const namespaceNames = new Set()
