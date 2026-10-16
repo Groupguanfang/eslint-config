@@ -9,13 +9,17 @@ export type FixTo = 'namespace-import' | 'default-import'
 
 export const RULE_NAME = 'builtin-import'
 
-type MessageId = 'preferDefaultOrNamespace'
+type MessageId = 'preferDefaultOrNamespace' | 'preferModuleObject'
 type ImportKind = 'type' | 'value'
 type RuleNode<Type extends Rule.Node['type']> = Extract<Rule.Node, { type: Type }>
 type BaseImportDeclaration = RuleNode<'ImportDeclaration'>
 type BaseImportSpecifier = RuleNode<'ImportSpecifier'>
 type BaseImportDefaultSpecifier = RuleNode<'ImportDefaultSpecifier'>
 type BaseImportNamespaceSpecifier = RuleNode<'ImportNamespaceSpecifier'>
+type VariableDeclarator = RuleNode<'VariableDeclarator'>
+type Identifier = RuleNode<'Identifier'>
+type ObjectPattern = RuleNode<'ObjectPattern'>
+type ScopeVariable = ReturnType<SourceCode['getDeclaredVariables']>[number]
 
 type ImportDeclaration = BaseImportDeclaration & {
   assertions?: Rule.Node[]
@@ -75,20 +79,24 @@ function toNamespaceName(source: string): string {
   return /^[a-z_$]/iu.test(name) ? name : `module${name}`
 }
 
-function getUniqueName(sourceCode: SourceCode, source: string): string {
+function getUniqueName(
+  sourceCode: SourceCode,
+  source: string,
+  reservedNames: ReadonlySet<string> = new Set(),
+): string {
   const usedNames = new Set(
     sourceCode.scopeManager.scopes.flatMap(scope => scope.variables.map(variable => variable.name)),
   )
   const preferredName = toNamespaceName(source)
 
-  if (!usedNames.has(preferredName)) return preferredName
+  if (!usedNames.has(preferredName) && !reservedNames.has(preferredName)) return preferredName
 
   const moduleName = `${preferredName}Module`
-  if (!usedNames.has(moduleName)) return moduleName
+  if (!usedNames.has(moduleName) && !reservedNames.has(moduleName)) return moduleName
 
   for (let index = 2; ; index++) {
     const candidate = `${moduleName}${index}`
-    if (!usedNames.has(candidate)) return candidate
+    if (!usedNames.has(candidate) && !reservedNames.has(candidate)) return candidate
   }
 }
 
@@ -114,26 +122,17 @@ function getVariable(sourceCode: SourceCode, specifier: ImportSpecifier) {
   return sourceCode.getDeclaredVariables(specifier)[0]
 }
 
-function getReferenceFixes(
+function getVariableReferenceFixes(
   fixer: Rule.RuleFixer,
-  sourceCode: SourceCode,
-  specifier: ImportSpecifier,
-  targetName: string,
-  targetImportStyle: FixTo,
+  variable: ScopeVariable,
+  replacement: string,
+  definitionIdentifier?: Identifier,
 ): Rule.Fix[] | null {
-  const variable = getVariable(sourceCode, specifier)
-  if (!variable) return null
-
-  const importedName = getImportedName(specifier)
-  const replacement = importedName === 'default'
-    ? targetImportStyle === 'default-import'
-      ? targetName
-      : `${targetName}.default`
-    : getMemberExpression(targetName, importedName)
   const fixes: Rule.Fix[] = []
   const fixedShorthandProperties = new Set<RuleNode<'Property'>>()
 
   for (const reference of variable.references) {
+    if (definitionIdentifier && reference.identifier.range?.[0] === definitionIdentifier.range?.[0]) continue
     if (reference.isWrite?.()) return null
 
     if (reference.identifier.type !== 'Identifier') return null
@@ -157,6 +156,106 @@ function getReferenceFixes(
   return fixes
 }
 
+function getReferenceFixes(
+  fixer: Rule.RuleFixer,
+  sourceCode: SourceCode,
+  specifier: ImportSpecifier,
+  targetName: string,
+  targetImportStyle: FixTo,
+): Rule.Fix[] | null {
+  const variable = getVariable(sourceCode, specifier)
+  if (!variable) return null
+
+  const importedName = getImportedName(specifier)
+  const replacement = importedName === 'default'
+    ? targetImportStyle === 'default-import'
+      ? targetName
+      : `${targetName}.default`
+    : getMemberExpression(targetName, importedName)
+
+  return getVariableReferenceFixes(fixer, variable, replacement)
+}
+
+interface DestructuredBinding {
+  identifier: Identifier
+  importedName: string
+}
+
+function getDestructuredBindings(pattern: ObjectPattern): DestructuredBinding[] | null {
+  const bindings: DestructuredBinding[] = []
+
+  for (const property of pattern.properties) {
+    if (property.type !== 'Property' || property.value.type !== 'Identifier') return null
+
+    const importedName = property.key.type === 'Identifier' && !property.computed
+      ? property.key.name
+      : property.key.type === 'Literal' && typeof property.key.value === 'string'
+        ? property.key.value
+        : null
+    if (importedName === null) return null
+
+    bindings.push({
+      identifier: property.value as Identifier,
+      importedName,
+    })
+  }
+
+  return bindings
+}
+
+function getDeclaredVariable(
+  sourceCode: SourceCode,
+  declaration: VariableDeclarator,
+  identifier: Identifier,
+): ScopeVariable | undefined {
+  return sourceCode.getDeclaredVariables(declaration)
+    .find(variable => variable.identifiers.some(declared => declared.range?.[0] === identifier.range?.[0]))
+}
+
+function isUnshadowedRequire(sourceCode: SourceCode, node: Rule.Node): boolean {
+  for (let scope: ReturnType<SourceCode['getScope']> | null = sourceCode.getScope(node); scope; scope = scope.upper) {
+    const variable = scope.set.get('require')
+    if (variable) return variable.defs.length === 0
+  }
+
+  return true
+}
+
+function getLoadedModuleSource(
+  sourceCode: SourceCode,
+  declaration: VariableDeclarator,
+): string | null {
+  let expression = declaration.init
+  if (!expression) return null
+
+  let isAwaited = false
+  if (expression.type === 'AwaitExpression') {
+    isAwaited = true
+    expression = expression.argument
+  }
+
+  if (isAwaited && expression.type === 'ImportExpression') {
+    return expression.source.type === 'Literal' && typeof expression.source.value === 'string'
+      ? expression.source.value
+      : null
+  }
+
+  if (
+    expression.type === 'CallExpression'
+    && expression.callee.type === 'Identifier'
+    && expression.callee.name === 'require'
+    && !expression.optional
+    && expression.arguments.length === 1
+    && expression.arguments[0]?.type === 'Literal'
+    && typeof expression.arguments[0].value === 'string'
+    && isUnshadowedRequire(sourceCode, expression as unknown as Rule.Node)
+  ) {
+    return expression.arguments[0].value
+  }
+
+  return null
+}
+
 function isTypeOnlyImport(
   declarations: ImportDeclaration[],
   namedSpecifiers: ImportSpecifier[],
@@ -177,7 +276,7 @@ const builtinImport: JSRuleDefinition<{
   meta: {
     type: 'suggestion',
     docs: {
-      description: 'Require default or namespace imports for selected built-in modules.',
+      description: 'Require default or namespace imports and module-object bindings for selected built-in modules.',
     },
     fixable: 'code',
     schema: [
@@ -200,6 +299,7 @@ const builtinImport: JSRuleDefinition<{
     ],
     messages: {
       preferDefaultOrNamespace: 'Use a default or namespace import from {{source}}.',
+      preferModuleObject: 'Assign the module object from {{source}} instead of destructuring it.',
     },
   },
   create(context) {
@@ -208,6 +308,7 @@ const builtinImport: JSRuleDefinition<{
     const fixTo = options?.fixTo ?? DEFAULT_FIX_TO
     const patterns = options?.patterns ?? DEFAULT_PATTERNS
     const matchers = patterns.map(toMatcher)
+    const generatedNames = new Set<string>()
 
     return {
       Program(program) {
@@ -330,6 +431,45 @@ const builtinImport: JSRuleDefinition<{
               : undefined,
           })
         }
+      },
+      VariableDeclarator(node) {
+        const declaration = node as VariableDeclarator
+        if (declaration.id.type !== 'ObjectPattern') return
+
+        const source = getLoadedModuleSource(sourceCode, declaration)
+        if (source === null || !matchers.some(matcher => matcher(source))) return
+
+        const pattern = declaration.id as ObjectPattern
+        const bindings = getDestructuredBindings(pattern)
+        const targetName = getUniqueName(sourceCode, source, generatedNames)
+        generatedNames.add(targetName)
+
+        context.report({
+          node: pattern,
+          messageId: 'preferModuleObject',
+          data: { source },
+          fix: bindings && sourceCode.getCommentsInside(pattern).length === 0
+            ? (fixer) => {
+                const referenceFixes: Rule.Fix[] = []
+
+                for (const binding of bindings) {
+                  const variable = getDeclaredVariable(sourceCode, declaration, binding.identifier)
+                  if (!variable) return null
+
+                  const fixes = getVariableReferenceFixes(
+                    fixer,
+                    variable,
+                    getMemberExpression(targetName, binding.importedName),
+                    binding.identifier,
+                  )
+                  if (!fixes) return null
+                  referenceFixes.push(...fixes)
+                }
+
+                return [fixer.replaceText(pattern, targetName), ...referenceFixes]
+              }
+            : undefined,
+        })
       },
     }
   },
