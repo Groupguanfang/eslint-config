@@ -1,5 +1,11 @@
 # naily-eslint-config
 
+## 0.1.1
+
+### Patch Changes
+
+- 299617a: Extend `naily/builtin-import` to require module-object bindings for destructured dynamic imports and `require()` calls.
+
 ## 0.1.0
 
 ### Minor Changes
