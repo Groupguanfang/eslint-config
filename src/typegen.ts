@@ -2322,7 +2322,7 @@ export interface RuleOptions {
    */
   'multiline-ternary'?: Linter.RuleEntry<MultilineTernary>
   /**
-   * Require default or namespace imports for selected built-in modules.
+   * Require default or namespace imports and module-object bindings for selected built-in modules.
    */
   'naily/builtin-import'?: Linter.RuleEntry<NailyBuiltinImport>
   /**
