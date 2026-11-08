@@ -1,5 +1,11 @@
 # naily-eslint-config
 
+## 0.2.0
+
+### Minor Changes
+
+- 679489e: Add `naily/require-override` to report inherited class methods that are missing `override` and fix them automatically. Enable TypeScript type information by default and avoid repeated editor detection logs.
+
 ## 0.1.1
 
 ### Patch Changes
