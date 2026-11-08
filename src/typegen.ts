@@ -2334,6 +2334,10 @@ export interface RuleOptions {
    */
   'naily/interface-naming'?: Linter.RuleEntry<[]>
   /**
+   * Require override on methods inherited from a base class.
+   */
+  'naily/require-override'?: Linter.RuleEntry<[]>
+  /**
    * Require constructor names to begin with a capital letter
    * @see https://eslint.org/docs/latest/rules/new-cap
    */

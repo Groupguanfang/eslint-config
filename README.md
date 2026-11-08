@@ -16,6 +16,8 @@ import naily from 'naily-eslint-config'
 export default naily()
 ```
 
+For TypeScript files, `naily()` enables type information by default. The `naily/require-override` rule checks inherited methods and adds a missing `override` with ESLint's `--fix`. The files must be included in their nearest `tsconfig.json`.
+
 ## Differences from @antfu/eslint-config
 
 I very like the way @antfu/eslint-config is organized, so I keep almost all the rules from it, but I have some little changes:
@@ -23,6 +25,7 @@ I very like the way @antfu/eslint-config is organized, so I keep almost all the 
 - Disable `antfu/if-newline` rule.
 - Add `naily/if-oneline` rule.
 - Add `naily/interface-naming` rule.
+- Add `naily/require-override` rule for type-aware TypeScript files.
 
 - Add `naily/typescript/convention` rule when `convention` is `true`.
 - Add `naily/typescript/unsafe` rule when `freedom` is `true`.
